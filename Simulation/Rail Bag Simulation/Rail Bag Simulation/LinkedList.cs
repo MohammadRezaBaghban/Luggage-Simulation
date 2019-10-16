@@ -8,5 +8,12 @@ namespace Rail_Bag_Simulation
 {
     class LinkedList
     {
+        private Node first;
+        private Node second;
+        public LinkedList(Object obj)
+        {
+            first = new Node(obj);
+        }
+        
     }
 }
