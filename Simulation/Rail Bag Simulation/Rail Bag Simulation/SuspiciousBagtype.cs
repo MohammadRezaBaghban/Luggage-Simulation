@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Rail_Bag_Simulation
 {
-    class SuspiciousBagtype
+    public enum SuspiciousBagtype
     {
+        Drug, Weapons, Flammables, Other
     }
 }
