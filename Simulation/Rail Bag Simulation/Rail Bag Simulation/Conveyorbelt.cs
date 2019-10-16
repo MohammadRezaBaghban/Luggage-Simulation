@@ -16,13 +16,31 @@ namespace Rail_Bag_Simulation
         {
             _bagQueue = new Queue<Bag>(5);
         }
-        public void Push()
+        public bool Push(Bag _bagtoqueue)
         {
-
+            if (_bagQueue.Count <= 5)
+            {
+                _bagQueue.Enqueue(_bagtoqueue);
+            }
+            else
+            {
+                return false;
+                throw new Exception("Queue for the conveyor belt "+_id+" is full");
+            }
+            return true;
+        
         }
         public Bag Remove()
         {
-            return null;
+            Bag _bag;
+            if (_bagQueue.Count >= 1)
+            {
+                _bag =(Bag)_bagQueue.Dequeue();
+            }else
+            {
+                throw new Exception("Queue for the conveyor belt " + _id + " is empty");
+            }
+            return _bag;
         }
 
     }

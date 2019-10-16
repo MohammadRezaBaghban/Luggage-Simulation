@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Rail_Bag_Simulation
 {
-    class Destination
+    public enum Destination
     {
     }
 }
