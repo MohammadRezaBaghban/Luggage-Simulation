@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Rail_Bag_Simulation
 {
-    class Gate
+    public enum NextStop
     {
-       public int GateNr { get; private set; }
-       public Gate(int GateNr)
-        {
-            this.GateNr = GateNr;
-        }
+        Security,
+         BagSort,
+         Terminal,
+         Gate
+
     }
 }

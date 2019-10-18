@@ -6,43 +6,40 @@ using System.Threading.Tasks;
 
 namespace Rail_Bag_Simulation
 {
-<<<<<<< HEAD
-      class Node
+    class Node
+    {
+        public object obj { get; private set; } //the item it refers to
+        public Node next { get; set; } // the next node it refers to; null if there does not exist a next node
+        public NextStop stopcheck;
+        public Node(object obj)
         {
-            private object obj; //the item it refers to
-            private Node next;    // the next node it refers to; null if there does not exist a next node
-
-            public Node(object obj)
+            if (obj is Conveyorbelt)
+            {
+                this.obj = (Conveyorbelt)obj;
+            }
+            else
             {
                 this.obj = obj;
-                this.next = null;
             }
-
-            public object getItem() { return this.obj; }
-
-            public Node getNextNode() { return this.next; }
-            public void setNext(Node n) { this.next = n; }
-
-        }
-=======
-     class Node
-    {
-        private Object machine; //the item it refers to
-        private Node next;    // the next node it refers to; null if there does not exist a next node
-
-        public Node(Object machine)
-        {
-            this.machine = machine;
             this.next = null;
         }
-
         
-        public Object getMachine()
+        public override string ToString()
         {
-            return this.machine;
+            if (obj is Conveyorbelt)
+            {
+                string bagsinqueue = null;
+
+                foreach (Bag g in ((Conveyorbelt)obj).ListofBagsinqueue())
+                {
+                    bagsinqueue += g.GetBagInfo()+"\n";
+                }
+                return bagsinqueue;
+            }
+           
+            return "this is a checkpoint ";
+
         }
-        public Node GetNext() { return this.next; }
-        public void SetNext(Node n) { this.next = n; }  
->>>>>>> 54d705e62b12b4cfad5e13a7a44bbf015c889ba4
     }
+}
 

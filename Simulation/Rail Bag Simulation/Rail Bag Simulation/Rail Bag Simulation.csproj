@@ -59,6 +59,7 @@
     <Compile Include="Conveyorbelt.cs" />
     <Compile Include="Gate.cs" />
     <Compile Include="LinkedList.cs" />
+    <Compile Include="NextStop.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Simulation.cs" />
     <Compile Include="StopPoint.cs" />
