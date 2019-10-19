@@ -8,6 +8,7 @@ namespace Rail_Bag_Simulation
 {
     public enum NextStop
     {
+        Conveyor,
         Security,
          BagSort,
          Terminal,
