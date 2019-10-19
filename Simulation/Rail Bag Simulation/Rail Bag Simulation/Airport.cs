@@ -14,7 +14,7 @@ namespace Rail_Bag_Simulation
         private readonly List<Bag> _bagsList = new List<Bag>();
         private Storage _storage=new Storage(); 
         private List<Terminal> _terminal = new List<Terminal>();
-        private readonly LinkedList _linkedConveyorBeltList = new LinkedList();
+        //private readonly LinkedList _linkedConveyorBeltList = new LinkedList();
 
 
         public Airport(string name)
