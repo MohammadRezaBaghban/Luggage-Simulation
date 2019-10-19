@@ -16,7 +16,7 @@ namespace Rail_Bag_Simulation
                 { _checkpoint = value; } 
                 else
                 { 
-                    throw new Exception("This node cannot store conveyorbelts"); 
+                    throw new Exception("This node cannot store conveyor belts"); 
                 }
             } 
         }
@@ -31,7 +31,8 @@ namespace Rail_Bag_Simulation
         }
         public override string Nodeinfo()
         {
-            return "("+ _checkpoint.ToString()+")Bag in checkpoint: " +Bagtocheck;
+
+            return "("+ _checkpoint.ToString()+")Bag in checkpoint: " +(Bagtocheck != null ? Bagtocheck.GetBagInfo() : null);
         }
     }
 }

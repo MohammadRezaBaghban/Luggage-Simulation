@@ -25,38 +25,40 @@ namespace Rail_Bag_Simulation
         }
         public bool Push(Bag bagtoqueue)
         {
-            if (_bagQueue.Count < 5)
-            {
+            if (_bagQueue.Count <= 4)
+            { 
                 _bagQueue.Enqueue(bagtoqueue);
-
+              //if(_bagQueue.Count<4) _bagQueue.Enqueue(null); //To be made random at the next iteration
             }
             else
             {
                 IsFull = true;
-                throw new Exception("Queue for the conveyor belt "+Id+" is full"); 
+                return false;
             }
             return true;
         
         }
+
         public Bag Remove()
         {
-            Bag bag;
-            if (_bagQueue.Count >= 1)
-            {
-                bag =_bagQueue.Dequeue();
-                IsFull = false;
-            }else
+            
+            if (_bagQueue.Count < 1)
             {
                 throw new Exception("Queue for the conveyor belt " + Id + " is empty");
             }
+            IsFull = false; 
+            Bag bag =_bagQueue.Dequeue();
             return bag;
         }
-        public override string ToString()
+    
+
+    public override string ToString() // change the method to return a list of bags
         {
             string bagqueueinfo ="";
-            foreach( Bag g in _bagQueue)
+            foreach( Bag g in ListofBagsinqueue())
             {
-                bagqueueinfo += g.GetBagInfo() + "\n";
+                
+                bagqueueinfo += (g != null ? g.GetBagInfo() + "\n" : "Empty");
             }
             return bagqueueinfo;
         }

@@ -8,5 +8,7 @@ namespace Rail_Bag_Simulation
 {
     class Terminal
     {
+        private char _terminalID;
+        private List<Gate> lists;
     }
 }

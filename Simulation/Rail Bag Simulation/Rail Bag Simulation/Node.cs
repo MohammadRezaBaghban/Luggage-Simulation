@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Rail_Bag_Simulation
 {
-    class Node
+    abstract class Node
     {
        
         public Node Next { get;  set; } // the next node it refers to; null if there does not exist a next node
@@ -18,10 +18,9 @@ namespace Rail_Bag_Simulation
             this.Next = null;
             this.Previous = null;
         }
-        public virtual string Nodeinfo()
-        {
-            return "";
-        }
+
+        public abstract string Nodeinfo();
+
 
     }
 }

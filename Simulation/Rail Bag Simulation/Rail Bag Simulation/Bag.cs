@@ -16,6 +16,14 @@ namespace Rail_Bag_Simulation
         private Destination _destination;
         private string _terminalAndGate;
 
+        public string LastSeenLocation{get{return _lastSeenLocation; } set{ _lastSeenLocation = value;}}
+        public int Id{get { return _id; }set { _id = value; }}
+        public SuspiciousBagtype SuspiciousBagtype { get { return (SuspiciousBagtype) _suspicious; } set { _suspicious = value; } }
+        public Destination Destination { get { return _destination; } set { _destination = value; } }
+        public float Weight{get { return _weight; }set { _weight = value; }}
+        public string TerminalAndGate{get { return _terminalAndGate; } set { _terminalAndGate = value; }}
+
+
         private static Random _random = new Random();
 
         public Bag(SuspiciousBagtype suspicious, float weight, Destination destination, string terminalAndGate)
@@ -48,7 +56,10 @@ namespace Rail_Bag_Simulation
 
         private static int GetTheSuspiciousBagDistr(int totalNrOfBags, int totalNrOfSuspBags)
         {
-
+            if (totalNrOfSuspBags == 0)
+            {
+                return totalNrOfSuspBags;
+            }
             var resultToTest = Convert.ToInt32((decimal)(totalNrOfBags) / (decimal)totalNrOfSuspBags);
             return resultToTest;
         }
@@ -73,7 +84,7 @@ namespace Rail_Bag_Simulation
             for (int i = 0; i <= nbrOfBags; i++)
             {
                 //for every suspicious bag to be created, it will be placed after the distribution value.
-                if (i % theSuspiciousBagDistr == 0)
+                if (theSuspiciousBagDistr != 0 && i % theSuspiciousBagDistr == 0)
                 {
                     bags.Add(suspiciousbags[0]);
                     suspiciousbags.RemoveAt(0);
@@ -128,5 +139,9 @@ namespace Rail_Bag_Simulation
             return templist;
         }
 
+        public SuspiciousBagtype? GetSecurityStatus()
+        {
+            return _suspicious;
+        }
     }
 }

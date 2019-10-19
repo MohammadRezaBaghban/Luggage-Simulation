@@ -11,5 +11,11 @@
             <ColumnDefinition Width="31*"/>
             <ColumnDefinition Width="91*"/>
         </Grid.ColumnDefinitions>
+        <ListBox  Margin="10,10,0,0" Name="listBox1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="309" Height="200" Grid.ColumnSpan="2">
+
+        </ListBox>
+        <Button  Margin="179,249,0,0" Name="button1"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="20" Height="20" RenderTransformOrigin="0.302,0.501" Grid.Column="1" Click="button1_Click">
+
+        </Button>
     </Grid>
 </Window>

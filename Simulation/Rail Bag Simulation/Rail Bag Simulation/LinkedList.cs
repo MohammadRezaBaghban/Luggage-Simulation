@@ -26,7 +26,7 @@ namespace Rail_Bag_Simulation
                     {
                         case ConveyorNode node when current is ConveyorNode:
                         {
-                            if(((ConveyorNode)current).Conveyor.IsFull == true && node.Conveyor.IsFull ==false)
+                            if(((ConveyorNode)current).Conveyor.ListofBagsinqueue().Count()>=5 && node.Conveyor.ListofBagsinqueue().Count()<=5)
                             {
                                 node.Conveyor.Push(((ConveyorNode)current).Conveyor.Remove());
                          
@@ -36,7 +36,7 @@ namespace Rail_Bag_Simulation
                         }
                         case CheckpointNode node when current is ConveyorNode:
                         {
-                            if (((ConveyorNode)current).Conveyor.IsFull == true && node.Bagtocheck == null)
+                            if (((ConveyorNode)current).Conveyor.IsFull && node.Bagtocheck == null)
                             {
                                 node.SetBag(((ConveyorNode)current).Conveyor.Remove());
                            
@@ -74,7 +74,10 @@ namespace Rail_Bag_Simulation
                 {
                     MoveBags();
                 }
-                ((ConveyorNode)node).Conveyor.Push(bagtoqueue);
+
+                
+                    ((ConveyorNode)node).Conveyor.Push(bagtoqueue);
+                
             }
             else
             {
