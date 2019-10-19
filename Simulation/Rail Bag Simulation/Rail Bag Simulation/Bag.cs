@@ -8,10 +8,6 @@ namespace Rail_Bag_Simulation
 {
     class Bag
     {
-<<<<<<< HEAD
-        
-=======
-
         private static int _idToGive = 100;
         private string _lastSeenLocation;
         private int _id;
@@ -99,6 +95,6 @@ namespace Rail_Bag_Simulation
 
             return null;
         }
->>>>>>> 54d705e62b12b4cfad5e13a7a44bbf015c889ba4
+
     }
 }
