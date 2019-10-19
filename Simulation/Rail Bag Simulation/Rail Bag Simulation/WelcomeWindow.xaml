@@ -7,8 +7,12 @@
         mc:Ignorable="d"
         Title="WelcomeWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Run window" Name="btnRunSimulation" HorizontalAlignment="Left" Margin="303,287,0,0" VerticalAlignment="Top" Width="179" Height="42" Click="btnRunSimulation_Click"/>
-        <Button Content="Subhi debug :)" Name="btnDebug" HorizontalAlignment="Left" Margin="81,71,0,0" VerticalAlignment="Top" Width="216" Height="71" Click="btnDebug_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="374*"/>
+            <ColumnDefinition Width="421*"/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Run window" Name="btnRunSimulation" HorizontalAlignment="Left" Margin="303,287,0,0" VerticalAlignment="Top" Width="179" Height="42" Click="btnRunSimulation_Click" Grid.ColumnSpan="2"/>
+        <Button Content="Generate Bag" Name="btnDebug" HorizontalAlignment="Left" Margin="81,71,0,0" VerticalAlignment="Top" Width="216" Height="71" Click="btnDebug_Click"/>
 
     </Grid>
 </Window>
