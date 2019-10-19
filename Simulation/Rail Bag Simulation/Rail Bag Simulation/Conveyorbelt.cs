@@ -9,23 +9,31 @@ namespace Rail_Bag_Simulation
 
     class Conveyorbelt
     {
-        private int _id;
+        private static int _idToGive = 100;
+        public bool isFull { get; private set; }
+        public int ID { get; private set; }
         private Queue<Bag> _bagQueue;
 
         public Conveyorbelt()
         {
+            ID = ++_idToGive;
             _bagQueue = new Queue<Bag>(5);
+        }
+        public Queue<Bag> ListofBagsinqueue()
+        {
+            return _bagQueue;
         }
         public bool Push(Bag _bagtoqueue)
         {
-            if (_bagQueue.Count <= 5)
+            if (_bagQueue.Count < 5)
             {
                 _bagQueue.Enqueue(_bagtoqueue);
+
             }
             else
             {
-                return false;
-                throw new Exception("Queue for the conveyor belt "+_id+" is full");
+                isFull = true;
+                throw new Exception("Queue for the conveyor belt "+ID+" is full"); 
             }
             return true;
         
@@ -35,12 +43,22 @@ namespace Rail_Bag_Simulation
             Bag _bag;
             if (_bagQueue.Count >= 1)
             {
-                _bag =(Bag)_bagQueue.Dequeue();
+                _bag =_bagQueue.Dequeue();
+                isFull = false;
             }else
             {
-                throw new Exception("Queue for the conveyor belt " + _id + " is empty");
+                throw new Exception("Queue for the conveyor belt " + ID + " is empty");
             }
             return _bag;
+        }
+        public override string ToString()
+        {
+            string bagqueueinfo ="";
+            foreach( Bag g in _bagQueue)
+            {
+                bagqueueinfo += g.GetBagInfo() + "\n";
+            }
+            return bagqueueinfo;
         }
 
     }

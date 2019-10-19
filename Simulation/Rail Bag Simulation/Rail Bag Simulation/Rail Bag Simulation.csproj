@@ -56,9 +56,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Airport.cs" />
+    <Compile Include="CheckpointNode.cs" />
     <Compile Include="Conveyorbelt.cs" />
+    <Compile Include="ConveyorNode.cs" />
     <Compile Include="Gate.cs" />
     <Compile Include="LinkedList.cs" />
+    <Compile Include="NextStop.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Simulation.cs" />
     <Compile Include="StopPoint.cs" />

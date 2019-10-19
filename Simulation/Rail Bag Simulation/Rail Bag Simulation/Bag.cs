@@ -8,7 +8,6 @@ namespace Rail_Bag_Simulation
 {
     class Bag
     {
-
         private static int _idToGive = 100;
         private string _lastSeenLocation;
         private int _id;
@@ -128,5 +127,6 @@ namespace Rail_Bag_Simulation
 
             return templist;
         }
+
     }
 }
