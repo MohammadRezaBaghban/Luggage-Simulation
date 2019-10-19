@@ -10,46 +10,46 @@ namespace Rail_Bag_Simulation
     class Conveyorbelt
     {
         private static int _idToGive = 100;
-        public bool isFull { get; private set; }
-        public int ID { get; private set; }
+        public bool IsFull { get; private set; }
+        public int Id { get; private set; }
         private Queue<Bag> _bagQueue;
 
         public Conveyorbelt()
         {
-            ID = ++_idToGive;
+            Id = ++_idToGive;
             _bagQueue = new Queue<Bag>(5);
         }
         public Queue<Bag> ListofBagsinqueue()
         {
             return _bagQueue;
         }
-        public bool Push(Bag _bagtoqueue)
+        public bool Push(Bag bagtoqueue)
         {
             if (_bagQueue.Count < 5)
             {
-                _bagQueue.Enqueue(_bagtoqueue);
+                _bagQueue.Enqueue(bagtoqueue);
 
             }
             else
             {
-                isFull = true;
-                throw new Exception("Queue for the conveyor belt "+ID+" is full"); 
+                IsFull = true;
+                throw new Exception("Queue for the conveyor belt "+Id+" is full"); 
             }
             return true;
         
         }
         public Bag Remove()
         {
-            Bag _bag;
+            Bag bag;
             if (_bagQueue.Count >= 1)
             {
-                _bag =_bagQueue.Dequeue();
-                isFull = false;
+                bag =_bagQueue.Dequeue();
+                IsFull = false;
             }else
             {
-                throw new Exception("Queue for the conveyor belt " + ID + " is empty");
+                throw new Exception("Queue for the conveyor belt " + Id + " is empty");
             }
-            return _bag;
+            return bag;
         }
         public override string ToString()
         {

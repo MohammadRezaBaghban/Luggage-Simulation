@@ -9,14 +9,14 @@ namespace Rail_Bag_Simulation
     class Node
     {
        
-        public Node next { get;  set; } // the next node it refers to; null if there does not exist a next node
-        public Node previous { get;  set; }
+        public Node Next { get;  set; } // the next node it refers to; null if there does not exist a next node
+        public Node Previous { get;  set; }
         
         public Node()
         {
          
-            this.next = null;
-            this.previous = null;
+            this.Next = null;
+            this.Previous = null;
         }
         public virtual string Nodeinfo()
         {

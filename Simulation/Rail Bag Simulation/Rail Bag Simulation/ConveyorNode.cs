@@ -9,30 +9,30 @@ namespace Rail_Bag_Simulation
     class ConveyorNode : Node
     {
        
-        public Conveyorbelt conveyor { get; private set; }
-        public NextStop stopcheck;
-        public Node endgate;
+        public Conveyorbelt Conveyor { get; private set; }
+        public NextStop Stopcheck;
+        public Node Endgate;
         public ConveyorNode(Conveyorbelt conveyorbelt)
         {
-            this.conveyor = conveyorbelt;
+            this.Conveyor = conveyorbelt;
         }
-        public void setstop()
+        public void Setstop()
         {
-            if (next is CheckpointNode)
+            if (Next is CheckpointNode)
             {
-                if(((CheckpointNode)next).Checkpoint is Gate)
+                if(((CheckpointNode)Next).Checkpoint is Gate)
                 {
-                    this.stopcheck = NextStop.Gate;
+                    this.Stopcheck = NextStop.Gate;
                 }
             }
             else
             {
-                stopcheck = NextStop.Conveyor;
+                Stopcheck = NextStop.Conveyor;
             }
         }
         public override string Nodeinfo()
         {
-           return conveyor.ID.ToString() + ": "+ conveyor.ToString();
+           return Conveyor.Id.ToString() + ": "+ Conveyor.ToString();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Rail_Bag_Simulation
     {
 
         private object _checkpoint;
-         public Bag bagtocheck { get; private set; }
+         public Bag Bagtocheck { get; private set; }
         public object Checkpoint { get { return _checkpoint; } 
             private set { if (!(value is Conveyorbelt)) 
                 { _checkpoint = value; } 
@@ -25,13 +25,13 @@ namespace Rail_Bag_Simulation
             this.Checkpoint = checkpoint;
             
         }
-        public void setBag(Bag g)
+        public void SetBag(Bag g)
         {
-            this.bagtocheck = g;
+            this.Bagtocheck = g;
         }
         public override string Nodeinfo()
         {
-            return "("+ _checkpoint.ToString()+")Bag in checkpoint: " +bagtocheck;
+            return "("+ _checkpoint.ToString()+")Bag in checkpoint: " +Bagtocheck;
         }
     }
 }

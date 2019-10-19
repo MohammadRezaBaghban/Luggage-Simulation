@@ -9,9 +9,9 @@ namespace Rail_Bag_Simulation
     class Gate
     {
        public int GateNr { get; private set; }
-       public Gate(int GateNr)
+       public Gate(int gateNr)
         {
-            this.GateNr = GateNr;
+            this.GateNr = gateNr;
         }
     }
 }
