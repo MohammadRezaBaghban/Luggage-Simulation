@@ -22,13 +22,13 @@ namespace Rail_Bag_Simulation
             _name = name;
         }
 
-        public bool CheckIn(List<Bag> Bags)
+        public bool CheckIn(List<Bag> bags)
         {
 
             return true;
         }
 
-        public Bag GetBagById(int BagId)
+        public Bag GetBagById(int bagId)
         {
             return null;
         }

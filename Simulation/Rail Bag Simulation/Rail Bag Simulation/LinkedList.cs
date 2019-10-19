@@ -8,49 +8,56 @@ namespace Rail_Bag_Simulation
 {
     class LinkedList
     {
-        public Node first { get; private set; }
-        private Node lastnode1, lastnode2;
+        public Node First { get; private set; }
+        private Node _lastnode1, _lastnode2;
         public LinkedList()
         {
-            first = null;
+            First = null;
         }
 
         public void MoveBags()
         {
-            if (first != null)
+            if (First != null)
             {
-                Node current = first;
-                while (current.next != null)
+                var current = First;
+                while (current.Next != null)
                 {
-                 
-                    if (current.next is ConveyorNode && current is ConveyorNode)
+                    switch (current.Next)
                     {
-                        if(((ConveyorNode)current).conveyor.isFull == true && ((ConveyorNode)current.next).conveyor.isFull ==false)
+                        case ConveyorNode node when current is ConveyorNode:
                         {
-                            ((ConveyorNode)current.next).conveyor.Push(((ConveyorNode)current).conveyor.Remove());
+                            if(((ConveyorNode)current).Conveyor.IsFull == true && node.Conveyor.IsFull ==false)
+                            {
+                                node.Conveyor.Push(((ConveyorNode)current).Conveyor.Remove());
                          
-                        }    
-                    }
-                    else if (current.next is CheckpointNode && current is ConveyorNode)
-                    {
-                        if (((ConveyorNode)current).conveyor.isFull == true && ((CheckpointNode)current.next).bagtocheck == null)
-                        {
-                            ((CheckpointNode)current.next).setBag(((ConveyorNode)current).conveyor.Remove());
-                           
-                        }
-                      
-                    }
-                    else if (current.next is ConveyorNode && current is CheckpointNode)
-                    {
-                        if (((CheckpointNode)current).bagtocheck != null && ((ConveyorNode)current.next).conveyor.isFull == false)
-                        {
-                            ((ConveyorNode)current.next).conveyor.Push(((CheckpointNode)current).bagtocheck);
-                            ((CheckpointNode)current).setBag(null);
-                        }
-                    }
-                    
+                            }
 
-                    current = current.next;
+                            break;
+                        }
+                        case CheckpointNode node when current is ConveyorNode:
+                        {
+                            if (((ConveyorNode)current).Conveyor.IsFull == true && node.Bagtocheck == null)
+                            {
+                                node.SetBag(((ConveyorNode)current).Conveyor.Remove());
+                           
+                            }
+
+                            break;
+                        }
+                        case ConveyorNode node when current is CheckpointNode:
+                        {
+                            if (((CheckpointNode)current).Bagtocheck != null && node.Conveyor.IsFull == false)
+                            {
+                                node.Conveyor.Push(((CheckpointNode)current).Bagtocheck);
+                                ((CheckpointNode)current).SetBag(null);
+                            }
+
+                            break;
+                        }
+                    }
+
+
+                    current = current.Next;
                 }
             }
             else
@@ -58,20 +65,16 @@ namespace Rail_Bag_Simulation
                 throw new Exception("no simulation made");
             }
         }
-        public void AddGeneratedBag(Bag Bagtoqueue)
+        public void AddGeneratedBag(Bag bagtoqueue)
         {
-            if (first != null)
+            if (First != null)
             {
-                if (first is ConveyorNode)
+                if (!(First is ConveyorNode node)) return;
+                if (node.Conveyor.IsFull)
                 {
-                    if (((ConveyorNode)first).conveyor.isFull == true)
-                    {
-                        MoveBags();
-                    }
-                  ((ConveyorNode)first).conveyor.Push(Bagtoqueue);
-
+                    MoveBags();
                 }
-                   
+                ((ConveyorNode)node).Conveyor.Push(bagtoqueue);
             }
             else
             {
@@ -80,8 +83,6 @@ namespace Rail_Bag_Simulation
         }
         public void AddNode(object obj)
         {
-           
-                
             Node newNode;
             if (obj is Conveyorbelt)
             {
@@ -91,39 +92,32 @@ namespace Rail_Bag_Simulation
             {
                 newNode = new CheckpointNode(obj);
             }
-                if (first == null)
+            if (First == null)
+            {
+                First = newNode;
+            }
+            else
+            {
+                var current = First;
+                while (current.Next != null)
                 {
-                    first = newNode;
+                    current = current.Next;
                 }
-                else
-                {
-                Node current = first;
-                while (current.next != null)
-                    {
-                        current = current.next;
-                    }
-                    newNode.next = current.next;
-                    current.next = newNode;
-                }
-            
-
-
-
+                newNode.Next = current.Next;
+                current.Next = newNode;
+            }
         }
     
         public void RemoveNode()
         {
-            Node current = first;
+            var current = First;
             
-                    while (current.next.next != null)
+                    while (current.Next.Next != null)
                     {
-                         current = current.next;
+                         current = current.Next;
                     }
-            current.next = null;
-
+            current.Next = null;
         }
-            
-
     }
 }
 
