@@ -46,7 +46,7 @@ namespace Rail_Bag_Simulation
             }
             while (current != null)
             {
-                listBox1.Items.Add(current.Nodeinfo());
+            listBox1.Items.Add(current.Nodeinfo());
 
                 current = current.Next;
             }
