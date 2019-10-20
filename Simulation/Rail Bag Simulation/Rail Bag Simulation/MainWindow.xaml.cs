@@ -28,19 +28,12 @@ namespace Rail_Bag_Simulation
         
             ll.AddNode(new Conveyorbelt());
          
-            ll.AddNode(new Conveyorbelt());
         
-            ll.AddNode(new Conveyorbelt());
-
-            ll.AddNode(new Conveyorbelt());
-
-            ll.AddNode(new Conveyorbelt());
-
             InitializeComponent();
             Node current = ll.First;
          
 
-            foreach (Bag s in Bag.GenerateBag(7, 0, 0, 0, 0))
+            foreach (Bag s in Bag.GenerateBag(10, 0, 0, 0, 0))
             {
                 ll.AddGeneratedBag(s);
             }
