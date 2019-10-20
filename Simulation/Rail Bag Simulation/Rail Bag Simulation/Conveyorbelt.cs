@@ -25,7 +25,7 @@ namespace Rail_Bag_Simulation
         }
         public bool Push(Bag bagtoqueue)
         {
-            if (_bagQueue.Count <= 4)
+            if (_bagQueue.Count < 5)
             { 
                 _bagQueue.Enqueue(bagtoqueue);
               //if(_bagQueue.Count<4) _bagQueue.Enqueue(null); //To be made random at the next iteration
@@ -58,7 +58,7 @@ namespace Rail_Bag_Simulation
             foreach( Bag g in ListofBagsinqueue())
             {
                 
-                bagqueueinfo += (g != null ? g.GetBagInfo() + "\n" : "Empty");
+                bagqueueinfo += string.Format(g != null ? g.GetBagInfo() + "\n" : "Empty");
             }
             return bagqueueinfo;
         }

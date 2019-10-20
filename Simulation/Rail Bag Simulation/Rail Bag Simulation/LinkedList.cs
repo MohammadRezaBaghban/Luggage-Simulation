@@ -26,7 +26,7 @@ namespace Rail_Bag_Simulation
                     {
                         case ConveyorNode node when current is ConveyorNode:
                         {
-                            if(((ConveyorNode)current).Conveyor.ListofBagsinqueue().Count()>=5 && node.Conveyor.ListofBagsinqueue().Count()<=5)
+                            if( node.Conveyor.IsFull ==false)
                             {
                                 node.Conveyor.Push(((ConveyorNode)current).Conveyor.Remove());
                          
