@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Rail_Bag_Simulation
@@ -15,24 +16,32 @@ namespace Rail_Bag_Simulation
             DelayTime = 10;
         }
 
-        public Bag SortBag(Bag g)
+        public void PassBag(Bag g)
         {
-            if (true)
-            {
-                
-            }
+            ((ConveyorNode) determineNextNode(g)).Conveyor.Push(g);
+            Thread.Sleep(DelayTime);
         }
 
         private Node determineNextNode(Bag g)
         {
-
+            Node tnode = null;
             ListOfConnectedNodes.ForEach(p=>
             {
-                if (p is ConveyorNode node)
+                if (!(p is ConveyorNode node)) return;
+                if (!(node.Next is TerminalNode terminalNode)) return;
+                
+                
+                String St = g.TerminalAndGate;
+                int pFrom = St.IndexOf("T") + "T".Length;
+                int pTo = St.LastIndexOf("G");
+                var result = St.Substring(pFrom, pTo - pFrom);
+                
+                if (terminalNode.Terminal.TerminalId.ToString() == result)
                 {
-                    if(node.Conveyor.)
+                    tnode= node;
                 }
             });
+            return tnode;
         }
 
 

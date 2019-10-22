@@ -13,7 +13,7 @@ namespace Rail_Bag_Simulation
         public int DelayTime
         {
             get => _delayTime;
-            set => _delayTime = value;
+            set => _delayTime = value = 10;
         }
 
         public List<Node> ListOfConnectedNodes => _listOfConnectedNodes;
