@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
+using System.Windows;using System;
+
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -24,13 +24,16 @@ namespace Rail_Bag_Simulation
         public MainWindow()
         {
             ll = new LinkedList();
-            ll.AddNode(new Conveyorbelt());
-            ll.AddNode(new Conveyorbelt());
-            ll.AddNode(new Conveyorbelt());
-            ll.AddNode(new Conveyorbelt());
+             
+            ll.AddNode(new Conveyorbelt(15));
+            ll.AddNode(new Conveyorbelt(15));
+            ll.AddNode(new Conveyorbelt(15));
+            ll.AddNode(new Conveyorbelt(15));
             InitializeComponent();
             Node current = ll.First;
-       
+        
+            Bag.GenerateBag(15,2,0,0,0).ForEach(b => {ll.AddGeneratedBag(b);});
+
             while (current != null)
             {
 
@@ -38,6 +41,8 @@ namespace Rail_Bag_Simulation
                 current = current.Next;
 
             }
+
+
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)

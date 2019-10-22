@@ -14,7 +14,7 @@ namespace Rail_Bag_Simulation
         {
             foreach(var bag in _suspicious)
             {
-                if(bag.Id == id) { return bag;  } continue;
+                if(bag.Id == id) { return bag;  } 
             }
             return null;
         }
@@ -27,6 +27,11 @@ namespace Rail_Bag_Simulation
         public List<Bag> GetAllSuspiciousBags()
         {
             return _suspicious;
+        }
+
+        public void StoreSuspiciousBag(Bag bag)
+        {
+            _suspicious.Add(bag);
         }
     }
 }

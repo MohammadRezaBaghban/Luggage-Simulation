@@ -29,11 +29,10 @@ namespace Rail_Bag_Simulation
                             if( node.Conveyor.IsFull ==false)
                             {
                                 node.Conveyor.Push(((ConveyorNode)current).Conveyor.Remove());
-                         
                             }
-
                             break;
                         }
+
                         case CheckpointNode node when current is ConveyorNode:
                         {
                             if (((ConveyorNode)current).Conveyor.IsFull && node.Bagtocheck == null)
@@ -55,8 +54,6 @@ namespace Rail_Bag_Simulation
                             break;
                         }
                     }
-
-
                     current = current.Next;
                 }
             }
@@ -76,7 +73,7 @@ namespace Rail_Bag_Simulation
                 }
 
                 
-                    ((ConveyorNode)node).Conveyor.Push(bagtoqueue);
+                ((ConveyorNode)node).Conveyor.Push(bagtoqueue);
                 
             }
             else

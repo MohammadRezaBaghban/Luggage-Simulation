@@ -12,11 +12,11 @@ namespace Rail_Bag_Simulation
         private string _name;
         private readonly Dictionary<Gate, Destination> _gateDestinations= new Dictionary<Gate, Destination>();
         private readonly List<Bag> _bagsList = new List<Bag>();
-        private Storage _storage=new Storage(); 
+        private static Storage _storage=new Storage(); 
         private List<Terminal> _terminal = new List<Terminal>();
         //private readonly LinkedList _linkedConveyorBeltList = new LinkedList();
 
-
+        public static Storage Storage => _storage;
         public Airport(string name)
         {
             _name = name;

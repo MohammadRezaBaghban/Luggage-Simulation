@@ -81,7 +81,7 @@ namespace Rail_Bag_Simulation
                 GenerateSuspiciousBags(nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable, nbrBagsOthers);
 
 
-            for (int i = 0; i <= nbrOfBags; i++)
+            for (int i = 0; i < nbrOfBags; i++)
             {
                 //for every suspicious bag to be created, it will be placed after the distribution value.
                 if (theSuspiciousBagDistr != 0 && i % theSuspiciousBagDistr == 0)

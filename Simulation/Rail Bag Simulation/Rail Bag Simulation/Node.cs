@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Rail_Bag_Simulation
 {
@@ -11,12 +7,25 @@ namespace Rail_Bag_Simulation
        
         public Node Next { get;  set; } // the next node it refers to; null if there does not exist a next node
         public Node Previous { get;  set; }
-        
+
+        private List<Node> _listOfConnectedNodes = new List<Node>();
+
+        public int DelayTime
+        {
+            get => _delayTime;
+            set => _delayTime = value;
+        }
+
+        public List<Node> ListOfConnectedNodes => _listOfConnectedNodes;
+
+        private int _delayTime;
+
+
         public Node()
         {
          
-            this.Next = null;
-            this.Previous = null;
+            Next = null;
+            Previous = null;
         }
 
         public abstract string Nodeinfo();

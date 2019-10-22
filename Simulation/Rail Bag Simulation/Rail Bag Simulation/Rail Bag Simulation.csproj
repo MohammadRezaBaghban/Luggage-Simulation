@@ -63,6 +63,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Airport.cs" />
+    <Compile Include="BagSortNode.cs" />
+    <Compile Include="CheckinNode.cs" />
     <Compile Include="CheckpointNode.cs" />
     <Compile Include="Conveyorbelt.cs" />
     <Compile Include="ConveyorNode.cs" />
@@ -70,11 +72,12 @@
     <Compile Include="LinkedList.cs" />
     <Compile Include="NextStop.cs" />
     <Compile Include="Node.cs" />
+    <Compile Include="SecurityNode.cs" />
     <Compile Include="Simulation.cs" />
-    <Compile Include="StopPoint.cs" />
     <Compile Include="Storage.cs" />
     <Compile Include="SuspiciousBagtype.cs" />
     <Compile Include="Terminal.cs" />
+    <Compile Include="TerminalNode.cs" />
     <Compile Include="WelcomeWindow.xaml.cs">
       <DependentUpon>WelcomeWindow.xaml</DependentUpon>
     </Compile>

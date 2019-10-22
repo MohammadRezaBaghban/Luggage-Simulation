@@ -12,12 +12,14 @@ namespace Rail_Bag_Simulation
         private static int _idToGive = 100;
         public bool IsFull { get; private set; }
         public int Id { get; private set; }
+        private int _setsize;
         private Queue<Bag> _bagQueue;
 
-        public Conveyorbelt()
+        public Conveyorbelt(int setsize)
         {
+            _setsize = setsize;
             Id = ++_idToGive;
-            _bagQueue = new Queue<Bag>(5);
+            _bagQueue = new Queue<Bag>(_setsize);
         }
         public Queue<Bag> ListofBagsinqueue()
         {
@@ -25,10 +27,10 @@ namespace Rail_Bag_Simulation
         }
         public bool Push(Bag bagtoqueue)
         {
-            if (_bagQueue.Count < 5)
+            if (_bagQueue.Count < _setsize)
             { 
                 _bagQueue.Enqueue(bagtoqueue);
-              //if(_bagQueue.Count<4) _bagQueue.Enqueue(null); //To be made random at the next iteration
+                if(_bagQueue.Count<_setsize-1) _bagQueue.Enqueue(null); //To be made random at the next iteration
             }
             else
             {
@@ -41,13 +43,10 @@ namespace Rail_Bag_Simulation
 
         public Bag Remove()
         {
-            
             if (_bagQueue.Count < 1)
-            {
-                throw new Exception("Queue for the conveyor belt " + Id + " is empty");
-            }
-            IsFull = false; 
+                return null;
             Bag bag =_bagQueue.Dequeue();
+            IsFull = false;
             return bag;
         }
     
@@ -58,7 +57,7 @@ namespace Rail_Bag_Simulation
             foreach( Bag g in ListofBagsinqueue())
             {
                 
-                bagqueueinfo += string.Format(g != null ? g.GetBagInfo() + "\n" : "Empty");
+                bagqueueinfo += string.Format(g != null ? g.GetBagInfo() + "\n " : " ** \n ");
             }
             return bagqueueinfo;
         }
