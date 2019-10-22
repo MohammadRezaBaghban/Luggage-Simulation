@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Drawing;
+using Color = System.Windows.Media.Color;
+using Rectangle = System.Windows.Shapes.Rectangle;
 
 namespace Rail_Bag_Simulation
 {
@@ -25,37 +28,31 @@ namespace Rail_Bag_Simulation
         {
             ll = new LinkedList();
             ll.AddNode(new Conveyorbelt());
-        
             ll.AddNode(new Conveyorbelt());
-         
-        
+            ll.AddNode(new Conveyorbelt());
+            ll.AddNode(new Conveyorbelt());
             InitializeComponent();
             Node current = ll.First;
-         
-
-            foreach (Bag s in Bag.GenerateBag(10, 0, 0, 0, 0))
-            {
-                ll.AddGeneratedBag(s);
-            }
+            int i = 0;
             while (current != null)
             {
-                listBox1.Items.Add(current.Nodeinfo());
-
+                i+=10;
+                Rectangle convey = new Rectangle();
+           
+                convey.Width = 100;
+                convey.Height = 50;
+                convey.Fill = new SolidColorBrush(System.Windows.Media.Colors.Gray);
+      
+                convey.SetValue(Grid.RowProperty, i);
+                convey.SetValue(Grid.ColumnProperty, 0);
                 current = current.Next;
+
             }
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            listBox1.Items.Clear();
-            ll.MoveBags();
-            Node current = ll.First;
-            while (current != null)
-            {
-                listBox1.Items.Add(current.Nodeinfo());
-
-                current = current.Next;
-            }
+           
         }
     }
 }
