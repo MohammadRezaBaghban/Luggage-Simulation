@@ -23,46 +23,46 @@ namespace Rail_Bag_Simulation
         LinkedList ll;
         public MainWindow()
         {
-            ll = new LinkedList();
-            ll.AddNode(new Conveyorbelt());
+            //ll = new LinkedList();
+            //ll.AddNode(new Conveyorbelt());
         
-            ll.AddNode(new Conveyorbelt());
+            //ll.AddNode(new Conveyorbelt());
          
-            ll.AddNode(new Conveyorbelt());
+            //ll.AddNode(new Conveyorbelt());
         
-            ll.AddNode(new Conveyorbelt());
+            //ll.AddNode(new Conveyorbelt());
 
-            ll.AddNode(new Conveyorbelt());
+            //ll.AddNode(new Conveyorbelt());
 
-            ll.AddNode(new Conveyorbelt());
+            //ll.AddNode(new Conveyorbelt());
 
             InitializeComponent();
-            Node current = ll.First;
+            //Node current = ll.First;
          
 
-            foreach (Bag s in Bag.GenerateBag(7, 0, 0, 0, 0))
-            {
-                ll.AddGeneratedBag(s);
-            }
-            while (current != null)
-            {
-            listBox1.Items.Add(current.Nodeinfo());
+            //foreach (Bag s in Bag.GenerateBag(7, 0, 0, 0, 0))
+            //{
+            //    ll.AddGeneratedBag(s);
+            //}
+            //while (current != null)
+            //{
+            //listBox1.Items.Add(current.Nodeinfo());
 
-                current = current.Next;
-            }
+            //    current = current.Next;
+            //}
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            listBox1.Items.Clear();
-            ll.MoveBags();
-            Node current = ll.First;
-            while (current != null)
-            {
-                listBox1.Items.Add(current.Nodeinfo());
+        //private void button1_Click(object sender, RoutedEventArgs e)
+        //{
+        //    listBox1.Items.Clear();
+        //    ll.MoveBags();
+        //    Node current = ll.First;
+        //    while (current != null)
+        //    {
+        //        listBox1.Items.Add(current.Nodeinfo());
 
-                current = current.Next;
-            }
-        }
+        //        current = current.Next;
+        //    }
+        //}
     }
 }
