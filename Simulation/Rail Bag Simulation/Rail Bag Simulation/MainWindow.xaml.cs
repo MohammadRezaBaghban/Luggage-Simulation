@@ -13,9 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Drawing;
-using Color = System.Windows.Media.Color;
-using Rectangle = System.Windows.Shapes.Rectangle;
-
 namespace Rail_Bag_Simulation
 {
     /// <summary>
@@ -33,18 +30,11 @@ namespace Rail_Bag_Simulation
             ll.AddNode(new Conveyorbelt());
             InitializeComponent();
             Node current = ll.First;
-            int i = 0;
+       
             while (current != null)
             {
-                i+=10;
-                Rectangle convey = new Rectangle();
-           
-                convey.Width = 100;
-                convey.Height = 50;
-                convey.Fill = new SolidColorBrush(System.Windows.Media.Colors.Gray);
-      
-                convey.SetValue(Grid.RowProperty, i);
-                convey.SetValue(Grid.ColumnProperty, 0);
+
+                listBox1.Items.Add(current.Nodeinfo());
                 current = current.Next;
 
             }
