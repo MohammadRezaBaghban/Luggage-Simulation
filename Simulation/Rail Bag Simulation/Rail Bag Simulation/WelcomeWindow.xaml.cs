@@ -69,5 +69,20 @@ namespace Rail_Bag_Simulation
         {
             this.warning.Visibility = Visibility.Hidden;
         }
+
+        private void FlameBtn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.flame.Visibility = Visibility.Hidden;
+        }
+
+        private void CigaretteBtn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.cigarette.Visibility = Visibility.Hidden;
+        }
+
+        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.pistol.Visibility = Visibility.Hidden;
+        }
     }
 }
