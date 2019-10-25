@@ -69,6 +69,7 @@
     <Compile Include="Conveyorbelt.cs" />
     <Compile Include="ConveyorNode.cs" />
     <Compile Include="Gate.cs" />
+    <Compile Include="GateNode.cs" />
     <Compile Include="LinkedList.cs" />
     <Compile Include="NextStop.cs" />
     <Compile Include="Node.cs" />
@@ -126,6 +127,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="NewFile1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

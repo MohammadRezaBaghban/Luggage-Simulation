@@ -9,40 +9,45 @@ namespace Rail_Bag_Simulation
 {
     class BagSortNode : Node
     {
-
-        private List<Node> _listOfConnectedNodes = new List<Node>();
-        public List<Node> ListOfConnectedNodes => _listOfConnectedNodes;
+        public List<ConveyorNode> ListOfConnectedNodes { get; } = new List<ConveyorNode>();
 
         public BagSortNode()
         {
             DelayTime = 10;
         }
 
+        public void ConnectNodeToSorter(ConveyorNode n)
+        {
+            ListOfConnectedNodes.Add(n);
+        }
+
         public void PassBag(Bag g)
         {
-            ((ConveyorNode) determineNextNode(g)).Conveyor.Push(g);
+            while(!((ConveyorNode)determineNextNode(g)).Conveyor.Push(g)) { }
             Thread.Sleep(DelayTime);
         }
 
         private Node determineNextNode(Bag g)
         {
             Node tnode = null;
-            ListOfConnectedNodes.ForEach(p=>
+            foreach (var p in ListOfConnectedNodes)
             {
-                if (!(p is ConveyorNode node)) return;
-                if (!(node.Next is TerminalNode terminalNode)) return;
-                
-                
-                String St = g.TerminalAndGate;
-                int pFrom = St.IndexOf("T") + "T".Length;
-                int pTo = St.LastIndexOf("G");
-                var result = St.Substring(pFrom, pTo - pFrom);
-                
-                if (terminalNode.Terminal.TerminalId.ToString() == result)
+                Node currentNode = p;
+
+                while (currentNode.Next != null && !(currentNode is TerminalNode node))
                 {
-                    tnode= node;
+                    currentNode = currentNode.Next;
                 }
-            });
+
+                var st = g.TerminalAndGate;
+                var pFrom = st.IndexOf("T") + "T".Length;
+                var pTo = st.LastIndexOf("G");
+                var result = st.Substring(pFrom, pTo - pFrom);
+                if ((currentNode as TerminalNode)?.Terminal.TerminalId.ToString() != result) continue;
+                tnode = p;
+                break;
+            }
+
             return tnode;
         }
 
