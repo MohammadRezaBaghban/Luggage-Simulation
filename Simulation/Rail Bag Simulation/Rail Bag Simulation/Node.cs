@@ -8,7 +8,7 @@ namespace Rail_Bag_Simulation
         public Node Next { get;  set; } // the next node it refers to; null if there does not exist a next node
         public Node Previous { get;  set; }
 
-        private List<Node> _listOfConnectedNodes = new List<Node>();
+        
 
         public int DelayTime
         {
@@ -16,7 +16,7 @@ namespace Rail_Bag_Simulation
             set => _delayTime = value = 10;
         }
 
-        public List<Node> ListOfConnectedNodes => _listOfConnectedNodes;
+        
 
         private int _delayTime;
 

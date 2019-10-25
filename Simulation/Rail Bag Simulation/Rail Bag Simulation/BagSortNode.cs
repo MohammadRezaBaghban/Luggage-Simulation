@@ -9,7 +9,9 @@ namespace Rail_Bag_Simulation
 {
     class BagSortNode : Node
     {
-        
+
+        private List<Node> _listOfConnectedNodes = new List<Node>();
+        public List<Node> ListOfConnectedNodes => _listOfConnectedNodes;
 
         public BagSortNode()
         {
