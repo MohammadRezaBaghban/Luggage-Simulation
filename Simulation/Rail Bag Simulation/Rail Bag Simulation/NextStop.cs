@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace Rail_Bag_Simulation
 {
-    class Terminal
+    public enum NextStop
     {
-        private char _terminalID;
-        private List<Gate> lists;
+        Conveyor,
+        Security,
+         BagSort,
+         Terminal,
+         Gate
+
     }
 }
