@@ -16,7 +16,7 @@ namespace Rail_Bag_Simulation
         private NextStop _nextstop;
         public Node EndPoint;
 
-        public ConveyorNode(Conveyorbelt conveyorbelt)
+        public ConveyorNode(Node parentNode, Conveyorbelt conveyorbelt):base(parentNode)
         {
             this.Conveyor = conveyorbelt;
         }

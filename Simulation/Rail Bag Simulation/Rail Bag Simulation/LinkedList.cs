@@ -33,11 +33,11 @@ namespace Rail_Bag_Simulation
                             break;
                         }
 
-                        case CheckpointNode node when current is ConveyorNode:
+                        case BagSortNode node when current is ConveyorNode:
                         {
-                            if (((ConveyorNode)current).Conveyor.IsFull && node.Bagtocheck == null)
+                            if (((ConveyorNode)current).Conveyor.IsFull)
                             {
-                                node.SetBag(((ConveyorNode)current).Conveyor.Remove());
+                                node.PassBag(((ConveyorNode)current).Conveyor.Remove());
                            
                             }
 

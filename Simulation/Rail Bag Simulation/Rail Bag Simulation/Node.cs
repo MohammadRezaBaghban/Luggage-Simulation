@@ -5,8 +5,8 @@ namespace Rail_Bag_Simulation
     abstract class Node
     {
        
-        public Node Next { get;  set; } // the next node it refers to; null if there does not exist a next node
-        public Node Previous { get;  set; }
+       
+        public Node ParentNode { get;  set; }
 
         private List<Node> _listOfConnectedNodes = new List<Node>();
 
@@ -21,11 +21,10 @@ namespace Rail_Bag_Simulation
         private int _delayTime;
 
 
-        public Node()
+        public Node(Node s)
         {
          
-            Next = null;
-            Previous = null;
+            ParentNode = s;
         }
 
         public abstract string Nodeinfo();

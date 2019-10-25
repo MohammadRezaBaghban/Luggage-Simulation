@@ -11,7 +11,7 @@ namespace Rail_Bag_Simulation
     {
         
 
-        public BagSortNode()
+        public BagSortNode(Node parentNode) :base(parentNode)
         {
             DelayTime = 10;
         }
