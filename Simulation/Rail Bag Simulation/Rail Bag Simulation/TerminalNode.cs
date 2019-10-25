@@ -8,27 +8,11 @@ namespace Rail_Bag_Simulation
 {
     class TerminalNode : Node
     {
-        public Terminal Terminal { get; private set; }
-        private List<Bag>SuccessfulBags;
-        public TerminalNode(Node parentNode,Terminal ts):base(parentNode)
-        {
-            SuccessfulBags = new List<Bag>();
-            Terminal = ts;
-        }
+        public Terminal Terminal { get; set; }
 
-        public void AddBags(Bag s)
-        {
-
-            SuccessfulBags.Add(s);
-        }
         public override string Nodeinfo()
         {
-            string sender = "Terminal: " + Terminal.TerminalId.ToString();
-            foreach (Bag g in SuccessfulBags)
-            {
-                sender += g.GetBagInfo();
-            }
-            
+            throw new NotImplementedException();
         }
     }
 }
