@@ -9,17 +9,17 @@ namespace Rail_Bag_Simulation
 {
     class Airport
     {
-        private string _name;
+        public string Name { get; set; }
         private readonly Dictionary<Gate, Destination> _gateDestinations= new Dictionary<Gate, Destination>();
         private readonly List<Bag> _bagsList = new List<Bag>();
         private Storage _storage=new Storage(); 
         private List<Terminal> _terminal = new List<Terminal>();
-        //private readonly LinkedList _linkedConveyorBeltList = new LinkedList();
+        private readonly LinkedList _linkedConveyorBeltList = new LinkedList();
 
 
         public Airport(string name)
         {
-            _name = name;
+            Name = name;
         }
 
         public bool CheckIn(List<Bag> bags)

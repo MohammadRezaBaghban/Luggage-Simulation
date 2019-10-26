@@ -5,16 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Rail_Bag_Simulation"
+        xmlns:viewmd="clr-namespace:Rail_Bag_Simulation.ViewModel"
         mc:Ignorable="d"
-        Title="WelcomeWindow" Height="450" Width="800">
-    <Grid>
+        Title="WelcomeWindow" Height="600" Width="380" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Window.Resources>
+        <viewmd:ViewModel x:Key="airport"/>
+    </Window.Resources>
+    <Grid DataContext="{ StaticResource airport}" RenderTransformOrigin="0.674,0.5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="374*"/>
             <ColumnDefinition Width="421*"/>
         </Grid.ColumnDefinitions>
-        <Button Content="Run window" Name="btnRunSimulation" HorizontalAlignment="Left" Margin="303,287,0,0" VerticalAlignment="Top" Width="179" Height="42" Click="btnRunSimulation_Click" Grid.ColumnSpan="2"/>
         <Button Content="Generate Bag" Name="btnDebug" HorizontalAlignment="Left" Margin="81,71,0,0" VerticalAlignment="Top" Width="216" Height="71" Click="btnDebug_Click"/>
-        <Grid Margin="0,0,0,-33">
+        <Grid Margin="0,0,-0.4,-33.4" Grid.ColumnSpan="2">
             <Rectangle Height="300" VerticalAlignment="Top">
                 <Rectangle.Fill>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -24,8 +27,8 @@
                     </LinearGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>
-            <Image Source="Resources/configurations.png" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20"/>
-            <Rectangle Margin="34,125,36,35" Fill="White">
+            <Image Source="../Resources/configurations.png" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20"/>
+            <Rectangle Margin="34,125,36,0" Fill="White">
                 <Rectangle.Effect>
                     <DropShadowEffect Color="#FFC8C5CA" BlurRadius="15" RenderingBias="Quality"/>
                 </Rectangle.Effect>
@@ -33,34 +36,36 @@
             <Grid Margin="34,125,36,35">
                 <Label Content="CONFIGURATIONS" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5" Foreground="Gray" FontSize="18"/>
                 <StackPanel VerticalAlignment="Center" Margin="15">
-                    <Label Content="Please select number of bags" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,50,0,5" Foreground="Blue" FontSize="15"/>
-                    <TextBox Margin="0,10" materialDesign:HintAssist.Hint="Number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15"/>
+                    <Label Content="{Binding NumberOfBags, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,50,0,5" Foreground="Blue" FontSize="15"/>
+                    <TextBox x:Name="tbNrOfBags" Text="{Binding NumberOfBags, Mode=TwoWay}" Margin="0,10" materialDesign:HintAssist.Hint="Number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15" PreviewTextInput="TextBox_PreviewTextInput"/>
                     <Label Content="Please select the type of suspicious bag and the number" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,5" Foreground="Blue" FontSize="15" Height="64"/>
 
                     <ToggleButton Checked="PistolButton_Checked" Grid.Column="1" Grid.Row="5"  HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignActionDarkToggleButton}">
                         <materialDesign:PackIcon Kind="Pistol" Height="24" Width="24" />
                     </ToggleButton>
-                    <TextBox x:Name="pistol" Visibility="Hidden" Margin="10,-40,70,10" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15"/>
+                    <TextBox Text="{Binding NrOfSusBagsGuns, Mode=TwoWay}" x:Name="pistol" Visibility="Visible" Margin="10,-40,70,10" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15" PreviewTextInput="Pistol_PreviewTextInput"/>
 
                     <ToggleButton x:Name="cigaretteBtn" Checked="CigaretteBtn_Checked" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignActionDarkToggleButton}">
                         <materialDesign:PackIcon Kind="Cigarette" Height="24" Width="24" />
                     </ToggleButton>
-                    <TextBox x:Name="cigarette" Visibility="Hidden" Margin="10,-40,70,10" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15"/>
+                    <TextBox Text="{Binding NrOfSusBagsDrugs, Mode=TwoWay}" x:Name="cigarette" Visibility="Hidden" Margin="10,-40,70,10" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15" PreviewTextInput="Cigarette_PreviewTextInput"/>
 
                     <ToggleButton x:Name="flameBtn" Checked="FlameBtn_Checked" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignActionDarkToggleButton}">
                         <materialDesign:PackIcon Kind="Flame" Height="24" Width="24" />
                     </ToggleButton>
-                    <TextBox x:Name="flame"  Visibility="Hidden" Margin="10,-40,70,10" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15"/>
+                    <TextBox Text="{Binding NrOfSusBagsFlamable, Mode=TwoWay}" x:Name="flame"  Visibility="Hidden" Margin="10,-40,70,10" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15" PreviewTextInput="Flame_PreviewTextInput"/>
 
                     <ToggleButton x:Name="warningBtn" Unchecked="WarningBtn_Unchecked" Checked="WarningBtn_Checked"  Grid.Column="0" Grid.Row="5" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignActionDarkToggleButton}">
                         <materialDesign:PackIcon Kind="Warning" Height="24" Width="24" />
                     </ToggleButton>
-                    <TextBox x:Name="warning" Visibility="Hidden" Margin="10,-40,70,10" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15"/>
+                    <TextBox Text="{Binding NrOfSusBagsOthers, Mode=TwoWay}" x:Name="warning" Visibility="Visible" Margin="10,-40,70,10" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15" PreviewTextInput="Warning_PreviewTextInput"/>
 
                 </StackPanel>
             </Grid>
 
-            <Button Content="Run window" Name="btnStartSimulation" HorizontalAlignment="Left" Margin="112,506,0,0" VerticalAlignment="Top" Width="179" Height="42" Click="btnRunSimulation_Click"/>
+            <Button Content="Run window" Name="btnStartSimulation" HorizontalAlignment="Left" Margin="98,550,0,0" VerticalAlignment="Top" Width="179" Height="42" Click="btnRunSimulation_Click"/>
         </Grid>
+
+
     </Grid>
 </Window>

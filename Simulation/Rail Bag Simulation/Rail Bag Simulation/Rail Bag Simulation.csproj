@@ -57,41 +57,42 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <ApplicationDefinition Include="View\App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Airport.cs" />
-    <Compile Include="CheckpointNode.cs" />
-    <Compile Include="Conveyorbelt.cs" />
-    <Compile Include="ConveyorNode.cs" />
-    <Compile Include="Gate.cs" />
-    <Compile Include="LinkedList.cs" />
-    <Compile Include="NextStop.cs" />
-    <Compile Include="Node.cs" />
-    <Compile Include="Simulation.cs" />
-    <Compile Include="StopPoint.cs" />
-    <Compile Include="Storage.cs" />
-    <Compile Include="SuspiciousBagtype.cs" />
-    <Compile Include="Terminal.cs" />
-    <Compile Include="WelcomeWindow.xaml.cs">
+    <Compile Include="Model\Airport.cs" />
+    <Compile Include="Model\CheckpointNode.cs" />
+    <Compile Include="Model\Conveyorbelt.cs" />
+    <Compile Include="Model\ConveyorNode.cs" />
+    <Compile Include="Model\Gate.cs" />
+    <Compile Include="Model\LinkedList.cs" />
+    <Compile Include="Model\NextStop.cs" />
+    <Compile Include="Model\Node.cs" />
+    <Compile Include="Model\Simulation.cs" />
+    <Compile Include="Model\StopPoint.cs" />
+    <Compile Include="Model\Storage.cs" />
+    <Compile Include="Model\SuspiciousBagtype.cs" />
+    <Compile Include="Model\Terminal.cs" />
+    <Compile Include="ViewModel\ViewModel.cs" />
+    <Compile Include="View\WelcomeWindow.xaml.cs">
       <DependentUpon>WelcomeWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="App.xaml.cs">
+    <Compile Include="View\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Bag.cs" />
-    <Compile Include="Destination.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Model\Bag.cs" />
+    <Compile Include="Model\Destination.cs" />
+    <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="WelcomeWindow.xaml">
+    <Page Include="View\WelcomeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -125,6 +126,27 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\configurations.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\gate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\terminal.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\luggage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\storage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\security.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\securitycheck.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\check-in.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
