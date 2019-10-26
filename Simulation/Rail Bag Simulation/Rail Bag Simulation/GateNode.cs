@@ -5,9 +5,9 @@ namespace Rail_Bag_Simulation
     class GateNode : Node 
     {
         public Gate Gate { get; private set; }
-        private List<Bag> _listofBags = new List<Bag>();
-        
-        public List<Bag> ListOfBags => _listofBags;
+
+        public List<Bag> ListOfBags { get; } = new List<Bag>();
+
         public GateNode(Gate g)
         {
             this.Gate = g;
@@ -18,7 +18,8 @@ namespace Rail_Bag_Simulation
         }
         public override string Nodeinfo()
         {
-            string allbags = this.Gate.GateNr +":";
+            string allbags = this.Gate.GateNr +": \n";
+         
             foreach (Bag g in ListOfBags)
             {
                 allbags += string.Format(g != null ? g.GetBagInfo() + "\n " : " ** \n ");

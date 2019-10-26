@@ -21,26 +21,83 @@ namespace Rail_Bag_Simulation
     public partial class MainWindow : Window
     {
         LinkedList ll;
+        private ConveyorNode nd;
+        private BagSortNode bg;
+        private TerminalNode t;
+        private GateNode gr;
         public MainWindow()
         {
             ll = new LinkedList();
-             
-            ll.AddNode(new Conveyorbelt(15));
-            ll.AddNode(new Conveyorbelt(15));
-            ll.AddNode(new Conveyorbelt(15));
-            ll.AddNode(new Conveyorbelt(15));
-            InitializeComponent();
-            Node current = ll.First;
-        
-            Bag.GenerateBag(15,2,0,0,0).ForEach(b => {ll.AddGeneratedBag(b);});
 
-            while (current != null)
+            ll.AddNode(new ConveyorNode(new Conveyorbelt(5)));
+            ll.AddNode(new ConveyorNode(new Conveyorbelt(5)));
+             bg = new BagSortNode();
+           ll.AddNode(bg);
+            nd = new ConveyorNode(new Conveyorbelt(5));
+            ll.AddNode(nd, bg);
+            t = new TerminalNode(new Terminal("T1"));
+            ll.AddNode(t, nd);
+            nd = new ConveyorNode(new Conveyorbelt(5));
+            ll.AddNode(nd, t);
+            gr = new GateNode(new Gate("G1"));
+            ll.AddNode(gr,nd);
+            nd = new ConveyorNode(new Conveyorbelt(5));
+            ll.AddNode(nd, t);
+            gr = new GateNode(new Gate("G2"));
+            ll.AddNode(gr, nd);
+
+            nd = new ConveyorNode(new Conveyorbelt(5));
+            ll.AddNode(nd, t);
+            gr = new GateNode(new Gate("G3"));
+            ll.AddNode(gr, nd);
+
+            nd = new ConveyorNode(new Conveyorbelt(5));
+            ll.AddNode(nd, bg);
+            t = new TerminalNode(new Terminal("T2"));
+            ll.AddNode(t, nd);
+            nd = new ConveyorNode(new Conveyorbelt(5));
+            ll.AddNode(nd, t);
+            gr = new GateNode(new Gate("G1"));
+            ll.AddNode(gr, nd);
+            nd = new ConveyorNode(new Conveyorbelt(5));
+            ll.AddNode(nd, t);
+            gr = new GateNode(new Gate("G2"));
+            ll.AddNode(gr, nd);
+            nd = new ConveyorNode(new Conveyorbelt(5));
+            ll.AddNode(nd, t);
+            gr = new GateNode(new Gate("G3"));
+            ll.AddNode(gr, nd);
+
+
+            nd = new ConveyorNode(new Conveyorbelt(5));
+            ll.AddNode(nd, bg);
+            t = new TerminalNode(new Terminal("T3"));
+            ll.AddNode(t, nd);
+            nd = new ConveyorNode(new Conveyorbelt(5));
+            ll.AddNode(nd, t);
+            gr = new GateNode(new Gate("G1"));
+            ll.AddNode(gr, nd);
+            nd = new ConveyorNode(new Conveyorbelt(5));
+            ll.AddNode(nd, t);
+            gr = new GateNode(new Gate("G2"));
+            ll.AddNode(gr, nd);
+            nd = new ConveyorNode(new Conveyorbelt(5));
+            ll.AddNode(nd, t);
+            gr = new GateNode(new Gate("G3"));
+            ll.AddNode(gr, nd);
+
+            foreach (Bag g in Bag.GenerateBag(10, 0, 0, 0, 0))
             {
-
-                listBox1.Items.Add(current.Nodeinfo());
-                current = current.Next;
-
+               // ll.AddGeneratedBag(g);
             }
+
+            InitializeComponent();
+
+
+            listBox1.Items.Add(ll.LinkedListInfo());
+               
+
+            
 
 
         }

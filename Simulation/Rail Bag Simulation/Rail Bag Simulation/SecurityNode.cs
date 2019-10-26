@@ -11,7 +11,7 @@ namespace Rail_Bag_Simulation
     {
         public override string Nodeinfo()
         {
-            return " ";
+            return "Security: \n";
         }
 
         private void ScanBagSecurity(Bag b)

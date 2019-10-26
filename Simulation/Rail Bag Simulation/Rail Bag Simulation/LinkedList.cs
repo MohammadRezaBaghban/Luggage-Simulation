@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Rail_Bag_Simulation
 {
     class LinkedList
     {
         public Node First { get; private set; }
-        private Node _lastnode1, _lastnode2;
+        private List<Node> lastnodes;
         public LinkedList()
         {
+            lastnodes = new List<Node>();
             First = null;
         }
 
@@ -20,42 +23,106 @@ namespace Rail_Bag_Simulation
             if (First != null)
             {
                 var current = First;
-                while (current.Next != null)
+                while (current.Next != null&& !(current is BagSortNode))
                 {
                     switch (current.Next)
                     {
-                        case ConveyorNode node when current is ConveyorNode:
+                        case ConveyorNode node when current is ConveyorNode conveyorNode:
                         {
-                            if( node.Conveyor.IsFull ==false)
+                            if (node.Conveyor.IsFull == false)
                             {
-                                node.Conveyor.Push(((ConveyorNode)current).Conveyor.Remove());
-                            }
-                            break;
-                        }
-
-                        case CheckpointNode node when current is ConveyorNode:
-                        {
-                            if (((ConveyorNode)current).Conveyor.IsFull && node.Bagtocheck == null)
-                            {
-                                node.SetBag(((ConveyorNode)current).Conveyor.Remove());
-                           
+                                node.Conveyor.Push(conveyorNode.Conveyor.Remove());
                             }
 
                             break;
                         }
-                        case ConveyorNode node when current is CheckpointNode:
+
+                        case BagSortNode node when current is ConveyorNode conveyorNode:
                         {
-                            if (((CheckpointNode)current).Bagtocheck != null && node.Conveyor.IsFull == false)
+                            if (conveyorNode.Conveyor.IsFull)
                             {
-                                node.Conveyor.Push(((CheckpointNode)current).Bagtocheck);
-                                ((CheckpointNode)current).SetBag(null);
+                                node.PassBag(conveyorNode.Conveyor.ListofBagsinqueue().Peek());
+
                             }
 
                             break;
                         }
+
+
+                   
                     }
+
                     current = current.Next;
                 }
+
+                if (current is BagSortNode bagSort)
+                {
+                    foreach (ConveyorNode conveyorNode in  bagSort.ListOfConnectedNodes)
+                    {
+                        Node near = conveyorNode;
+                        while ( near.Next is ConveyorNode || near.Next != null)
+                        {
+                            switch (near.Next)
+                            {
+                                case ConveyorNode node when near is ConveyorNode conv:
+                                {
+                                    if (node.Conveyor.IsFull == false)
+                                    {
+                                        node.Conveyor.Push(conv.Conveyor.Remove());
+                                    }
+
+                                    break;
+                                }
+                            }
+
+                            near = near.Next;
+                        }
+
+                        if (near is ConveyorNode setConveyorNode && near.Next is TerminalNode terminalNode)
+                        {
+                            if (setConveyorNode.Conveyor.IsFull)
+                            {
+                                terminalNode.PassBag(setConveyorNode.Conveyor.ListofBagsinqueue().Peek());
+                            }
+                        }
+
+                        near = near.Next;
+                        if (near is TerminalNode termNode)
+                        {
+                            foreach (ConveyorNode s in termNode.ListOfConnectedNodes)
+                            {
+                                Node nearNode = s;
+                                while (!(nearNode.Next is GateNode) || nearNode.Next != null)
+                                {
+                                    switch (nearNode.Next)
+                                    {
+                                        case ConveyorNode node when nearNode is ConveyorNode conv:
+                                        {
+                                            if (node.Conveyor.IsFull == false)
+                                            {
+                                                node.Conveyor.Push(conv.Conveyor.Remove());
+                                            }
+
+                                            break;
+                                        }
+                                    }
+                                    nearNode = nearNode.Next;
+                                }
+
+                                if (nearNode is ConveyorNode conveyor && nearNode.Next is GateNode gateNode)
+                                {
+                                    if (conveyor.Conveyor.IsFull)
+                                    {
+                                        gateNode.AddBag(conveyor.Conveyor.ListofBagsinqueue().Peek());
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+
             }
             else
             {
@@ -81,20 +148,13 @@ namespace Rail_Bag_Simulation
                 throw new Exception("no simulation made");
             }
         }
-        public void AddNode(object obj)
+        public void AddNode(Node nd)
         {
-            Node newNode;
-            if (obj is Conveyorbelt)
-            {
-                 newNode = new ConveyorNode((Conveyorbelt)obj);
-            }
-            else
-            {
-                newNode = new CheckpointNode(obj);
-            }
             if (First == null)
             {
-                First = newNode;
+                
+                    First = nd;
+
             }
             else
             {
@@ -103,11 +163,114 @@ namespace Rail_Bag_Simulation
                 {
                     current = current.Next;
                 }
-                newNode.Next = current.Next;
-                current.Next = newNode;
+
+                nd.Next = current.Next;
+                    current.Next = nd;
             }
         }
     
+        public void AddNode(Node childNode , Node parent)
+        {
+            
+            if (First == null)
+            {
+               
+                    MessageBox.Show("There is no first node");
+            }
+
+            else
+            {
+                var current = First;
+
+                while (current.Next != null && !(current is BagSortNode))
+                {
+                    current = current.Next;
+                }
+
+                if (current is BagSortNode node)
+                {
+                    if (node == parent && childNode is ConveyorNode conveyor)
+                    {
+                        node.ConnectNodeToSorter(conveyor);
+                        conveyor.Next = null;
+                    }
+                    else if (parent is ConveyorNode conv && childNode is TerminalNode terminal)
+                    {
+                        foreach (ConveyorNode conveyorNode in node.ListOfConnectedNodes)
+                        {
+                            Node near = conveyorNode;
+                            while (near != parent && near.Next != null)
+                            {
+                                near = near.Next;
+                            }
+
+                            if (near == conv)
+                            {
+                                near.Next = terminal;
+                                break;
+                            }
+                        }
+                    }
+                    else if (parent is TerminalNode terminalNode && childNode is ConveyorNode co)
+                    {
+                        foreach (ConveyorNode conveyorNode in node.ListOfConnectedNodes)
+                        {
+                            Node near = conveyorNode;
+                            while (near != parent && near.Next != null)
+                            {
+                                near = near.Next;
+                            }
+
+                            if (near == terminalNode)
+                            {
+                                terminalNode.ConnectNodeToSorter(co);
+                                co.Next = near.Next;
+                                break;
+                            }
+                        }
+                    }
+                    else if (parent is ConveyorNode && childNode is GateNode)
+                    {
+                        foreach (ConveyorNode conveyorNode in node.ListOfConnectedNodes)
+                        {
+                            Node near = conveyorNode;
+                            while (!(near is TerminalNode)||near.Next!=null)
+                            {
+                                near = near.Next;
+                            }
+
+                            if (near is TerminalNode termNode)
+                            {
+                                foreach (ConveyorNode s in termNode.ListOfConnectedNodes)
+                                {
+                                    Node nearNode = s;
+                                    while (nearNode != parent && nearNode.Next != null)
+                                    {
+                                        nearNode = nearNode.Next;
+                                    }
+
+                                    if (nearNode == parent)
+                                    {
+                                        childNode.Next = nearNode.Next;
+                                        nearNode.Next = childNode;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if (parent.Next !=null)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                   
+                   
+                }
+            }
+        }
+      
+
         public void RemoveNode()
         {
             var current = First;
@@ -117,6 +280,56 @@ namespace Rail_Bag_Simulation
                          current = current.Next;
                     }
             current.Next = null;
+        }
+
+        public string LinkedListInfo()
+        {
+            string sender = "";
+
+            var current = First;
+            while (current.Next != null && !(current is BagSortNode))
+            {
+                sender += current.Nodeinfo();
+                current = current.Next;
+            }
+
+            if (current is BagSortNode node)
+            {
+                
+                sender += node.Nodeinfo();
+                if (node.ListOfConnectedNodes.Count >= 1)
+                {
+                    foreach (ConveyorNode checkNode in node.ListOfConnectedNodes)
+                    {
+                        Node check = checkNode;
+                        sender += check.Nodeinfo();
+                        while (check.Next != null)
+                        {
+                            
+                            check = check.Next;
+                            sender += check.Nodeinfo();
+                        }
+
+                        if (check is TerminalNode coNode)
+                        {
+                            foreach (ConveyorNode conveyorNode in coNode.ListOfConnectedNodes)
+                            {
+                                Node conveyorcheck = conveyorNode;
+                                sender += conveyorcheck.Nodeinfo();
+                                while (conveyorcheck.Next!=null)
+                                {
+                                    
+                                    conveyorcheck = conveyorcheck.Next;
+                                    sender += conveyorcheck.Nodeinfo();
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            return sender;
         }
     }
 }

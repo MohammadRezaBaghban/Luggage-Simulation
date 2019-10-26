@@ -39,10 +39,10 @@ namespace Rail_Bag_Simulation
                     currentNode = currentNode.Next;
                 }
 
-                var st = g.TerminalAndGate;
-                var pFrom = st.IndexOf("T") + "T".Length;
-                var pTo = st.LastIndexOf("G");
-                var result = st.Substring(pFrom, pTo - pFrom);
+            
+                string str = g.TerminalAndGate;
+                string[] words = str.Split('-');
+                var result = words[0];
                 if ((currentNode as TerminalNode)?.Terminal.TerminalId.ToString() != result) continue;
                 tnode = p;
                 break;
@@ -54,7 +54,7 @@ namespace Rail_Bag_Simulation
 
         public override string Nodeinfo()
         {
-            throw new NotImplementedException();
+            return "Bag sorter: \n";
         }
     }
 }

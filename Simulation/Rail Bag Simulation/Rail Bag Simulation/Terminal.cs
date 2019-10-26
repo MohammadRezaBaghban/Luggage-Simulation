@@ -8,14 +8,14 @@ namespace Rail_Bag_Simulation
 {
     class Terminal
     {
-        private readonly char _terminalId;
+        private readonly string _terminalId;
 
-        public Terminal(char terminalId)
+        public Terminal(string terminalId)
         {
             _terminalId = terminalId;
         }
 
-        public char TerminalId => _terminalId;
+        public string TerminalId => _terminalId;
 
     }
 }

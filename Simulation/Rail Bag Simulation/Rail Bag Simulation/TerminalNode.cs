@@ -9,15 +9,22 @@ namespace Rail_Bag_Simulation
 {
     class TerminalNode : Node
     {
-        public Terminal Terminal { get; set; }
-        private List<ConveyorNode> _listOfConnectedNodes = new List<ConveyorNode>();
-        public List<ConveyorNode> ListOfConnectedNodes => _listOfConnectedNodes;
+
+        public Terminal Terminal { get; private set; }
+        public TerminalNode(Terminal terminal)
+        {
+            Terminal = terminal;
+        }
+        public List<ConveyorNode> ListOfConnectedNodes { get; } = new List<ConveyorNode>();
 
         public override string Nodeinfo()
         {
-            throw new NotImplementedException(); 
+            return "Terminal: "+Terminal.TerminalId +"\n";
         }
-
+        public void ConnectNodeToSorter(ConveyorNode n)
+        {
+            ListOfConnectedNodes.Add(n);
+        }
         public void PassBag(Bag g)
         {
             while (!((ConveyorNode)determineNextNode(g)).Conveyor.Push(g)) { }
@@ -36,9 +43,9 @@ namespace Rail_Bag_Simulation
                     currentNode = currentNode.Next;
                 }
 
-                var st = g.TerminalAndGate;
-                var pFrom = st.IndexOf("G") + "G".Length;
-                var result = st.Substring(pFrom);
+                string str = g.TerminalAndGate;
+                string[] words = str.Split('-');
+                var result = words[1];
                 if ((currentNode as GateNode)?.Gate.GateNr.ToString() != result) continue;
                 tnode = p;
                 break;
