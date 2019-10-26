@@ -20,49 +20,10 @@ namespace Rail_Bag_Simulation
     /// </summary>
     public partial class MainWindow : Window
     {
-        LinkedList ll;
+
         public MainWindow()
         {
-            ll = new LinkedList();
-            ll.AddNode(new Conveyorbelt());
-        
-            ll.AddNode(new Conveyorbelt());
-         
-            ll.AddNode(new Conveyorbelt());
-        
-            ll.AddNode(new Conveyorbelt());
-
-            ll.AddNode(new Conveyorbelt());
-
-            ll.AddNode(new Conveyorbelt());
-
             InitializeComponent();
-            Node current = ll.First;
-         
-
-            foreach (Bag s in Bag.GenerateBag(7, 0, 0, 0, 0))
-            {
-                ll.AddGeneratedBag(s);
-            }
-            while (current != null)
-            {
-            listBox1.Items.Add(current.Nodeinfo());
-
-                current = current.Next;
-            }
-        }
-
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            listBox1.Items.Clear();
-            ll.MoveBags();
-            Node current = ll.First;
-            while (current != null)
-            {
-                listBox1.Items.Add(current.Nodeinfo());
-
-                current = current.Next;
-            }
         }
 
         private void ListBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
