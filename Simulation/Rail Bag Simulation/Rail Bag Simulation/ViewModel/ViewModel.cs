@@ -1,24 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Rail_Bag_Simulation.ViewModel
 {
-    public class ViewModel
+    public class ViewModel : INotifyPropertyChanged
     {
-        private Airport airport = new Airport("Eindhoven");
+        private string name;
+        private int numberOfBags;
+        private int nrOfSusBagsGuns;
+        private int nrOfSusBagsDrugs;
+        private int nrOfSusBagsFlamable;
+        private int nrOfSusBagsOthers;
 
         public string Name
         {
             get
             {
-                return this.airport.Name;
+                return  name; 
             }
             set
             {
-                this.airport.Name = value;
+                name = value;
+                OnPropertyChanged("Name");
             }
         }
 
@@ -26,58 +33,69 @@ namespace Rail_Bag_Simulation.ViewModel
         {
             get
             {
-                return this.airport.NumberOfBags;
+                return numberOfBags;
             }
             set
             {
-                this.airport.NumberOfBags = value | 0;
+                numberOfBags = value;
+                OnPropertyChanged("NumberOfBags");
             }
         }
         public int NrOfSusBagsGuns
         {
             get
             {
-                return this.airport.NrOfSusBagsDrugs;
+                return nrOfSusBagsGuns;
             }
             set
             {
-                this.NrOfSusBagsDrugs = value | 0;
+                nrOfSusBagsGuns = value;
+                OnPropertyChanged("NrOfSusBagsGuns");
             }
         }
         public int NrOfSusBagsDrugs
         {
             get
             {
-                return this.airport.NrOfSusBagsDrugs;
+                return nrOfSusBagsDrugs;
             }
             set
             {
-                this.airport.NrOfSusBagsDrugs = value | 0;
+                nrOfSusBagsDrugs = value;
+                OnPropertyChanged("NrOfSusBagsDrugs");
             }
         }
         public int NrOfSusBagsFlamable
         {
             get
             {
-                return this.airport.NrOfSusBagsFlamable;
+                return nrOfSusBagsFlamable;
             }
             set
             {
-                this.airport.NrOfSusBagsFlamable = value | 0;
+               nrOfSusBagsFlamable = value;
+               OnPropertyChanged("NrOfSusBagsFlamable");
             }
         }
         public int NrOfSusBagsOthers
         {
             get
             {
-                return this.airport.NrOfSusBagsOthers;
+                return nrOfSusBagsOthers;
             }
             set
             {
-                this.airport.NrOfSusBagsOthers = value | 0;
+                nrOfSusBagsOthers = value;
+                OnPropertyChanged("NrOfSusBagsOthers");
             }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         public bool IsPossible()
         {
             return NumberOfBags - (NrOfSusBagsOthers + NrOfSusBagsGuns + NrOfSusBagsFlamable + NrOfSusBagsDrugs) >= 0;

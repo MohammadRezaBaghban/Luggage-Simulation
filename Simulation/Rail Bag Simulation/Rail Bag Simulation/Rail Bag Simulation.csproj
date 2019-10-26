@@ -128,9 +128,6 @@
     <Resource Include="Resources\configurations.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\check-in.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\gate.png" />
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +135,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\luggage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\storage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\security.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\securitycheck.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\check-in.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

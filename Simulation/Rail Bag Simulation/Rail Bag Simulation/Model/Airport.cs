@@ -14,12 +14,7 @@ namespace Rail_Bag_Simulation
         private readonly List<Bag> _bagsList = new List<Bag>();
         private Storage _storage=new Storage(); 
         private List<Terminal> _terminal = new List<Terminal>();
-        public int NumberOfBags { get; set; }
-        public int NrOfSusBagsGuns { get; set; }
-        public int NrOfSusBagsDrugs { get; set; }
-        public int NrOfSusBagsFlamable { get; set; }
-        public int NrOfSusBagsOthers { get; set; }
-        //private readonly LinkedList _linkedConveyorBeltList = new LinkedList();
+        private readonly LinkedList _linkedConveyorBeltList = new LinkedList();
 
 
         public Airport(string name)

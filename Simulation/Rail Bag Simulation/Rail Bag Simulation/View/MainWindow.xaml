@@ -23,6 +23,7 @@
         </Grid.RowDefinitions>
 
 
+
         <Grid Grid.Column="1" Grid.RowSpan="5">
             <Grid Grid.Column="2" Grid.RowSpan="5">
 
@@ -37,34 +38,84 @@
 
             <ListBox  Margin="-262,10,0,0" Name="listBox1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="257" Height="197" SelectionChanged="ListBox1_SelectionChanged"/>
             <Grid Background="LightBlue">
-                <StackPanel>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="62*"/>
+                    <RowDefinition Height="57*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Margin="0,0,-0.4,0" Grid.RowSpan="2">
                     <Image Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20" Source="../Resources/check-in.png" ></Image>
                     <Image Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20" Source="../Resources/check-in.png" ></Image>
                     <Image Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20" Source="../Resources/check-in.png" ></Image>
                     <Image Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20" Source="../Resources/check-in.png" ></Image>
                     <Image Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20" Source="../Resources/check-in.png" ></Image>
                 </StackPanel>
-                <StackPanel>
+                <Grid Margin="0,0,-0.4,0" Grid.RowSpan="2">
+                    <Image Width="80" Height="80" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,15,0" Source="../Resources/securitycheck.png" ></Image>
+                    <Line Stroke="White" StrokeThickness="30"  X1="100" X2="0" Y2="60" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="381,159,304,245" Width="69"/>
+                    <Line Stroke="White" StrokeThickness="30"  X1="100" X2="0" Y2="60" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="462,118,163,294" Width="129" Height="64"/>
+                    <Line Stroke="White" StrokeThickness="30"  X1="100" X2="0" Y2="60" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,120,205,80" Width="69"/>
+                    <Line Stroke="White" StrokeThickness="30"  X1="100" X2="0" Y2="60" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,160,260,0" Width="129" Height="64"/>
+
+                    <Line Stroke="White" StrokeThickness="30"  X1="100" X2="0" Y2="60" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="160,150,100,60" Width="69" RenderTransformOrigin="0.5,0.5">
+                        <Line.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="67.555"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Line.RenderTransform>
+                    </Line>
+                    <Line Stroke="White" StrokeThickness="30"  X1="100" X2="0" Y2="60" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="187,319,498,85" Width="69" RenderTransformOrigin="2.225,1.761">
+                        <Line.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="98.32"/>
+                                <TranslateTransform X="-158.427" Y="53.256"/>
+                            </TransformGroup>
+                        </Line.RenderTransform>
+                    </Line>
+                    <Line Stroke="White" StrokeThickness="30"  X1="100" X2="0" Y2="60" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="392,355,293,48" Width="69" RenderTransformOrigin="0.5,0.5">
+                        <Line.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="67.555"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Line.RenderTransform>
+                    </Line>
+                    <Line Stroke="White" StrokeThickness="30"  X1="100" X2="0" Y2="60" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="465,411,220,-8" Width="69" RenderTransformOrigin="0.5,0.5">
+                        <Line.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="67.555"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Line.RenderTransform>
+                    </Line>
+                    <Image Width="80" Height="80" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="250,110,0,0" Source="../Resources/storage.png" ></Image>
+                </Grid>
+                <StackPanel Margin="0,0,-0.4,0" Grid.RowSpan="2">
                     <Line Stroke="White" StrokeThickness="30" X1="100" X2="0"  Margin="100,60"/>
                     <Line Stroke="White" StrokeThickness="30" X1="100" X2="0"  Margin="100,40"/>
                     <Line Stroke="White" StrokeThickness="30" X1="100" X2="0"  Margin="100,60"/>
                     <Line Stroke="White" StrokeThickness="30" X1="100" X2="0"  Margin="100,60"/>
                     <Line Stroke="White" StrokeThickness="30" X1="100" X2="0"  Margin="100,40"/>
                 </StackPanel>
-                <StackPanel>
-                    <Line Stroke="Black" StrokeThickness="3"  X1="100" X2="0" Y1="30" Y2="40" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,80,79.6,60" Width="69"/>
-                </StackPanel>
-                <StackPanel>
+                <StackPanel Margin="0,0,-0.4,0" Grid.RowSpan="2">
                     <Image Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,110,150,180" Source="../Resources/terminal.jpg" ></Image>
                     <Image Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,90,150,10" Source="../Resources/terminal.jpg" ></Image>
                 </StackPanel>
-                <StackPanel>
+                <StackPanel Margin="0,0,-0.4,0" Grid.RowSpan="2">
                     <Image Width="60" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,30,10,5" Source="../Resources/gate.png" ></Image>
                     <Image Width="60" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,90,10,5" Source="../Resources/gate.png" ></Image>
                     <Image Width="60" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,90,10,10" Source="../Resources/gate.png" ></Image>
                     <Image Width="60" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,90,10,10" Source="../Resources/gate.png" ></Image>
                 </StackPanel>
-                <StackPanel>
+                <StackPanel Margin="0,0,-0.4,0" Grid.RowSpan="2">
                     <Line Stroke="White" StrokeThickness="30"  X1="100" X2="0" Y2="60" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,60,79.6,60" Width="69"/>
                     <Line Stroke="White" StrokeThickness="30"  X1="100" X2="0" Y2="60" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-40,79.6,60" Width="69" RenderTransformOrigin="0.5,0.5">
                         <Line.RenderTransform>
@@ -78,7 +129,7 @@
                     </Line>
                     <Line Stroke="White" StrokeThickness="30"  X1="100" X2="0" Y2="60" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,80,79.6,60" Width="69"/>
                     <Line Stroke="White" StrokeThickness="30"  X1="100" X2="0" Y2="60" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-40,79.6,60" Width="69" RenderTransformOrigin="0.5,0.5">
-                            <Line.RenderTransform>
+                        <Line.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
                                 <SkewTransform/>
@@ -88,9 +139,9 @@
                         </Line.RenderTransform>
                     </Line>
                 </StackPanel>
-                <Button Content="Foo" Height="30" Width="100" Margin="0,498,625.6,-54.8"/>
-                <Button Content="Foo" Height="30" Width="100" Margin="196,498,434.6,-54"/>
-                <Button Content="Foo"  Height="30" Width="100" Margin="439,498,190.6,-54"/>
+                <Button Content="Foo" Height="30" Width="100" Margin="14,251.437,639.6,-53" Grid.Row="1"/>
+                <Button Content="Foo" Height="30" Width="100" Margin="208,251.437,445.6,-53" Grid.Row="1"/>
+                <Button Content="Foo"  Height="30" Width="100" Margin="451,251.437,202.6,-53" Grid.Row="1"/>
             </Grid>
         </Grid>
     </Grid>

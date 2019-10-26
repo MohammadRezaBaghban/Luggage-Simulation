@@ -106,7 +106,7 @@ namespace Rail_Bag_Simulation
         private bool IsValid(string str)
         {
             int i;
-            return int.TryParse(str, out i) && i >= 0 && i <= 50;
+            return int.TryParse(str, out i) && i > 0 && i <= 10000;
         }
 
         private void Cigarette_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -128,5 +128,7 @@ namespace Rail_Bag_Simulation
         {
             e.Handled = !IsValid(((TextBox)sender).Text + e.Text);
         }
+
+
     }
 }
