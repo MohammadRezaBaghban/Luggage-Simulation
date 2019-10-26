@@ -8,8 +8,8 @@ namespace Rail_Bag_Simulation
 {
     class Gate
     {
-       public int GateNr { get; private set; }
-       public Gate(int gateNr)
+       public string GateNr { get; private set; }
+       public Gate(string gateNr)
         {
             this.GateNr = gateNr;
         }

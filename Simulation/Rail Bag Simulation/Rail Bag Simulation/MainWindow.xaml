@@ -13,6 +13,13 @@
             <ColumnDefinition Width="97*"/>
         </Grid.ColumnDefinitions>
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 04a957213fcc46a3e5c66165b1b6a1fad89b991b
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
@@ -26,6 +33,7 @@
         <Grid Grid.Column="1" Grid.RowSpan="5">
             <Grid Grid.Column="2" Grid.RowSpan="5">
 
+<<<<<<< HEAD
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
@@ -34,6 +42,9 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
             </Grid>
+=======
+        <ListBox  Margin="10,10,0,0" Name="listBox1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="600" Height="517" Grid.ColumnSpan="2" Grid.RowSpan="6"></ListBox>
+>>>>>>> 04a957213fcc46a3e5c66165b1b6a1fad89b991b
 
             <ListBox  Margin="10,10,0,0" Name="listBox1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="309" Height="200" Grid.ColumnSpan="2"></ListBox>
 
