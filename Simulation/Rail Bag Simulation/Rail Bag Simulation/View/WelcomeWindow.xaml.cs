@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Rail_Bag_Simulation.ViewModel;
 
 namespace Rail_Bag_Simulation
 {
@@ -19,6 +20,7 @@ namespace Rail_Bag_Simulation
     /// </summary>
     public partial class WelcomeWindow : Window
     {
+        private Rail_Bag_Simulation.ViewModel.ViewModel vm = new Rail_Bag_Simulation.ViewModel.ViewModel();
         public WelcomeWindow()
         {
             InitializeComponent();
@@ -46,24 +48,34 @@ namespace Rail_Bag_Simulation
 
         private void PistolButton_Checked(object sender, RoutedEventArgs e)
         {
-            this.pistol.Visibility = Visibility.Visible;
+            if (vm.IsPossible())
+            {
+                this.pistol.Visibility = Visibility.Visible;
+            }
         }
 
         private void CigaretteBtn_Checked(object sender, RoutedEventArgs e)
         {
-            this.cigarette.Visibility = Visibility.Visible;
-
+            if (vm.IsPossible())
+            {
+                this.cigarette.Visibility = Visibility.Visible;
+            }
         }
 
         private void FlameBtn_Checked(object sender, RoutedEventArgs e)
         {
-            this.flame.Visibility = Visibility.Visible;
-
+            if (vm.IsPossible())
+            {
+                this.flame.Visibility = Visibility.Visible;
+            }
         }
 
         private void WarningBtn_Checked(object sender, RoutedEventArgs e)
         {
-            this.warning.Visibility = Visibility.Visible;    
+            if (vm.IsPossible())
+            {
+                this.warning.Visibility = Visibility.Visible;
+            }
         }
 
         private void WarningBtn_Unchecked(object sender, RoutedEventArgs e)
@@ -84,6 +96,37 @@ namespace Rail_Bag_Simulation
         private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
             this.pistol.Visibility = Visibility.Hidden;
+        }
+
+        private void Pistol_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsValid(((TextBox)sender).Text + e.Text);
+        }
+
+        private bool IsValid(string str)
+        {
+            int i;
+            return int.TryParse(str, out i) && i >= 0 && i <= 50;
+        }
+
+        private void Cigarette_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsValid(((TextBox)sender).Text + e.Text);
+        }
+
+        private void Flame_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsValid(((TextBox)sender).Text + e.Text);
+        }
+
+        private void Warning_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsValid(((TextBox)sender).Text + e.Text);
+        }
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsValid(((TextBox)sender).Text + e.Text);
         }
     }
 }
