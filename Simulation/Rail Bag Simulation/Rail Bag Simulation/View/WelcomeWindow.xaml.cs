@@ -20,7 +20,7 @@ namespace Rail_Bag_Simulation
     /// </summary>
     public partial class WelcomeWindow : Window
     {
-        private Rail_Bag_Simulation.ViewModel.ViewModel vm = new Rail_Bag_Simulation.ViewModel.ViewModel();
+        private ViewModel.ViewModel vm = new ViewModel.ViewModel();
         public WelcomeWindow()
         {
             InitializeComponent();
@@ -29,9 +29,20 @@ namespace Rail_Bag_Simulation
 
         private void btnRunSimulation_Click(object sender, RoutedEventArgs e)
         {
+            
             MainWindow mainWindow = new MainWindow();
             this.Close();
-
+            //this.DataContext = mainWindow.
+            mainWindow.tbBagsNum.Text = this.tbNrOfBags.Text;
+            int totalSuspBags = Convert.ToInt32(this.pistol.Text)
+                                + Convert.ToInt32(this.flame.Text)
+                                + Convert.ToInt32(this.cigarette.Text)
+                                + Convert.ToInt32(this.warning.Text);
+            mainWindow.tbTotalSuspBags.Text = totalSuspBags.ToString();
+            mainWindow.tbBagsWep.Text = this.pistol.Text;
+            mainWindow.tbBagsFlam.Text = this.flame.Text;
+            mainWindow.tbBagsDrug.Text = this.cigarette.Text;
+            mainWindow.tbBagsOther.Text = this.warning.Text;
             mainWindow.Show();
         }
 

@@ -20,6 +20,7 @@ namespace Rail_Bag_Simulation
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ViewModel.ViewModel vm;
 
         public MainWindow()
         {
