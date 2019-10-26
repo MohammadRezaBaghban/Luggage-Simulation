@@ -23,13 +23,35 @@ namespace Rail_Bag_Simulation
 
         public void PassBag(Bag g)
         {
-            while(!((ConveyorNode)determineNextNode(g)).Conveyor.Push(g)) { }
+            Node next = (ConveyorNode) determineNextNode(g);
+            ConveyorNode tmpConveyor = null;
+            while (!(next is TerminalNode))
+            {
+                if (((ConveyorNode)(next)).Conveyor.IsFull == false)
+                {
+                    ((ConveyorNode)(next)).Conveyor.PushBagToConveyorBelt(((ConveyorNode)(next)).Conveyor.RemoveBagFromConveyorBelt());
+                }
+
+                if (next.Next is TerminalNode) tmpConveyor = (ConveyorNode) next;
+                next = ((next).Next) ;
+            }
+
+            var tbag = tmpConveyor.Conveyor.RemoveBagFromConveyorBelt();
+
+            while (tbag == null && !tmpConveyor.Conveyor.IsEmpty())
+            {
+                tbag = tmpConveyor.Conveyor.RemoveBagFromConveyorBelt();
+            }
+            if (tbag != null) ((TerminalNode)(next)).PassBag(tbag);
+
             Thread.Sleep(DelayTime);
         }
 
         private Node determineNextNode(Bag g)
         {
             Node tnode = null;
+            if (g == null) return null;
+
             foreach (var p in ListOfConnectedNodes)
             {
                 Node currentNode = p;
@@ -39,7 +61,6 @@ namespace Rail_Bag_Simulation
                     currentNode = currentNode.Next;
                 }
 
-            
                 string str = g.TerminalAndGate;
                 string[] words = str.Split('-');
                 var result = words[0];

@@ -58,7 +58,7 @@ namespace Rail_Bag_Simulation
         {
             if (totalNrOfSuspBags == 0)
             {
-                return totalNrOfSuspBags;
+                return 0;
             }
             var resultToTest = Convert.ToInt32((decimal)(totalNrOfBags) / (decimal)totalNrOfSuspBags);
             return resultToTest;
@@ -81,19 +81,17 @@ namespace Rail_Bag_Simulation
                 GenerateSuspiciousBags(nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable, nbrBagsOthers);
 
 
-            for (int i = 0; i < nbrOfBags; i++)
+            for (var i = 0; i < nbrOfBags; i++)
             {
                 //for every suspicious bag to be created, it will be placed after the distribution value.
-                if (theSuspiciousBagDistr != 0 && i % theSuspiciousBagDistr == 0)
+                if (theSuspiciousBagDistr != 0 && i % theSuspiciousBagDistr == 0 && suspiciousbags.Count>0)
                 {
                     bags.Add(suspiciousbags[0]);
                     suspiciousbags.RemoveAt(0);
                     continue;
                 }
-
                 bags.Add(new Bag(_random.Next(10, 22), (Destination) _random.Next(1, 12),
                     "T" + _random.Next(1, 3) + "-"+"G" + _random.Next(1, 3)));
-
             }
             return bags;
         }
@@ -107,14 +105,14 @@ namespace Rail_Bag_Simulation
             {
                 if (nbrOfBagsDrugs > 0)
                 {
-                    templist.Add(new Bag(SuspiciousBagtype.Drug, _random.Next(10, 22), (Destination)_random.Next(1, 12), "T" + _random.Next(1, 3) + "G" + _random.Next(1, 3)));
+                    templist.Add(new Bag(SuspiciousBagtype.Drug, _random.Next(10, 22), (Destination)_random.Next(1, 12), "T" + _random.Next(1, 3) + "-" + "G" + "1"));
                     nbrOfBagsDrugs--;
                     totalnumber--;
                 }
 
                 if (nbrOfBagsWeapons > 0)
                 {
-                    templist.Add(new Bag(SuspiciousBagtype.Weapons, _random.Next(10, 22), (Destination)_random.Next(1, 12), "T" + _random.Next(1, 3) + "G" + _random.Next(1, 3)));
+                    templist.Add(new Bag(SuspiciousBagtype.Weapons, _random.Next(10, 22), (Destination)_random.Next(1, 12), "T" + _random.Next(1, 3)+ "-" + "G" + "1"));
                     nbrOfBagsWeapons--;
                     totalnumber--;
 
@@ -122,7 +120,7 @@ namespace Rail_Bag_Simulation
 
                 if (nbrOfBagsFlammable > 0)
                 {
-                    templist.Add(new Bag(SuspiciousBagtype.Flammables, _random.Next(10, 22), (Destination)_random.Next(1, 12), "T" + _random.Next(1, 3) + "G" + _random.Next(1, 3)));
+                    templist.Add(new Bag(SuspiciousBagtype.Flammables, _random.Next(10, 22), (Destination)_random.Next(1, 12), "T" + _random.Next(1, 3) + "-" +"G" + "1"));
                     nbrOfBagsFlammable--;
                     totalnumber--;
 
@@ -130,7 +128,7 @@ namespace Rail_Bag_Simulation
 
                 if (nbrBagsOthers > 0)
                 {
-                    templist.Add(new Bag(SuspiciousBagtype.Other, _random.Next(10, 22), (Destination)_random.Next(1, 12), "T" + _random.Next(1, 3) + "G" + _random.Next(1, 3)));
+                    templist.Add(new Bag(SuspiciousBagtype.Other, _random.Next(10, 22), (Destination)_random.Next(1, 12), "T" + _random.Next(1, 3) + "-" + "G" + "1"));
                     nbrBagsOthers--;
                     totalnumber--;
                 }

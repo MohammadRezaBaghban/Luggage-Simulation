@@ -9,7 +9,7 @@ namespace Rail_Bag_Simulation
     class Storage
     {
         private int _storageId;
-        private List<Bag> _suspicious;
+        private List<Bag> _suspicious=new List<Bag>();
         public Bag GetBagById(int id) 
         {
             foreach(var bag in _suspicious)

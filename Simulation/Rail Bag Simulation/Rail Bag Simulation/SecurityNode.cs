@@ -14,15 +14,15 @@ namespace Rail_Bag_Simulation
             return "Security: \n";
         }
 
-        private void ScanBagSecurity(Bag b)
+        public void ScanBagSecurity(Bag b)
         {
             Thread.Sleep(DelayTime);
 
-            if (b.GetSecurityStatus() == null)
+            if (b?.GetSecurityStatus() == null)
             {
                 if (Next is ConveyorNode node)
-                {
-                    node.Conveyor.Push(b);
+                {       
+                    node.Conveyor.PushBagToConveyorBelt(b);
                 }
                 return;
             }

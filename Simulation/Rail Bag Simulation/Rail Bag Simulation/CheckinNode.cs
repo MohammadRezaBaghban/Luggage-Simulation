@@ -8,9 +8,41 @@ namespace Rail_Bag_Simulation
 {
     class CheckinNode : Node
     {
+        public Queue<Bag> _bagsQueue;
+
+        public CheckinNode()
+        {
+            _bagsQueue = new Queue<Bag>();
+        }
+
         public override string Nodeinfo()
         {
-            throw new NotImplementedException();
+            string sender = "Check in: \n";
+            foreach (Bag g in _bagsQueue)
+            {
+                sender += "\n" + g.GetBagInfo();
+            }
+
+            return sender;
+        }
+
+        public bool Push(List<Bag> bagsList)
+        { 
+            bagsList.ForEach(p =>
+            {
+                _bagsQueue.Enqueue(p);
+            });
+
+            return true;
+
+        }
+
+        public Bag Remove()
+        {
+            if (_bagsQueue.Count < 1)
+                return null;
+            var bag = _bagsQueue.Dequeue();
+            return bag;
         }
     }
 }

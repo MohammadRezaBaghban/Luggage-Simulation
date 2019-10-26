@@ -8,7 +8,7 @@ namespace Rail_Bag_Simulation
         public Node Next { get;  set; } // the next node it refers to; null if there does not exist a next node
         public Node Previous { get;  set; }
 
-        
+        public List<string> log=new List<string>();
 
         public int DelayTime
         {

@@ -27,7 +27,26 @@ namespace Rail_Bag_Simulation
         }
         public void PassBag(Bag g)
         {
-            while (!((ConveyorNode)determineNextNode(g)).Conveyor.Push(g)) { }
+            Node next = (ConveyorNode)determineNextNode(g);
+            ConveyorNode tmpConveyor = null;
+            while (!(next is GateNode))
+            {
+                if (((ConveyorNode)(next)).Conveyor.IsFull == false)
+                {
+                    ((ConveyorNode)(next)).Conveyor.PushBagToConveyorBelt(((ConveyorNode)(next)).Conveyor.RemoveBagFromConveyorBelt());
+                }
+
+                if (next.Next is GateNode) tmpConveyor = (ConveyorNode)next;
+                next = ((next).Next);
+            }
+
+            var tbag = tmpConveyor.Conveyor.RemoveBagFromConveyorBelt();
+
+            while (tbag == null && !tmpConveyor.Conveyor.IsEmpty())
+            {
+                tbag = tmpConveyor.Conveyor.RemoveBagFromConveyorBelt();
+            }
+            if (tbag != null) ((GateNode)(next)).AddBag(tbag);
             Thread.Sleep(DelayTime);
         }
 

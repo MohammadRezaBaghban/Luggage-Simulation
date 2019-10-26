@@ -20,106 +20,45 @@ namespace Rail_Bag_Simulation
 
         public void MoveBags()
         {
+
             if (First != null)
             {
+                ConveyorNode tmpConveyor = null;
+
                 var current = First;
-                while (current.Next != null&& !(current is BagSortNode))
+                while (current.Next != null && !(current is BagSortNode))
                 {
                     switch (current.Next)
                     {
-                        case ConveyorNode node when current is ConveyorNode conveyorNode:
-                        {
-                            if (node.Conveyor.IsFull == false)
-                            {
-                                node.Conveyor.Push(conveyorNode.Conveyor.Remove());
-                            }
 
+                        case SecurityNode nextNode when current is ConveyorNode conveyorNode:
+                        {
+                            nextNode.ScanBagSecurity(conveyorNode.Conveyor.RemoveBagFromConveyorBelt());
                             break;
                         }
+
+                        case ConveyorNode NextNode when current is ConveyorNode conveyorNode:
+                            {
+                                if (NextNode.Conveyor.IsFull == false)
+                                {
+                                    NextNode.Conveyor.PushBagToConveyorBelt(conveyorNode.Conveyor.RemoveBagFromConveyorBelt());
+                                }
+                                break;
+                            }
 
                         case BagSortNode node when current is ConveyorNode conveyorNode:
                         {
-                            if (conveyorNode.Conveyor.IsFull)
-                            {
-                                node.PassBag(conveyorNode.Conveyor.ListofBagsinqueue().Peek());
-
-                            }
-
-                            break;
+                            var tbag = conveyorNode.Conveyor.RemoveBagFromConveyorBelt();
+                                while (tbag == null && !conveyorNode.Conveyor.IsEmpty())
+                                {
+                                    tbag= conveyorNode.Conveyor.RemoveBagFromConveyorBelt();
+                                }
+                                if(tbag != null) node.PassBag(tbag);
+                                break;
                         }
-
-
-                   
                     }
 
                     current = current.Next;
-                }
-
-                if (current is BagSortNode bagSort)
-                {
-                    foreach (ConveyorNode conveyorNode in  bagSort.ListOfConnectedNodes)
-                    {
-                        Node near = conveyorNode;
-                        while ( near.Next is ConveyorNode || near.Next != null)
-                        {
-                            switch (near.Next)
-                            {
-                                case ConveyorNode node when near is ConveyorNode conv:
-                                {
-                                    if (node.Conveyor.IsFull == false)
-                                    {
-                                        node.Conveyor.Push(conv.Conveyor.Remove());
-                                    }
-
-                                    break;
-                                }
-                            }
-
-                            near = near.Next;
-                        }
-
-                        if (near is ConveyorNode setConveyorNode && near.Next is TerminalNode terminalNode)
-                        {
-                            if (setConveyorNode.Conveyor.IsFull)
-                            {
-                                terminalNode.PassBag(setConveyorNode.Conveyor.ListofBagsinqueue().Peek());
-                            }
-                        }
-
-                        near = near.Next;
-                        if (near is TerminalNode termNode)
-                        {
-                            foreach (ConveyorNode s in termNode.ListOfConnectedNodes)
-                            {
-                                Node nearNode = s;
-                                while (!(nearNode.Next is GateNode) || nearNode.Next != null)
-                                {
-                                    switch (nearNode.Next)
-                                    {
-                                        case ConveyorNode node when nearNode is ConveyorNode conv:
-                                        {
-                                            if (node.Conveyor.IsFull == false)
-                                            {
-                                                node.Conveyor.Push(conv.Conveyor.Remove());
-                                            }
-
-                                            break;
-                                        }
-                                    }
-                                    nearNode = nearNode.Next;
-                                }
-
-                                if (nearNode is ConveyorNode conveyor && nearNode.Next is GateNode gateNode)
-                                {
-                                    if (conveyor.Conveyor.IsFull)
-                                    {
-                                        gateNode.AddBag(conveyor.Conveyor.ListofBagsinqueue().Peek());
-                                    }
-                                }
-                            }
-                        }
-
-                    }
                 }
 
 
@@ -131,17 +70,17 @@ namespace Rail_Bag_Simulation
         }
         public void AddGeneratedBag(Bag bagtoqueue)
         {
-            if (First != null)
+            ((CheckinNode)(First))._bagsQueue.Enqueue(bagtoqueue);
+
+
+            if (First.Next != null)
             {
-                if (!(First is ConveyorNode node)) return;
+                if (!(First.Next is ConveyorNode node)) return;
                 if (node.Conveyor.IsFull)
                 {
                     MoveBags();
                 }
-
-                
-                ((ConveyorNode)node).Conveyor.Push(bagtoqueue);
-                
+                ((ConveyorNode)node).Conveyor.PushBagToConveyorBelt(bagtoqueue);
             }
             else
             {
@@ -152,8 +91,8 @@ namespace Rail_Bag_Simulation
         {
             if (First == null)
             {
-                
-                    First = nd;
+
+                First = nd;
 
             }
             else
@@ -165,17 +104,16 @@ namespace Rail_Bag_Simulation
                 }
 
                 nd.Next = current.Next;
-                    current.Next = nd;
+                current.Next = nd;
             }
         }
-    
-        public void AddNode(Node childNode , Node parent)
+
+        public void AddNode(Node childNode, Node parent)
         {
-            
+
             if (First == null)
             {
-               
-                    MessageBox.Show("There is no first node");
+                MessageBox.Show("There is no first node");
             }
 
             else
@@ -234,7 +172,7 @@ namespace Rail_Bag_Simulation
                         foreach (ConveyorNode conveyorNode in node.ListOfConnectedNodes)
                         {
                             Node near = conveyorNode;
-                            while (!(near is TerminalNode)||near.Next!=null)
+                            while (!(near is TerminalNode) || near.Next != null)
                             {
                                 near = near.Next;
                             }
@@ -258,27 +196,27 @@ namespace Rail_Bag_Simulation
                                 }
                             }
 
-                            if (parent.Next !=null)
+                            if (parent.Next != null)
                             {
                                 break;
                             }
                         }
                     }
-                   
-                   
+
+
                 }
             }
         }
-      
+
 
         public void RemoveNode()
         {
             var current = First;
-            
-                    while (current.Next.Next != null)
-                    {
-                         current = current.Next;
-                    }
+
+            while (current.Next.Next != null)
+            {
+                current = current.Next;
+            }
             current.Next = null;
         }
 
@@ -295,7 +233,7 @@ namespace Rail_Bag_Simulation
 
             if (current is BagSortNode node)
             {
-                
+
                 sender += node.Nodeinfo();
                 if (node.ListOfConnectedNodes.Count >= 1)
                 {
@@ -305,7 +243,7 @@ namespace Rail_Bag_Simulation
                         sender += check.Nodeinfo();
                         while (check.Next != null)
                         {
-                            
+
                             check = check.Next;
                             sender += check.Nodeinfo();
                         }
@@ -315,10 +253,11 @@ namespace Rail_Bag_Simulation
                             foreach (ConveyorNode conveyorNode in coNode.ListOfConnectedNodes)
                             {
                                 Node conveyorcheck = conveyorNode;
+                            
                                 sender += conveyorcheck.Nodeinfo();
-                                while (conveyorcheck.Next!=null)
+                                while (conveyorcheck.Next != null)
                                 {
-                                    
+
                                     conveyorcheck = conveyorcheck.Next;
                                     sender += conveyorcheck.Nodeinfo();
                                 }

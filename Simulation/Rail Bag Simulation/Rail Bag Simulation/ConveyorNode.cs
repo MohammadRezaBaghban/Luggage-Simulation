@@ -24,7 +24,7 @@ namespace Rail_Bag_Simulation
 
         public override string Nodeinfo()
         {
-           return Conveyor.Id.ToString() 
+           return "Conveyor "+ Conveyor.Id.ToString() 
                + ": "+ Conveyor.ToString()+'\n';
         }
     }

@@ -21,11 +21,17 @@ namespace Rail_Bag_Simulation
             Id = ++_idToGive;
             _bagQueue = new Queue<Bag>(_setsize);
         }
+
+        public bool IsEmpty()
+        {
+            return _bagQueue.Count < 1;
+        }
+
         public Queue<Bag> ListofBagsinqueue()
         {
             return _bagQueue;
         }
-        public bool Push(Bag bagtoqueue)
+        public bool PushBagToConveyorBelt(Bag bagtoqueue)
         {
             if (_bagQueue.Count < _setsize)
             { 
@@ -41,7 +47,7 @@ namespace Rail_Bag_Simulation
         
         }
 
-        public Bag Remove()
+        public Bag RemoveBagFromConveyorBelt()
         {
             if (_bagQueue.Count < 1)
                 return null;
