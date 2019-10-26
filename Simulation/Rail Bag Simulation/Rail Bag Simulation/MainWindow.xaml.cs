@@ -30,9 +30,9 @@ namespace Rail_Bag_Simulation
 
             airport.StartBagsMovement(5, 1, 1, 0, 0);
             listBox1.Items.Add(airport.Ll.LinkedListInfo());
-               
+            Node.log.ForEach(l => { listBox1.Items.Add(l); });
 
-            
+
 
 
         }

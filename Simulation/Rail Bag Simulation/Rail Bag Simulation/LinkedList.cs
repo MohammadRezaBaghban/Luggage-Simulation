@@ -28,8 +28,19 @@ namespace Rail_Bag_Simulation
                 var current = First;
                 while (current.Next != null && !(current is BagSortNode))
                 {
+                 
+
                     switch (current.Next)
                     {
+
+                        case ConveyorNode NextNode when current is CheckinNode checkidNode:
+                        {
+                          
+                                NextNode.Conveyor.PushBagToConveyorBelt(checkidNode.Remove());
+                                Node.log.Add("Added bag to " + NextNode.Conveyor.Id);
+                                
+                            break;
+                        } 
 
                         case SecurityNode nextNode when current is ConveyorNode conveyorNode:
                         {
@@ -37,25 +48,28 @@ namespace Rail_Bag_Simulation
                             break;
                         }
 
-                        case ConveyorNode NextNode when current is ConveyorNode conveyorNode:
-                            {
-                                if (NextNode.Conveyor.IsFull == false)
-                                {
-                                    NextNode.Conveyor.PushBagToConveyorBelt(conveyorNode.Conveyor.RemoveBagFromConveyorBelt());
-                                }
-                                break;
-                            }
-
                         case BagSortNode node when current is ConveyorNode conveyorNode:
                         {
                             var tbag = conveyorNode.Conveyor.RemoveBagFromConveyorBelt();
-                                while (tbag == null && !conveyorNode.Conveyor.IsEmpty())
-                                {
-                                    tbag= conveyorNode.Conveyor.RemoveBagFromConveyorBelt();
-                                }
-                                if(tbag != null) node.PassBag(tbag);
-                                break;
+                            while (tbag == null && !conveyorNode.Conveyor.IsEmpty())
+                            {
+                                tbag = conveyorNode.Conveyor.RemoveBagFromConveyorBelt();
+                            }
+                            if (tbag != null) node.PassBag(tbag);
+                            break;
                         }
+
+                        case ConveyorNode NextNode when current is ConveyorNode conveyorNode:
+                        {
+                            if (NextNode.Conveyor.IsFull == false)
+                            { 
+                                NextNode.Conveyor.PushBagToConveyorBelt(conveyorNode.Conveyor.RemoveBagFromConveyorBelt());
+                            }
+                            break;
+                            }
+
+
+                        
                     }
 
                     current = current.Next;
@@ -75,12 +89,7 @@ namespace Rail_Bag_Simulation
 
             if (First.Next != null)
             {
-                if (!(First.Next is ConveyorNode node)) return;
-                if (node.Conveyor.IsFull)
-                {
-                    MoveBags();
-                }
-                ((ConveyorNode)node).Conveyor.PushBagToConveyorBelt(bagtoqueue);
+                MoveBags();
             }
             else
             {
@@ -202,8 +211,6 @@ namespace Rail_Bag_Simulation
                             }
                         }
                     }
-
-
                 }
             }
         }

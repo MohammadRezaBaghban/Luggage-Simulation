@@ -20,7 +20,7 @@ namespace Rail_Bag_Simulation
             string sender = "Check in: \n";
             foreach (Bag g in _bagsQueue)
             {
-                sender += "\n" + g.GetBagInfo();
+                sender +=  g.GetBagInfo() + "\n";
             }
 
             return sender;

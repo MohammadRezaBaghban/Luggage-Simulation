@@ -51,7 +51,7 @@ namespace Rail_Bag_Simulation
             Setsize = QueueSizeOfBelts;
             _ll = new LinkedList();
 
-            //_ll.AddNode(new CheckinNode());
+            _ll.AddNode(new CheckinNode());
 
             _ll.AddNode(new ConveyorNode(new Conveyorbelt(Setsize)));
 

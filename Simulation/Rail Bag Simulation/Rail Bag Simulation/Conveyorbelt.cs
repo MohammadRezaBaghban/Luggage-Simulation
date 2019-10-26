@@ -31,20 +31,18 @@ namespace Rail_Bag_Simulation
         {
             return _bagQueue;
         }
-        public bool PushBagToConveyorBelt(Bag bagtoqueue)
+        public void PushBagToConveyorBelt(Bag bagtoqueue)
         {
             if (_bagQueue.Count < _setsize)
             { 
                 _bagQueue.Enqueue(bagtoqueue);
-                if(_bagQueue.Count<_setsize-1) _bagQueue.Enqueue(null); //To be made random at the next iteration
+                //if(_bagQueue.Count<_setsize-1) _bagQueue.Enqueue(null); //To be made random at the next iteration
+                IsFull = false;
             }
             else
             {
                 IsFull = true;
-                return false;
             }
-            return true;
-        
         }
 
         public Bag RemoveBagFromConveyorBelt()
