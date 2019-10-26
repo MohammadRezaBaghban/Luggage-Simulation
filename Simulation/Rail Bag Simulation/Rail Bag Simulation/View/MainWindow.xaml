@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:Rail_Bag_Simulation"
         mc:Ignorable="d"
         WindowState="Maximized"
-        Title="MainWindow" Height="600" Width="1024">
+        Title="MainWindow" Height="1024" Width="1680">
     <Grid Name="mainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="34*"/>
@@ -65,28 +65,206 @@
         <Button Content="Run simulation" Grid.Column="3" Margin="54.8,31.8,56.6,31.4" Grid.Row="4"></Button>
         <Button Content="Statistics" Margin="71,31.8,92,31.4" Grid.Row="4"/>
         <Canvas x:Name="canvas" Background="LightGray" Grid.Column="1" Margin="9.6,10,9.6,10.2" Grid.RowSpan="4" Grid.ColumnSpan="3">
-            <Rectangle
-                x:Name="cubey"
-                Canvas.Top="411"
-                Canvas.Right="10"
-                Fill="#FFFFFF00"  
-                Height="34"  
-                Width="34"  
-                StrokeThickness="5"  
-                Stroke="#FF0000FF" Canvas.Left="700">
-            </Rectangle>
+
             <Image Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,200,0,0" Source="../Resources/check-in.png" ></Image>
-            <Line Stroke="White" StrokeThickness="30" X1="100" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="160,290,0,0"/>
-            <Image Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="220,280,0,0" Source="../Resources/securitycheck.png" ></Image>
-            <Line Stroke="White" StrokeThickness="30" X1="100" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="263,290,0,0"/>
-            <Image Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="355,240,0,0" Source="../Resources/storage.png" ></Image>
-            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
-                <Image Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" Source="../Resources/gate.png" />
-                <Image Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" Source="../Resources/gate.png" />
+            <Line Stroke="White" StrokeThickness="30" X1="100" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="160,295,0,0"/>
+            <Image Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="220,255,0,0" Source="../Resources/securitycheck.png" ></Image>
+            <Line Stroke="White" StrokeThickness="30" X1="100" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="263,295,0,0"/>
+            <Image Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="355,240,0,0" Source="../Resources/securityCheckHouse.png" ></Image>
+            <Line Stroke="White" StrokeThickness="30" X1="100" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="428,295,0,0"/>
+            <Image Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="490,255,0,0" Source="../Resources/securitycheck.png" ></Image>
+            <Line Stroke="White" StrokeThickness="30" X1="100" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="533,295,0,0"/>
+            <Image Width="78" Height="72" HorizontalAlignment="Left" VerticalAlignment="Center" Source="../Resources/sorter.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="619" Canvas.Top="259" >
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="89.609"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Image Width="78" Height="72" HorizontalAlignment="Left" VerticalAlignment="Center" Source="../Resources/storage.png" RenderTransformOrigin="0.5,0.5" Canvas.Right="510" Canvas.Top="100" />
+
+            <Image Width="80" Height="62" HorizontalAlignment="Left" VerticalAlignment="Center" Source="../Resources/securitycheck.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="669" Canvas.Top="254" >
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-37.748"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Image Width="80" Height="64" HorizontalAlignment="Left" VerticalAlignment="Center" Source="../Resources/securitycheck.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="662" Canvas.Top="279" >
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="51.375"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Line Stroke="White" StrokeThickness="30" X1="88" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Canvas.Left="698" Canvas.Top="255">
+                <Line.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-38.527"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Line.RenderTransform>
+            </Line>
+            <Image Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Source="../Resources/securitycheck.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="731" Canvas.Top="188" >
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-37.555"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Line Stroke="White" StrokeThickness="30" X1="88" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Canvas.Left="769" Canvas.Top="198">
+                <Line.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-39.023"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Line.RenderTransform>
+            </Line>
+            <Image Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Source="../Resources/securitycheck.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="804" Canvas.Top="131" >
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-38.502"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Line Stroke="White" StrokeThickness="30" X1="88" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Canvas.Left="843" Canvas.Top="140">
+                <Line.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="3.851"/>
+                        <RotateTransform Angle="-37.722"/>
+                        <TranslateTransform X="-0.397" Y="0.322"/>
+                    </TransformGroup>
+                </Line.RenderTransform>
+            </Line>
+            <Line Stroke="White" StrokeThickness="30" X1="88" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Canvas.Left="676" Canvas.Top="342">
+                <Line.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="51.576"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Line.RenderTransform>
+            </Line>
+            <Image Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Source="../Resources/securitycheck.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="715" Canvas.Top="342" >
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-127.203"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Line Stroke="White" StrokeThickness="30" X1="88" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Canvas.Left="736" Canvas.Top="416">
+                <Line.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="51.576"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Line.RenderTransform>
+            </Line>
+            <Image Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Source="../Resources/securitycheck.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="776" Canvas.Top="414" >
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-127.203"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Line Stroke="White" StrokeThickness="30" X1="100" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Canvas.Left="794" Canvas.Top="495">
+                <Line.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="51.576"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Line.RenderTransform>
+            </Line>
+
+
+
+            <StackPanel Canvas.Right="150" Canvas.Top="70">
+                <Image Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,240" Source="../Resources/terminal.jpg"/>
+            </StackPanel>
+            <Grid/>
+            <StackPanel Canvas.Right="10" Canvas.Top="10">
+                <Image Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,20" Source="../Resources/gate.png"/>
+                <Image Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,150" Source="../Resources/gate.png" />
+            </StackPanel>
+            <StackPanel Canvas.Right="10" Canvas.Bottom="10">
+                <Image Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,10" Source="../Resources/gate.png"/>
                 <Image Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" Source="../Resources/gate.png" />
             </StackPanel>
             <Image Width="80" Height="80" HorizontalAlignment="Right"  Margin="0,0,0,0" Source="../Resources/gate.png" Canvas.Right="10" Canvas.Top="10" />
-
+            <Line Stroke="White" StrokeThickness="30" X1="90" X2="0"  HorizontalAlignment="Right" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Canvas.Right="90" Canvas.Top="95">
+                <Line.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-20.687"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Line.RenderTransform>
+            </Line>
+            <Line Stroke="White" StrokeThickness="30" X1="88" X2="0"  HorizontalAlignment="Right" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Canvas.Right="95" Canvas.Top="152">
+                <Line.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="17.637"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Line.RenderTransform>
+            </Line>
+            <Line Stroke="White" StrokeThickness="30" X1="90" X2="0"  HorizontalAlignment="Right" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Canvas.Right="90" Canvas.Bottom="106">
+                <Line.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-20.687"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Line.RenderTransform>
+            </Line>
+            <Line Stroke="White" StrokeThickness="30" X1="88" X2="0"  HorizontalAlignment="Right" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Canvas.Right="98" Canvas.Bottom="50">
+                <Line.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="17.637"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Line.RenderTransform>
+            </Line>
+            <StackPanel Canvas.Right="150" Canvas.Bottom="-170">
+                <Image Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,240" Source="../Resources/terminal.jpg" RenderTransformOrigin="0.506,2.754"/>
+            </StackPanel>
         </Canvas>
 
     </Grid>
