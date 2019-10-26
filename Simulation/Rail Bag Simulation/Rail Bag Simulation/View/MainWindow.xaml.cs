@@ -64,5 +64,10 @@ namespace Rail_Bag_Simulation
                 current = current.Next;
             }
         }
+
+        private void ListBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
