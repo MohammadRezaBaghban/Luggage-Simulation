@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -75,7 +76,11 @@ namespace Rail_Bag_Simulation
 
         public override string Nodeinfo()
         {
-            return "Bag sorter: \n";
+            var sender =  $"Bag sorter : \n" ;
+
+            ListOfConnectedNodes.ForEach(n => { sender += n.Nodeinfo().ToString() +" "+ n.Next.Nodeinfo(); });
+
+            return sender;
         }
     }
 }

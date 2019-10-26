@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -9,7 +10,7 @@ namespace Rail_Bag_Simulation
 {
     class TerminalNode : Node
     {
-
+        public static int counter=0;
         public Terminal Terminal { get; private set; }
         public TerminalNode(Terminal terminal)
         {
@@ -19,7 +20,9 @@ namespace Rail_Bag_Simulation
 
         public override string Nodeinfo()
         {
-            return "Terminal: "+Terminal.TerminalId +"\n";
+            string sender =" Terminal: " +Terminal.TerminalId +"\n";
+            ListOfConnectedNodes.ForEach(n => { sender += n.Nodeinfo() + n.Next.Nodeinfo(); });
+            return sender ;
         }
         public void ConnectNodeToSorter(ConveyorNode n)
         {
@@ -35,18 +38,16 @@ namespace Rail_Bag_Simulation
                 {
                     ((ConveyorNode)(next)).Conveyor.PushBagToConveyorBelt(((ConveyorNode)(next)).Conveyor.RemoveBagFromConveyorBelt());
                 }
-
                 if (next.Next is GateNode) tmpConveyor = (ConveyorNode)next;
                 next = ((next).Next);
             }
 
             var tbag = tmpConveyor.Conveyor.RemoveBagFromConveyorBelt();
-
             while (tbag == null && !tmpConveyor.Conveyor.IsEmpty())
             {
                 tbag = tmpConveyor.Conveyor.RemoveBagFromConveyorBelt();
             }
-            if (tbag != null) ((GateNode)(next)).AddBag(tbag);
+            if (tbag != null) {((GateNode)(next)).AddBag(tbag); counter++;}
             Thread.Sleep(DelayTime);
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -11,6 +12,7 @@ namespace Rail_Bag_Simulation
     class LinkedList
     {
         public Node First { get; private set; }
+        public bool IsSimulationFinished = false;
         private List<Node> lastnodes;
         public LinkedList()
         {
@@ -18,8 +20,22 @@ namespace Rail_Bag_Simulation
             First = null;
         }
 
-        public void MoveBags()
+
+
+        public void  MoveBags(int totalnr)
         {
+            Thread thread1 = new Thread((() =>
+            {
+                while (!IsSimulationFinished)
+                {
+                    if (TerminalNode.counter + Storage.GetNumberOfBagsInStorage() == totalnr)
+                    {
+                        IsSimulationFinished = true;
+                        break;
+                    }
+                }
+            }));
+            thread1.Start();
 
             if (First != null)
             {
@@ -28,68 +44,99 @@ namespace Rail_Bag_Simulation
                 var current = First;
                 while (current.Next != null && !(current is BagSortNode))
                 {
-                 
+
 
                     switch (current.Next)
                     {
-
                         case ConveyorNode NextNode when current is CheckinNode checkidNode:
-                        {
-                          
-                                NextNode.Conveyor.PushBagToConveyorBelt(checkidNode.Remove());
-                                Node.log.Add("Added bag to " + NextNode.Conveyor.Id);
-                                
-                            break;
-                        } 
+                            {
+                                Thread thread = new Thread((() =>
+                                {
+                                    while (!IsSimulationFinished)
+                                    {
+                                        NextNode.Conveyor.PushBagToConveyorBelt(checkidNode.Remove());
+                                        Node.log.Add("Added bag to " + NextNode.Conveyor.Id);
+                                    }
+                                }));
+
+                                thread.Start();
+
+                                break;
+                            }
 
                         case SecurityNode nextNode when current is ConveyorNode conveyorNode:
-                        {
-                            nextNode.ScanBagSecurity(conveyorNode.Conveyor.RemoveBagFromConveyorBelt());
-                            break;
-                        }
+                            {
+                                Thread thread = new Thread((() =>
+                                {
+                                    while (!IsSimulationFinished)
+                                    {
+                                        nextNode.ScanBagSecurity(conveyorNode.Conveyor.RemoveBagFromConveyorBelt());
+                                    }
+                                }));
+
+                                thread.Start();
+                                break;
+                            }
 
                         case BagSortNode node when current is ConveyorNode conveyorNode:
-                        {
-                            var tbag = conveyorNode.Conveyor.RemoveBagFromConveyorBelt();
-                            while (tbag == null && !conveyorNode.Conveyor.IsEmpty())
                             {
-                                tbag = conveyorNode.Conveyor.RemoveBagFromConveyorBelt();
-                            }
-                            if (tbag != null) node.PassBag(tbag);
-                            break;
-                        }
 
-                        case ConveyorNode NextNode when current is ConveyorNode conveyorNode:
-                        {
-                            if (NextNode.Conveyor.IsFull == false)
-                            { 
-                                NextNode.Conveyor.PushBagToConveyorBelt(conveyorNode.Conveyor.RemoveBagFromConveyorBelt());
-                            }
-                            break;
+                                var thread = new Thread((() =>
+                                {
+                                    while (!IsSimulationFinished)
+                                    {
+                                        var tbag = conveyorNode.Conveyor.RemoveBagFromConveyorBelt();
+                                        while (tbag == null && !conveyorNode.Conveyor.IsEmpty())
+                                        {
+                                            tbag = conveyorNode.Conveyor.RemoveBagFromConveyorBelt();
+                                        }
+                                        if (tbag != null) node.PassBag(tbag);
+                                    }
+                                }));
+
+                                thread.Start();
+                                break;
                             }
 
+                        case ConveyorNode NextNode when current is ConveyorNode conveyorNode://err 1
+                            {
+                                var thread = new Thread((() =>
+                                {
+                                    while (!IsSimulationFinished)
+                                    {
+                                        if (NextNode.Conveyor.IsFull == false)
+                                        {
+                                            NextNode.Conveyor.PushBagToConveyorBelt(conveyorNode.Conveyor
+                                                .RemoveBagFromConveyorBelt());
+                                        }
+                                    }
+                                }));
+                                thread.Start();
+                                break;
+                            }
 
-                        
                     }
 
                     current = current.Next;
                 }
-
-
             }
             else
             {
                 throw new Exception("no simulation made");
             }
         }
-        public void AddGeneratedBag(Bag bagtoqueue)
+
+
+
+        public void AddGeneratedBags(List<Bag> bagstoqueue)
         {
-            ((CheckinNode)(First))._bagsQueue.Enqueue(bagtoqueue);
+
+            ((CheckinNode)(First)).Push(bagstoqueue);
 
 
             if (First.Next != null)
             {
-                MoveBags();
+                MoveBags(bagstoqueue.Count);
             }
             else
             {
@@ -227,7 +274,7 @@ namespace Rail_Bag_Simulation
             current.Next = null;
         }
 
-        public string LinkedListInfo()
+        public async Task<string> LinkedListInfo()
         {
             string sender = "";
 
@@ -238,42 +285,11 @@ namespace Rail_Bag_Simulation
                 current = current.Next;
             }
 
-            if (current is BagSortNode node)
+            if ((current is BagSortNode))
             {
-
-                sender += node.Nodeinfo();
-                if (node.ListOfConnectedNodes.Count >= 1)
-                {
-                    foreach (ConveyorNode checkNode in node.ListOfConnectedNodes)
-                    {
-                        Node check = checkNode;
-                        sender += check.Nodeinfo();
-                        while (check.Next != null)
-                        {
-
-                            check = check.Next;
-                            sender += check.Nodeinfo();
-                        }
-
-                        if (check is TerminalNode coNode)
-                        {
-                            foreach (ConveyorNode conveyorNode in coNode.ListOfConnectedNodes)
-                            {
-                                Node conveyorcheck = conveyorNode;
-                            
-                                sender += conveyorcheck.Nodeinfo();
-                                while (conveyorcheck.Next != null)
-                                {
-
-                                    conveyorcheck = conveyorcheck.Next;
-                                    sender += conveyorcheck.Nodeinfo();
-                                }
-                            }
-                        }
-                    }
-                }
-
+                sender += current.Nodeinfo();
             }
+
 
             return sender;
         }

@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Drawing;
+using System.Threading;
+
 namespace Rail_Bag_Simulation
 {
     /// <summary>
@@ -23,18 +25,11 @@ namespace Rail_Bag_Simulation
        Airport airport = new Airport("Schiphol");
         public MainWindow()
         {
-           
-
-            
             InitializeComponent();
 
             airport.StartBagsMovement(5, 1, 1, 0, 0);
-            listBox1.Items.Add(airport.Ll.LinkedListInfo());
-            Node.log.ForEach(l => { listBox1.Items.Add(l); });
-
-
-
-
+            Thread.Sleep(5000);
+            MessageBox.Show(airport.Ll.IsSimulationFinished.ToString()+TerminalNode.counter.ToString());
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)

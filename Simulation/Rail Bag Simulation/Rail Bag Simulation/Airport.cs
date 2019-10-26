@@ -35,10 +35,7 @@ namespace Rail_Bag_Simulation
         public void StartBagsMovement(int nbrOfBags, int nbrOfBagsDrugs, int nbrOfBagsWeapons, int nbrOfBagsFlammable, int nbrBagsOthers)
         { 
             CreateMapLayout(5);
-            Bag.GenerateBag( nbrOfBags, nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable, nbrBagsOthers).ForEach(p =>
-            {
-                _ll.AddGeneratedBag(p);
-            });
+            _ll.AddGeneratedBags(Bag.GenerateBag( nbrOfBags, nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable, nbrBagsOthers));
         }
 
         private void CreateMapLayout(int QueueSizeOfBelts)
