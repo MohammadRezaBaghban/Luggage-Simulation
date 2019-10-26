@@ -150,5 +150,10 @@ namespace Rail_Bag_Simulation
         {
             lbNumberofBags.Visibility = Visibility.Hidden;
         }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Close();
+        }
     }
 }

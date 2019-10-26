@@ -27,6 +27,7 @@
                     </LinearGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>
+            <Image Source="../Resources/close.png" Width="50" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0" MouseDown="Image_MouseDown"/>
             <Image Source="../Resources/configurations.png" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20"/>
             <Rectangle Height="400" Width="310" Margin="34,125,36,0" Fill="White">
                 <Rectangle.Effect>
