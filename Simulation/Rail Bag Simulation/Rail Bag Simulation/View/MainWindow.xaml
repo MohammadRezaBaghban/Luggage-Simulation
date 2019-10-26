@@ -27,20 +27,6 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-
-        <!--<Grid Grid.Column="2" Grid.RowSpan="5">
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-            </Grid>-->
-
-
-
         <ToggleButton  HorizontalAlignment="Left" Grid.Row="2" Style="{DynamicResource MaterialDesignActionDarkToggleButton}" 
                             Margin="10,9.6,0,148" >
             <materialDesign:PackIcon Kind="Pistol" Height="24" Width="24" />
@@ -57,27 +43,29 @@
                             Margin="10,147.6,0,10" >
             <materialDesign:PackIcon Kind="Warning" Height="24" Width="24" />
         </ToggleButton>
-        <TextBox x:Name="tbBagsNum" IsReadOnly="True" Text="{Binding NumberOfBags, Mode=TwoWay}" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Total number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15" Height="75" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="185"/>
+        <TextBox x:Name="tbBagsNum" IsReadOnly="True" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Total number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15" Height="75" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="185"/>
         <TextBox x:Name="tbTotalSuspBags" IsReadOnly="True" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Suspicious bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15" Height="75" Margin="10,9.8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="185" Grid.Row="1"/>
-        <TextBox x:Name="tbBagsWep" IsReadOnly="True" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Number of bags with weapons" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="10" Height="32" Margin="54,9.6,0,148" TextWrapping="Wrap" Width="154" Grid.Row="2"/>
-        <TextBox x:Name="tbBagsFlam" IsReadOnly="True" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Number of bags with flammables" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="10" Height="32" Margin="54,53.6,0,104" TextWrapping="Wrap" Width="154" Grid.Row="2"/>
-        <TextBox x:Name="tbBagsDrug" IsReadOnly="True" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Number of bags with drugs" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="10" Height="32" Margin="54,101.6,0,56" TextWrapping="Wrap" Width="154" Grid.Row="2"/>
-        <TextBox x:Name="tbBagsOther" IsReadOnly="True" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Number of bags with other" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="10" Height="32" Margin="54,147.6,0,10" TextWrapping="Wrap" Width="154" Grid.Row="2"/>
+        <TextBox x:Name="tbBagsWep" IsReadOnly="True" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Number of bags with weapons" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="12" Height="32" Margin="54,9.6,0,148" TextWrapping="Wrap" Width="154" Grid.Row="2"/>
+        <TextBox x:Name="tbBagsFlam" IsReadOnly="True" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Number of bags with flammables" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="12" Height="32" Margin="54,53.6,0,104" TextWrapping="Wrap" Width="154" Grid.Row="2"/>
+        <TextBox x:Name="tbBagsDrug" IsReadOnly="True" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Number of bags with drugs" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="12" Height="32" Margin="54,101.6,0,56" TextWrapping="Wrap" Width="154" Grid.Row="2"/>
+        <TextBox x:Name="tbBagsOther" IsReadOnly="True" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Number of bags with other" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="12" Height="32" Margin="54,147.6,0,10" TextWrapping="Wrap" Width="154" Grid.Row="2"/>
         <Button Content="Import" Grid.Column="1" Margin="69.6,15.8,69.8,47.4" Grid.Row="4" />
         <Button Content="Export" Grid.Column="1" Margin="69.6,52.8,69.8,10.4" Grid.Row="4" RenderTransformOrigin="0.5,0.5"/>
         <Button Content="Pause" Grid.Column="2" Margin="66.2,31.8,65.2,31.4" Grid.Row="4" RenderTransformOrigin="0.5,0.5"/>
         <Button Content="Run simulation" Grid.Column="3" Margin="54.8,31.8,56.6,31.4" Grid.Row="4"></Button>
         <Button Content="Statistics" Margin="71,31.8,92,31.4" Grid.Row="4"/>
-        <Canvas x:Name="canvas" Background="LightGray" Grid.Column="1" Margin="9.6,10,9.6,10.2" Grid.RowSpan="4" Grid.ColumnSpan="3">
+        <Canvas x:Name="canvas" Background=" #b3ecff" Grid.Column="1" Margin="9.6,10,9.6,10.2" Grid.RowSpan="4" Grid.ColumnSpan="3">
+            <Canvas.Effect>
+                <DropShadowEffect Color="#FFD7D7D7"/>
+            </Canvas.Effect>
 
             <Image Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,200,0,0" Source="../Resources/check-in.png" ></Image>
-            <Line Stroke="White" StrokeThickness="30" X1="100" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="160,295,0,0"/>
+            <Line Stroke="White" StrokeThickness="30" X1="205" X2="0" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="160" Canvas.Top="295" Width="237"/>
             <Image Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="220,255,0,0" Source="../Resources/securitycheck.png" ></Image>
-            <Line Stroke="White" StrokeThickness="30" X1="100" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="263,295,0,0"/>
+            <Image Width="40" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center" Source="../Resources/luggage.png" Canvas.Left="170" Canvas.Top="255" RenderTransformOrigin="0.88,1.05" />
             <Image Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="355,240,0,0" Source="../Resources/securityCheckHouse.png" ></Image>
-            <Line Stroke="White" StrokeThickness="30" X1="100" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="428,295,0,0"/>
+            <Line Stroke="White" StrokeThickness="30" X1="200" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="428,295,0,0"/>
             <Image Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="490,255,0,0" Source="../Resources/securitycheck.png" ></Image>
-            <Line Stroke="White" StrokeThickness="30" X1="100" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="533,295,0,0"/>
             <Image Width="78" Height="72" HorizontalAlignment="Left" VerticalAlignment="Center" Source="../Resources/sorter.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="619" Canvas.Top="259" >
                 <Image.RenderTransform>
                     <TransformGroup>
@@ -110,7 +98,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Line Stroke="White" StrokeThickness="30" X1="88" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Canvas.Left="698" Canvas.Top="255">
+            <Line Stroke="White" StrokeThickness="30" X1="270" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Canvas.Left="677" Canvas.Top="199">
                 <Line.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -130,16 +118,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Line Stroke="White" StrokeThickness="30" X1="88" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Canvas.Left="769" Canvas.Top="198">
-                <Line.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="-39.023"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Line.RenderTransform>
-            </Line>
+
             <Image Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Source="../Resources/securitycheck.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="804" Canvas.Top="131" >
                 <Image.RenderTransform>
                     <TransformGroup>
@@ -150,17 +129,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Line Stroke="White" StrokeThickness="30" X1="88" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Canvas.Left="843" Canvas.Top="140">
-                <Line.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleX="3.851"/>
-                        <RotateTransform Angle="-37.722"/>
-                        <TranslateTransform X="-0.397" Y="0.322"/>
-                    </TransformGroup>
-                </Line.RenderTransform>
-            </Line>
-            <Line Stroke="White" StrokeThickness="30" X1="88" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Canvas.Left="676" Canvas.Top="342">
+            <Line Stroke="White" StrokeThickness="30" X1="270" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Canvas.Left="642" Canvas.Top="413">
                 <Line.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -180,16 +149,6 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Line Stroke="White" StrokeThickness="30" X1="88" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Canvas.Left="736" Canvas.Top="416">
-                <Line.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="51.576"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Line.RenderTransform>
-            </Line>
             <Image Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Source="../Resources/securitycheck.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="776" Canvas.Top="414" >
                 <Image.RenderTransform>
                     <TransformGroup>
@@ -200,18 +159,6 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Line Stroke="White" StrokeThickness="30" X1="100" X2="0"  HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Canvas.Left="794" Canvas.Top="495">
-                <Line.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="51.576"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Line.RenderTransform>
-            </Line>
-
-
 
             <StackPanel Canvas.Right="150" Canvas.Top="70">
                 <Image Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,240" Source="../Resources/terminal.jpg"/>

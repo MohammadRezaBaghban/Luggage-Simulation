@@ -29,21 +29,27 @@ namespace Rail_Bag_Simulation
 
         private void btnRunSimulation_Click(object sender, RoutedEventArgs e)
         {
-            
-            MainWindow mainWindow = new MainWindow();
-            this.Close();
-            //this.DataContext = mainWindow.
-            mainWindow.tbBagsNum.Text = this.tbNrOfBags.Text;
-            int totalSuspBags = Convert.ToInt32(this.pistol.Text)
-                                + Convert.ToInt32(this.flame.Text)
-                                + Convert.ToInt32(this.cigarette.Text)
-                                + Convert.ToInt32(this.warning.Text);
-            mainWindow.tbTotalSuspBags.Text = totalSuspBags.ToString();
-            mainWindow.tbBagsWep.Text = this.pistol.Text;
-            mainWindow.tbBagsFlam.Text = this.flame.Text;
-            mainWindow.tbBagsDrug.Text = this.cigarette.Text;
-            mainWindow.tbBagsOther.Text = this.warning.Text;
-            mainWindow.Show();
+            if (tbNrOfBags.Text == "")
+            {
+                lbNumberofBags.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                MainWindow mainWindow = new MainWindow();
+                this.Close();
+                //this.DataContext = mainWindow.
+                mainWindow.tbBagsNum.Text = this.tbNrOfBags.Text;
+                int totalSuspBags = Convert.ToInt32(this.pistol.Text)
+                                    + Convert.ToInt32(this.flame.Text)
+                                    + Convert.ToInt32(this.cigarette.Text)
+                                    + Convert.ToInt32(this.warning.Text);
+                mainWindow.tbTotalSuspBags.Text = totalSuspBags.ToString();
+                mainWindow.tbBagsWep.Text = this.pistol.Text;
+                mainWindow.tbBagsFlam.Text = this.flame.Text;
+                mainWindow.tbBagsDrug.Text = this.cigarette.Text;
+                mainWindow.tbBagsOther.Text = this.warning.Text;
+                mainWindow.Show();
+            }
         }
 
         /// <summary>
@@ -140,6 +146,9 @@ namespace Rail_Bag_Simulation
             e.Handled = !IsValid(((TextBox)sender).Text + e.Text);
         }
 
-
+        private void TbNrOfBags_MouseEnter(object sender, MouseEventArgs e)
+        {
+            lbNumberofBags.Visibility = Visibility.Hidden;
+        }
     }
 }
