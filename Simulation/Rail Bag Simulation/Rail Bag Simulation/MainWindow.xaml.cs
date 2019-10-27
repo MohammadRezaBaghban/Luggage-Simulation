@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;using System;
-
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -12,8 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Drawing;
-using System.Threading;
 
 namespace Rail_Bag_Simulation
 {
@@ -22,11 +20,27 @@ namespace Rail_Bag_Simulation
     /// </summary>
     public partial class MainWindow : Window
     {
-       Airport airport = new Airport("Schiphol");
+        LinkedList ll;
         public MainWindow()
         {
-            InitializeComponent();
+            //ll = new LinkedList();
+            //ll.AddNode(new Conveyorbelt());
+        
+            //ll.AddNode(new Conveyorbelt());
+         
+            //ll.AddNode(new Conveyorbelt());
+        
+            //ll.AddNode(new Conveyorbelt());
 
+            //ll.AddNode(new Conveyorbelt());
+
+            //ll.AddNode(new Conveyorbelt());
+
+            InitializeComponent();
+            //Node current = ll.First;
+         
+
+<<<<<<< HEAD
            
             airport.StartBagsMovement(14, 0, 0, 0, 0);
             
@@ -41,6 +55,31 @@ namespace Rail_Bag_Simulation
         {
           
             
+=======
+            //foreach (Bag s in Bag.GenerateBag(7, 0, 0, 0, 0))
+            //{
+            //    ll.AddGeneratedBag(s);
+            //}
+            //while (current != null)
+            //{
+            //listBox1.Items.Add(current.Nodeinfo());
+
+            //    current = current.Next;
+            //}
+>>>>>>> e85653330a9cecfaa80dee49ec4d249fd0295bb9
         }
+
+        //private void button1_Click(object sender, RoutedEventArgs e)
+        //{
+        //    listBox1.Items.Clear();
+        //    ll.MoveBags();
+        //    Node current = ll.First;
+        //    while (current != null)
+        //    {
+        //        listBox1.Items.Add(current.Nodeinfo());
+
+        //        current = current.Next;
+        //    }
+        //}
     }
 }
