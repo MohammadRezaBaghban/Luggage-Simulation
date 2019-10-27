@@ -75,9 +75,16 @@
     <Compile Include="Model\SuspiciousBagtype.cs" />
     <Compile Include="Model\Terminal.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
+    <Compile Include="View\LogWindow.xaml.cs">
+      <DependentUpon>LogWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\WelcomeWindow.xaml.cs">
       <DependentUpon>WelcomeWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\LogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

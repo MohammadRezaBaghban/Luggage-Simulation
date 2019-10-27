@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Rail_Bag_Simulation.ViewModel;
+using Rail_Bag_Simulation.View;
 
 namespace Rail_Bag_Simulation
 {
@@ -36,6 +37,7 @@ namespace Rail_Bag_Simulation
             else
             {
                 MainWindow mainWindow = new MainWindow();
+                LogWindow logWindow = new LogWindow();
                 this.Close();
                 //this.DataContext = mainWindow.
                 mainWindow.tbBagsNum.Text = this.tbNrOfBags.Text;
@@ -49,6 +51,7 @@ namespace Rail_Bag_Simulation
                 mainWindow.tbBagsDrug.Text = this.cigarette.Text;
                 mainWindow.tbBagsOther.Text = this.warning.Text;
                 mainWindow.Show();
+                logWindow.Show();
             }
         }
 

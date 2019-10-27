@@ -10,31 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Rail_Bag_Simulation
+namespace Rail_Bag_Simulation.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for LogWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LogWindow : Window
     {
-        private ViewModel.ViewModel vm;
-
-        public MainWindow()
+        public LogWindow()
         {
             InitializeComponent();
-        }
-
-        private void ListBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void TbBagsWep_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }
