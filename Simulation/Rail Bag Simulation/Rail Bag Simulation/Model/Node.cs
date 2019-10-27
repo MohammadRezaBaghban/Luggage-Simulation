@@ -2,7 +2,7 @@
 
 namespace Rail_Bag_Simulation
 {
-    abstract class Node
+    public abstract class Node
     {
        
         public Node Next { get;  set; } // the next node it refers to; null if there does not exist a next node
@@ -13,7 +13,7 @@ namespace Rail_Bag_Simulation
         public int DelayTime
         {
             get => _delayTime;
-            set => _delayTime = value = 10;
+            set => _delayTime = value = 150;
         }
 
         

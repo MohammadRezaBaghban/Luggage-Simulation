@@ -40,6 +40,22 @@ namespace Rail_Bag_Simulation
             //Node current = ll.First;
          
 
+<<<<<<< HEAD
+           
+            airport.StartBagsMovement(14, 0, 0, 0, 0);
+            
+            MessageBox.Show(airport.Ll.IsSimulationFinished.ToString()+TerminalNode.counter.ToString());
+            listBox1.Items.Add(airport.Ll.LinkedListInfo());
+            listBox1.Items.Add(GateNode.control);
+            listBox2.Items.Add(CheckinNode.control);
+
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+          
+            
+=======
             //foreach (Bag s in Bag.GenerateBag(7, 0, 0, 0, 0))
             //{
             //    ll.AddGeneratedBag(s);
@@ -50,6 +66,7 @@ namespace Rail_Bag_Simulation
 
             //    current = current.Next;
             //}
+>>>>>>> e85653330a9cecfaa80dee49ec4d249fd0295bb9
         }
 
         //private void button1_Click(object sender, RoutedEventArgs e)

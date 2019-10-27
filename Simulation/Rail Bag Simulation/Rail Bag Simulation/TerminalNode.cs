@@ -36,7 +36,7 @@ namespace Rail_Bag_Simulation
             {
                 if (((ConveyorNode)(next)).Conveyor.IsFull == false)
                 {
-                    ((ConveyorNode)(next)).Conveyor.PushBagToConveyorBelt(((ConveyorNode)(next)).Conveyor.RemoveBagFromConveyorBelt());
+                    ((ConveyorNode)(next)).Conveyor.PushBagToConveyorBelt(g);
                 }
                 if (next.Next is GateNode) tmpConveyor = (ConveyorNode)next;
                 next = ((next).Next);

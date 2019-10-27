@@ -11,7 +11,7 @@ namespace Rail_Bag_Simulation
     {
         public override string Nodeinfo()
         {
-            return "Security: \n";
+            return "Security:" + Airport.Storage.ToString(); 
         }
 
         public void ScanBagSecurity(Bag b)

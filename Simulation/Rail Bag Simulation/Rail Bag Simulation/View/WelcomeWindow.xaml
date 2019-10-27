@@ -16,7 +16,6 @@
             <ColumnDefinition Width="374*"/>
             <ColumnDefinition Width="421*"/>
         </Grid.ColumnDefinitions>
-        <Button Content="Generate Bag" Name="btnDebug" HorizontalAlignment="Left" Margin="81,71,0,0" VerticalAlignment="Top" Width="216" Height="71" Click="btnDebug_Click"/>
         <Grid Margin="0,0,-0.4,-33.4" Grid.ColumnSpan="2">
             <Rectangle Height="300" VerticalAlignment="Top">
                 <Rectangle.Fill>

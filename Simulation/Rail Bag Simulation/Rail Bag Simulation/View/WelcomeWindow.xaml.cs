@@ -56,17 +56,6 @@ namespace Rail_Bag_Simulation
             }
         }
 
-        /// <summary>
-        /// The back-end guys can debug here :)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnDebug_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show(Bag.GenerateBag(13, 2, 2, 0, 1).ToString());
-
-        }
-
         private void PistolButton_Checked(object sender, RoutedEventArgs e)
         {
             if (vm.IsPossible())

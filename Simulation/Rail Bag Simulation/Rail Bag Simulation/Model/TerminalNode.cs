@@ -36,7 +36,8 @@ namespace Rail_Bag_Simulation
             {
                 if (((ConveyorNode)(next)).Conveyor.IsFull == false)
                 {
-                    ((ConveyorNode)(next)).Conveyor.PushBagToConveyorBelt(((ConveyorNode)(next)).Conveyor.RemoveBagFromConveyorBelt());
+                    Thread.Sleep(DelayTime);
+                    ((ConveyorNode)(next)).Conveyor.PushBagToConveyorBelt(g);
                 }
                 if (next.Next is GateNode) tmpConveyor = (ConveyorNode)next;
                 next = ((next).Next);
@@ -47,8 +48,13 @@ namespace Rail_Bag_Simulation
             {
                 tbag = tmpConveyor.Conveyor.RemoveBagFromConveyorBelt();
             }
-            if (tbag != null) {((GateNode)(next)).AddBag(tbag); counter++;}
-            Thread.Sleep(DelayTime);
+
+            if (tbag != null)
+            {
+                Thread.Sleep(DelayTime);
+                ((GateNode)(next)).AddBag(tbag); counter++;
+            }
+            
         }
 
         private Node determineNextNode(Bag g)

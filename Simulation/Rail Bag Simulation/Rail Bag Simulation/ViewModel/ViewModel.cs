@@ -16,12 +16,21 @@ namespace Rail_Bag_Simulation.ViewModel
         private int nrOfSusBagsFlamable;
         private int nrOfSusBagsOthers;
 
+        Airport airport = new Airport("Schiphol");
+
+        public void StartSimulation()
+        {
+            airport.StartBagsMovement(numberOfBags, 1, 0, 0, 0);
+        }
+
+        public List<Node> GetEverythingInTheLinkedList()
+        {
+            return airport.ListOfNodes;
+        }
+
         public string Name
         {
-            get
-            {
-                return  name; 
-            }
+            get => name;
             set
             {
                 name = value;
@@ -31,10 +40,7 @@ namespace Rail_Bag_Simulation.ViewModel
 
         public int NumberOfBags
         {
-            get
-            {
-                return numberOfBags;
-            }
+            get => numberOfBags;
             set
             {
                 numberOfBags = value;
@@ -43,10 +49,7 @@ namespace Rail_Bag_Simulation.ViewModel
         }
         public int NrOfSusBagsGuns
         {
-            get
-            {
-                return nrOfSusBagsGuns;
-            }
+            get => nrOfSusBagsGuns;
             set
             {
                 nrOfSusBagsGuns = value;
@@ -55,10 +58,7 @@ namespace Rail_Bag_Simulation.ViewModel
         }
         public int NrOfSusBagsDrugs
         {
-            get
-            {
-                return nrOfSusBagsDrugs;
-            }
+            get => nrOfSusBagsDrugs;
             set
             {
                 nrOfSusBagsDrugs = value;
@@ -67,10 +67,7 @@ namespace Rail_Bag_Simulation.ViewModel
         }
         public int NrOfSusBagsFlamable
         {
-            get
-            {
-                return nrOfSusBagsFlamable;
-            }
+            get => nrOfSusBagsFlamable;
             set
             {
                nrOfSusBagsFlamable = value;
@@ -79,10 +76,7 @@ namespace Rail_Bag_Simulation.ViewModel
         }
         public int NrOfSusBagsOthers
         {
-            get
-            {
-                return nrOfSusBagsOthers;
-            }
+            get => nrOfSusBagsOthers;
             set
             {
                 nrOfSusBagsOthers = value;
@@ -94,11 +88,13 @@ namespace Rail_Bag_Simulation.ViewModel
 
         private void OnPropertyChanged(string propertyName)
         {
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         public bool IsPossible()
         {
             return NumberOfBags - (NrOfSusBagsOthers + NrOfSusBagsGuns + NrOfSusBagsFlamable + NrOfSusBagsDrugs) >= 0;
         }
+
+
     }
 }

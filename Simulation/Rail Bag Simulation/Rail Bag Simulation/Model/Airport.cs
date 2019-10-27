@@ -26,7 +26,7 @@ namespace Rail_Bag_Simulation
 
         public static Storage Storage => _storage;
 
-        public LinkedList Ll => _ll;
+        public List<Node> ListOfNodes => _ll.GetAllNodes();
 
         public Airport(string name)
         {

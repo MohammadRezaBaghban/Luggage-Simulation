@@ -9,6 +9,12 @@
         WindowState="Maximized"
         Title="MainWindow" Height="600" Width="1024">
     <Grid Name="mainGrid">
+<<<<<<< HEAD
+        
+
+
+=======
+>>>>>>> e85653330a9cecfaa80dee49ec4d249fd0295bb9
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="34*"/>
             <ColumnDefinition Width="34*"/>
@@ -16,6 +22,10 @@
             <ColumnDefinition Width="34*"/>
         </Grid.ColumnDefinitions>
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> e85653330a9cecfaa80dee49ec4d249fd0295bb9
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
@@ -24,8 +34,14 @@
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
+<<<<<<< HEAD
+
+        <Grid Grid.Column="1" Grid.RowSpan="5">
+            <Grid Margin="55,0,0,0">
+=======
             <!--<Grid Grid.Column="2" Grid.RowSpan="5">
 
+>>>>>>> e85653330a9cecfaa80dee49ec4d249fd0295bb9
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
@@ -33,6 +49,21 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+<<<<<<< HEAD
+            </Grid>
+
+            <ListBox  Margin="115,265,10,10" Name="listBox1" Width="627" Height="200" />
+
+            <ListBox  Margin="-267,321,762,-66" x:Name="listBox2" />
+            <Button  Margin="179,59,0,0" Name="button1"  HorizontalAlignment="Left" VerticalAlignment="Top" Content="Test" Width="254" Height="65" RenderTransformOrigin="0.302,0.501" Grid.Column="1" Click="button1_Click" Grid.Row="2"></Button>
+
+            <Button Grid.Column="1" Grid.Row="5" Content="Foo" Margin="50,10,575.6,32.4"></Button>
+            <Button Grid.Column="1" Grid.Row="5" Content="Foo" Margin="220.6,10,409.6,32.4"></Button>
+            <Button Grid.Column="1" Grid.Row="5" Content="Foo" Margin="428.6,10,201.6,32.4"></Button>
+           
+
+        </Grid>
+=======
             </Grid>-->
 
             <ToggleButton  HorizontalAlignment="Left" Grid.Row="2" Style="{DynamicResource MaterialDesignActionDarkToggleButton}" 
@@ -63,5 +94,6 @@
             <Button Content="Run simulation" Grid.Column="3" Margin="54.8,31.8,56.6,31.4" Grid.Row="4"></Button>
             <Button Content="Statistics" Margin="71,31.8,92,31.4" Grid.Row="4"/>
         
+>>>>>>> e85653330a9cecfaa80dee49ec4d249fd0295bb9
     </Grid>
  </Window>
