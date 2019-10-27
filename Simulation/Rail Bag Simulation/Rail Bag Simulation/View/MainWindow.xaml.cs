@@ -21,6 +21,7 @@ namespace Rail_Bag_Simulation
     public partial class MainWindow : Window
     {
         private ViewModel.ViewModel vm;
+        
 
         public MainWindow()
         {
@@ -34,6 +35,11 @@ namespace Rail_Bag_Simulation
 
         private void TbBagsWep_TextChanged(object sender, TextChangedEventArgs e)
         {
+        }
+
+        private void Import_Click(object sender, RoutedEventArgs e)
+        {
+            this.bag.Margin = new Thickness(0, 25, 25, 25);
 
         }
     }

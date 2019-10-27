@@ -15,13 +15,15 @@ namespace Rail_Bag_Simulation
         private float _weight;
         private Destination _destination;
         private string _terminalAndGate;
-
+        
         public string LastSeenLocation{get{return _lastSeenLocation; } set{ _lastSeenLocation = value;}}
         public int Id{get { return _id; }set { _id = value; }}
         public SuspiciousBagtype SuspiciousBagtype { get { return (SuspiciousBagtype) _suspicious; } set { _suspicious = value; } }
         public Destination Destination { get { return _destination; } set { _destination = value; } }
         public float Weight{get { return _weight; }set { _weight = value; }}
         public string TerminalAndGate{get { return _terminalAndGate; } set { _terminalAndGate = value; }}
+        public int X { get; set; }
+        public int Y { get; set; }
 
 
         private static Random _random = new Random();
@@ -141,5 +143,7 @@ namespace Rail_Bag_Simulation
         {
             return _suspicious;
         }
+
+
     }
 }

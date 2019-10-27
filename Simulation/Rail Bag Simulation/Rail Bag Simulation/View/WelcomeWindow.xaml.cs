@@ -21,6 +21,7 @@ namespace Rail_Bag_Simulation
     /// </summary>
     public partial class WelcomeWindow : Window
     {
+        
         private ViewModel.ViewModel vm = new ViewModel.ViewModel();
         public WelcomeWindow()
         {
