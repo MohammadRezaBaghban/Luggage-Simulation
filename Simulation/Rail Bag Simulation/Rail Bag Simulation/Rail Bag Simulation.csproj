@@ -73,7 +73,6 @@
     <Compile Include="Model\NextStop.cs" />
     <Compile Include="Model\Node.cs" />
     <Compile Include="Model\SecurityNode.cs" />
-    <Compile Include="Model\Simulation.cs" />
     <Compile Include="Model\StopPoint.cs" />
     <Compile Include="Model\Storage.cs" />
     <Compile Include="Model\SuspiciousBagtype.cs" />

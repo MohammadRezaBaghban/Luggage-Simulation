@@ -16,6 +16,18 @@ namespace Rail_Bag_Simulation.ViewModel
         private int nrOfSusBagsFlamable;
         private int nrOfSusBagsOthers;
 
+        Airport airport = new Airport("Schiphol");
+
+        public void StartSimulation()
+        {
+            airport.StartBagsMovement(numberOfBags, 1, 0, 0, 0);
+        }
+
+        public LinkedList GetEverythingInTheLinkedList()
+        {
+            return airport.Ll;
+        }
+
         public string Name
         {
             get => name;
@@ -82,5 +94,7 @@ namespace Rail_Bag_Simulation.ViewModel
         {
             return NumberOfBags - (NrOfSusBagsOthers + NrOfSusBagsGuns + NrOfSusBagsFlamable + NrOfSusBagsDrugs) >= 0;
         }
+
+
     }
 }

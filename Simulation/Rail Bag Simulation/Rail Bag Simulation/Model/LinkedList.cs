@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace Rail_Bag_Simulation
 {
-    class LinkedList
+    public class LinkedList
     {
         public Node First { get; private set; }
         public bool IsSimulationFinished = false;
@@ -47,6 +47,7 @@ namespace Rail_Bag_Simulation
                                 {
                                     while (checkidNode._bagsQueue.Count > 0 && NextNode.Conveyor.IsEmpty())
                                     {
+                                        Thread.Sleep(200);
                                         NextNode.Conveyor.PushBagToConveyorBelt(checkidNode.Remove());
                                         Node.log.Add("Added bag to " + NextNode.Conveyor.Id);
                                     }
@@ -63,6 +64,7 @@ namespace Rail_Bag_Simulation
                                 {
                                     while (((ConveyorNode)nextNode.Next).Conveyor.IsEmpty() || !(conveyorNode.Conveyor.IsEmpty()))
                                     {
+                                        Thread.Sleep(200);
                                         nextNode.ScanBagSecurity(conveyorNode.Conveyor.RemoveBagFromConveyorBelt());
                                         Node.log.Add("Added bag to " + ((ConveyorNode)nextNode.Next).Conveyor.Id);
                                     }
@@ -84,6 +86,9 @@ namespace Rail_Bag_Simulation
 
                                         if (tbag != null)
                                         {
+                                            Thread.Sleep(150);
+
+
                                             node.PassBag(tbag);
                                         }
                                     }
