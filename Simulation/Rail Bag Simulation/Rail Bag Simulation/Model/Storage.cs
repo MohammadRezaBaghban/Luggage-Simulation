@@ -40,9 +40,8 @@ namespace Rail_Bag_Simulation
             string sender = "\n Storage \n";
             foreach (Bag bag in _suspicious)
             {
-                sender += bag.GetBagInfo()+"\n";
+                sender += bag.GetBagInfo() + "\n";
             }
-
             return sender;
         }
     }

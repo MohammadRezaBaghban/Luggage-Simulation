@@ -9,7 +9,7 @@ namespace Rail_Bag_Simulation
     class CheckinNode : Node
     {
         public Queue<Bag> _bagsQueue;
-
+        public static string control;
         public CheckinNode()
         {
             _bagsQueue = new Queue<Bag>();
@@ -30,6 +30,7 @@ namespace Rail_Bag_Simulation
         { 
             bagsList.ForEach(p =>
             {
+                control += p.GetBagInfo() + "\n";
                 _bagsQueue.Enqueue(p);
             });
 
