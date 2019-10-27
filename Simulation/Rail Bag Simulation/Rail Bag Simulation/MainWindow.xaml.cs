@@ -27,14 +27,20 @@ namespace Rail_Bag_Simulation
         {
             InitializeComponent();
 
-            airport.StartBagsMovement(5, 1, 1, 0, 0);
-            Thread.Sleep(5000);
+           
+            airport.StartBagsMovement(14, 0, 0, 0, 0);
+            
             MessageBox.Show(airport.Ll.IsSimulationFinished.ToString()+TerminalNode.counter.ToString());
+            listBox1.Items.Add(airport.Ll.LinkedListInfo());
+            listBox1.Items.Add(GateNode.control);
+            listBox2.Items.Add(CheckinNode.control);
+
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-           
+          
+            
         }
     }
 }

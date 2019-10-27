@@ -8,15 +8,13 @@
         WindowState="Maximized"
         Title="MainWindow" Height="600" Width="1024">
     <Grid Name="mainGrid">
+        
 
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="34*"/>
             <ColumnDefinition Width="97*"/>
         </Grid.ColumnDefinitions>
-
-
-
 
 
         <Grid.RowDefinitions>
@@ -28,23 +26,28 @@
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
+
         <Grid Grid.Column="1" Grid.RowSpan="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+            <Grid Margin="55,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+            </Grid>
+
+            <ListBox  Margin="115,265,10,10" Name="listBox1" Width="627" Height="200" />
+
+            <ListBox  Margin="-267,321,762,-66" x:Name="listBox2" />
+            <Button  Margin="179,59,0,0" Name="button1"  HorizontalAlignment="Left" VerticalAlignment="Top" Content="Test" Width="254" Height="65" RenderTransformOrigin="0.302,0.501" Grid.Column="1" Click="button1_Click" Grid.Row="2"></Button>
+
+            <Button Grid.Column="1" Grid.Row="5" Content="Foo" Margin="50,10,575.6,32.4"></Button>
+            <Button Grid.Column="1" Grid.Row="5" Content="Foo" Margin="220.6,10,409.6,32.4"></Button>
+            <Button Grid.Column="1" Grid.Row="5" Content="Foo" Margin="428.6,10,201.6,32.4"></Button>
+           
+
         </Grid>
-
-        <ListBox  Margin="10,10,0,0" Name="listBox1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="600" Height="517" Grid.ColumnSpan="2" Grid.RowSpan="6"></ListBox>
-
-        <Button  Margin="179,59,0,0" Name="button1"  HorizontalAlignment="Left" VerticalAlignment="Top" Content="Test" Width="254" Height="65" RenderTransformOrigin="0.302,0.501" Grid.Column="1" Click="button1_Click" Grid.Row="2" Grid.RowSpan="2"></Button>
-        <Button Grid.Column="1" Grid.Row="5" Content="Foo" Margin="50,10,575.6,32.4"></Button>
-        <Button Grid.Column="1" Grid.Row="5" Content="Foo" Margin="220.6,10,409.6,32.4"></Button>
-        <Button Grid.Column="1" Grid.Row="5" Content="Foo" Margin="428.6,10,201.6,32.4"></Button>
-
-
     </Grid>
 </Window>

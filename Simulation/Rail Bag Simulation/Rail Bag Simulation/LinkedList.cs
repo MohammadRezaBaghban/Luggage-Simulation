@@ -26,37 +26,36 @@ namespace Rail_Bag_Simulation
         {
             Thread thread1 = new Thread((() =>
             {
-                while (!IsSimulationFinished)
-                {
+              
                     if (TerminalNode.counter + Storage.GetNumberOfBagsInStorage() == totalnr)
                     {
                         IsSimulationFinished = true;
-                        break;
                     }
-                }
+                
             }));
             thread1.Start();
 
             if (First != null)
             {
-                ConveyorNode tmpConveyor = null;
-
+                
                 var current = First;
+                
                 while (current.Next != null && !(current is BagSortNode))
                 {
-
-
+                    bool check = true;
                     switch (current.Next)
                     {
                         case ConveyorNode NextNode when current is CheckinNode checkidNode:
                             {
                                 Thread thread = new Thread((() =>
                                 {
-                                    while (!IsSimulationFinished)
-                                    {
-                                        NextNode.Conveyor.PushBagToConveyorBelt(checkidNode.Remove());
-                                        Node.log.Add("Added bag to " + NextNode.Conveyor.Id);
-                                    }
+                                   
+                                        while (checkidNode._bagsQueue.Count > 0 && NextNode.Conveyor.IsEmpty())
+                                        {
+                                            NextNode.Conveyor.PushBagToConveyorBelt(checkidNode.Remove());
+                                            Node.log.Add("Added bag to " + NextNode.Conveyor.Id);
+                                        }
+                                    
                                 }));
 
                                 thread.Start();
@@ -68,9 +67,10 @@ namespace Rail_Bag_Simulation
                             {
                                 Thread thread = new Thread((() =>
                                 {
-                                    while (!IsSimulationFinished)
+                                    while (((ConveyorNode)nextNode.Next).Conveyor.IsEmpty()||!(conveyorNode.Conveyor.IsEmpty()))
                                     {
                                         nextNode.ScanBagSecurity(conveyorNode.Conveyor.RemoveBagFromConveyorBelt());
+                                        Node.log.Add("Added bag to " + ((ConveyorNode)nextNode.Next).Conveyor.Id);
                                     }
                                 }));
 
@@ -83,18 +83,27 @@ namespace Rail_Bag_Simulation
 
                                 var thread = new Thread((() =>
                                 {
-                                    while (!IsSimulationFinished)
+                                    while (!conveyorNode.Conveyor.IsEmpty())
                                     {
                                         var tbag = conveyorNode.Conveyor.RemoveBagFromConveyorBelt();
-                                        while (tbag == null && !conveyorNode.Conveyor.IsEmpty())
-                                        {
-                                            tbag = conveyorNode.Conveyor.RemoveBagFromConveyorBelt();
-                                        }
-                                        if (tbag != null) node.PassBag(tbag);
-                                    }
-                                }));
 
+
+                                        if (tbag != null)
+                                        {
+                                            node.PassBag(tbag);
+                                        }
+                                    }
+
+                                    check = true;
+
+                                }));
+                                if (((CheckinNode)First)._bagsQueue.Count() > 0 && TerminalNode.counter + Storage.GetNumberOfBagsInStorage() != totalnr)
+                                {
+                                    check = false;
+                                }
+                               
                                 thread.Start();
+                                
                                 break;
                             }
 
@@ -102,7 +111,7 @@ namespace Rail_Bag_Simulation
                             {
                                 var thread = new Thread((() =>
                                 {
-                                    while (!IsSimulationFinished)
+                                    if (!conveyorNode.Conveyor.IsEmpty()&&NextNode.Conveyor.IsEmpty())
                                     {
                                         if (NextNode.Conveyor.IsFull == false)
                                         {
@@ -117,7 +126,16 @@ namespace Rail_Bag_Simulation
 
                     }
 
-                    current = current.Next;
+                    if (check)
+                    {
+                        current = current.Next;
+                    }
+                    else
+                    {
+                       MoveBags(totalnr);
+                    }
+
+                    
                 }
             }
             else
@@ -274,7 +292,7 @@ namespace Rail_Bag_Simulation
             current.Next = null;
         }
 
-        public async Task<string> LinkedListInfo()
+        public  string LinkedListInfo()
         {
             string sender = "";
 
@@ -285,11 +303,13 @@ namespace Rail_Bag_Simulation
                 current = current.Next;
             }
 
+          
             if ((current is BagSortNode))
             {
                 sender += current.Nodeinfo();
             }
 
+             
 
             return sender;
         }
