@@ -62,18 +62,24 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Airport.cs" />
+    <Compile Include="Model\BagSorNode.cs" />
+    <Compile Include="Model\BagSortNode.cs" />
+    <Compile Include="Model\CheckinNode.cs" />
     <Compile Include="Model\CheckpointNode.cs" />
     <Compile Include="Model\Conveyorbelt.cs" />
     <Compile Include="Model\ConveyorNode.cs" />
     <Compile Include="Model\Gate.cs" />
+    <Compile Include="Model\GateNode.cs" />
     <Compile Include="Model\LinkedList.cs" />
     <Compile Include="Model\NextStop.cs" />
     <Compile Include="Model\Node.cs" />
+    <Compile Include="Model\SecurityNode.cs" />
     <Compile Include="Model\Simulation.cs" />
     <Compile Include="Model\StopPoint.cs" />
     <Compile Include="Model\Storage.cs" />
     <Compile Include="Model\SuspiciousBagtype.cs" />
     <Compile Include="Model\Terminal.cs" />
+    <Compile Include="Model\TerminalNode.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
     <Compile Include="View\LogWindow.xaml.cs">
       <DependentUpon>LogWindow.xaml</DependentUpon>
