@@ -9,17 +9,17 @@ namespace Rail_Bag_Simulation
     class Storage
     {
         private int _storageId;
-        private List<Bag> _suspicious;
+        private static List<Bag> _suspicious=new List<Bag>();
         public Bag GetBagById(int id) 
         {
             foreach(var bag in _suspicious)
             {
-                if(bag.Id == id) { return bag;  } continue;
+                if(bag.Id == id) { return bag;  } 
             }
             return null;
         }
 
-        public int GetNumberOfBagsInStorage()
+        public static int GetNumberOfBagsInStorage()
         {
             return _suspicious.Count;
         }
@@ -27,6 +27,11 @@ namespace Rail_Bag_Simulation
         public List<Bag> GetAllSuspiciousBags()
         {
             return _suspicious;
+        }
+
+        public void StoreSuspiciousBag(Bag bag)
+        {
+            _suspicious.Add(bag);
         }
     }
 }
