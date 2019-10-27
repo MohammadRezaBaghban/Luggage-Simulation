@@ -16,6 +16,13 @@
             <ColumnDefinition Width="34*"/>
         </Grid.ColumnDefinitions>
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 04a957213fcc46a3e5c66165b1b6a1fad89b991b
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
@@ -26,6 +33,7 @@
 
             <!--<Grid Grid.Column="2" Grid.RowSpan="5">
 
+<<<<<<< HEAD
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
@@ -33,7 +41,22 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+<<<<<<< HEAD
             </Grid>-->
+=======
+            </Grid>
+=======
+        <ListBox  Margin="10,10,0,0" Name="listBox1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="600" Height="517" Grid.ColumnSpan="2" Grid.RowSpan="6"></ListBox>
+>>>>>>> 04a957213fcc46a3e5c66165b1b6a1fad89b991b
+
+            <ListBox  Margin="10,10,0,0" Name="listBox1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="309" Height="200" Grid.ColumnSpan="2"></ListBox>
+
+            <Button  Margin="179,59,0,0" Name="button1"  HorizontalAlignment="Left" VerticalAlignment="Top" Content="Test" Width="254" Height="65" RenderTransformOrigin="0.302,0.501" Grid.Column="1" Click="button1_Click" Grid.Row="2" Grid.RowSpan="2"></Button>
+
+            <Button Grid.Column="1" Grid.Row="5" Content="Foo" Margin="50,10,575.6,32.4"></Button>
+            <Button Grid.Column="1" Grid.Row="5" Content="Foo" Margin="220.6,10,409.6,32.4"></Button>
+            <Button Grid.Column="1" Grid.Row="5" Content="Foo" Margin="428.6,10,201.6,32.4"></Button>
+>>>>>>> 9e68fbf2a5f1ec015ba7671d26d53901ab87659b
 
             <ToggleButton  HorizontalAlignment="Left" Grid.Row="2" Style="{DynamicResource MaterialDesignActionDarkToggleButton}" 
                             Margin="10,9.6,0,148" >

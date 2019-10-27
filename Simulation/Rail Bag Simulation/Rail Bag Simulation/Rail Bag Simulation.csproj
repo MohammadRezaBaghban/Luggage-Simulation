@@ -43,6 +43,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -61,6 +62,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+<<<<<<< HEAD
     <Compile Include="Model\Airport.cs" />
     <Compile Include="Model\CheckpointNode.cs" />
     <Compile Include="Model\Conveyorbelt.cs" />
@@ -76,6 +78,26 @@
     <Compile Include="Model\Terminal.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
     <Compile Include="View\WelcomeWindow.xaml.cs">
+=======
+    <Compile Include="Airport.cs" />
+    <Compile Include="BagSortNode.cs" />
+    <Compile Include="CheckinNode.cs" />
+    <Compile Include="CheckpointNode.cs" />
+    <Compile Include="Conveyorbelt.cs" />
+    <Compile Include="ConveyorNode.cs" />
+    <Compile Include="Gate.cs" />
+    <Compile Include="GateNode.cs" />
+    <Compile Include="LinkedList.cs" />
+    <Compile Include="NextStop.cs" />
+    <Compile Include="Node.cs" />
+    <Compile Include="SecurityNode.cs" />
+    <Compile Include="Simulation.cs" />
+    <Compile Include="Storage.cs" />
+    <Compile Include="SuspiciousBagtype.cs" />
+    <Compile Include="Terminal.cs" />
+    <Compile Include="TerminalNode.cs" />
+    <Compile Include="WelcomeWindow.xaml.cs">
+>>>>>>> 9e68fbf2a5f1ec015ba7671d26d53901ab87659b
       <DependentUpon>WelcomeWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="View\MainWindow.xaml">
