@@ -84,7 +84,7 @@ namespace Rail_Bag_Simulation
                                         var tbag = conveyorNode.Conveyor.RemoveBagFromConveyorBelt();
 
 
-                                        if (tbag != null)
+                                        if  (tbag != null)
                                         {
                                             Thread.Sleep(150);
 
@@ -287,6 +287,62 @@ namespace Rail_Bag_Simulation
                 current = current.Next;
             }
             current.Next = null;
+        }
+
+        public List<Node> GetAllNodes()
+        {
+            List<Node> temp = new List<Node>();
+            if (First == null)
+            {
+                return null;
+            }
+
+            if (First.Next== null)
+            {
+                temp.Add(First);
+                return temp;
+            }
+
+            Node i = First;
+
+            while (i != null && !(i is BagSortNode))
+            {
+                temp.Add(i.Next);
+                i = i.Next;
+            }
+
+            var node = i as BagSortNode;
+            node?.ListOfConnectedNodes.ForEach(cnode1 =>
+            {
+                Node tmp = cnode1;
+                while (!(tmp.Next is TerminalNode))
+                {
+                    temp.Add(tmp.Next);
+                    tmp = tmp.Next;
+                }
+
+                if (tmp is TerminalNode)
+                {
+                    temp.Add(tmp);
+                    ((TerminalNode) i).ListOfConnectedNodes.ForEach(cnode2 =>
+                    {
+                        Node tmp1 = cnode2;
+                        while (!(tmp1.Next is GateNode))
+                        {
+                            temp.Add(tmp1.Next);
+                            tmp1 = tmp1.Next;
+                        }
+
+                        if (tmp1 is GateNode)
+                        {
+                            temp.Add(tmp1);
+                        }
+
+                    });
+                }
+            });
+
+            return temp;
         }
 
         public string LinkedListInfo()

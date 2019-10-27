@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Rail_Bag_Simulation
 {
-    class Bag
+    public class Bag
     {
         private static int _idToGive = 100;
         private string _lastSeenLocation;

@@ -23,9 +23,9 @@ namespace Rail_Bag_Simulation.ViewModel
             airport.StartBagsMovement(numberOfBags, 1, 0, 0, 0);
         }
 
-        public LinkedList GetEverythingInTheLinkedList()
+        public List<Node> GetEverythingInTheLinkedList()
         {
-            return airport.Ll;
+            return airport.ListOfNodes;
         }
 
         public string Name
