@@ -20,7 +20,7 @@ namespace Rail_Bag_Simulation
         public override string Nodeinfo()
         {
             string allbags = this.Gate.GateNr +": \n";
-            
+            control = "";
             foreach (Bag g in ListOfBags)
             {
                 allbags += string.Format(g != null ? g.GetBagInfo() + "\n " : " ** \n ");
