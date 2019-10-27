@@ -9,21 +9,14 @@ namespace Rail_Bag_Simulation
 {
     class Airport
     {
-<<<<<<< HEAD:Simulation/Rail Bag Simulation/Rail Bag Simulation/Model/Airport.cs
         public string Name { get; set; }
-=======
         private static int Setsize;
         private string _name;
->>>>>>> 9e68fbf2a5f1ec015ba7671d26d53901ab87659b:Simulation/Rail Bag Simulation/Rail Bag Simulation/Airport.cs
         private readonly Dictionary<Gate, Destination> _gateDestinations= new Dictionary<Gate, Destination>();
         private readonly List<Bag> _bagsList = new List<Bag>();
         private static Storage _storage=new Storage(); 
         private List<Terminal> _terminal = new List<Terminal>();
-<<<<<<< HEAD:Simulation/Rail Bag Simulation/Rail Bag Simulation/Model/Airport.cs
         private readonly LinkedList _linkedConveyorBeltList = new LinkedList();
-=======
->>>>>>> 9e68fbf2a5f1ec015ba7671d26d53901ab87659b:Simulation/Rail Bag Simulation/Rail Bag Simulation/Airport.cs
-
         private bool IsMapCreated = false;
         private LinkedList _ll;
         private ConveyorNode ConveyorNode;
