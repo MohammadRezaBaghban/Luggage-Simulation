@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace Rail_Bag_Simulation.View
 {
     /// <summary>
@@ -19,9 +20,34 @@ namespace Rail_Bag_Simulation.View
     /// </summary>
     public partial class LogWindow : Window
     {
-        public LogWindow()
+
+        private int bagsnr;
+
+        public LogWindow(int bags)
         {
+ 
+            bagsnr = bags;
             InitializeComponent();
+
+
+
+
+            Task.Factory.StartNew(() =>
+            {
+                System.Threading.Thread.Sleep(500);
+               
+                    ViewModel.ViewModel.ll.GetAllNodes().ForEach(p => { listBox1.Items.Add(p.Nodeinfo()); });
+                
+            });
+
+
+
+
         }
+        private void moveBag(Bag s, int x, int y)
+        {
+
+        }
+
     }
 }

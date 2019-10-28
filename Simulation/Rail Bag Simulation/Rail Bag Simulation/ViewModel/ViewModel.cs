@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Rail_Bag_Simulation.ViewModel
@@ -10,17 +11,24 @@ namespace Rail_Bag_Simulation.ViewModel
     public class ViewModel : INotifyPropertyChanged
     {
         private string name;
-        private int numberOfBags;
+        private static int numberOfBags;
         private int nrOfSusBagsGuns;
         private int nrOfSusBagsDrugs;
         private int nrOfSusBagsFlamable;
         private int nrOfSusBagsOthers;
-
+        
         Airport airport = new Airport("Schiphol");
-
-        public void StartSimulation()
+        public static LinkedList ll;
+        public  void StartSimulation(int totalbags)
         {
-            airport.StartBagsMovement(numberOfBags, 1, 0, 0, 0);
+        
+            airport.StartBagsMovement(totalbags, 0, 0, 0, 0);
+            ll = airport._ll;
+        }
+
+        public void CreateMap()
+        {
+            airport.CreateMapLayout(4);
         }
 
         public List<Node> GetEverythingInTheLinkedList()
@@ -44,7 +52,7 @@ namespace Rail_Bag_Simulation.ViewModel
             set
             {
                 numberOfBags = value;
-                OnPropertyChanged("NumberOfBags");
+              //  OnPropertyChanged("NumberOfBags");
             }
         }
         public int NrOfSusBagsGuns
@@ -84,9 +92,9 @@ namespace Rail_Bag_Simulation.ViewModel
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public  event PropertyChangedEventHandler PropertyChanged;
 
-        private void OnPropertyChanged(string propertyName)
+        private  void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

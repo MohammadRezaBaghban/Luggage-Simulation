@@ -3,12 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using System.Drawing;
+using System.Windows;
+using System.Windows.Media;
 
 namespace Rail_Bag_Simulation
 {
     public class Bag
     {
         private static int _idToGive = 100;
+        public Canvas HitboxCanvas { get;  set; }
+
+        
+        public Image image { get; private set; }
         private string _lastSeenLocation;
         private int _id;
         private SuspiciousBagtype? _suspicious;
@@ -22,8 +33,7 @@ namespace Rail_Bag_Simulation
         public Destination Destination { get { return _destination; } set { _destination = value; } }
         public float Weight{get { return _weight; }set { _weight = value; }}
         public string TerminalAndGate{get { return _terminalAndGate; } set { _terminalAndGate = value; }}
-        public int X { get; set; }
-        public int Y { get; set; }
+     
 
 
         private static Random _random = new Random();
@@ -35,8 +45,9 @@ namespace Rail_Bag_Simulation
             this._id = ++_idToGive;
             this._destination = destination;
             this._terminalAndGate = terminalAndGate;
-        }
+           
 
+        }
         public Bag(float weight, Destination destination, string terminalAndGate)
         {
             this._suspicious = null;

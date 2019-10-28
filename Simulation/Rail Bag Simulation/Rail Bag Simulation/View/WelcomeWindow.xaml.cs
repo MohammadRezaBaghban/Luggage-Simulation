@@ -37,11 +37,13 @@ namespace Rail_Bag_Simulation
             }
             else
             {
-                MainWindow mainWindow = new MainWindow();
-                LogWindow logWindow = new LogWindow();
+                MainWindow mainWindow = new MainWindow(Convert.ToInt32(this.tbNrOfBags.Text));
+                LogWindow logWindow = new LogWindow(Convert.ToInt32(this.tbNrOfBags.Text));
+           
                 this.Close();
                 //this.DataContext = mainWindow.
                 mainWindow.tbBagsNum.Text = this.tbNrOfBags.Text;
+               
                 int totalSuspBags = Convert.ToInt32(this.pistol.Text)
                                     + Convert.ToInt32(this.flame.Text)
                                     + Convert.ToInt32(this.cigarette.Text)

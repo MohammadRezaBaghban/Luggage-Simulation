@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace Rail_Bag_Simulation
 {
@@ -7,12 +11,18 @@ namespace Rail_Bag_Simulation
         public Gate Gate { get; private set; }
 
         public static string control;
-
+        public Image image { get; private set; }
         public List<Bag> ListOfBags { get; } = new List<Bag>();
 
-        public GateNode(Gate g)
+        public GateNode(Gate g,int top, int left) : base(top, left)
         {
             this.Gate = g;
+            image = new Image
+            {
+                Width = 80,
+                Height = 80,
+                Source = new BitmapImage(new Uri("../Resources/gate.png", UriKind.Relative))
+            };
         }
         public void AddBag(Bag g)
         {

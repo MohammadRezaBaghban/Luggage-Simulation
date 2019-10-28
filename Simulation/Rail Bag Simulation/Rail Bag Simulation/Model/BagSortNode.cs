@@ -5,16 +5,26 @@ using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace Rail_Bag_Simulation
 {
     class BagSortNode : Node
     {
+        public Image image { get; private set; }
         public List<ConveyorNode> ListOfConnectedNodes { get; } = new List<ConveyorNode>();
 
-        public BagSortNode()
+        public BagSortNode(int top, int left) : base(top, left)
         {
             DelayTime = 10;
+            image = new Image();
+            image.Width = 72;
+            image.Height = 72;
+            image.HorizontalAlignment = HorizontalAlignment.Left;
+            image.VerticalAlignment = VerticalAlignment.Center;
+            image.Source = new BitmapImage(new Uri("../Resources/sorter.png", UriKind.Relative));
         }
 
         public void ConnectNodeToSorter(ConveyorNode n)
@@ -28,20 +38,20 @@ namespace Rail_Bag_Simulation
             ConveyorNode tmpConveyor = null;
             while (!(next is TerminalNode))
             {
-                if (((ConveyorNode)(next)).Conveyor.IsFull == false)
+                if (((ConveyorNode)(next)).IsFull == false)
                 {
-                    ((ConveyorNode)(next)).Conveyor.PushBagToConveyorBelt(g);
+                    ((ConveyorNode)(next)).PushBagToConveyorBelt(g);
                 }
 
                 if (next.Next is TerminalNode) tmpConveyor = (ConveyorNode) next;
                 next = ((next).Next) ;
             }
 
-            var tbag = tmpConveyor.Conveyor.RemoveBagFromConveyorBelt();
+            var tbag = tmpConveyor.RemoveBagFromConveyorBelt();
 
-            while (tbag == null && !tmpConveyor.Conveyor.IsEmpty())
+            while (tbag == null && !tmpConveyor.IsEmpty())
             {
-                tbag = tmpConveyor.Conveyor.RemoveBagFromConveyorBelt();
+                tbag = tmpConveyor.RemoveBagFromConveyorBelt();
             }
             if (tbag != null) ((TerminalNode)(next)).PassBag(tbag);
 

@@ -5,16 +5,27 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace Rail_Bag_Simulation
 {
     class TerminalNode : Node
     {
         public static int counter=0;
+        public Image image { get; private set; }
         public Terminal Terminal { get; private set; }
-        public TerminalNode(Terminal terminal)
+        public TerminalNode(Terminal terminal,int top, int left) : base(top, left)
         {
             Terminal = terminal;
+            image = new Image
+            {
+                Width = 80,
+                Height = 80,
+            
+                Source = new BitmapImage(new Uri("../Resources/terminal.jpg", UriKind.Relative))
+            };
         }
         public List<ConveyorNode> ListOfConnectedNodes { get; } = new List<ConveyorNode>();
 
@@ -34,19 +45,19 @@ namespace Rail_Bag_Simulation
             ConveyorNode tmpConveyor = null;
             while (!(next is GateNode))
             {
-                if (((ConveyorNode)(next)).Conveyor.IsFull == false)
+                if (((ConveyorNode)(next)).IsFull == false)
                 {
                     Thread.Sleep(DelayTime);
-                    ((ConveyorNode)(next)).Conveyor.PushBagToConveyorBelt(g);
+                    ((ConveyorNode)(next)).PushBagToConveyorBelt(g);
                 }
                 if (next.Next is GateNode) tmpConveyor = (ConveyorNode)next;
                 next = ((next).Next);
             }
 
-            var tbag = tmpConveyor.Conveyor.RemoveBagFromConveyorBelt();
-            while (tbag == null && !tmpConveyor.Conveyor.IsEmpty())
+            var tbag = tmpConveyor.RemoveBagFromConveyorBelt();
+            while (tbag == null && !tmpConveyor.IsEmpty())
             {
-                tbag = tmpConveyor.Conveyor.RemoveBagFromConveyorBelt();
+                tbag = tmpConveyor.RemoveBagFromConveyorBelt();
             }
 
             if (tbag != null)

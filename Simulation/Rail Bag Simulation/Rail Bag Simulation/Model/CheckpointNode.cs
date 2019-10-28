@@ -20,7 +20,7 @@ namespace Rail_Bag_Simulation
                 }
             } 
         }
-        public CheckpointNode(object checkpoint) : base()
+        public CheckpointNode(object checkpoint,int top, int left) : base(top, left)
         {
             this.Checkpoint = checkpoint;
             

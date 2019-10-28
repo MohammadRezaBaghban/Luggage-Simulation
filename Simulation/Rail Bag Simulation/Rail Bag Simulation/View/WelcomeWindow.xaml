@@ -37,29 +37,29 @@
                 <Label Content="CONFIGURATIONS" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5" Foreground="Gray" FontSize="18"/>
                 <StackPanel VerticalAlignment="Center" Margin="15">
                     <Label Content="Please select number of bags" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,50,0,5" Foreground="Blue" FontSize="15"/>
-                    <TextBox x:Name="tbNrOfBags" Margin="0,10,-0.4,10" materialDesign:HintAssist.Hint="Number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15" PreviewTextInput="TextBox_PreviewTextInput" MouseEnter="TbNrOfBags_MouseEnter"/>
+                    <TextBox x:Name="tbNrOfBags" Text="{Binding NumberOfBags, Mode=TwoWay}" Margin="0,10,-0.4,10" materialDesign:HintAssist.Hint="Number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15" PreviewTextInput="TextBox_PreviewTextInput" MouseEnter="TbNrOfBags_MouseEnter"/>
                     <Label x:Name="lbNumberofBags" Content="Please fill the number of bags" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Foreground="Red" FontSize="10" Height="64"/>
                     <Label Content="Please select the type of suspicious bag &#xD;&#xA;and the number" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0" Foreground="Blue" FontSize="15" Height="64"/>
 
                     <ToggleButton Checked="PistolButton_Checked" Grid.Column="1" Grid.Row="5"  HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignActionDarkToggleButton}">
                         <materialDesign:PackIcon Kind="Pistol" Height="24" Width="24" />
                     </ToggleButton>
-                    <TextBox x:Name="pistol" Visibility="Hidden" Margin="10,-40,70,10" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15" PreviewTextInput="Pistol_PreviewTextInput" Text="0"/>
+                    <TextBox x:Name="pistol" Text="{Binding NrOfSusBagsGuns, Mode=TwoWay}" Visibility="Hidden" Margin="10,-40,70,10" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15" PreviewTextInput="Pistol_PreviewTextInput"/>
 
                     <ToggleButton x:Name="cigaretteBtn" Checked="CigaretteBtn_Checked" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignActionDarkToggleButton}">
                         <materialDesign:PackIcon Kind="Cigarette" Height="24" Width="24" />
                     </ToggleButton>
-                    <TextBox x:Name="cigarette" Visibility="Hidden" Margin="10,-40,70,10" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15" PreviewTextInput="Cigarette_PreviewTextInput" Text="0"/>
+                    <TextBox x:Name="cigarette" Text="{Binding NrOfSusBagsDrugs, Mode=TwoWay}" Visibility="Hidden" Margin="10,-40,70,10" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15" PreviewTextInput="Cigarette_PreviewTextInput"/>
 
                     <ToggleButton x:Name="flameBtn" Checked="FlameBtn_Checked" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignActionDarkToggleButton}">
                         <materialDesign:PackIcon Kind="Flame" Height="24" Width="24" />
                     </ToggleButton>
-                    <TextBox x:Name="flame"  Visibility="Hidden" Margin="10,-40,70,10" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15" PreviewTextInput="Flame_PreviewTextInput" Text="0"/>
+                    <TextBox x:Name="flame" Text="{Binding NrOfSusBagsFlamable, Mode=TwoWay}" Visibility="Hidden" Margin="10,-40,70,10" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15" PreviewTextInput="Flame_PreviewTextInput"/>
 
                     <ToggleButton x:Name="warningBtn" Unchecked="WarningBtn_Unchecked" Checked="WarningBtn_Checked"  Grid.Column="0" Grid.Row="5" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignActionDarkToggleButton}">
                         <materialDesign:PackIcon Kind="Warning" Height="24" Width="24" />
                     </ToggleButton>
-                    <TextBox x:Name="warning" Visibility="Hidden" Margin="10,-40,70,10" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15" PreviewTextInput="Warning_PreviewTextInput" Text="0"/>
+                    <TextBox x:Name="warning" Text="{Binding NrOfSusBagsOthers, Mode=TwoWay}" Visibility="Hidden" Margin="10,-40,70,10" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15" PreviewTextInput="Warning_PreviewTextInput"/>
 
                 </StackPanel>
             </Grid>
