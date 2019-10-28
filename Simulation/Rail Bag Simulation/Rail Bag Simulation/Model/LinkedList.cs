@@ -24,13 +24,13 @@ namespace Rail_Bag_Simulation
 
         public void MoveBags(int totalnr)
         {
-           
+         
                 if (TerminalNode.counter + Storage.GetNumberOfBagsInStorage() == totalnr)
                 {
                     IsSimulationFinished = true;
                 }
-                if (First != null)
-                {
+
+                if (First != null) {
                     var current = First;
                     while (current.Next != null && !(current is BagSortNode))
                     {
@@ -38,57 +38,60 @@ namespace Rail_Bag_Simulation
                     switch (current.Next)
                     {
                         case ConveyorNode NextNode when current is CheckinNode checkidNode:
-                            {
-                               
-                                    while (checkidNode._bagsQueue.Count > 0 && NextNode.IsFull==false)
-                                    {
-                                        
-                                        NextNode.PushBagToConveyorBelt(checkidNode.Remove());
-                                        Node.log.Add("Added bag to " + NextNode.Id);
-                                    }
+                        {
 
+                            
+                                if (checkidNode._bagsQueue.Count > 0 && NextNode.IsFull==false)
+                                {
 
+                                    NextNode.PushBagToConveyorBelt(checkidNode.Remove());
+                                    Node.log.Add("Added bag to " + NextNode.Id);
+                                }
 
-                                    break;
+                    
+
+                                break;
                             }
 
                         case SecurityNode nextNode when current is ConveyorNode conveyorNode:
-                            {
-                             
-                                
-                                    while (((ConveyorNode)nextNode.Next).IsEmpty() || !(conveyorNode.IsEmpty()))
-                                    {
-                                
-                                        nextNode.ScanBagSecurity(conveyorNode.RemoveBagFromConveyorBelt());
-                                        Node.log.Add("Added bag to " + ((ConveyorNode)nextNode.Next).Id);
-                                    }
+                        {
 
-                                    break;
-                            }
+                           
+                                if (((ConveyorNode) nextNode.Next).IsEmpty() || !(conveyorNode.IsEmpty()))
+                                {
+
+                                    nextNode.ScanBagSecurity(conveyorNode.RemoveBagFromConveyorBelt());
+                                    Node.log.Add("Added bag to " + ((ConveyorNode) nextNode.Next).Id);
+                                }
+                          
+                                break;
+                         
+                        }
 
                         case BagSortNode node when current is ConveyorNode conveyorNode:
-                            {
+                        {
 
-                          
-                                    while (!conveyorNode.IsEmpty() && !IsSimulationFinished)
+                           
+                                if (!conveyorNode.IsEmpty() && !IsSimulationFinished)
+                                {
+                                    var tbag = conveyorNode.RemoveBagFromConveyorBelt();
+
+
+                                    if (tbag != null)
                                     {
-                                        var tbag = conveyorNode.RemoveBagFromConveyorBelt();
-
-
-                                        if  (tbag != null)
-                                        {
-                                      
-
-
-                                            node.PassBag(tbag);
-                                        }
+                                        check = true;
+                                        node.PassBag(tbag);
                                     }
+                                }
 
-                                    check = true;
 
-                                if (((CheckinNode)First)._bagsQueue.Any() && TerminalNode.counter + Storage.GetNumberOfBagsInStorage() != totalnr)
+                                if (((CheckinNode)First)._bagsQueue.Count>0 || TerminalNode.counter + Storage.GetNumberOfBagsInStorage() != totalnr)
                                 {
                                     check = false;
+                                }
+                                else
+                                {
+                               
                                 }
 
                             
@@ -97,42 +100,38 @@ namespace Rail_Bag_Simulation
                             }
 
                         case ConveyorNode NextNode when current is ConveyorNode conveyorNode://err 1
-                            {
-
-                                    if (!conveyorNode.IsEmpty() && NextNode.IsEmpty())
+                        {
+                           
+                                if (!conveyorNode.IsEmpty() && NextNode.IsEmpty())
+                                {
+                                    if (NextNode.IsFull == false)
                                     {
-                                        if (NextNode.IsFull == false)
-                                        {
-                                            NextNode.PushBagToConveyorBelt(conveyorNode
-                                                .RemoveBagFromConveyorBelt());
-                                        }
+                                        NextNode.PushBagToConveyorBelt(conveyorNode
+                                            .RemoveBagFromConveyorBelt());
                                     }
-                                    break;
+                                }
+                       
+                                break;
                             }
 
                     }
 
-                    if (check)
-                    {
-                        current = current.Next;
-                    }
-                    else
-                    {
-                        MoveBags(totalnr);
+                  current = current.Next;
+                        
+                    
+               
                     }
                 }
-            }
-            else
-            {
-                throw new Exception("no simulation made");
-            }
+                else{ throw new Exception("no simulation made"); }
         }
 
 
 
         public void AddGeneratedBags(List<Bag> bagstoqueue)
         {
+
             ((CheckinNode)(First)).Push(bagstoqueue);
+            
         }
         public void AddNode(Node nd)
         {

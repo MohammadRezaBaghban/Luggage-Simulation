@@ -52,7 +52,7 @@
         <Button x:Name="import" Content="Import" Grid.Column="1" Margin="69.6,15.8,69.8,47.4" Grid.Row="4" Click="Import_Click" />
         <Button Content="Export" Grid.Column="1" Margin="69.6,52.8,69.8,10.4" Grid.Row="4" RenderTransformOrigin="0.5,0.5"/>
         <Button Content="Pause" Grid.Column="2" Margin="66.2,31.8,65.2,31.4" Grid.Row="4" RenderTransformOrigin="0.5,0.5"/>
-        <Button Content="Run simulation" Grid.Column="3" Margin="54.8,31.8,56.6,31.4" Grid.Row="4"></Button>
+        <Button Content="Run simulation" Grid.Column="3" Margin="54.8,31.8,56.6,31.4" Grid.Row="4" Click="Button_Click"></Button>
         <Button Content="Statistics" Margin="71,31.8,92,31.4" Grid.Row="4"/>
         <Canvas x:Name="canvas" Background=" #b3ecff" Grid.Column="1" Margin="9.6,10,9.6,10.2" Grid.RowSpan="4" Grid.ColumnSpan="3">
             <Canvas.Effect>

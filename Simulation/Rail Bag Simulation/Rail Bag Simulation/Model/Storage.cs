@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Rail_Bag_Simulation
 {
-    class Storage
+   public  class Storage
     {
         private int _storageId;
         private static List<Bag> _suspicious=new List<Bag>();

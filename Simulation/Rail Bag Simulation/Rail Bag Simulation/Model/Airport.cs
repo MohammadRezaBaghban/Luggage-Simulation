@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Rail_Bag_Simulation
 {
-    class Airport
+    public class Airport
     {
         private static int Setsize;
         private string _name;
@@ -35,7 +35,7 @@ namespace Rail_Bag_Simulation
 
         public void StartBagsMovement(int nbrOfBags, int nbrOfBagsDrugs, int nbrOfBagsWeapons, int nbrOfBagsFlammable, int nbrBagsOthers)
         { 
-            CreateMapLayout(4);
+          
             _ll.AddGeneratedBags(Bag.GenerateBag( nbrOfBags, nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable, nbrBagsOthers));
         }
 
@@ -58,7 +58,7 @@ namespace Rail_Bag_Simulation
 
             _ll.AddNode(ConveyorNode = new ConveyorNode(Setsize,200,0,0,0,295,435));
 
-            BagSortNode = new BagSortNode(257,691);
+            BagSortNode = new BagSortNode(257,630);
 
             _ll.AddNode(BagSortNode);
 

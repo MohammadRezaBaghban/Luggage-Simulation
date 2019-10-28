@@ -58,11 +58,11 @@ namespace Rail_Bag_Simulation
                 _bagQueue.Enqueue(bagtoqueue);
                 if (_bagQueue.Count == 1)
                 {
-                    MovingHandler(bagtoqueue, 1, 0);
+                 //   MovingHandler(bagtoqueue, 1, 0);
                 }
                 else
                 {
-                    MovingHandler(bagtoqueue, 0, 0);
+                  //  MovingHandler(bagtoqueue, 0, 0);
                 }
                 IsFull = false;
             }
@@ -82,11 +82,11 @@ namespace Rail_Bag_Simulation
             Bag bag = _bagQueue.Dequeue();
             if (! (Next is GateNode))
             {
-                MovingHandler(bag, 1, 0);
+              //  MovingHandler(bag, 1, 0);
             }
             else
             {
-                MovingHandler(bag, 0, 0);
+               // MovingHandler(bag, 0, 0);
             }
 
             IsFull = false;
@@ -96,7 +96,7 @@ namespace Rail_Bag_Simulation
 
         public override string Nodeinfo() // change the method to return a list of bags
         {
-            string bagqueueinfo = "Conveyor " + Id.ToString() + ": ";
+            string bagqueueinfo = "Conveyor " + Id.ToString() + ": \n";
             foreach (Bag g in ListofBagsinqueue())
             {
 

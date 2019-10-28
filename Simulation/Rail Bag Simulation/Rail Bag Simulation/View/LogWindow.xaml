@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="LogWindow" Height="450" Width="400">
     <Grid>
+        <Button Content="Run simulation" Margin="57,365,55,22" Click="Button_Click"/>
         <ListBox  Margin="-0,0,0,0" Name="listBox1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="257" Height="200" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
     </Grid>
 </Window>

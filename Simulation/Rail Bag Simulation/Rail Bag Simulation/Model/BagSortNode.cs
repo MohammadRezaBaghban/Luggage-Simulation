@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Rail_Bag_Simulation
@@ -19,12 +20,32 @@ namespace Rail_Bag_Simulation
         public BagSortNode(int top, int left) : base(top, left)
         {
             DelayTime = 10;
-            image = new Image();
-            image.Width = 72;
-            image.Height = 72;
-            image.HorizontalAlignment = HorizontalAlignment.Left;
-            image.VerticalAlignment = VerticalAlignment.Center;
-            image.Source = new BitmapImage(new Uri("../Resources/sorter.png", UriKind.Relative));
+           TransformedBitmap tr = new TransformedBitmap();
+           RotateTransform right = new RotateTransform(90);
+           BitmapImage bmp = new BitmapImage();
+         
+
+            image = new Image
+            {
+                Width = 72,
+                Height = 72,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Center,
+                
+                
+            };
+            bmp  = new BitmapImage(new Uri($"D:/Documents/PROC-P/TestConveyorbelt/Simulation/Rail Bag Simulation/Rail Bag Simulation/Resources/sorter.png", UriKind.Relative));
+            tr.BeginInit();
+
+            tr.Source = bmp;
+
+            RotateTransform transform = new RotateTransform(90);
+
+            tr.Transform = transform;
+
+            tr.EndInit();
+
+            image.Source = tr;
         }
 
         public void ConnectNodeToSorter(ConveyorNode n)
