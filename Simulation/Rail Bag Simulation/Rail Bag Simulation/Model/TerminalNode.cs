@@ -32,7 +32,7 @@ namespace Rail_Bag_Simulation
         public override string Nodeinfo()
         {
             string sender =" Terminal: " +Terminal.TerminalId +"\n";
-            ListOfConnectedNodes.ForEach(n => { sender += n.Nodeinfo() + n.Next.Nodeinfo(); });
+           
             return sender ;
         }
         public void ConnectNodeToSorter(ConveyorNode n)

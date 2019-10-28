@@ -109,7 +109,7 @@ namespace Rail_Bag_Simulation
         {
             var sender =  $"Bag sorter : \n" ;
 
-            ListOfConnectedNodes.ForEach(n => { sender += n.Nodeinfo().ToString() +" "+ n.Next.Nodeinfo(); });
+            
 
             return sender;
         }

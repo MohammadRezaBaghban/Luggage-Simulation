@@ -23,19 +23,22 @@ namespace Rail_Bag_Simulation.View
 
         private int bagsnr;
         private ViewModel.ViewModel vm;
+        private DispatcherTimer dispatcherTimer;
         public LogWindow(int bags)
         {
             vm = new ViewModel.ViewModel();
-            
+            dispatcherTimer = new DispatcherTimer();
    
             bagsnr = bags;
             vm.StartSimulation(bagsnr);
             InitializeComponent();
-            DispatcherTimer timer = new DispatcherTimer();
-           
+          
+
+            dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 3);
+            dispatcherTimer.Start();
             
-                ViewModel.ViewModel.ll.GetAllNodes().ForEach(p=>
-                    listBox1.Items.Add(p.Nodeinfo()));
             
             
         }
@@ -44,19 +47,26 @@ namespace Rail_Bag_Simulation.View
 
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            
-          
-          
+           
+            if (!vm.airport._ll.IsSimulationFinished)
+            {
+                listBox1.Items.Clear();
+                vm.airport._ll.MoveBags(bagsnr);
+
+                ViewModel.ViewModel.ll.GetAllNodes().ForEach(p =>
+                    listBox1.Items.Add(p.Nodeinfo()));
+            }
+            else
+            {
+                dispatcherTimer.Stop();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            listBox1.Items.Clear();
-            vm.airport._ll.MoveBags(bagsnr);
-            vm.GetEverythingInTheLinkedList().ForEach(p=>
-                listBox1.Items.Add(p.Nodeinfo()));
+           
         }
     }
 }
