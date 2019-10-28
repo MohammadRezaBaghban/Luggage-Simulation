@@ -21,7 +21,7 @@ namespace Rail_Bag_Simulation
             {
                 Width = 80,
                 Height = 80,
-                Source = new BitmapImage(new Uri("../Resources/gate.png", UriKind.Relative))
+                Source = new BitmapImage(new Uri("../../Resources/gate.png", UriKind.Relative))
             };
         }
         public void AddBag(Bag g)

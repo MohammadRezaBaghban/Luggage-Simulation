@@ -34,7 +34,7 @@ namespace Rail_Bag_Simulation
                 
                 
             };
-            bmp  = new BitmapImage(new Uri($"D:/Documents/PROC-P/TestConveyorbelt/Simulation/Rail Bag Simulation/Rail Bag Simulation/Resources/sorter.png", UriKind.Relative));
+            bmp  = new BitmapImage(new Uri($"../../Resources/sorter.png", UriKind.Relative));
             tr.BeginInit();
 
             tr.Source = bmp;

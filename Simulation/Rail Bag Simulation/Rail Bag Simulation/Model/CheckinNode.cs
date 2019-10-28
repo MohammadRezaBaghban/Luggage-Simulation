@@ -22,7 +22,7 @@ namespace Rail_Bag_Simulation
                 Width = 150,
                 Height = 150,
            
-                Source = new BitmapImage(new Uri("../Resources/check-in.png", UriKind.Relative))
+                Source = new BitmapImage(new Uri("../../Resources/check-in.png", UriKind.Relative))
             };
 
         }
