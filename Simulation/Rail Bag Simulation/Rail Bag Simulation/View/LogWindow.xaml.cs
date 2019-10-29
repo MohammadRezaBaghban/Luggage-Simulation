@@ -30,13 +30,13 @@ namespace Rail_Bag_Simulation.View
             dispatcherTimer = new DispatcherTimer();
    
             bagsnr = bags;
-            vm.StartSimulation(bagsnr);
+      
             InitializeComponent();
           
 
             dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 3);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0,0,500);
             dispatcherTimer.Start();
             
             
@@ -50,12 +50,12 @@ namespace Rail_Bag_Simulation.View
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
            
-            if (!vm.airport._ll.IsSimulationFinished)
+            if (!LinkedList.IsSimulationFinished)
             {
                 listBox1.Items.Clear();
-                vm.airport._ll.MoveBags(bagsnr);
+                    LinkedList.MoveBags(bagsnr);
 
-                ViewModel.ViewModel.ll.GetAllNodes().ForEach(p =>
+                LinkedList.GetAllNodes().ForEach(p =>
                     listBox1.Items.Add(p.Nodeinfo()));
             }
             else

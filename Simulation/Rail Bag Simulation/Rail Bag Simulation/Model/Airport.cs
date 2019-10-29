@@ -18,7 +18,7 @@ namespace Rail_Bag_Simulation
         private List<Terminal> _terminal = new List<Terminal>();
 
         private bool IsMapCreated = false;
-        public LinkedList _ll;
+        
         private ConveyorNode ConveyorNode;
         private BagSortNode BagSortNode;
         private TerminalNode t;
@@ -26,7 +26,7 @@ namespace Rail_Bag_Simulation
 
         public static Storage Storage => _storage;
 
-        public List<Node> ListOfNodes => _ll.GetAllNodes();
+        public List<Node> ListOfNodes => LinkedList.GetAllNodes();
 
         public Airport(string name)
         {
@@ -36,7 +36,7 @@ namespace Rail_Bag_Simulation
         public void StartBagsMovement(int nbrOfBags, int nbrOfBagsDrugs, int nbrOfBagsWeapons, int nbrOfBagsFlammable, int nbrBagsOthers)
         { 
           
-            _ll.AddGeneratedBags(Bag.GenerateBag( nbrOfBags, nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable, nbrBagsOthers));
+            LinkedList.AddGeneratedBags(Bag.GenerateBag( nbrOfBags, nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable, nbrBagsOthers));
         }
 
         public void CreateMapLayout(int QueueSizeOfBelts)
@@ -48,50 +48,50 @@ namespace Rail_Bag_Simulation
             }
 
             Setsize = QueueSizeOfBelts;
-            _ll = new LinkedList();
+       
 
-            _ll.AddNode(new CheckinNode(213,10));
+            LinkedList.AddNode(new CheckinNode(213,10));
 
-            _ll.AddNode(ConveyorNode = new ConveyorNode(Setsize,205,0,0,0,295,160));
+            LinkedList.AddNode(ConveyorNode = new ConveyorNode(Setsize,205,0,0,0,295,160));
             
-            _ll.AddNode(new SecurityNode(246,355));
+            LinkedList.AddNode(new SecurityNode(246,355));
 
-            _ll.AddNode(ConveyorNode = new ConveyorNode(Setsize,200,0,0,0,295,435));
+            LinkedList.AddNode(ConveyorNode = new ConveyorNode(Setsize,200,0,0,0,295,435));
 
             BagSortNode = new BagSortNode(257,630);
 
-            _ll.AddNode(BagSortNode);
+            LinkedList.AddNode(BagSortNode);
 
             
 
 
-            _ll.AddNode(ConveyorNode = new ConveyorNode(Setsize, 270, 0, 0, 180, 99, 704), BagSortNode);
+            LinkedList.AddNode(ConveyorNode = new ConveyorNode(Setsize, 270, 0, 0, 180, 99, 704), BagSortNode);
 
 
             t = new TerminalNode(new Terminal("T1"),70,952);
 
-            _ll.AddNode(t, ConveyorNode);
+            LinkedList.AddNode(t, ConveyorNode);
 
             
-            _ll.AddNode(ConveyorNode = new ConveyorNode(Setsize, 88, 0, 40, 0, 148, 1002), t);
+            LinkedList.AddNode(ConveyorNode = new ConveyorNode(Setsize, 88, 0, 40, 0, 148, 1002), t);
 
 
             GateNode = new GateNode(new Gate("G1"),148,1114);
-            _ll.AddNode(GateNode, ConveyorNode);
+            LinkedList.AddNode(GateNode, ConveyorNode);
 
 
             
 
-            _ll.AddNode(ConveyorNode = new ConveyorNode(Setsize, 270, 0, 270, 0, 316, 701), BagSortNode);
+            LinkedList.AddNode(ConveyorNode = new ConveyorNode(Setsize, 270, 0, 270, 0, 316, 701), BagSortNode);
 
             t = new TerminalNode(new Terminal("T2"),536,952);
-            _ll.AddNode(t, ConveyorNode);
+            LinkedList.AddNode(t, ConveyorNode);
 
            
-            _ll.AddNode(ConveyorNode = new ConveyorNode(Setsize, 90, 0, 0, 40, 500, 1027), t);
+            LinkedList.AddNode(ConveyorNode = new ConveyorNode(Setsize, 90, 0, 0, 40, 500, 1027), t);
 
             GateNode = new GateNode(new Gate("G1"),426,1128);
-            _ll.AddNode(GateNode, ConveyorNode);
+            LinkedList.AddNode(GateNode, ConveyorNode);
 
           
         }

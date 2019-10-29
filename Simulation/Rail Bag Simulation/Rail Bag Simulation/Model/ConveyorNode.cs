@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Shapes;
@@ -12,7 +13,7 @@ namespace Rail_Bag_Simulation
     class ConveyorNode : Node
     {
         private static int _idToGive = 100;
-        public delegate void IsMove(Bag s, int x, int y);
+        public delegate void IsMove(Node f,Bag s, int x, int y);
         public IsMove MovingHandler;
         public IsMove NotMovingHandler;
         public Line conveyorline { get; private set; }
@@ -56,14 +57,9 @@ namespace Rail_Bag_Simulation
             if (_bagQueue.Count < _setsize)
             {
                 _bagQueue.Enqueue(bagtoqueue);
-                if (_bagQueue.Count == 1)
-                {
-                 //   MovingHandler(bagtoqueue, 1, 0);
-                }
-                else
-                {
-                  //  MovingHandler(bagtoqueue, 0, 0);
-                }
+            
+                    MovingHandler(this,bagtoqueue, 1, 0);
+                
                 IsFull = false;
             }
             else
@@ -80,14 +76,9 @@ namespace Rail_Bag_Simulation
                 return null;
 
             Bag bag = _bagQueue.Dequeue();
-            if (! (Next is GateNode))
-            {
-              //  MovingHandler(bag, 1, 0);
-            }
-            else
-            {
-               // MovingHandler(bag, 0, 0);
-            }
+          
+              MovingHandler(this.Next,bag, 1, 0);
+           
 
             IsFull = false;
             return bag;

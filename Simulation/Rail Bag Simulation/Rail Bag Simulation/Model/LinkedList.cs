@@ -9,20 +9,18 @@ using System.Windows;
 
 namespace Rail_Bag_Simulation
 {
-    public class LinkedList
+    public static class LinkedList
     {
-        public Node First { get; private set; }
-        public bool IsSimulationFinished = false;
-        private List<Node> lastnodes;
-        public LinkedList()
-        {
-            lastnodes = new List<Node>();
-            First = null;
-        }
+        public static Node First { get; private set; }
+        public static bool IsSimulationFinished = false;
+        private static List<Node> lastnodes = new List<Node>();
+        private static Node current;
+     
+         
 
 
 
-        public void MoveBags(int totalnr)
+        public static void MoveBags(int totalnr)
         {
          
                 if (TerminalNode.counter + Storage.GetNumberOfBagsInStorage() == totalnr)
@@ -31,8 +29,8 @@ namespace Rail_Bag_Simulation
                 }
 
                 if (First != null) {
-                    var current = First;
-                    while (current.Next != null && !(current is BagSortNode))
+                   
+                    if (current.Next != null && !(current is BagSortNode))
                     {
                       bool check = true;
                     switch (current.Next)
@@ -85,7 +83,7 @@ namespace Rail_Bag_Simulation
                                 }
 
 
-                                if (((CheckinNode)First)._bagsQueue.Count>0 || TerminalNode.counter + Storage.GetNumberOfBagsInStorage() != totalnr)
+                                if (((CheckinNode)First)._bagsQueue.Count>0)
                                 {
                                     check = false;
                                 }
@@ -116,10 +114,18 @@ namespace Rail_Bag_Simulation
 
                     }
 
-                  current = current.Next;
-                        
-                    
-               
+                    if (check)
+                    {
+
+                        current = current.Next;
+                    }
+                    else
+                    {
+                        current = First;
+                    }
+
+
+
                     }
                 }
                 else{ throw new Exception("no simulation made"); }
@@ -127,18 +133,19 @@ namespace Rail_Bag_Simulation
 
 
 
-        public void AddGeneratedBags(List<Bag> bagstoqueue)
+        public static void AddGeneratedBags(List<Bag> bagstoqueue)
         {
 
             ((CheckinNode)(First)).Push(bagstoqueue);
             
         }
-        public void AddNode(Node nd)
+        public static void AddNode(Node nd)
         {
             if (First == null)
             {
 
                 First = nd;
+                current = First;
 
             }
             else
@@ -154,7 +161,7 @@ namespace Rail_Bag_Simulation
             }
         }
 
-        public void AddNode(Node childNode, Node parent)
+        public static void AddNode(Node childNode, Node parent)
         {
 
             if (First == null)
@@ -253,7 +260,7 @@ namespace Rail_Bag_Simulation
         }
 
 
-        public void RemoveNode()
+        public static void RemoveNode()
         {
             var current = First;
 
@@ -264,7 +271,7 @@ namespace Rail_Bag_Simulation
             current.Next = null;
         }
 
-        public List<Node> GetAllNodes()
+        public static List<Node> GetAllNodes()
         {
             List<Node> temp = new List<Node>();
             if (First == null)
@@ -312,7 +319,7 @@ namespace Rail_Bag_Simulation
             return temp;
         }
 
-        public string LinkedListInfo()
+        public static string LinkedListInfo()
         {
             string sender = "";
 
