@@ -68,7 +68,7 @@ namespace Rail_Bag_Simulation
             
         }
 
-        private Node determineNextNode(Bag g)
+        public Node determineNextNode(Bag g)
         {
             Node tnode = null;
             foreach (var p in ListOfConnectedNodes)

@@ -79,7 +79,7 @@ namespace Rail_Bag_Simulation
             Thread.Sleep(DelayTime);
         }
 
-        private Node determineNextNode(Bag g)
+        public Node determineNextNode(Bag g)
         {
             Node tnode = null;
             if (g == null) return null;

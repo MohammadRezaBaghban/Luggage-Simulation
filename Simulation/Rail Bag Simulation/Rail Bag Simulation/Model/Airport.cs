@@ -62,10 +62,9 @@ namespace Rail_Bag_Simulation
 
             LinkedList.AddNode(BagSortNode);
 
-            
 
 
-            LinkedList.AddNode(ConveyorNode = new ConveyorNode(Setsize, 270, 0, 0, 180, 99, 704), BagSortNode);
+            LinkedList.AddNode(ConveyorNode = new ConveyorNode(Setsize, 270, 0, -180, 0, 280, 701), BagSortNode);
 
 
             t = new TerminalNode(new Terminal("T1"),70,952);

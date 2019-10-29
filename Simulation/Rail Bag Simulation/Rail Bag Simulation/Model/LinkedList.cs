@@ -30,7 +30,7 @@ namespace Rail_Bag_Simulation
 
                 if (First != null) {
                    
-                    if (current.Next != null && !(current is BagSortNode))
+                    if (current.Next != null && !(current is GateNode))
                     {
                       bool check = true;
                     switch (current.Next)
@@ -68,34 +68,82 @@ namespace Rail_Bag_Simulation
 
                         case BagSortNode node when current is ConveyorNode conveyorNode:
                         {
-
+                                
                            
                                 if (!conveyorNode.IsEmpty() && !IsSimulationFinished)
                                 {
-                                    var tbag = conveyorNode.RemoveBagFromConveyorBelt();
 
+                                   ConveyorNode con = (ConveyorNode)(node.determineNextNode(conveyorNode.ListofBagsinqueue().Peek()));
+                                    con.PushBagToConveyorBelt(conveyorNode.RemoveBagFromConveyorBelt());
 
-                                    if (tbag != null)
-                                    {
-                                        check = true;
-                                        node.PassBag(tbag);
-                                    }
-                                }
-
-
-                                if (((CheckinNode)First)._bagsQueue.Count>0)
-                                {
+                                    current = con;
                                     check = false;
+                                    //var tbag = conveyorNode.RemoveBagFromConveyorBelt();
+
+
+                                    //if (tbag != null)
+                                    //{
+                                    //    check = true;
+                                    //    node.PassBag(tbag);
+                                    //}
                                 }
-                                else
-                                {
-                               
-                                }
+
 
                             
-
                                 break;
+                        }
+                        case TerminalNode terminalNode when current is ConveyorNode conveyorNode:
+                        {
+                            if (!conveyorNode.IsEmpty() && !IsSimulationFinished)
+                            {
+                                ConveyorNode con =
+                                    (ConveyorNode) (terminalNode.determineNextNode(conveyorNode.ListofBagsinqueue()
+                                        .Peek()));
+                                con.PushBagToConveyorBelt(conveyorNode.RemoveBagFromConveyorBelt());
+
+                                current = con;
+                                check = false;
+                                //var tbag = conveyorNode.RemoveBagFromConveyorBelt();
+
+
+                                //if (tbag != null)
+                                //{
+                                //    check = true;
+                                //    node.PassBag(tbag);
+                                //}
                             }
+                         
+
+                            break;
+                        }
+
+                        case GateNode gateNode when current is ConveyorNode conveyorNode:
+                        {
+                            if (!conveyorNode.IsEmpty() && !IsSimulationFinished)
+                            {
+                               
+                                gateNode.AddBag(conveyorNode.RemoveBagFromConveyorBelt());
+
+                             
+                                //var tbag = conveyorNode.RemoveBagFromConveyorBelt();
+
+
+                                //if (tbag != null)
+                                //{
+                                //    check = true;
+                                //    node.PassBag(tbag);
+                                //}
+                            }
+
+                            if (((CheckinNode)First)._bagsQueue.Count > 0)
+                            {
+                                current = First;
+                                check = false;
+                            }
+                         
+
+                            break;
+                        }
 
                         case ConveyorNode NextNode when current is ConveyorNode conveyorNode://err 1
                         {
@@ -116,13 +164,9 @@ namespace Rail_Bag_Simulation
 
                     if (check)
                     {
-
                         current = current.Next;
                     }
-                    else
-                    {
-                        current = First;
-                    }
+                 
 
 
 

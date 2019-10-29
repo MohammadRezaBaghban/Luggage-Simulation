@@ -73,7 +73,7 @@ namespace Rail_Bag_Simulation
                         canvas.Children.Add(bag.HitboxCanvas);
                         Canvas.SetTop(bag.HitboxCanvas, ch.Top +130+total);
                         Canvas.SetLeft(bag.HitboxCanvas, ch.Left+100);
-                        Canvas.SetZIndex(bag.HitboxCanvas,1);
+                        Canvas.SetZIndex(bag.HitboxCanvas,6);
                     }
                 }
                 if (p is ConveyorNode con)
@@ -89,25 +89,28 @@ namespace Rail_Bag_Simulation
                     canvas.Children.Add(bs.image);
                     Canvas.SetTop(bs.image, bs.Top);
                     Canvas.SetLeft(bs.image, bs.Left);
-
+                    Canvas.SetZIndex(bs.image, 3);
                 }
                 if (p is SecurityNode sn)
                 {
                     canvas.Children.Add(sn.image);
                     Canvas.SetTop(sn.image, sn.Top);
                     Canvas.SetLeft(sn.image, sn.Left);
+                    Canvas.SetZIndex(sn.image, 4);
                 }
                 if (p is TerminalNode tm)
                 {
                     canvas.Children.Add(tm.image);
                     Canvas.SetTop(tm.image, tm.Top);
                     Canvas.SetLeft(tm.image, tm.Left);
+                    Canvas.SetZIndex(tm.image, 5);
                 }
                 if (p is GateNode gn)
                 {
                     canvas.Children.Add(gn.image);
                     Canvas.SetTop(gn.image, gn.Top);
                     Canvas.SetLeft(gn.image, gn.Left);
+                    Canvas.SetZIndex(gn.image, 5);
                 }
             });
 
@@ -116,6 +119,7 @@ namespace Rail_Bag_Simulation
 
         private void moveBag(Node s,Bag se, int x, int y)
         {
+
             if (s is GateNode gate)
             {
                 
