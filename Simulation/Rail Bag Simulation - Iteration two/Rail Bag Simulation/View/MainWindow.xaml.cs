@@ -118,32 +118,25 @@ namespace Rail_Bag_Simulation
 
         private void moveBag(Node s,Bag se, int x, int y)
         {
-
             if (s is GateNode gate)
             {
-                
-               
                 if (s == checker)
                 {
-                    
                     Canvas.SetTop(se.HitboxCanvas, s.Top + 50 + control2);
                     Canvas.SetLeft(se.HitboxCanvas, s.Left);
                     control2 += 40;
                 }
                 else
                 {
-                    
                     Canvas.SetTop(se.HitboxCanvas, s.Top + 50 + control);
                     Canvas.SetLeft(se.HitboxCanvas, s.Left);
                     control += 40;
-
                 }
 
                 if (notnull == false)
                 {
                     checker = s;
                 }
-
             }
             else
             {

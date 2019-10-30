@@ -43,28 +43,25 @@ namespace Rail_Bag_Simulation
 
                         case SecurityNode nextNode when current is ConveyorNode conveyorNode:
                             {
-                                if (!(nextNode.Next as ConveyorNode).IsFull || !(conveyorNode.IsEmpty()))
+                                if ((nextNode.Next as ConveyorNode).IsFull || !(conveyorNode.IsEmpty()))
                                 {
-                                    var bagToCheck = conveyorNode.RemoveBagFromConveyorBelt();
-                                    if (bagToCheck != null)
+                                    var bagToChecked = conveyorNode.RemoveBagFromConveyorBelt();
+                                    if (bagToChecked != null)
                                     {
-                                        var bagChecked = nextNode.ScanBagSecurity(bagToCheck);
+                                        var bagChecked = nextNode.ScanBagSecurity(bagToChecked);
                                         if (bagChecked != null)
                                         {
-                                         ((ConveyorNode)(nextNode.Next)).PushBagToConveyorBelt(bagChecked);
+                                            ((ConveyorNode) (nextNode.Next)).PushBagToConveyorBelt(bagChecked);
                                         }
                                         else
                                         {
-                                            current = first;
                                             check = false;
+
+                                            current = First;
                                         }
                                     }
-                                    else
-                                    {
-                                        current = first;
-                                        check = false;
-                                    }
                                 }
+
                                 break;
                             }
 
@@ -151,7 +148,6 @@ namespace Rail_Bag_Simulation
                                             .RemoveBagFromConveyorBelt());
                                     }
                                 }
-
                                 break;
                             }
 

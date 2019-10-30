@@ -42,7 +42,10 @@ namespace Rail_Bag_Simulation.View
             
             
         }
-       
+        private void moveBag(Bag s, int x, int y)
+        {
+
+        }
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
