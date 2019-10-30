@@ -15,17 +15,12 @@ namespace Rail_Bag_Simulation
         private static int _idToGive = 100;
         public delegate void IsMove(Node f,Bag s, int x, int y);
         public IsMove MovingHandler;
-        public IsMove NotMovingHandler;
         public Line conveyorline { get; private set; }
         public bool IsFull { get; private set; }
         public int Id { get; private set; }
         private int _setsize;
         private Queue<Bag> _bagQueue;
 
-        public NextStop Nextstop => _nextstop;
-
-        private NextStop _nextstop;
-        public Node EndPoint;
 
         public ConveyorNode(int setsize,int X1,int X2,int Y1,int Y2,int top,int left):base(top,left)
         {
@@ -57,7 +52,7 @@ namespace Rail_Bag_Simulation
             if (_bagQueue.Count < _setsize && bagtoqueue != null)
             {
                     _bagQueue.Enqueue(bagtoqueue);
-                    MovingHandler(this,bagtoqueue, 1, 0);
+                    MovingHandler?.Invoke(this,bagtoqueue, 1, 0);
                 
                 IsFull = false;
             }

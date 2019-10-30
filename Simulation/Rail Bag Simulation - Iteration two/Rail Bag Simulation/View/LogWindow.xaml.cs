@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Threading;
+using Rail_Bag_Simulation.ViewModel;
 
 namespace Rail_Bag_Simulation.View
 {
@@ -22,11 +12,11 @@ namespace Rail_Bag_Simulation.View
     {
 
         private int bagsnr;
-        private ViewModel.ViewModel vm;
+        
         private DispatcherTimer dispatcherTimer;
         public LogWindow(int bags)
         {
-            vm = new ViewModel.ViewModel();
+            
             dispatcherTimer = new DispatcherTimer();
    
             bagsnr = bags;
@@ -42,10 +32,6 @@ namespace Rail_Bag_Simulation.View
             
             
         }
-        private void moveBag(Bag s, int x, int y)
-        {
-
-        }
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
@@ -53,10 +39,8 @@ namespace Rail_Bag_Simulation.View
             if (!LinkedList.IsSimulationFinished)
             {
                 listBox1.Items.Clear();
-                    LinkedList.MoveBags(bagsnr);
-
-                LinkedList.GetAllNodes().ForEach(p =>
-                    listBox1.Items.Add(p.Nodeinfo()));
+                ViewModel.ViewModel.LL.GetAllNodes().ForEach(p =>
+                listBox1.Items.Add(p.Nodeinfo()));
             }
             else
             {

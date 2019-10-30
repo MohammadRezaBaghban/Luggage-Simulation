@@ -23,25 +23,25 @@ namespace Rail_Bag_Simulation
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ViewModel.ViewModel vm;
+        private readonly ViewModel.ViewModel vm;
         private delegate void Bagmover(Canvas s, object sender, EventArgs e);
-        private Bagmover bagEventHandler;
-        private int totalnmbags;
+       
+        private int totalnbrbags;
         private int control, control2 = 0;
         private Node checker = null;
         private bool notnull = false;
-        private DispatcherTimer timer;
-
-        private List<Node> tmpNodes;
+        DispatcherTimer dispatcherTimer;
 
         public MainWindow(int nodes)
         {
-            totalnmbags = nodes;
+            totalnbrbags = nodes;
             vm = new ViewModel.ViewModel();
-            vm.StartSimulation(totalnmbags);
+            vm.StartSimulation(totalnbrbags);
             InitializeComponent();
-            timer = new DispatcherTimer();
-
+            dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
+            dispatcherTimer.Start();
 
             vm.GetEverythingInTheLinkedList().ForEach(p =>
             {
@@ -116,6 +116,8 @@ namespace Rail_Bag_Simulation
             InitializeComponent();
         }
 
+        public ViewModel.ViewModel Vm => vm;
+
         private void moveBag(Node s,Bag se, int x, int y)
         {
             if (s is GateNode gate)
@@ -150,31 +152,24 @@ namespace Rail_Bag_Simulation
             }
         }
 
-        public void ShowBags()
-        {
-            tmpNodes = vm?.GetEverythingInTheLinkedList();
-            DispatcherTimer dispatcher = new DispatcherTimer();
-
-            tmpNodes?.ForEach(node =>
-                    {
-                        if (node is GateNode checkinNode)
-                        {
-                            foreach (Bag g in checkinNode.ListOfBags)
-                            {
-                                dispatcher.Tick += (sender, e) =>
-                                {
-                                  //  Canvas.SetLeft(g.HitboxCanvas, y += 4);
-                                };
-                                dispatcher.Interval = new TimeSpan(0, 0, 0, 2);
-                                dispatcher.Start();
-                            }
-                        }
-                    });
-        }
-
         private void ListBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+
+            /*if (!LinkedList.IsSimulationFinished)
+            {
+               
+                LinkedList.MoveBags(vm.NumberOfBags);
+               
+            }
+            else
+            {
+                dispatcherTimer.Stop();
+            }*/
         }
 
         private void TbBagsWep_TextChanged(object sender, TextChangedEventArgs e)

@@ -9,7 +9,6 @@ namespace Rail_Bag_Simulation
 {
    public  class Storage
     {
-        private int _storageId;
         private static List<Bag> _suspicious=new List<Bag>();
         public Bag GetBagById(int id) 
         {

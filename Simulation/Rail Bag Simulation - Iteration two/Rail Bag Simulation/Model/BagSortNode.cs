@@ -21,20 +21,17 @@ namespace Rail_Bag_Simulation
         {
             DelayTime = 10;
            TransformedBitmap tr = new TransformedBitmap();
-           RotateTransform right = new RotateTransform(90);
-           BitmapImage bmp = new BitmapImage();
-         
 
-            image = new Image
+
+           image = new Image
             {
                 Width = 72,
                 Height = 72,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Center,
-                
-                
             };
-            bmp  = new BitmapImage(new Uri($"../../Resources/sorter.png", UriKind.Relative));
+
+            var bmp = new BitmapImage(new Uri($"../../Resources/sorter.png", UriKind.Relative));
             tr.BeginInit();
 
             tr.Source = bmp;

@@ -17,26 +17,30 @@ namespace Rail_Bag_Simulation.ViewModel
         private int nrOfSusBagsFlamable;
         private int nrOfSusBagsOthers;
 
-        public Airport airport;
-    
-        public  void StartSimulation(int totalbags)
+
+        private static Airport _airport;
+        public static LinkedList LL => _airport.LL;
+
+
+        public void StartSimulation(int totalbags)
         {
-            airport = new Airport("Schiphol");
+            _airport = new Airport("Schiphol");
             CreateMap();
         
-            airport.StartBagsMovement(totalbags, 2, 1, 3, 1);
-            
-          
+            _airport.StartBagsMovement(totalbags, 0, 1, 0, 0);
+            _airport.LL.MoveBags(NumberOfBags);
+
+
         }
 
         public void CreateMap()
         {
-            airport.CreateMapLayout(4);
+            _airport.CreateMapLayout(4);
         }
 
         public List<Node> GetEverythingInTheLinkedList()
         {
-            return airport.ListOfNodes;
+            return _airport.ListOfNodes;
         }
 
         public string Name
@@ -94,6 +98,8 @@ namespace Rail_Bag_Simulation.ViewModel
                 OnPropertyChanged("NrOfSusBagsOthers");
             }
         }
+
+        public static Airport Airport => _airport;
 
         public  event PropertyChangedEventHandler PropertyChanged;
 
