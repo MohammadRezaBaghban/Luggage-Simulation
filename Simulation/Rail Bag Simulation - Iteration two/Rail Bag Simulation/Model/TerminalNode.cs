@@ -15,9 +15,12 @@ namespace Rail_Bag_Simulation
     {
         public static int counter=0;
         public Image image { get; private set; }
+        public Queue<Bag> BagQueue { get; }
         public Terminal Terminal { get; private set; }
         public TerminalNode(Terminal terminal,int top, int left) : base(top, left)
         {
+            BagQueue = new Queue<Bag>();
+
             Terminal = terminal;
             image = new Image
             {
@@ -39,33 +42,26 @@ namespace Rail_Bag_Simulation
         {
             ListOfConnectedNodes.Add(n);
         }
-        public void PassBag(Bag g)
+
+
+        public bool Push(Bag bag)
         {
-            Node next = (ConveyorNode)determineNextNode(g);
-            ConveyorNode tmpConveyor = null;
-            while (!(next is GateNode))
+            lock (BagQueue)
             {
-                if (((ConveyorNode)(next)).IsFull() == false)
-                {
-                    Thread.Sleep(DelayTime);
-                    ((ConveyorNode)(next)).PushBagToConveyorBelt(g);
-                }
-                if (next.Next is GateNode) tmpConveyor = (ConveyorNode)next;
-                next = ((next).Next);
+                BagQueue.Enqueue(bag);
+                return true;
             }
+        }
 
-            var tbag = tmpConveyor.RemoveBagFromConveyorBelt();
-            while (tbag == null && !tmpConveyor.IsEmpty())
+        public Bag Remove()
+        {
+            lock (BagQueue)
             {
-                tbag = tmpConveyor.RemoveBagFromConveyorBelt();
+                if (BagQueue.Count < 1)
+                    return null;
+                var bag = BagQueue.Dequeue();
+                return bag;
             }
-
-            if (tbag != null)
-            {
-                Thread.Sleep(DelayTime);
-                ((GateNode)(next)).AddBag(tbag); counter++;
-            }
-            
         }
 
         public Node determineNextNode(Bag g)

@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
 {
@@ -48,26 +49,7 @@ namespace Rail_Bag_Simulation
         {
             ListOfConnectedNodes.Add(n);
         }
-
-        public void PassBag(Bag g)
-        {
-            Node next = (ConveyorNode) determineNextNode(g);
-            ConveyorNode tmpConveyor = null;
-            while (!(next is TerminalNode))
-            {
-                if (((ConveyorNode) next).IsFull() == false) ((ConveyorNode) next).PushBagToConveyorBelt(g);
-
-                if (next.Next is TerminalNode) tmpConveyor = (ConveyorNode) next;
-                next = next.Next;
-            }
-
-            var tbag = tmpConveyor.RemoveBagFromConveyorBelt();
-
-            while (tbag == null && !tmpConveyor.IsEmpty()) tbag = tmpConveyor.RemoveBagFromConveyorBelt();
-            if (tbag != null) ((TerminalNode) next).PassBag(tbag);
-
-            Thread.Sleep(DelayTime);
-        }
+        
 
         public bool Push(Bag bag)
         {
@@ -89,10 +71,11 @@ namespace Rail_Bag_Simulation
             }
         }
 
-        public Node determineNextNode(Bag g)
+        public Node determineNextNode(out Bag g)
         {
             Node tnode = null;
-            if (g == null) return null;
+            g = this.Remove();
+            if (!g.IsNotNull()) return null;
             lock (ListOfConnectedNodes)
             {
                 foreach (var p in ListOfConnectedNodes)

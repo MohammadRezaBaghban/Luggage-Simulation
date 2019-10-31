@@ -118,12 +118,15 @@ namespace Rail_Bag_Simulation
 
         public void CreateThreads()
         {
+            Node currentnode;
+            Node nextnode;
+
             var Nodes = GetAllNodes();
             for (var i = 0; i < Nodes.Count; i++)
             {
                 if (i + 1 == Nodes.Count) break;
-                var currentnode = Nodes[i];
-                var nextnode = Nodes[i + 1];
+                currentnode = Nodes[i];
+                nextnode = Nodes[i + 1];
                 switch (nextnode)
                 {
                     case BagSortNode bagSortNode when currentnode is ConveyorNode:
@@ -194,10 +197,27 @@ namespace Rail_Bag_Simulation
                                     }
                             })
                             {Name = "Current Node " + currentnode.GetType() + " Next Node is " + nextnode.GetType()});
-
                         break;
                 }
+
+                if (currentnode is BagSortNode bsNode)
+                {
+                    ThreadList.Add(new Thread(() =>
+                    {
+                        while (!IsSimulationFinished)
+                        {
+                            var nodeToSendTheBagTo = bsNode.determineNextNode(out var b);
+                            if (!nodeToSendTheBagTo.IsNotNull() || !b.IsNotNull() || ((ConveyorNode) nodeToSendTheBagTo).IsFull()) continue;
+                            Thread.Sleep(1000);
+                            ((ConveyorNode)nodeToSendTheBagTo).PushBagToConveyorBelt(b);
+                        }
+                    }) {
+                            Name = "Current Node " + currentnode.GetType() + " Next Node is " + nextnode.GetType()});
+                            
+                    break;
+                }
             }
+            
         }
 
         public void AddNode(Node childNode, Node parent)
