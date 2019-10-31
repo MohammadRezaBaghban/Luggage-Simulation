@@ -62,7 +62,7 @@ namespace Rail_Bag_Simulation
             ConveyorNode tmpConveyor = null;
             while (!(next is TerminalNode))
             {
-                if (((ConveyorNode)(next)).IsFull == false)
+                if (((ConveyorNode)(next)).IsFull() == false)
                 {
                     ((ConveyorNode)(next)).PushBagToConveyorBelt(g);
                 }
@@ -130,9 +130,11 @@ namespace Rail_Bag_Simulation
 
         public override string Nodeinfo()
         {
-            var sender =  $"Bag sorter : \n" ;
-
-            
+            string sender = "Bag Sorter: \n";
+            foreach (Bag g in _bagQueue)
+            {
+                sender += g.GetBagInfo() + "\n";
+            }
 
             return sender;
         }

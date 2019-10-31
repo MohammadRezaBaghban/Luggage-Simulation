@@ -45,7 +45,7 @@ namespace Rail_Bag_Simulation
             ConveyorNode tmpConveyor = null;
             while (!(next is GateNode))
             {
-                if (((ConveyorNode)(next)).IsFull == false)
+                if (((ConveyorNode)(next)).IsFull() == false)
                 {
                     Thread.Sleep(DelayTime);
                     ((ConveyorNode)(next)).PushBagToConveyorBelt(g);

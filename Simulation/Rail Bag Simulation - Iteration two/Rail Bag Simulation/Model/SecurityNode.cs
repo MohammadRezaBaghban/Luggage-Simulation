@@ -27,10 +27,7 @@ namespace Rail_Bag_Simulation
                 Source = new BitmapImage(new Uri("../Resources/securityCheckHouse.png", UriKind.Relative))
             };
         }
-        public override string Nodeinfo()
-        {
-            return "Security:" + Airport.Storage.ToString();
-        }
+
         public bool Push(Bag bag)
         {
             lock (_bagQueue)
@@ -39,11 +36,20 @@ namespace Rail_Bag_Simulation
                 return true;
             }
         }
+        public override string Nodeinfo()
+        {
+            string sender = "Security: \n";
+            foreach (Bag g in _bagQueue)
+            {
+                sender += g.GetBagInfo() + "\n";
+            }
+
+            return sender;
+        }
 
         public Bag ScanBagSecurity()
         {
             Bag b = null;
-            Thread.Sleep(DelayTime);
             try
             {
                 lock (_bagQueue)

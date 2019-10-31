@@ -16,7 +16,6 @@ namespace Rail_Bag_Simulation
         public delegate void IsMove(Node f,Bag s, int x, int y);
         public IsMove MovingHandler;
         public Line conveyorline { get; private set; }
-        public bool IsFull { get; private set; }
         public int Id { get; }
         private int _setsize;
         private Queue<Bag> _bagQueue;
@@ -45,7 +44,13 @@ namespace Rail_Bag_Simulation
                 return _bagQueue.Count < 1;
             }
         }
-
+        public bool IsFull()
+        {
+            lock (_bagQueue)
+            {
+                return _bagQueue.Count >= _setsize;
+            }
+        }
         public Queue<Bag> ListofBagsinqueue()
         {
             lock (_bagQueue)
@@ -61,13 +66,8 @@ namespace Rail_Bag_Simulation
                 {
                     _bagQueue.Enqueue(bagtoqueue);
                     MovingHandler?.Invoke(this, bagtoqueue, 1, 0);
-
-                    IsFull = false;
                 }
-                else
-                {
-                    IsFull = true;
-                }
+                
             }
         }
 
@@ -83,8 +83,6 @@ namespace Rail_Bag_Simulation
                 {
                     MovingHandler?.Invoke(this.Next, bag, 1, 0);
                 }
-
-                IsFull = false;
                 return bag;
             }
         }
