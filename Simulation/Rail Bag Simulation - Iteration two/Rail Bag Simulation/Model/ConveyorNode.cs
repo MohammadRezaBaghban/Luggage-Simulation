@@ -17,7 +17,7 @@ namespace Rail_Bag_Simulation
         public IsMove MovingHandler;
         public Line conveyorline { get; private set; }
         public bool IsFull { get; private set; }
-        public int Id { get; private set; }
+        public int Id { get; }
         private int _setsize;
         private Queue<Bag> _bagQueue;
 
@@ -40,41 +40,53 @@ namespace Rail_Bag_Simulation
 
         public bool IsEmpty()
         {
-            return _bagQueue.Count < 1;
+            lock (_bagQueue)
+            {
+                return _bagQueue.Count < 1;
+            }
         }
 
         public Queue<Bag> ListofBagsinqueue()
         {
-            return _bagQueue;
+            lock (_bagQueue)
+            {
+                return _bagQueue;
+            }
         }
         public void PushBagToConveyorBelt(Bag bagtoqueue)
         {
-            if (_bagQueue.Count < _setsize && bagtoqueue != null)
+            lock (_bagQueue)
             {
+                if (_bagQueue.Count < _setsize && bagtoqueue != null)
+                {
                     _bagQueue.Enqueue(bagtoqueue);
-                    MovingHandler?.Invoke(this,bagtoqueue, 1, 0);
-                
-                IsFull = false;
-            }
-            else
-            {
-                IsFull = true;
+                    MovingHandler?.Invoke(this, bagtoqueue, 1, 0);
+
+                    IsFull = false;
+                }
+                else
+                {
+                    IsFull = true;
+                }
             }
         }
 
         public Bag RemoveBagFromConveyorBelt()
         {
-            if (_bagQueue.Count < 1)
-                return null;
-
-            Bag bag = _bagQueue.Dequeue();
-            if (bag != null)
+            lock (_bagQueue)
             {
-                MovingHandler(this.Next, bag, 1, 0);
-            }
+                if (_bagQueue.Count < 1)
+                    return null;
 
-            IsFull = false;
-            return bag;
+                Bag bag = _bagQueue.Dequeue();
+                if (bag != null)
+                {
+                    MovingHandler?.Invoke(this.Next, bag, 1, 0);
+                }
+
+                IsFull = false;
+                return bag;
+            }
         }
 
 

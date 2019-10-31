@@ -11,7 +11,7 @@ namespace Rail_Bag_Simulation
 {
     class CheckinNode : Node
     {
-        public Queue<Bag> _bagsQueue;
+        private readonly Queue<Bag> _bagsQueue;
         public Image image { get; private set; }
         public static string control;
         public CheckinNode(int top,int left):base(top, left)
@@ -38,13 +38,25 @@ namespace Rail_Bag_Simulation
             return sender;
         }
 
+        public int QueueCount => _bagsQueue.Count;
+        internal bool IsEmpty()
+        {
+            lock (_bagsQueue)
+            {
+                return QueueCount < 1;
+            }
+        }
+        public Queue<Bag> BagsQueue => _bagsQueue;
+
         public bool Push(List<Bag> bagsList)
         { 
             bagsList.ForEach(p =>
             {
-                
                 control += p.GetBagInfo() + "\n";
-                _bagsQueue.Enqueue(p);
+                lock (_bagsQueue)
+                {
+                    _bagsQueue.Enqueue(p);
+                }
             });
 
             return true;
@@ -53,10 +65,13 @@ namespace Rail_Bag_Simulation
 
         public Bag Remove()
         {
-            if (_bagsQueue.Count < 1)
-                return null;
-            var bag = _bagsQueue.Dequeue();
-            return bag;
+            lock (_bagsQueue)
+            {
+                if (_bagsQueue.Count < 1)
+                    return null;
+                var bag = _bagsQueue.Dequeue();
+                return bag;
+            }
         }
     }
 }

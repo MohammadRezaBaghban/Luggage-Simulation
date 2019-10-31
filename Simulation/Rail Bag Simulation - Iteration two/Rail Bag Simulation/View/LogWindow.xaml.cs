@@ -25,7 +25,7 @@ namespace Rail_Bag_Simulation.View
           
 
             dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0,0,500);
             dispatcherTimer.Start();
             

@@ -64,8 +64,6 @@
     <Compile Include="Model\Airport.cs" />
     <Compile Include="Model\BagSortNode.cs" />
     <Compile Include="Model\CheckinNode.cs" />
-    <Compile Include="Model\CheckpointNode.cs" />
-    <Compile Include="Model\Conveyorbelt.cs" />
     <Compile Include="Model\ConveyorNode.cs" />
     <Compile Include="Model\Gate.cs" />
     <Compile Include="Model\GateNode.cs" />

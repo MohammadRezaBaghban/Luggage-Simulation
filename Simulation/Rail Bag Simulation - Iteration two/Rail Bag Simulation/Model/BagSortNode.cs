@@ -17,8 +17,14 @@ namespace Rail_Bag_Simulation
         public Image image { get; private set; }
         public List<ConveyorNode> ListOfConnectedNodes { get; } = new List<ConveyorNode>();
 
+        public Queue<Bag> BagQueue => _bagQueue;
+
+        private readonly Queue<Bag> _bagQueue;
+
+
         public BagSortNode(int top, int left) : base(top, left)
         {
+            _bagQueue = new Queue<Bag>();
             DelayTime = 10;
            TransformedBitmap tr = new TransformedBitmap();
 
@@ -75,30 +81,50 @@ namespace Rail_Bag_Simulation
 
             Thread.Sleep(DelayTime);
         }
+        public bool Push(Bag bag)
+        {
+            lock (_bagQueue)
+            {
+                _bagQueue.Enqueue(bag);
+                return true;
+            }
+        }
 
+        public Bag Remove()
+        {
+            lock (_bagQueue)
+            {
+                if (_bagQueue.Count < 1)
+                    return null;
+                var bag = _bagQueue.Dequeue();
+                return bag;
+            }
+        }
         public Node determineNextNode(Bag g)
         {
             Node tnode = null;
             if (g == null) return null;
-
-            foreach (var p in ListOfConnectedNodes)
+            lock (ListOfConnectedNodes)
             {
-                Node currentNode = p;
-
-                while (currentNode.Next != null && !(currentNode is TerminalNode node))
+                foreach (var p in ListOfConnectedNodes)
                 {
-                    currentNode = currentNode.Next;
+                    Node currentNode = p;
+
+                    while (currentNode.Next != null && !(currentNode is TerminalNode node))
+                    {
+                        currentNode = currentNode.Next;
+                    }
+
+                    string str = g.TerminalAndGate;
+                    string[] words = str.Split('-');
+                    var result = words[0];
+                    if ((currentNode as TerminalNode)?.Terminal.TerminalId.ToString() != result) continue;
+                    tnode = p;
+                    break;
                 }
 
-                string str = g.TerminalAndGate;
-                string[] words = str.Split('-');
-                var result = words[0];
-                if ((currentNode as TerminalNode)?.Terminal.TerminalId.ToString() != result) continue;
-                tnode = p;
-                break;
+                return tnode;
             }
-
-            return tnode;
         }
 
 

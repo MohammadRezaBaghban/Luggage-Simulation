@@ -11,12 +11,12 @@ namespace Rail_Bag_Simulation
     public class Airport
     {
         private static int Setsize;
-        private string _name;
+        private readonly string _name;
         private readonly Dictionary<Gate, Destination> _gateDestinations= new Dictionary<Gate, Destination>();
         private readonly List<Bag> _bagsList = new List<Bag>();
-        private static Storage _storage=new Storage();
-        private LinkedList ll= new LinkedList();
-        private bool IsMapCreated = false;
+        private static readonly Storage _storage=new Storage();
+        private readonly LinkedList ll= new LinkedList();
+        private  bool IsMapCreated = false;
         
         private ConveyorNode ConveyorNode;
         private BagSortNode BagSortNode;

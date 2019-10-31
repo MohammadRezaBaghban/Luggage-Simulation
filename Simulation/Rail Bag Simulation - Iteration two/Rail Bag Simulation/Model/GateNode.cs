@@ -26,7 +26,10 @@ namespace Rail_Bag_Simulation
         }
         public void AddBag(Bag g)
         {
-            this.ListOfBags.Add(g);
+            lock (ListOfBags)
+            {
+                this.ListOfBags.Add(g);
+            }
         }
         public override string Nodeinfo()
         {

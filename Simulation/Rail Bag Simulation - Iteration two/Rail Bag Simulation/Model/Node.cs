@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Rail_Bag_Simulation
 {
@@ -33,7 +34,7 @@ namespace Rail_Bag_Simulation
 
         public abstract string Nodeinfo();
 
-
+        
     }
 }
 
