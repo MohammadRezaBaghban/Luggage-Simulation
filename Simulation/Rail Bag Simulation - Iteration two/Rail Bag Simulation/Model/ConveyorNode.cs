@@ -66,8 +66,10 @@ namespace Rail_Bag_Simulation
                 {
                     _bagQueue.Enqueue(bagtoqueue);
                     MovingHandler?.Invoke(this, bagtoqueue, 1, 0);
+                    if (_bagQueue.Count<_setsize-1) _bagQueue.Enqueue(null);
+
                 }
-                
+
             }
         }
 
@@ -93,8 +95,11 @@ namespace Rail_Bag_Simulation
             string bagqueueinfo = "Conveyor " + Id.ToString() + ": \n";
             foreach (Bag g in ListofBagsinqueue())
             {
-
-                bagqueueinfo += string.Format(g != null ? g.GetBagInfo() + "\n " : " ** \n ");
+                if(g != null){bagqueueinfo += string.Format(g != null ? g.GetBagInfo() + "\n " : " ** \n ");}
+                else
+                {
+                    bagqueueinfo += "\n ** \n";
+                }
             }
             return bagqueueinfo;
         }

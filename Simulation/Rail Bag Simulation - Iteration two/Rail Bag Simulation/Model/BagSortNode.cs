@@ -1,10 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Channels;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -12,37 +8,29 @@ using System.Windows.Media.Imaging;
 
 namespace Rail_Bag_Simulation
 {
-    class BagSortNode : Node
+    internal class BagSortNode : Node
     {
-        public Image image { get; private set; }
-        public List<ConveyorNode> ListOfConnectedNodes { get; } = new List<ConveyorNode>();
-
-        public Queue<Bag> BagQueue => _bagQueue;
-
-        private readonly Queue<Bag> _bagQueue;
-
-
         public BagSortNode(int top, int left) : base(top, left)
         {
-            _bagQueue = new Queue<Bag>();
+            BagQueue = new Queue<Bag>();
             DelayTime = 10;
-           TransformedBitmap tr = new TransformedBitmap();
+            var tr = new TransformedBitmap();
 
 
-           image = new Image
+            image = new Image
             {
                 Width = 72,
                 Height = 72,
                 HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center
             };
 
-            var bmp = new BitmapImage(new Uri($"../../Resources/sorter.png", UriKind.Relative));
+            var bmp = new BitmapImage(new Uri("../../Resources/sorter.png", UriKind.Relative));
             tr.BeginInit();
 
             tr.Source = bmp;
 
-            RotateTransform transform = new RotateTransform(90);
+            var transform = new RotateTransform(90);
 
             tr.Transform = transform;
 
@@ -50,6 +38,11 @@ namespace Rail_Bag_Simulation
 
             image.Source = tr;
         }
+
+        public Image image { get; }
+        public List<ConveyorNode> ListOfConnectedNodes { get; } = new List<ConveyorNode>();
+
+        public Queue<Bag> BagQueue { get; }
 
         public void ConnectNodeToSorter(ConveyorNode n)
         {
@@ -62,44 +55,40 @@ namespace Rail_Bag_Simulation
             ConveyorNode tmpConveyor = null;
             while (!(next is TerminalNode))
             {
-                if (((ConveyorNode)(next)).IsFull() == false)
-                {
-                    ((ConveyorNode)(next)).PushBagToConveyorBelt(g);
-                }
+                if (((ConveyorNode) next).IsFull() == false) ((ConveyorNode) next).PushBagToConveyorBelt(g);
 
                 if (next.Next is TerminalNode) tmpConveyor = (ConveyorNode) next;
-                next = ((next).Next) ;
+                next = next.Next;
             }
 
             var tbag = tmpConveyor.RemoveBagFromConveyorBelt();
 
-            while (tbag == null && !tmpConveyor.IsEmpty())
-            {
-                tbag = tmpConveyor.RemoveBagFromConveyorBelt();
-            }
-            if (tbag != null) ((TerminalNode)(next)).PassBag(tbag);
+            while (tbag == null && !tmpConveyor.IsEmpty()) tbag = tmpConveyor.RemoveBagFromConveyorBelt();
+            if (tbag != null) ((TerminalNode) next).PassBag(tbag);
 
             Thread.Sleep(DelayTime);
         }
+
         public bool Push(Bag bag)
         {
-            lock (_bagQueue)
+            lock (BagQueue)
             {
-                _bagQueue.Enqueue(bag);
+                BagQueue.Enqueue(bag);
                 return true;
             }
         }
 
         public Bag Remove()
         {
-            lock (_bagQueue)
+            lock (BagQueue)
             {
-                if (_bagQueue.Count < 1)
+                if (BagQueue.Count < 1)
                     return null;
-                var bag = _bagQueue.Dequeue();
+                var bag = BagQueue.Dequeue();
                 return bag;
             }
         }
+
         public Node determineNextNode(Bag g)
         {
             Node tnode = null;
@@ -111,14 +100,12 @@ namespace Rail_Bag_Simulation
                     Node currentNode = p;
 
                     while (currentNode.Next != null && !(currentNode is TerminalNode node))
-                    {
                         currentNode = currentNode.Next;
-                    }
 
-                    string str = g.TerminalAndGate;
-                    string[] words = str.Split('-');
+                    var str = g.TerminalAndGate;
+                    var words = str.Split('-');
                     var result = words[0];
-                    if ((currentNode as TerminalNode)?.Terminal.TerminalId.ToString() != result) continue;
+                    if ((currentNode as TerminalNode)?.Terminal.TerminalId != result) continue;
                     tnode = p;
                     break;
                 }
@@ -130,11 +117,8 @@ namespace Rail_Bag_Simulation
 
         public override string Nodeinfo()
         {
-            string sender = "Bag Sorter: \n";
-            foreach (Bag g in _bagQueue)
-            {
-                sender += g.GetBagInfo() + "\n";
-            }
+            var sender = "Bag Sorter: \n";
+            foreach (var g in BagQueue) sender += g.GetBagInfo() + "\n";
 
             return sender;
         }

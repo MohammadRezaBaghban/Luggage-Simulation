@@ -57,6 +57,7 @@ namespace Rail_Bag_Simulation
             this._terminalAndGate = terminalAndGate;
         }
 
+
         public string GetBagInfo()
         {
             return string.Format($"Id : {_id} Weight: {_weight}  Destination: {_destination} Terminal and Gate: {_terminalAndGate}");
