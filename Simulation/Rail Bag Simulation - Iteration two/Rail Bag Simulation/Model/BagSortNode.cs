@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,7 +14,8 @@ namespace Rail_Bag_Simulation
     {
         public BagSortNode(int top, int left) : base(top, left)
         {
-            BagQueue = new Queue<Bag>();
+            _bagQueue = new Queue<Bag>();
+
             DelayTime = 10;
             var tr = new TransformedBitmap();
 
@@ -43,7 +45,8 @@ namespace Rail_Bag_Simulation
         public Image image { get; }
         public List<ConveyorNode> ListOfConnectedNodes { get; } = new List<ConveyorNode>();
 
-        public Queue<Bag> BagQueue { get; }
+        private Queue<Bag> _bagQueue;
+
 
         public void ConnectNodeToSorter(ConveyorNode n)
         {
@@ -53,20 +56,20 @@ namespace Rail_Bag_Simulation
 
         public bool Push(Bag bag)
         {
-            lock (BagQueue)
+            lock (_bagQueue)
             {
-                BagQueue.Enqueue(bag);
+                _bagQueue.Enqueue(bag);
                 return true;
             }
         }
 
         public Bag Remove()
         {
-            lock (BagQueue)
+            lock (_bagQueue)
             {
-                if (BagQueue.Count < 1)
+                if (_bagQueue.Count < 1)
                     return null;
-                var bag = BagQueue.Dequeue();
+                var bag = _bagQueue.Dequeue();
                 return bag;
             }
         }
@@ -100,10 +103,7 @@ namespace Rail_Bag_Simulation
 
         public override string Nodeinfo()
         {
-            var sender = "Bag Sorter: \n";
-            foreach (var g in BagQueue) sender += g.GetBagInfo() + "\n";
-
-            return sender;
+            return _bagQueue.Aggregate("Bag Sorter: \n", (current, g) => current + (g.GetBagInfo() + "\n"));
         }
     }
 }

@@ -93,14 +93,17 @@ namespace Rail_Bag_Simulation
         public override string Nodeinfo() // change the method to return a list of bags
         {
             string bagqueueinfo = "Conveyor " + Id.ToString() + ": \n";
-            foreach (Bag g in ListofBagsinqueue())
+            var listOfBags = ListofBagsinqueue();
+            lock (listOfBags)
             {
-                if(g != null){bagqueueinfo += string.Format(g != null ? g.GetBagInfo() + "\n " : " ** \n ");}
-                else
+                foreach (Bag g in listOfBags)
                 {
-                    bagqueueinfo += "\n ** \n";
-                }
-            }
+                    if(g != null){bagqueueinfo += string.Format(g != null ? g.GetBagInfo() + "\n " : " ** \n ");}
+                    else
+                    {
+                        bagqueueinfo += "\n ** \n";
+                    }
+                }}
             return bagqueueinfo;
         }
 

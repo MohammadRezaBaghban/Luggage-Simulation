@@ -30,9 +30,12 @@ namespace Rail_Bag_Simulation
         public override string Nodeinfo()
         {
             string sender = "Check in: \n";
-            foreach (Bag g in _bagsQueue)
+            lock (_bagsQueue)
             {
-                sender +=  g.GetBagInfo() + "\n";
+                foreach (Bag g in _bagsQueue)
+                {
+                    sender += g.GetBagInfo() + "\n";
+                }
             }
 
             return sender;
