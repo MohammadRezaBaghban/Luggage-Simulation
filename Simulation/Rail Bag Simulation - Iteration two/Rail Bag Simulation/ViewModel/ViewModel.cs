@@ -25,17 +25,17 @@ namespace Rail_Bag_Simulation.ViewModel
         public void StartSimulation(int totalbags)
         {
             _airport = new Airport("Schiphol");
-            CreateMap();
+            CreateMap(10);
         
-            _airport.StartBagsMovement(totalbags, 0, 1, 0, 0);
+            _airport.StartBagsMovement(totalbags, 3, 1, 0, 0);
             _airport.LL.MoveBags(NumberOfBags);
 
 
         }
 
-        public void CreateMap()
+        public void CreateMap(int m)
         {
-            _airport.CreateMapLayout(4);
+            _airport.CreateMapLayout(m);
         }
 
         public List<Node> GetEverythingInTheLinkedList()

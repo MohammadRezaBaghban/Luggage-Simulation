@@ -105,7 +105,7 @@ namespace Rail_Bag_Simulation
                     continue;
                 }
                 bags.Add(new Bag(_random.Next(10, 22), (Destination) _random.Next(1, 12),
-                    "T" + _random.Next(1, 3) + "-"+"G" + "1"));
+                    "T" + _random.Next(1, 3) + "-"+"G" + _random.Next(1, 3)));
             }
             return bags;
         }
@@ -119,14 +119,14 @@ namespace Rail_Bag_Simulation
             {
                 if (nbrOfBagsDrugs > 0)
                 {
-                    templist.Add(new Bag(SuspiciousBagtype.Drug, _random.Next(10, 22), (Destination)_random.Next(1, 12), "T" + _random.Next(1, 3) + "-" + "G" + "1"));
+                    templist.Add(new Bag(SuspiciousBagtype.Drug, _random.Next(10, 22), (Destination)_random.Next(1, 12), "T" + _random.Next(1, 3) + "-" + "G" + _random.Next(1, 3)));
                     nbrOfBagsDrugs--;
                     totalnumber--;
                 }
 
                 if (nbrOfBagsWeapons > 0)
                 {
-                    templist.Add(new Bag(SuspiciousBagtype.Weapons, _random.Next(10, 22), (Destination)_random.Next(1, 12), "T" + _random.Next(1, 3)+ "-" + "G" + "1"));
+                    templist.Add(new Bag(SuspiciousBagtype.Weapons, _random.Next(10, 22), (Destination)_random.Next(1, 12), "T" + _random.Next(1, 3)+ "-" + "G" + _random.Next(1, 3)));
                     nbrOfBagsWeapons--;
                     totalnumber--;
 
@@ -134,7 +134,7 @@ namespace Rail_Bag_Simulation
 
                 if (nbrOfBagsFlammable > 0)
                 {
-                    templist.Add(new Bag(SuspiciousBagtype.Flammables, _random.Next(10, 22), (Destination)_random.Next(1, 12), "T" + _random.Next(1, 3) + "-" +"G" + "1"));
+                    templist.Add(new Bag(SuspiciousBagtype.Flammables, _random.Next(10, 22), (Destination)_random.Next(1, 12), "T" + _random.Next(1, 3) + "-" +"G" + _random.Next(1, 3)));
                     nbrOfBagsFlammable--;
                     totalnumber--;
 
@@ -142,7 +142,7 @@ namespace Rail_Bag_Simulation
 
                 if (nbrBagsOthers > 0)
                 {
-                    templist.Add(new Bag(SuspiciousBagtype.Other, _random.Next(10, 22), (Destination)_random.Next(1, 12), "T" + _random.Next(1, 3) + "-" + "G" + "1"));
+                    templist.Add(new Bag(SuspiciousBagtype.Other, _random.Next(10, 22), (Destination)_random.Next(1, 12), "T" + _random.Next(1, 3) + "-" + "G" + _random.Next(1, 3)));
                     nbrBagsOthers--;
                     totalnumber--;
                 }

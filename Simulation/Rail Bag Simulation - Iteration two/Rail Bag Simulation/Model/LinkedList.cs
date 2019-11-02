@@ -287,8 +287,9 @@ namespace Rail_Bag_Simulation
                 {
                     if (!nodeToSendTheBagTo.IsNotNull())
                     {
-                        if (terminalNodeCopy != null)
-                            nodeToSendTheBagTo = terminalNodeCopy.DetermineNextNode(out bReceivedInTerminal);
+                       
+
+                            nodeToSendTheBagTo = terminalNodeCopy?.DetermineNextNode(out bReceivedInTerminal);
                     }
 
                     if (nodeToSendTheBagTo.IsNotNull() && bReceivedInTerminal.IsNotNull() &&

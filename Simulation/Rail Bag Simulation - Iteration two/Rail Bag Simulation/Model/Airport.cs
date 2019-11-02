@@ -64,6 +64,7 @@ namespace Rail_Bag_Simulation
 
 
             ll.AddNode(ConveyorNode = new ConveyorNode(Setsize, 270, 0, -180, 0, 280, 701), BagSortNode);
+    
 
 
             t = new TerminalNode(new Terminal("T1"),70,952);
@@ -77,7 +78,10 @@ namespace Rail_Bag_Simulation
             GateNode = new GateNode(new Gate("G1"),148,1114);
             ll.AddNode(GateNode, ConveyorNode);
 
+            ll.AddNode(ConveyorNode = new ConveyorNode(Setsize, 90, 0, 0, 40, 500, 1027), t);
 
+            GateNode = new GateNode(new Gate("G2"), 426, 1128);
+            ll.AddNode(GateNode, ConveyorNode);
 
 
             ll.AddNode(ConveyorNode = new ConveyorNode(Setsize, 270, 0, 270, 0, 316, 701), BagSortNode);
@@ -90,8 +94,12 @@ namespace Rail_Bag_Simulation
 
             GateNode = new GateNode(new Gate("G1"),426,1128);
             ll.AddNode(GateNode, ConveyorNode);
+            ll.AddNode(ConveyorNode = new ConveyorNode(Setsize, 90, 0, 0, 40, 500, 1027), t);
 
-          
+            GateNode = new GateNode(new Gate("G2"), 426, 1128);
+            ll.AddNode(GateNode, ConveyorNode);
+
+
         }
 
         public Bag GetBagById(int bagId)
