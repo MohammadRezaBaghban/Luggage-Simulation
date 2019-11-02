@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
 {
@@ -34,9 +35,7 @@ namespace Rail_Bag_Simulation
 
         public override string Nodeinfo()
         {
-            string sender =" Terminal: " +Terminal.TerminalId +"\n";
-           
-            return sender ;
+            return BagQueue.Aggregate("Terminal: \n" + Terminal.TerminalId + "\n", (current, g) => current + (g.GetBagInfo() + "\n"));
         }
         public void ConnectNodeToSorter(ConveyorNode n)
         {
@@ -64,9 +63,11 @@ namespace Rail_Bag_Simulation
             }
         }
 
-        public Node determineNextNode(Bag g)
+        public Node DetermineNextNode(out Bag g)
         {
             Node tnode = null;
+            g = this.Remove();
+            if (!g.IsNotNull()) return null;
             foreach (var p in ListOfConnectedNodes)
             {
                 Node currentNode = p;
@@ -76,7 +77,7 @@ namespace Rail_Bag_Simulation
                     currentNode = currentNode.Next;
                 }
 
-                string str = g.TerminalAndGate;
+                string str = g?.TerminalAndGate;
                 string[] words = str.Split('-');
                 var result = words[1];
                 if ((currentNode as GateNode)?.Gate.GateNr.ToString() != result) continue;

@@ -78,26 +78,28 @@ namespace Rail_Bag_Simulation
         {
             Node tnode = null;
             g = this.Remove();
-            if (!g.IsNotNull()) return null;
-            lock (ListOfConnectedNodes)
-            {
-                foreach (var p in ListOfConnectedNodes)
+            if (g != null)
+                lock (ListOfConnectedNodes)
                 {
-                    Node currentNode = p;
+                    foreach (var p in ListOfConnectedNodes)
+                    {
+                        Node currentNode = p;
 
-                    while (currentNode.Next != null && !(currentNode is TerminalNode node))
-                        currentNode = currentNode.Next;
+                        while (currentNode.Next != null && !(currentNode is TerminalNode node))
+                            currentNode = currentNode.Next;
 
-                    var str = g.TerminalAndGate;
-                    var words = str.Split('-');
-                    var result = words[0];
-                    if ((currentNode as TerminalNode)?.Terminal.TerminalId != result) continue;
-                    tnode = p;
-                    break;
+                        var str = g?.TerminalAndGate;
+                        var words = str.Split('-');
+                        var result = words[0];
+                        if ((currentNode as TerminalNode)?.Terminal.TerminalId != result) continue;
+                        tnode = p;
+                        break;
+                    }
+
+                    return tnode;
                 }
 
-                return tnode;
-            }
+            return null;
         }
 
 

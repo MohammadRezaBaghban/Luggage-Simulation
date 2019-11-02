@@ -28,7 +28,7 @@ namespace Rail_Bag_Simulation
             };
         }
 
-        public bool Push(Bag bag)
+        public bool PushBag(Bag bag)
         {
             lock (_bagQueue)
             {

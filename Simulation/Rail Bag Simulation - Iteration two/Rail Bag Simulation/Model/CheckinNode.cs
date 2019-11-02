@@ -66,7 +66,7 @@ namespace Rail_Bag_Simulation
 
         }
 
-        public Bag Remove()
+        public Bag RemoveBag()
         {
             lock (_bagsQueue)
             {

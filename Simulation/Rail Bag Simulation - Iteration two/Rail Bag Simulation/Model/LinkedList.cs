@@ -9,7 +9,8 @@ namespace Rail_Bag_Simulation
     {
         public static bool IsSimulationFinished;
         private readonly Dictionary<Node, Node> distinatioNodes = new Dictionary<Node, Node>();
-        private readonly List<Thread> ThreadList = new List<Thread>();
+        private readonly List<Thread> _threadList = new List<Thread>();
+        private readonly List<Thread> _threadListAfterBagSort = new List<Thread>();
 
         private Node current;
         public Node First { get; private set; }
@@ -19,12 +20,16 @@ namespace Rail_Bag_Simulation
             var t1 = new Thread(() =>
             {
                 while (TerminalNode.counter + Storage.GetNumberOfBagsInStorage() == totalnr)
-                    IsSimulationFinished = true;
+                    _threadList.ForEach(thread => thread.Interrupt());
+                _threadListAfterBagSort.ForEach(thread => thread.Interrupt());
+                IsSimulationFinished = true;
             });
-            t1.Start();
+
             CreateThreads();
 
-            foreach (var t in ThreadList) t.Start();
+            foreach (var t in _threadList) t.Start();
+            Thread.Sleep(500);
+            foreach (var t in _threadListAfterBagSort) t.Start();
         }
 
         public void AddGeneratedBags(List<Bag> bagstoqueue)
@@ -65,7 +70,7 @@ namespace Rail_Bag_Simulation
                     case BagSortNode bagSortNode when currentnode is ConveyorNode:
                         var currentnode2 = currentnode;
                         var node = bagSortNode;
-                        ThreadList.Add(new Thread(() =>
+                        _threadList.Add(new Thread(() =>
                         {
                             while (!IsSimulationFinished)
                             {
@@ -90,7 +95,7 @@ namespace Rail_Bag_Simulation
 
                     case ConveyorNode nextConveyorNode when currentnode is ConveyorNode:
                         var currentnode3 = currentnode;
-                        ThreadList.Add(new Thread(() =>
+                        _threadList.Add(new Thread(() =>
                         {
                             while (!IsSimulationFinished)
                             {
@@ -112,12 +117,12 @@ namespace Rail_Bag_Simulation
                         break;
                     case ConveyorNode nextConveyorNode when currentnode is CheckinNode checkinNode:
 
-                        ThreadList.Add(new Thread(() =>
+                        _threadList.Add(new Thread(() =>
                         {
                             while (!IsSimulationFinished)
                                 if (!nextConveyorNode.IsFull() && !checkinNode.IsEmpty())
                                 {
-                                    var b = checkinNode.Remove();
+                                    var b = checkinNode.RemoveBag();
                                     if (b.IsNotNull())
                                     {
                                         nextConveyorNode.PushBagToConveyorBelt(b);
@@ -134,7 +139,7 @@ namespace Rail_Bag_Simulation
                     case SecurityNode securityNode when currentnode is ConveyorNode:
 
                         var currentnode1 = currentnode;
-                        ThreadList.Add(new Thread(() =>
+                        _threadList.Add(new Thread(() =>
                         {
                             while (!IsSimulationFinished)
                             {
@@ -144,7 +149,7 @@ namespace Rail_Bag_Simulation
                                     var b = ((ConveyorNode)currentnode1).RemoveBagFromConveyorBelt();
                                     if (b.IsNotNull())
                                     {
-                                        securityNode.Push(b);
+                                        securityNode.PushBag(b);
                                     }
                                 }
                             }
@@ -155,7 +160,7 @@ namespace Rail_Bag_Simulation
                         });
                         break;
                     case ConveyorNode nextConveyorNode when currentnode is SecurityNode securityNode:
-                        ThreadList.Add(new Thread(() =>
+                        _threadList.Add(new Thread(() =>
                         {
                             while (!IsSimulationFinished)
                                 if (!nextConveyorNode.IsFull())
@@ -187,63 +192,58 @@ namespace Rail_Bag_Simulation
             Node SortNodeCurrent = bsnodeRef;
             Node nextnode = null;
 
-         
+
             if (SortNodeCurrent != null && SortNodeCurrent is BagSortNode bsNode)
             {
                 nextnode = bsNode.determineNextNode(out Bag bReceived);
 
                 //Why is thread created here?
-                ThreadList.Add(new Thread(() =>
+                _threadList.Add(new Thread(() =>
                 {
                     var bagSortNodeCopy = bsNode;
                     var nodeToSendTheBagTo = nextnode;
                     while (!IsSimulationFinished)
                     {
-                        
                         if (!nodeToSendTheBagTo.IsNotNull())
                         {
                             nodeToSendTheBagTo = bagSortNodeCopy.determineNextNode(out bReceived);
                         }
 
                         if (nodeToSendTheBagTo.IsNotNull() && bReceived.IsNotNull() &&
-                            !((ConveyorNode)nodeToSendTheBagTo).IsFull())
+                            !((ConveyorNode) nodeToSendTheBagTo).IsFull())
                         {
                             Thread.Sleep(900);
-                            ((ConveyorNode)nodeToSendTheBagTo)?.PushBagToConveyorBelt(bReceived);
+                            ((ConveyorNode) nodeToSendTheBagTo)?.PushBagToConveyorBelt(bReceived);
                             nodeToSendTheBagTo = null;
+                        }
+                    }
+                }));
 
-                            
-
-
-
-                            //Here It stops working, it does not empty the cnodes
-                            bsNode.ListOfConnectedNodes.ForEach(cnode1 =>
+                bsNode.ListOfConnectedNodes.ForEach(cnode1 =>
                             {
-                                
                                 Node tmp = cnode1;
                                 Node tmpNext = tmp.Next;
                                 while (!(tmpNext is TerminalNode))
                                 {
                                     var tmp1 = tmp;
                                     var next = tmpNext;
-                                    var received = bReceived;
-                                    ThreadList.Add(new Thread(() =>
+                                    _threadListAfterBagSort.Add(new Thread(() =>
                                     {
                                         while (!IsSimulationFinished)
                                             if (!((ConveyorNode)tmp1).IsEmpty() &&
                                                 !((ConveyorNode)next).IsFull())
                                             {
                                                 Thread.Sleep(500);
-                                                var bb = ((ConveyorNode)tmp1).RemoveBagFromConveyorBelt();
-                                                if (received.IsNotNull())
+                                                var bagFromConveyorBelt = ((ConveyorNode)tmp1).RemoveBagFromConveyorBelt();
+                                                if (bagFromConveyorBelt.IsNotNull())
                                                 {
-                                                    ((ConveyorNode)next).PushBagToConveyorBelt(bb);
+                                                    ((ConveyorNode)next).PushBagToConveyorBelt(bagFromConveyorBelt);
                                                 }
                                             }
                                     })
                                     {
-                                        Name = "Current Node " + tmp.GetType() + " Next Node is " +
-                                               tmpNext.GetType()
+                                        Name = "Current Node " + tmp1.GetType() + " Next Node is " +
+                                               next.GetType()
                                     });
                                     tmp = tmpNext;
                                     tmpNext = tmp.Next;
@@ -251,15 +251,14 @@ namespace Rail_Bag_Simulation
 
                                 var tmp2 = tmp;
                                 var node2 = tmpNext;
-                                var receivedg = bReceived;
-                                ThreadList.Add(new Thread(() =>
+                                _threadListAfterBagSort.Add(new Thread(() =>
                                     {
                                         while (!IsSimulationFinished)
                                             if (!((ConveyorNode)tmp2).IsEmpty())
-                                            {
+                                            { 
                                                 Thread.Sleep(500);
                                                 var bb = ((ConveyorNode)tmp2).RemoveBagFromConveyorBelt();
-                                                if (receivedg.IsNotNull())
+                                                if (bb.IsNotNull())
                                                 {
                                                     ((TerminalNode)node2).Push(bb);
                                                 }
@@ -268,49 +267,91 @@ namespace Rail_Bag_Simulation
                                 { Name = "Current Node " + tmp.GetType() + " Next Node is " + tmpNext.GetType() });
 
                                 tmp = tmpNext;
-                                tmpNext = tmp.Next;
-                                ((TerminalNode)tmp).ListOfConnectedNodes.ForEach(cnode2 =>
-                               {
-                                   Node tmp1 = cnode2;
-                                   Node tmpNext1 = cnode2.Next;
-                                   while (!(tmp1 is GateNode))
-                                   {
-                                       var tmp3 = tmp1;
-                                       var next1 = tmpNext1;
-                                       var received1 = bReceived;
-                                       ThreadList.Add(new Thread(() =>
-                                       {
-                                           while (!IsSimulationFinished)
-                                               if (!((ConveyorNode)tmp3).IsEmpty() &&
-                                                   !((ConveyorNode)next1).IsFull())
-                                               {
-                                                   Thread.Sleep(1200);
-                                                   var bb = ((ConveyorNode)tmp3).RemoveBagFromConveyorBelt();
-                                                   if (received1.IsNotNull())
-                                                   {
-                                                       ((ConveyorNode)next1).PushBagToConveyorBelt(bb);
-                                                   }
-                                               }
-                                       })
-                                       {
-                                           Name = "Current Node " + tmp1.GetType() + " Next Node is " +
-                                                  tmpNext1.GetType()
-                                       });
 
-                                       tmp1 = tmpNext1;
-                                       tmpNext1 = tmp1.Next;
-                                   }
-                               });
+                                CreateThreadsAfterTerminal(ref tmp);
+                                
                             });
-                        }
-                    }
-                })
-                {
-                    Name = "Current Node " + SortNodeCurrent.GetType()
-                });
-
-
             }
+        }
+
+        public void CreateThreadsAfterTerminal(ref Node n)
+        {
+            Bag bReceivedInTerminal =null;
+            var tmpNext111 = ((TerminalNode)n)?.DetermineNextNode(out bReceivedInTerminal);
+            var currentTerminal = n;
+            _threadListAfterBagSort.Add(new Thread(() =>
+            {
+                var terminalNodeCopy = (TerminalNode)currentTerminal;
+                var nodeToSendTheBagTo = tmpNext111;
+                while (!IsSimulationFinished)
+                {
+                    if (!nodeToSendTheBagTo.IsNotNull())
+                    {
+                        if (terminalNodeCopy != null)
+                            nodeToSendTheBagTo = terminalNodeCopy.DetermineNextNode(out bReceivedInTerminal);
+                    }
+
+                    if (nodeToSendTheBagTo.IsNotNull() && bReceivedInTerminal.IsNotNull() &&
+                        !((ConveyorNode)nodeToSendTheBagTo).IsFull())
+                    {
+                        Thread.Sleep(900);
+                        ((ConveyorNode)nodeToSendTheBagTo)?.PushBagToConveyorBelt(bReceivedInTerminal);
+                        nodeToSendTheBagTo = null;
+                    }
+                }
+            }));
+
+            ((TerminalNode)currentTerminal)?.ListOfConnectedNodes.ForEach(cnode2 =>
+            {
+                Node tmp1 = cnode2;
+                Node tmpNext1 = cnode2.Next;
+                while (!(tmpNext1 is GateNode))
+                {
+                    var tmp3 = tmp1;
+                    var next1 = tmpNext1;
+
+                    _threadListAfterBagSort.Add(new Thread(() =>
+                    {
+                        while (!IsSimulationFinished)
+                            if (!((ConveyorNode)tmp3).IsEmpty() &&
+                                !((ConveyorNode)next1).IsFull())
+                            {
+                                Thread.Sleep(500);
+                                var bb = ((ConveyorNode)tmp3).RemoveBagFromConveyorBelt();
+                                if (bb.IsNotNull())
+                                {
+                                    ((ConveyorNode)next1).PushBagToConveyorBelt(bb);
+                                }
+                            }
+                    })
+                    {
+                        Name = "Current Node " + tmp3.GetType() + " Next Node is " +
+                               next1.GetType()
+                    });
+
+                    tmp1 = tmpNext1;
+                    tmpNext1 = tmp1.Next;
+                }
+
+                {
+                    var node = tmp1;
+                    var tmpNext2 = tmpNext1;
+                    _threadListAfterBagSort.Add(new Thread(() =>
+                        {
+                            while (!IsSimulationFinished)
+                                if (!((ConveyorNode)node).IsEmpty())
+                                {
+                                    Thread.Sleep(500);
+                                    var bb = ((ConveyorNode)node).RemoveBagFromConveyorBelt();
+                                    if (bb.IsNotNull())
+                                    {
+                                        ((GateNode)tmpNext2).AddBag(bb);
+                                    }
+                                }
+                        })
+                        { Name = "Current Node " + node.GetType() + " Next Node is " + tmpNext2.GetType() });
+                }
+            });
         }
 
         public void AddNode(Node childNode, Node parent)

@@ -30,7 +30,7 @@ namespace Rail_Bag_Simulation
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
             dispatcherTimer.Start();
 
-            /*vm.GetEverythingInTheLinkedList().ForEach(p =>
+            vm.GetEverythingInTheLinkedList().ForEach(p =>
             {
                 lock (p)
                 {
@@ -153,7 +153,7 @@ namespace Rail_Bag_Simulation
                         }
                     });
                 }
-            });*/
+            });
             
             InitializeComponent();
         }

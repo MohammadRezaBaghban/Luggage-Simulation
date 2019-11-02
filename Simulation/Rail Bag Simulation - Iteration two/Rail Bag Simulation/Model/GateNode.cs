@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -33,14 +34,7 @@ namespace Rail_Bag_Simulation
         }
         public override string Nodeinfo()
         {
-            string allbags = this.Gate.GateNr +": \n";
-            control = "";
-            foreach (Bag g in ListOfBags)
-            {
-                allbags += string.Format(g != null ? g.GetBagInfo() + "\n " : " ** \n ");
-            }
-            control += allbags;
-            return allbags;
+            return ListOfBags.Aggregate($"Gate: {Gate.GateNr} \n", (current, g) => current + (g.GetBagInfo() + "\n"));
         }
 
         
