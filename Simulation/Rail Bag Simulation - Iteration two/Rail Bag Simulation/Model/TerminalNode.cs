@@ -82,6 +82,7 @@ namespace Rail_Bag_Simulation
                 var result = words[1];
                 if ((currentNode as GateNode)?.Gate.GateNr.ToString() != result) continue;
                 tnode = p;
+                counter++;
                 break;
             }
 
