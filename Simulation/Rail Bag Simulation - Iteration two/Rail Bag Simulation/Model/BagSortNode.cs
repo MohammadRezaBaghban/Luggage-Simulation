@@ -15,8 +15,6 @@ namespace Rail_Bag_Simulation
         public BagSortNode(int top, int left) : base(top, left)
         {
             _bagQueue = new Queue<Bag>();
-
-            DelayTime = 10;
             var tr = new TransformedBitmap();
 
 

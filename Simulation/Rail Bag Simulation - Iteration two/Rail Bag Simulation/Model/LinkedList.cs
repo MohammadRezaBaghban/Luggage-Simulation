@@ -11,8 +11,15 @@ namespace Rail_Bag_Simulation
         private readonly Dictionary<Node, Node> distinatioNodes = new Dictionary<Node, Node>();
         private readonly List<Thread> _threadList = new List<Thread>();
         private readonly List<Thread> _threadListAfterBagSort = new List<Thread>();
+        private int _delayTime;
 
         private Node current;
+
+        public LinkedList(int speedDelayTime)
+        {
+            _delayTime = speedDelayTime;
+        }
+
         public Node First { get; private set; }
 
         public void MoveBags(int totalnr)
@@ -29,7 +36,7 @@ namespace Rail_Bag_Simulation
             CreateThreads();
 
             foreach (var t in _threadList) t.Start();
-            Thread.Sleep(500);
+            Thread.Sleep(_delayTime);
             foreach (var t in _threadListAfterBagSort) t.Start();
         }
 
@@ -75,9 +82,10 @@ namespace Rail_Bag_Simulation
                         {
                             while (!IsSimulationFinished)
                             {
-                                if (!((ConveyorNode)currentnode2).IsEmpty())
+                                if (!((ConveyorNode)currentnode2).IsEmpty)
                                 {
-                                    Thread.Sleep(500);
+                                    Thread.Sleep(_delayTime);
+
                                     var b = ((ConveyorNode)currentnode2).RemoveBagFromConveyorBelt();
                                     if (b.IsNotNull())
                                     {
@@ -100,9 +108,10 @@ namespace Rail_Bag_Simulation
                         {
                             while (!IsSimulationFinished)
                             {
-                                if (!((ConveyorNode)currentnode3).IsEmpty() && !nextConveyorNode.IsFull())
+                                if (!((ConveyorNode)currentnode3).IsEmpty&& !nextConveyorNode.IsFull)
                                 {
-                                    Thread.Sleep(500);
+                                    Thread.Sleep(_delayTime);
+
                                     var b = ((ConveyorNode)currentnode3).RemoveBagFromConveyorBelt();
                                     if (b.IsNotNull())
                                     {
@@ -121,7 +130,7 @@ namespace Rail_Bag_Simulation
                         _threadList.Add(new Thread(() =>
                         {
                             while (!IsSimulationFinished)
-                                if (!nextConveyorNode.IsFull() && !checkinNode.IsEmpty())
+                                if (!nextConveyorNode.IsFull&& !checkinNode.IsEmpty())
                                 {
                                     var b = checkinNode.RemoveBag();
                                     if (b.IsNotNull())
@@ -129,7 +138,8 @@ namespace Rail_Bag_Simulation
                                         nextConveyorNode.PushBagToConveyorBelt(b);
                                     }
 
-                                    Thread.Sleep(500);
+                                    Thread.Sleep(_delayTime);
+
                                 }
                         })
                         {
@@ -144,9 +154,9 @@ namespace Rail_Bag_Simulation
                         {
                             while (!IsSimulationFinished)
                             {
-                                if (!((ConveyorNode)currentnode1).IsEmpty())
+                                if (!((ConveyorNode)currentnode1).IsEmpty)
                                 {
-                                    Thread.Sleep(500);
+                                    Thread.Sleep(_delayTime);
                                     var b = ((ConveyorNode)currentnode1).RemoveBagFromConveyorBelt();
                                     if (b.IsNotNull())
                                     {
@@ -164,7 +174,7 @@ namespace Rail_Bag_Simulation
                         _threadList.Add(new Thread(() =>
                         {
                             while (!IsSimulationFinished)
-                                if (!nextConveyorNode.IsFull())
+                                if (!nextConveyorNode.IsFull)
                                 {
                                     var b = securityNode.ScanBagSecurity();
                                     if (b.IsNotNull())
@@ -172,7 +182,8 @@ namespace Rail_Bag_Simulation
                                         nextConveyorNode.PushBagToConveyorBelt(b);
                                     }
 
-                                    Thread.Sleep(500);
+                                    Thread.Sleep(_delayTime);
+
 
                                 }
                         })
@@ -211,9 +222,10 @@ namespace Rail_Bag_Simulation
                         }
 
                         if (nodeToSendTheBagTo.IsNotNull() && bReceived.IsNotNull() &&
-                            !((ConveyorNode) nodeToSendTheBagTo).IsFull())
+                            !((ConveyorNode) nodeToSendTheBagTo).IsFull)
                         {
-                            Thread.Sleep(700);
+                            Thread.Sleep(_delayTime);
+
                             ((ConveyorNode) nodeToSendTheBagTo)?.PushBagToConveyorBelt(bReceived);
                             nodeToSendTheBagTo = null;
                         }
@@ -231,10 +243,11 @@ namespace Rail_Bag_Simulation
                                     _threadListAfterBagSort.Add(new Thread(() =>
                                     {
                                         while (!IsSimulationFinished)
-                                            if (!((ConveyorNode)tmp1).IsEmpty() &&
-                                                !((ConveyorNode)next).IsFull())
+                                            if (!((ConveyorNode)tmp1).IsEmpty&&
+                                                !((ConveyorNode)next).IsFull)
                                             {
-                                                Thread.Sleep(400);
+                                                Thread.Sleep(_delayTime);
+
                                                 var bagFromConveyorBelt = ((ConveyorNode)tmp1).RemoveBagFromConveyorBelt();
                                                 if (bagFromConveyorBelt.IsNotNull())
                                                 {
@@ -255,9 +268,10 @@ namespace Rail_Bag_Simulation
                                 _threadListAfterBagSort.Add(new Thread(() =>
                                     {
                                         while (!IsSimulationFinished)
-                                            if (!((ConveyorNode)tmp2).IsEmpty())
-                                            { 
-                                                Thread.Sleep(400);
+                                            if (!((ConveyorNode)tmp2).IsEmpty)
+                                            {
+                                                Thread.Sleep(_delayTime);
+
                                                 var bb = ((ConveyorNode)tmp2).RemoveBagFromConveyorBelt();
                                                 if (bb.IsNotNull())
                                                 {
@@ -288,15 +302,13 @@ namespace Rail_Bag_Simulation
                 {
                     if (!nodeToSendTheBagTo.IsNotNull())
                     {
-                       
-
-                            nodeToSendTheBagTo = terminalNodeCopy?.DetermineNextNode(out bReceivedInTerminal);
+                        nodeToSendTheBagTo = terminalNodeCopy?.DetermineNextNode(out bReceivedInTerminal);
                     }
 
                     if (nodeToSendTheBagTo.IsNotNull() && bReceivedInTerminal.IsNotNull() &&
-                        !((ConveyorNode)nodeToSendTheBagTo).IsFull())
+                        !((ConveyorNode)nodeToSendTheBagTo).IsFull)
                     {
-                        Thread.Sleep(432);
+                        Thread.Sleep(_delayTime);
                         ((ConveyorNode)nodeToSendTheBagTo)?.PushBagToConveyorBelt(bReceivedInTerminal);
                         nodeToSendTheBagTo = null;
                     }
@@ -315,8 +327,8 @@ namespace Rail_Bag_Simulation
                     _threadListAfterBagSort.Add(new Thread(() =>
                     {
                         while (!IsSimulationFinished)
-                            if (!((ConveyorNode)tmp3).IsEmpty() &&
-                                !((ConveyorNode)next1).IsFull())
+                            if (!((ConveyorNode)tmp3).IsEmpty&&
+                                !((ConveyorNode)next1).IsFull)
                             {
                                 Thread.Sleep(400);
                                 var bb = ((ConveyorNode)tmp3).RemoveBagFromConveyorBelt();
@@ -341,9 +353,10 @@ namespace Rail_Bag_Simulation
                     _threadListAfterBagSort.Add(new Thread(() =>
                         {
                             while (!IsSimulationFinished)
-                                if (!node.IsEmpty())
+                                if (!node.IsEmpty)
                                 {
-                                    Thread.Sleep(400);
+                                    Thread.Sleep(_delayTime);
+
                                     var bb = node.RemoveBagFromConveyorBelt();
                                     if (bb.IsNotNull())
                                     {

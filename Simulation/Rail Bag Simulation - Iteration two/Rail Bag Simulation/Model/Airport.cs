@@ -15,7 +15,7 @@ namespace Rail_Bag_Simulation
         private readonly Dictionary<Gate, Destination> _gateDestinations= new Dictionary<Gate, Destination>();
         private readonly List<Bag> _bagsList = new List<Bag>();
         private static readonly Storage _storage=new Storage();
-        private readonly LinkedList ll= new LinkedList();
+        private readonly LinkedList ll= new LinkedList(500);
         private  bool IsMapCreated = false;
         
         private ConveyorNode ConveyorNode;

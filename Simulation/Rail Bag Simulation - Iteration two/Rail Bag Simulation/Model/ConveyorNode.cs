@@ -40,14 +40,8 @@ namespace Rail_Bag_Simulation
             };
         }
 
-        public bool IsEmpty()
-        {
-            return _isEmpty;
-        }
-        public bool IsFull()
-        {
-            return _isFull;
-        }
+        public bool IsEmpty => _isEmpty;
+        public bool IsFull => _isFull;
         public Queue<Bag> ListofBagsinqueue()
         {
             lock (_bagQueue)

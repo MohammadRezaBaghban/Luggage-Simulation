@@ -13,17 +13,6 @@ namespace Rail_Bag_Simulation
         public int Left { get; private set; }
         public static List<string> log=new List<string>();
 
-        public int DelayTime
-        {
-            get => _delayTime;
-            set => _delayTime = value = 150;
-        }
-
-        
-
-        private int _delayTime;
-
-
         public Node(int top, int left)
         {
             Top = top;
