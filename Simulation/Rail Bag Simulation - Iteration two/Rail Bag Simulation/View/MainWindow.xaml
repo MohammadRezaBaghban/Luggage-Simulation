@@ -8,59 +8,78 @@
         xmlns:local="clr-namespace:Rail_Bag_Simulation"
         mc:Ignorable="d"
         WindowState="Maximized"
-        Title="MainWindow" Height="1024" Width="1680">
+        Title="MainWindow"  WindowStyle="None">
     <Window.Resources>
         <viewmd:ViewModel x:Key="airport"/>
+        <Storyboard x:Key="OpenMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="70"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CloseMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
-    <Grid Name="mainGrid" DataContext="{StaticResource airport}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="34*"/>
-            <ColumnDefinition Width="34*"/>
-            <ColumnDefinition Width="34*"/>
-            <ColumnDefinition Width="34*"/>
-        </Grid.ColumnDefinitions>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid Background="#FFDEDEDE">
+            <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="540" Width="1010"/>
+        <Grid Height="60" VerticalAlignment="Top" Background="#5588a3">
+               <Image Width="30" VerticalAlignment="Center" HorizontalAlignment="Right" Source="../Resources/close.png" MouseDown="Image_MouseDown"></Image>
+            </Grid>
+        <Grid x:Name="GridMenu" Width="70" HorizontalAlignment="Left" Background="#00334e">
+                <Grid.Effect>
+                <DropShadowEffect BlurRadius="2" ShadowDepth="1" Color="#e8e8e8"/>
+                </Grid.Effect>
+                <StackPanel>
+                    <Grid Height="150" Background="White" RenderTransformOrigin="0.5,0.5">
+                        <Grid.RenderTransform>
+                            <TransformGroup>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Grid.RenderTransform>
+                    <Button x:Name="ButtonOpenMenu" Height="60" Width="60" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#00334e" Click="ButtonOpenMenu_OnClick">
+                            <materialDesign:PackIcon Kind="Menu" Width="25" Height="25"/>
+                        </Button>
+                    <Button x:Name="ButtonCloseMenu" Visibility="Collapsed" Height="60" Width="60" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#00334e" Click="ButtonCloseMenu_OnClick">
+                            <materialDesign:PackIcon Kind="ArrowLeft" Width="25" Height="25"/>
+                        </Button>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
-        </Grid.RowDefinitions>
-        <ToggleButton  HorizontalAlignment="Left" Grid.Row="2" Style="{DynamicResource MaterialDesignActionDarkToggleButton}" 
-                            Margin="10,9.6,0,148" >
-            <materialDesign:PackIcon Kind="Pistol" Height="24" Width="24" />
-        </ToggleButton>
-        <ToggleButton HorizontalAlignment="Left" Grid.Row="2" Style="{DynamicResource MaterialDesignActionDarkToggleButton}" 
-                            Margin="10,101.6,0,56" >
-            <materialDesign:PackIcon Kind="Cigarette" Height="24" Width="24" />
-        </ToggleButton>
-        <ToggleButton HorizontalAlignment="Left" Grid.Row="2" Style="{DynamicResource MaterialDesignActionDarkToggleButton}" 
-                            Margin="10,53.6,0,104" >
-            <materialDesign:PackIcon Kind="Flame" Height="24" Width="24" />
-        </ToggleButton>
-        <ToggleButton HorizontalAlignment="Left" Grid.Column="0" Grid.Row="2" Style="{DynamicResource MaterialDesignActionDarkToggleButton}" 
-                            Margin="10,147.6,0,10" >
-            <materialDesign:PackIcon Kind="Warning" Height="24" Width="24" />
-        </ToggleButton>
-        <TextBox x:Name="tbBagsNum" IsReadOnly="True" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Total number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15" Height="75" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="185"/>
-        <TextBox x:Name="tbTotalSuspBags" IsReadOnly="True" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Suspicious bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15" Height="75" Margin="10,9.8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="185" Grid.Row="1"/>
-        <TextBox x:Name="tbBagsWep" IsReadOnly="True" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Number of bags with weapons" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="12" Height="32" Margin="54,9.6,0,148" TextWrapping="Wrap" Width="154" Grid.Row="2"/>
-        <TextBox x:Name="tbBagsFlam" IsReadOnly="True" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Number of bags with flammables" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="12" Height="32" Margin="54,53.6,0,104" TextWrapping="Wrap" Width="154" Grid.Row="2"/>
-        <TextBox x:Name="tbBagsDrug" IsReadOnly="True" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Number of bags with drugs" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="12" Height="32" Margin="54,101.6,0,56" TextWrapping="Wrap" Width="154" Grid.Row="2"/>
-        <TextBox x:Name="tbBagsOther" IsReadOnly="True" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Number of bags with other" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="12" Height="32" Margin="54,147.6,0,10" TextWrapping="Wrap" Width="154" Grid.Row="2"/>
-        <Button x:Name="import" Content="Import" Grid.Column="1" Margin="69.6,15.8,69.8,47.4" Grid.Row="4" Click="Import_Click" />
-        <Button Content="Export" Grid.Column="1" Margin="69.6,52.8,69.8,10.4" Grid.Row="4" RenderTransformOrigin="0.5,0.5"/>
-        <Button Content="Pause" Grid.Column="2" Margin="66.2,31.8,65.2,31.4" Grid.Row="4" RenderTransformOrigin="0.5,0.5"/>
-        <Button Content="Run simulation" Grid.Column="3" Margin="54.8,31.8,56.6,31.4" Grid.Row="4" Click="Button_Click"></Button>
-        <Button Content="Statistics" Margin="71,31.8,92,31.4" Grid.Row="4"/>
-        <Canvas x:Name="canvas" Background=" #b3ecff" Grid.Column="1" Margin="9.6,10,9.6,10.2" Grid.RowSpan="4" Grid.ColumnSpan="3">
-            <Canvas.Effect>
-                <DropShadowEffect Color="#FFD7D7D7"/>
-            </Canvas.Effect>
-
-           
-        </Canvas>
-
-    </Grid>
+                        <Image Source="../Resources/logomini.png" Height="100" VerticalAlignment="Bottom"/>
+                    </Grid>
+                    <ListView x:Name="ListViewMenu" Foreground="#FF5C99D6" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListViewItem x:Name="ItemHome" Height="100">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="ViewDashboard" Height="25" Width="25" Margin="10"/>
+                                <TextBlock Text="Home" FontSize="20" VerticalAlignment="Center" Margin="20 10"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem x:Name="ItemCreate" Height="100">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Settings" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="Settings" FontSize="20" VerticalAlignment="Center" Margin="20 10"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Height="100">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Graphql" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="Statistics" FontSize="20" VerticalAlignment="Center"  Margin="20 10"/>
+                            </StackPanel>
+                        </ListViewItem>
+                    </ListView>
+                </StackPanel>
+            </Grid>
+        </Grid>
 </Window>

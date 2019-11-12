@@ -19,16 +19,16 @@ namespace Rail_Bag_Simulation
         private bool notnull = false;
         DispatcherTimer dispatcherTimer;
 
-        public MainWindow(int nodes)
+        public MainWindow(/*int nodes*/)
         {
-            totalnbrbags = nodes;
-            vm = new ViewModel.ViewModel();
-            vm.StartSimulation(totalnbrbags);
             InitializeComponent();
-            dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += dispatcherTimer_Tick;
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
-            dispatcherTimer.Start();
+            //totalnbrbags = nodes;
+            //vm = new ViewModel.ViewModel();
+            //vm.StartSimulation(totalnbrbags);
+            //dispatcherTimer = new DispatcherTimer();
+            //dispatcherTimer.Tick += dispatcherTimer_Tick;
+            //dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
+            //dispatcherTimer.Start();
 
             /*vm.GetEverythingInTheLinkedList().ForEach(p =>
             {
@@ -155,7 +155,6 @@ namespace Rail_Bag_Simulation
                 }
             });*/
             
-            InitializeComponent();
         }
 
         public ViewModel.ViewModel Vm => vm;
@@ -223,6 +222,23 @@ namespace Rail_Bag_Simulation
         {
             // this.bag.Margin = new Thickness(0, 25, 25, 25);
 
+        }
+
+        private void ButtonCloseMenu_OnClick(object sender, RoutedEventArgs e)
+        {
+            ButtonCloseMenu.Visibility = Visibility.Collapsed;
+            ButtonOpenMenu.Visibility = Visibility.Visible;
+        }
+
+        private void Image_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void ButtonOpenMenu_OnClick(object sender, RoutedEventArgs e)
+        {
+            ButtonCloseMenu.Visibility = Visibility.Visible;
+            ButtonOpenMenu.Visibility = Visibility.Collapsed;
         }
     }
 }
