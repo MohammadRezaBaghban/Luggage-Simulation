@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Rail_Bag_Simulation.Airport">
+    <Position X="13.5" Y="9" Width="8" />
+    <TypeIdentifier>
+      <HashCode>EAAIIAAEAACAAAgABAIAAACAAAAAAQAAAEQAAAAAggA=</HashCode>
+      <FileName>Model\Airport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rail_Bag_Simulation.Bag">
+    <Position X="5" Y="9" Width="8" />
+    <TypeIdentifier>
+      <HashCode>AAgDEA4AAAAAACAAAABAAAAQECAAAAEMAIAAAAATAAE=</HashCode>
+      <FileName>Model\Bag.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rail_Bag_Simulation.BagSortNode">
+    <Position X="8" Y="4" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAEAAABgAAEABAAAAAAgAAAAAACAA=</HashCode>
+      <FileName>Model\BagSortNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rail_Bag_Simulation.CheckinNode">
+    <Position X="15.75" Y="4" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AABABAAAAAAEBAAAEAAAAAAAEAAAAAAAAAAAAACACAA=</HashCode>
+      <FileName>Model\CheckinNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rail_Bag_Simulation.ConveyorNode">
+    <Position X="19" Y="4" Width="4.5" />
+    <NestedTypes>
+      <Delegate Name="Rail_Bag_Simulation.ConveyorNode.IsMove" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\ConveyorNode.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AABDAAAAAAAIGAQAEAAAAgAAAAAAAAAIAgASAAAACAA=</HashCode>
+      <FileName>Model\ConveyorNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rail_Bag_Simulation.Gate">
+    <Position X="5" Y="7.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Gate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rail_Bag_Simulation.GateNode">
+    <Position X="12.5" Y="4" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAABAAEEAAAAAAAEAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\GateNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rail_Bag_Simulation.LinkedList">
+    <Position X="0.5" Y="9" Width="4" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAIAAAUIAAIAAAAAAgAAAAQIAIAIQAAIIAAA=</HashCode>
+      <FileName>Model\LinkedList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rail_Bag_Simulation.Node">
+    <Position X="10.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAgAAEAAACAAAAAAIAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Model\Node.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rail_Bag_Simulation.SecurityNode">
+    <Position X="5" Y="4" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAEAAAAgAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\SecurityNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rail_Bag_Simulation.Storage">
+    <Position X="21.75" Y="11.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAACAgAAAEBIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Storage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rail_Bag_Simulation.Terminal">
+    <Position X="21.75" Y="9" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Terminal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rail_Bag_Simulation.TerminalNode">
+    <Position X="0.5" Y="4" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAACEAAABAAAEABAAAEAAiAAAAAACAA=</HashCode>
+      <FileName>Model\TerminalNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rail_Bag_Simulation.Model.Extentions">
+    <Position X="12.75" Y="7.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Model\BagExtentions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Rail_Bag_Simulation.Destination" Collapsed="true">
+    <Position X="7.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAggAAAAIAAQAAIAAAIAAAAAAgAEAAAEAADBAAAAAAA=</HashCode>
+      <FileName>Model\Destination.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Rail_Bag_Simulation.NextStop" Collapsed="true">
+    <Position X="9.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABIAAAAAAAAAAAAgAAAAAAAAFAAAAAAA=</HashCode>
+      <FileName>Model\NextStop.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Rail_Bag_Simulation.SuspiciousBagtype" Collapsed="true">
+    <Position X="11" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAIAAAAAAAAAAIAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Model\SuspiciousBagtype.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
