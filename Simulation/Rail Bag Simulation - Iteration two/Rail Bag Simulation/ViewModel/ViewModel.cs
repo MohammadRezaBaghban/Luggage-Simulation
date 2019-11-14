@@ -22,14 +22,13 @@ namespace Rail_Bag_Simulation.ViewModel
         public static LinkedList LL => _airport.LL;
 
 
-        public void StartSimulation(int totalbags)
+        public void StartSimulation(int totalbags
+        )
         {
             _airport = new Airport("Schiphol");
-            CreateMap(10);
-        
+            CreateMap(5);
             _airport.StartBagsMovement(totalbags, 3, 1, 0, 0);
             _airport.LL.MoveBags(NumberOfBags);
-
 
         }
 

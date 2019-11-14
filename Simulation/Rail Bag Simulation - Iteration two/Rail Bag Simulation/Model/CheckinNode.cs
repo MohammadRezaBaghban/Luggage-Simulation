@@ -51,7 +51,7 @@ namespace Rail_Bag_Simulation
         }
         public Queue<Bag> BagsQueue => _bagsQueue;
 
-        public bool Push(List<Bag> bagsList)
+        public void Push(List<Bag> bagsList)
         { 
             bagsList.ForEach(p =>
             {
@@ -61,9 +61,6 @@ namespace Rail_Bag_Simulation
                     _bagsQueue.Enqueue(p);
                 }
             });
-
-            return true;
-
         }
 
         public Bag RemoveBag()
