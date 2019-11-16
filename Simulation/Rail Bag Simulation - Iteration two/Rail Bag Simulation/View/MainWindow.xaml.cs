@@ -24,7 +24,14 @@ namespace Rail_Bag_Simulation
 
         public MainWindow(/*int nodes*/)
         {
+
+            //totalnbrbags = nodes;
+            //vm = new ViewModel.ViewModel();
+            //vm.StartSimulation(totalnbrbags);
+
+
             InitializeComponent();
+
             //totalnbrbags = nodes;
             //vm = new ViewModel.ViewModel();
             //vm.StartSimulation(totalnbrbags);
@@ -33,45 +40,47 @@ namespace Rail_Bag_Simulation
             //dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
             //dispatcherTimer.Start();
 
-            /*vm.GetEverythingInTheLinkedList().ForEach(p =>
-            {
-                lock (p)
-                {
-                    this.Dispatcher?.Invoke(() =>
-                    {
-                        if (p is CheckinNode ch)
-                        {
-                            canvas.Children.Add(ch.image);
-                            Canvas.SetTop(ch.image, ch.Top);
-                            Canvas.SetLeft(ch.image, ch.Left);
-                            int total = 0;
-                            foreach (Bag bag in ch.BagsQueue)
-                            {
-                                total += 50;
-                                bag.HitboxCanvas = new Canvas
-                                {
-                                    Name = "t1"
-                                };
+           //vm.GetEverythingInTheLinkedList().ForEach(node =>
+           // {
+           //     lock (node)
+           //     {
+           //         this.Dispatcher?.Invoke(() =>
+           //         {
+           //             if (node is CheckinNode checkinNode)
+           //             {
+           //                 var image = checkinNode.image;
+           //                 canvas.Children.Add(image);
+           //                 Canvas.SetTop(image, checkinNode.Top);
+           //                 Canvas.SetLeft(image, checkinNode.Left);
+                           
+           //                 int total = 0;
+           //                 foreach (Bag bag in checkinNode.BagsQueue)
+           //                 {
+           //                     total += 50;
+           //                     bag.HitboxCanvas= new Canvas
+           //                     {
+           //                         Name = "t1"
+           //                     };
 
-                                var f = new Image
-                                {
-                                    Width = 40,
-                                    Height = 40,
-                                    HorizontalAlignment = HorizontalAlignment.Left,
-                                    VerticalAlignment = VerticalAlignment.Center,
-                                    Source = new BitmapImage(new Uri("../Resources/luggage.png", UriKind.Relative))
-                                };
-                                Canvas.SetTop(f, 0);
-                                Canvas.SetLeft(f, 0);
-                                bag.HitboxCanvas.Children.Add(f);
-                                canvas.Children.Add(bag.HitboxCanvas);
-                                Canvas.SetTop(bag.HitboxCanvas, ch.Top + 130 + total);
-                                Canvas.SetLeft(bag.HitboxCanvas, ch.Left + 100);
-                                Canvas.SetZIndex(bag.HitboxCanvas, 6);
-                            }
-                        }
+           //                     var f = new Image
+           //                     {
+           //                         Width = 40,
+           //                         Height = 40,
+           //                         HorizontalAlignment = HorizontalAlignment.Left,
+           //                         VerticalAlignment = VerticalAlignment.Center,
+           //                         Source = new BitmapImage(new Uri("../Resources/luggage.png", UriKind.Relative))
+           //                     };
+           //                     Canvas.SetTop(f, 0);
+           //                     Canvas.SetLeft(f, 0);
+           //                     bag.HitboxCanvas.Children.Add(f);
+           //                     canvas.Children.Add(bag.HitboxCanvas);
+           //                     /*Canvas.SetTop(bag.HitboxCanvas, checkinNode.Top + 130 + total);
+           //                     Canvas.SetLeft(bag.HitboxCanvas, checkinNode.Left + 100);
+           //                     Canvas.SetZIndex(bag.HitboxCanvas, 6);*/
+           //                 }
+           //             }
 
-                        if (p is ConveyorNode con)
+                        /*if (node is ConveyorNode con)
                         {
                             // con.MovingHandler += (moveBag);
                             con.MovingHandler += (s, se, x, y) =>
@@ -123,7 +132,7 @@ namespace Rail_Bag_Simulation
                             Canvas.SetZIndex(con.conveyorline, 2);
                         }
 
-                        if (p is BagSortNode bs)
+                        if (node is BagSortNode bs)
                         {
                             canvas.Children.Add(bs.image);
                             Canvas.SetTop(bs.image, bs.Top);
@@ -131,7 +140,7 @@ namespace Rail_Bag_Simulation
                             Canvas.SetZIndex(bs.image, 3);
                         }
 
-                        if (p is SecurityNode sn)
+                        if (node is SecurityNode sn)
                         {
                             canvas.Children.Add(sn.image);
                             Canvas.SetTop(sn.image, sn.Top);
@@ -139,7 +148,7 @@ namespace Rail_Bag_Simulation
                             Canvas.SetZIndex(sn.image, 4);
                         }
 
-                        if (p is TerminalNode tm)
+                        if (node is TerminalNode tm)
                         {
                             canvas.Children.Add(tm.image);
                             Canvas.SetTop(tm.image, tm.Top);
@@ -147,60 +156,63 @@ namespace Rail_Bag_Simulation
                             Canvas.SetZIndex(tm.image, 5);
                         }
 
-                        if (p is GateNode gn)
+                        if (node is GateNode gn)
                         {
                             canvas.Children.Add(gn.image);
                             Canvas.SetTop(gn.image, gn.Top);
                             Canvas.SetLeft(gn.image, gn.Left);
-                            Canvas.SetZIndex(gn.image, 5);
-                        }
-                    });
-                }
-            });*/
+        //                    Canvas.SetZIndex(gn.image, 5);
+        //                }*/
+        //            });
+        //        }
+
+        //    });*/
             
-        }
 
-        public ViewModel.ViewModel Vm => vm;
+        //    });
+        //}
 
-        private void moveBag(Node s, Bag se, int x, int y)
-        {
-            lock (s)
-            {
-                lock (se)
-                {
+        //public ViewModel.ViewModel Vm => vm;
 
-                    if (s is GateNode)
-                    {
-                        if (s == checker)
-                        {
-                            Canvas.SetTop(se.HitboxCanvas, s.Top + 50 + control2);
-                            Canvas.SetLeft(se.HitboxCanvas, s.Left);
-                            control2 += 40;
-                        }
-                        else
-                        {
-                            Canvas.SetTop(se.HitboxCanvas, s.Top + 50 + control);
-                            Canvas.SetLeft(se.HitboxCanvas, s.Left);
-                            control += 40;
-                        }
+        //private void MoveBag(Node currentNode, Bag currentBag)
+        //{
+        //    lock (currentNode)
+        //    {
+        //        lock (currentBag)
+        //        {
 
-                        if (notnull == false)
-                        {
-                            checker = s;
-                        }
-                    }
-                    else
-                    {
-                        Canvas.SetTop(se.HitboxCanvas, s.Top);
-                        Canvas.SetLeft(se.HitboxCanvas, s.Left);
-                    }
+        //            if (currentNode is GateNode)
+        //            {
+        //                if (currentNode == checker)
+        //                {
+        //                    Canvas.SetTop(currentBag.HitboxCanvas, currentNode.Top + 50 + control2);
+        //                    Canvas.SetLeft(currentBag.HitboxCanvas, currentNode.Left);
+        //                    control2 += 40;
+        //                }
+        //                else
+        //                {
+        //                    Canvas.SetTop(currentBag.HitboxCanvas, currentNode.Top + 50 + control);
+        //                    Canvas.SetLeft(currentBag.HitboxCanvas, currentNode.Left);
+        //                    control += 40;
+        //                }
 
-                    if (checker != null)
-                    {
-                        notnull = true;
-                    }
-                }
-            }
+        //                if (notnull == false)
+        //                {
+        //                    checker = currentNode;
+        //                }
+        //            }
+        //            else
+        //            {
+        //                Canvas.SetTop(currentBag.HitboxCanvas, currentNode.Top);
+        //                Canvas.SetLeft(currentBag.HitboxCanvas, currentNode.Left);
+        //            }
+
+        //            if (checker != null)
+        //            {
+        //                notnull = true;
+        //            }
+        //        }
+        //    }
         }
 
         private void ListBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)

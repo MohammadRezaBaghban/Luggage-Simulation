@@ -29,7 +29,16 @@ namespace Rail_Bag_Simulation
 
         private void BtnStartSimulation_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (tbNrOfBags.Text == "")
+            {
+                lbNumberofBags.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                LogWindow logWindow = new LogWindow(Convert.ToInt32(this.tbNrOfBags.Text));
+                logWindow.Show();
+
+            }
         }
 
     }
