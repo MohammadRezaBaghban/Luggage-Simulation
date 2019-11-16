@@ -12,46 +12,46 @@ namespace Rail_Bag_Simulation.View
     public partial class LogWindow : Window
     {
 
-        private int bagsnr;
+        //private int bagsnr;
         
-        private DispatcherTimer dispatcherTimer;
-        public LogWindow(int bags)
-        {
+        //private DispatcherTimer dispatcherTimer;
+        //public LogWindow(int bags)
+        //{
             
-            dispatcherTimer = new DispatcherTimer();
+        //    dispatcherTimer = new DispatcherTimer();
    
-            bagsnr = bags;
+        //    bagsnr = bags;
       
-            InitializeComponent();
+        //    InitializeComponent();
           
 
-            dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-            dispatcherTimer.Tick += dispatcherTimer_Tick;
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 0,0,500);
-            dispatcherTimer.Start();
+        //    dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+        //    dispatcherTimer.Tick += dispatcherTimer_Tick;
+        //    dispatcherTimer.Interval = new TimeSpan(0, 0, 0,0,500);
+        //    dispatcherTimer.Start();
             
             
             
-        }
+        //}
 
-        private void dispatcherTimer_Tick(object sender, EventArgs e)
-        {
+        //private void dispatcherTimer_Tick(object sender, EventArgs e)
+        //{
            
-            if (!LinkedList.IsSimulationFinished)
-            {
+        //    if (!LinkedList.IsSimulationFinished)
+        //    {
 
-                listBox1.Items.Clear();
-                ViewModel.ViewModel.LL.GetAllNodes().ForEach(p => listBox1.Items.Add(p.Nodeinfo()));
-                listBox1.Items.Add("** Bags In Storage ***");
-                Airport.Storage.GetAllSuspiciousBags().ForEach(
-                    bag => { listBox1.Items.Add(bag.GetBagInfo()); });
-            }
-            else
-            {
+        //        listBox1.Items.Clear();
+        //        ViewModel.ViewModel.LL.GetAllNodes().ForEach(p => listBox1.Items.Add(p.Nodeinfo()));
+        //        listBox1.Items.Add("** Bags In Storage ***");
+        //        Airport.Storage.GetAllSuspiciousBags().ForEach(
+        //            bag => { listBox1.Items.Add(bag.GetBagInfo()); });
+        //    }
+        //    else
+        //    {
               
-                dispatcherTimer.Stop();
-            }
-        }
+        //        dispatcherTimer.Stop();
+        //    }
+        //}
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

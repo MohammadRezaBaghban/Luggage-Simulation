@@ -68,6 +68,7 @@ namespace Rail_Bag_Simulation
             t = new TerminalNode(new Terminal("T1"),70,952);
 
             LL.AddNode(t, ConveyorNode);
+            
 
 
             LL.AddNode(ConveyorNode = new ConveyorNode(Setsize, 88, 0, 40, 0, 148, 1002), t);
@@ -96,7 +97,6 @@ namespace Rail_Bag_Simulation
 
             GateNode = new GateNode(new Gate("G2"), 426, 1128);
             LL.AddNode(GateNode, ConveyorNode);
-
 
         }
 

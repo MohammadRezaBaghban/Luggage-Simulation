@@ -15,6 +15,8 @@ namespace Rail_Bag_Simulation
     class TerminalNode : Node
     {
         public static int counter=0;
+        public static EventHandler SimulationFinishedEvent;
+
         public Image image { get; private set; }
         public Queue<Bag> BagQueue { get; }
         public Terminal Terminal { get; private set; }
@@ -83,6 +85,10 @@ namespace Rail_Bag_Simulation
                 if ((currentNode as GateNode)?.Gate.GateNr.ToString() != result) continue;
                 tnode = p;
                 counter++;
+                if (counter + Storage.GetNumberOfBagsInStorage() >= ViewModel.ViewModel.numberOfBags)
+                {
+                    SimulationFinishedEvent?.Invoke(this, EventArgs.Empty);
+                }
                 break;
             }
 

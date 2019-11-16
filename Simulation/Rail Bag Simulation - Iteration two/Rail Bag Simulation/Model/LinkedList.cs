@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Windows;
 using Rail_Bag_Simulation.Model;
@@ -12,7 +13,6 @@ namespace Rail_Bag_Simulation
         private readonly List<Thread> _threadList = new List<Thread>();
         private readonly List<Thread> _threadListAfterBagSort = new List<Thread>();
         private int _delayTime;
-
         private Node current;
 
         public LinkedList(int speedDelayTime)
@@ -24,15 +24,21 @@ namespace Rail_Bag_Simulation
 
         public void MoveBags(int totalnr)
         {
-            var t1 = new Thread(() =>
+            /*var t1 = new Thread(() =>
             {
                 while (true)
                 {
                     if (TerminalNode.counter + Storage.GetNumberOfBagsInStorage() < totalnr) continue;
                     IsSimulationFinished = true;
                 }
-            }){ Priority = ThreadPriority.BelowNormal, IsBackground = true };
-            _threadList.Add(t1);
+            }){ Priority = ThreadPriority.Lowest, IsBackground = true };
+            _threadList.Add(t1);*/
+            TerminalNode.SimulationFinishedEvent += (sender, args) =>
+            {
+                Thread.Sleep(1000);
+                IsSimulationFinished = true;
+            };
+
             CreateThreads();
 
             foreach (var t in _threadList) t.Start();
@@ -95,7 +101,7 @@ namespace Rail_Bag_Simulation
                         {
                             Name = "Current Node " + currentnode.GetType() + " Next Node is " +
                                    nextnode.GetType(),
-                            Priority = ThreadPriority.BelowNormal,
+                            Priority = ThreadPriority.Lowest,
                             IsBackground = true
                         });
                         CreateAfterSortThreads(ref bagSortNode);
@@ -122,7 +128,7 @@ namespace Rail_Bag_Simulation
                         })
                         {
                             Name = "Current Node " + currentnode.GetType() + " Next Node is " +
-                                   nextnode.GetType(),Priority = ThreadPriority.BelowNormal, IsBackground = true
+                                   nextnode.GetType(),Priority = ThreadPriority.Lowest, IsBackground = true
                         });
                         break;
                     case ConveyorNode nextConveyorNode when currentnode is CheckinNode checkinNode:
@@ -145,7 +151,7 @@ namespace Rail_Bag_Simulation
                         {
                             Name = "Current Node " + currentnode.GetType() + " Next Node is " +
                                    nextnode.GetType(),
-                            Priority = ThreadPriority.BelowNormal,
+                            Priority = ThreadPriority.Lowest,
                             IsBackground = true
                         });
                         break;
@@ -170,7 +176,7 @@ namespace Rail_Bag_Simulation
                         {
                             Name = "Current Node " + currentnode.GetType() + " Next Node is " +
                                    nextnode.GetType(),
-                            Priority = ThreadPriority.BelowNormal,
+                            Priority = ThreadPriority.Lowest,
                             IsBackground = true
                         });
                         break;
@@ -194,7 +200,7 @@ namespace Rail_Bag_Simulation
                         {
                             Name = "Current Node " + currentnode.GetType() + " Next Node is " +
                                    nextnode.GetType(),
-                            Priority = ThreadPriority.BelowNormal,
+                            Priority = ThreadPriority.Lowest,
                             IsBackground = true
                         });
                         break;
@@ -236,7 +242,7 @@ namespace Rail_Bag_Simulation
                             nodeToSendTheBagTo = null;
                         }
                     }
-                }){ Priority = ThreadPriority.BelowNormal, IsBackground = true });
+                }){ Priority = ThreadPriority.Lowest, IsBackground = true });
 
                 bsNode.ListOfConnectedNodes.ForEach(cnode1 =>
                             {
@@ -264,7 +270,7 @@ namespace Rail_Bag_Simulation
                                     {
                                         Name = "Current Node " + tmp1.GetType() + " Next Node is " +
                                                next.GetType(),
-                                        Priority = ThreadPriority.BelowNormal,
+                                        Priority = ThreadPriority.Lowest,
                                         IsBackground = true
                                     });
                                     tmp = tmpNext;
@@ -287,7 +293,7 @@ namespace Rail_Bag_Simulation
                                                 }
                                             }
                                     })
-                                { Name = "Current Node " + tmp.GetType() + " Next Node is " + tmpNext.GetType(),Priority = ThreadPriority.BelowNormal, IsBackground = true });
+                                { Name = "Current Node " + tmp.GetType() + " Next Node is " + tmpNext.GetType(),Priority = ThreadPriority.Lowest, IsBackground = true });
 
                                 tmp = tmpNext;
 
@@ -322,7 +328,7 @@ namespace Rail_Bag_Simulation
                     }
                 }
             })
-            { Priority = ThreadPriority.BelowNormal, IsBackground = true });
+            { Priority = ThreadPriority.Lowest, IsBackground = true });
 
             ((TerminalNode)currentTerminal)?.ListOfConnectedNodes.ForEach(cnode2 =>
             {
@@ -350,7 +356,7 @@ namespace Rail_Bag_Simulation
                     {
                         Name = "Current Node " + tmp3.GetType() + " Next Node is " +
                                next1.GetType(),
-                        Priority = ThreadPriority.BelowNormal,
+                        Priority = ThreadPriority.Lowest,
                         IsBackground = true
                     });
 
@@ -375,7 +381,7 @@ namespace Rail_Bag_Simulation
                                     }
                                 }
                         })
-                        { Name = "Current Node " + node.GetType() + " Next Node is " + tmpNext2.GetType(), Priority = ThreadPriority.BelowNormal, IsBackground = true });
+                        { Name = "Current Node " + node.GetType() + " Next Node is " + tmpNext2.GetType(), Priority = ThreadPriority.Lowest, IsBackground = true });
                 }
             });
         }
