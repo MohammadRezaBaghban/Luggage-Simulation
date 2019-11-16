@@ -3,6 +3,8 @@ using System.Windows;
 using System.Windows.Threading;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using Rail_Bag_Simulation.ViewModel;
+using Rail_Bag_Simulation;
 
 namespace Rail_Bag_Simulation
 {
@@ -12,6 +14,7 @@ namespace Rail_Bag_Simulation
     public partial class MainWindow : Window
     {
         private readonly ViewModel.ViewModel vm;
+        Settings settings = new Settings(); 
 
         private int totalnbrbags;
         private int control, control2 = 0;
@@ -233,6 +236,15 @@ namespace Rail_Bag_Simulation
         private void Image_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void ItemHome_Selected(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void ItemCreate_Selected(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = settings;
         }
 
         private void ButtonOpenMenu_OnClick(object sender, RoutedEventArgs e)
