@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
 using System.Windows.Controls;
@@ -26,11 +27,8 @@ namespace Rail_Bag_Simulation
             vm.StartSimulation(totalnbrbags);
 
             InitializeComponent();
-            dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += dispatcherTimer_Tick;
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
-            dispatcherTimer.Start();
-
+           
+            Thread.Sleep(2000);
            vm.GetEverythingInTheLinkedList().ForEach(node =>
             {
                 lock (node)
@@ -43,79 +41,43 @@ namespace Rail_Bag_Simulation
                             canvas.Children.Add(image);
                             Canvas.SetTop(image, checkinNode.Top);
                             Canvas.SetLeft(image, checkinNode.Left);
-                           
+
                             int total = 0;
-                            foreach (Bag bag in checkinNode.BagsQueue)
+                            var bagToQueue = checkinNode.BagsQueue;
+                            lock (bagToQueue)
                             {
-                                total += 50;
-                                bag.HitboxCanvas= new Canvas
+
+
+                                foreach (Bag bag in bagToQueue)
                                 {
-                                    Name = "t1"
-                                };
-                                var f = new Image
-                                {
-                                    Width = 40,
-                                    Height = 40,
-                                    HorizontalAlignment = HorizontalAlignment.Left,
-                                    VerticalAlignment = VerticalAlignment.Center,
-                                    Source = new BitmapImage(new Uri("../Resources/luggage.png", UriKind.Relative))
-                                };
-                                Canvas.SetTop(f, 0);
-                                Canvas.SetLeft(f, 0);
-                                bag.HitboxCanvas.Children.Add(f);
-                                canvas.Children.Add(bag.HitboxCanvas);
-                                Canvas.SetTop(bag.HitboxCanvas, checkinNode.Top + 130 + total);
-                                Canvas.SetLeft(bag.HitboxCanvas, checkinNode.Left + 100);
-                                Canvas.SetZIndex(bag.HitboxCanvas, 6);
+                                    total += 50;
+                                    bag.HitboxCanvas = new Canvas
+                                    {
+                                        Name = "t1"
+                                    };
+                                    var f = new Image
+                                    {
+                                        Width = 40,
+                                        Height = 40,
+                                        HorizontalAlignment = HorizontalAlignment.Left,
+                                        VerticalAlignment = VerticalAlignment.Center,
+                                        Source = new BitmapImage(new Uri("../Resources/luggage.png", UriKind.Relative))
+                                    };
+                                    Canvas.SetTop(f, 0);
+                                    Canvas.SetLeft(f, 0);
+                                    bag.HitboxCanvas.Children.Add(f);
+                                    canvas.Children.Add(bag.HitboxCanvas);
+                                    Canvas.SetTop(bag.HitboxCanvas, checkinNode.Top + 130 + total);
+                                    Canvas.SetLeft(bag.HitboxCanvas, checkinNode.Left + 100);
+                                    Canvas.SetZIndex(bag.HitboxCanvas, 6);
+                                }
                             }
                         }
 
                         if (node is ConveyorNode con)
                         {
                              con.MovingHandler += (MoveBag);
-                            //con.MovingHandler += (s, se, x, y) =>
-                            //{
-                            //    this.Dispatcher?.Invoke(() =>
-                            //    {
-                            //        lock (s)
-                            //        {
-                            //            lock (se)
-                            //            {
-
-                            //                if (s is GateNode)
-                            //                {
-                            //                    if (s == checker)
-                            //                    {
-                            //                        Canvas.SetTop(se.HitboxCanvas, s.Top + 50 + control2);
-                            //                        Canvas.SetLeft(se.HitboxCanvas, s.Left);
-                            //                        control2 += 40;
-                            //                    }
-                            //                    else
-                            //                    {
-                            //                        Canvas.SetTop(se.HitboxCanvas, s.Top + 50 + control);
-                            //                        Canvas.SetLeft(se.HitboxCanvas, s.Left);
-                            //                        control += 40;
-                            //                    }
-
-                            //                    if (notnull == false)
-                            //                    {
-                            //                        checker = s;
-                            //                    }
-                            //                }
-                            //                else
-                            //                {
-                            //                    Canvas.SetTop(se.HitboxCanvas, s.Top);
-                            //                    Canvas.SetLeft(se.HitboxCanvas, s.Left);
-                            //                }
-
-                            //                if (checker != null)
-                            //                {
-                            //                    notnull = true;
-                            //                }
-                            //            }
-                            //        }
-                            //    });
-                            //};
+                           
                             canvas.Children.Add(con.conveyorline);
                             Canvas.SetTop(con.conveyorline, con.Top);
                             Canvas.SetLeft(con.conveyorline, con.Left);
@@ -179,7 +141,7 @@ namespace Rail_Bag_Simulation
                         //{
                         if (currentBag.HitboxCanvas != null)
                         {
-                            Application.Current.Dispatcher.Invoke((Action)(() =>
+                            Application.Current.Dispatcher?.Invoke((Action)(() =>
                             {
                                 Canvas.SetTop(currentBag.HitboxCanvas, currentNode.Top + 50);
                                 Canvas.SetLeft(currentBag.HitboxCanvas, currentNode.Left);
@@ -199,7 +161,7 @@ namespace Rail_Bag_Simulation
                     {
                         if (currentBag.HitboxCanvas != null && currentNode != null)
                         {
-                            Application.Current.Dispatcher.Invoke((Action)(() =>
+                            Application.Current.Dispatcher?.Invoke((Action)(() =>
                             {
                                 Canvas.SetTop(currentBag.HitboxCanvas, currentNode.Top);
                                 Canvas.SetLeft(currentBag.HitboxCanvas, currentNode.Left);
@@ -220,9 +182,7 @@ namespace Rail_Bag_Simulation
 
         }
 
-        private void dispatcherTimer_Tick(object sender, EventArgs e)
-        {
-        }
+       
 
         private void TbBagsWep_TextChanged(object sender, TextChangedEventArgs e)
         {

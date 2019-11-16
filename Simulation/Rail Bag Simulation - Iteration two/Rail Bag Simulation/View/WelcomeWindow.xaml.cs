@@ -38,7 +38,7 @@ namespace Rail_Bag_Simulation
             else
             {
                 MainWindow mainWindow = new MainWindow(Convert.ToInt32(this.tbNrOfBags.Text));
-                LogWindow logWindow = new LogWindow(Convert.ToInt32(this.tbNrOfBags.Text));
+               // LogWindow logWindow = new LogWindow(Convert.ToInt32(this.tbNrOfBags.Text));
            
                 this.Close();
                 //this.DataContext = mainWindow.
@@ -54,7 +54,7 @@ namespace Rail_Bag_Simulation
                 mainWindow.tbBagsDrug.Text = this.cigarette.Text;
                 mainWindow.tbBagsOther.Text = this.warning.Text;
                 mainWindow.Show();
-                logWindow.Show();
+          ////      logWindow.Show();
             }
         }
 
