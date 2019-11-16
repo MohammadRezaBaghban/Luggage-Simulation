@@ -11,7 +11,7 @@ namespace Rail_Bag_Simulation.ViewModel
     public class ViewModel : INotifyPropertyChanged
     {
         private string name;
-        private static int numberOfBags;
+        public static int numberOfBags;
         private int nrOfSusBagsGuns;
         private int nrOfSusBagsDrugs;
         private int nrOfSusBagsFlamable;
@@ -25,6 +25,7 @@ namespace Rail_Bag_Simulation.ViewModel
         public void StartSimulation(int totalbags
         )
         {
+            numberOfBags = totalbags;
             _airport = new Airport("Schiphol");
             CreateMap(5);
             _airport.StartBagsMovement(totalbags, 3, 1, 0, 0);
