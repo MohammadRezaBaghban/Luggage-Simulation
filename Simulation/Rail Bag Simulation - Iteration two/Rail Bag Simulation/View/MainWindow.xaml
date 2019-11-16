@@ -32,9 +32,9 @@
             <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
         </EventTrigger>
     </Window.Triggers>
-    <Grid Background="#FFDEDEDE">
+    <Grid Background="White">
         <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="540" Width="1010"/>
-        <Grid Height="40" VerticalAlignment="Top" Background="#5588a3">
+        <Grid Height="40" VerticalAlignment="Top" Background="#00334e">
             <Image Width="30" VerticalAlignment="Center" HorizontalAlignment="Right" Source="../Resources/close.png" MouseDown="Image_MouseDown"></Image>
         </Grid>
         <Grid x:Name="GridMenu" Width="70" HorizontalAlignment="Left" Background="#00334e">
@@ -72,7 +72,7 @@
                             <TextBlock Text="Settings" FontSize="20" VerticalAlignment="Center" Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="100">
+                    <ListViewItem Height="100" Selected="ListViewItem_Selected">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Graphql" Height="25" Width="25" Margin="10"/>
                             <TextBlock Text="Statistics" FontSize="20" VerticalAlignment="Center"  Margin="20 10"/>
@@ -81,6 +81,7 @@
                 </ListView>
             </StackPanel>
         </Grid>
-        <Frame Background="#FFDEDEDE" Name="MainFrame" Margin="217,65,-0.4,57.8"/>
+        
+        <Frame NavigationUIVisibility="Hidden" Background="AliceBlue" Name="MainFrame" Margin="217,65,-0.4,57.8"/>
     </Grid>
 </Window>

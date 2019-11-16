@@ -18,16 +18,13 @@ namespace Rail_Bag_Simulation.ViewModel
         private int nrOfSusBagsOthers;
 
 
-        public Airport airport;
-
+        private static Airport airport;
+        public static LinkedList LL => airport.LL;
 
         public void StartSimulation(int totalbags)
         {
             airport = new Airport("Schiphol");
-            airport.StartBagsMovement(totalbags, 2, 1, 3, 1);
-
-            numberOfBags = totalbags;
-            airport = new Airport("Schiphol");
+            NumberOfBags = totalbags;
             CreateMap(5);
             airport.StartBagsMovement(totalbags, 3, 1, 0, 0);
             airport.LL.MoveBags(NumberOfBags);

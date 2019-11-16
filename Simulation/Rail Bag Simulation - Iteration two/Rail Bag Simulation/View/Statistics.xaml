@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Rail_Bag_Simulation"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Statistics" Background="Bisque">
+      Title="Statistics" Background="AliceBlue">
 
     <Grid>
         

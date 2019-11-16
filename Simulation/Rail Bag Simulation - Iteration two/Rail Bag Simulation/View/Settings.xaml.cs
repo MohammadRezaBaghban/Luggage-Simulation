@@ -22,21 +22,26 @@ namespace Rail_Bag_Simulation
     /// </summary>
     public partial class Settings : Page
     {
+        
         public Settings()
         {
+          
             InitializeComponent();
         }
 
         private void BtnStartSimulation_OnClick(object sender, RoutedEventArgs e)
         {
-            if (tbNrOfBags.Text == "")
+            if (tbNrOfBags.Text == null)
             {
                 lbNumberofBags.Visibility = Visibility.Visible;
             }
             else
             {
+               
+                MainWindow.vm.StartSimulation(MainWindow.vm.NumberOfBags);
                 LogWindow logWindow = new LogWindow(Convert.ToInt32(this.tbNrOfBags.Text));
                 logWindow.Show();
+                mainGrid.Visibility = Visibility.Hidden;
 
             }
         }

@@ -13,12 +13,12 @@
         <viewmd:ViewModel x:Key="airport"/>
     </Page.Resources>
 
-    <Grid DataContext="{ StaticResource airport}" RenderTransformOrigin="0.674,0.5">
+    <Grid x:Name="mainGrid"   DataContext="{ StaticResource airport}" RenderTransformOrigin="0.674,0.5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="374*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <Grid  Grid.ColumnSpan="1" Background="White" />
+        <Grid  Grid.ColumnSpan="1" Background="White"  />
             <Grid  Grid.ColumnSpan="2">
               <Rectangle Height="300" VerticalAlignment="Top">
                 <Rectangle.Fill>
@@ -29,13 +29,14 @@
                     </LinearGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>
-            <Image Source="Resources/configurations.png" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20"/>
+            <Image Source="../Resources/configurations.png" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20"/>
             <Grid Height="400" Width="310"  Background="White">
                
                 <Label Content="CONFIGURATIONS" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5" Foreground="Gray" FontSize="18"/>
                 <StackPanel VerticalAlignment="Center">
                     <Label Content="Please select number of bags" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,50,0,5" Foreground="Blue" FontSize="15"/>
-                    <TextBox x:Name="tbNrOfBags" Text="{Binding NumberOfBags, Mode=TwoWay}" Margin="0,10,-0.4,10" materialDesign:HintAssist.Hint="Number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15" />
+                    <!--<TextBox x:Name="tbNrOfBags" Text="{Binding NumberOfBags}" Margin="0,10,-0.4,10" materialDesign:HintAssist.Hint="Number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15" />-->
+                    <TextBox x:Name="tbNrOfBags" Text="{Binding NumberOfBags}" Margin="0,10,-0.4,10" materialDesign:HintAssist.Hint="Number of bags" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="15"></TextBox>
                     <Label x:Name="lbNumberofBags" Content="Please fill the number of bags" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Foreground="Red" FontSize="10" Height="64"/>
                    
  <!--<Label Content="Please select the type of suspicious bag &#xD;&#xA;and the number" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0" Foreground="Blue" FontSize="15" Height="64"/>
@@ -63,7 +64,7 @@
             </Grid>
           
 
-            <Button Content="Run window" Name="btnStartSimulation" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="179" Height="42" Click="BtnStartSimulation_OnClick"/>
+            <Button Content="Run window" Name="btnStartSimulation" HorizontalAlignment="Center"  VerticalAlignment="Bottom" Width="179" Height="42" Click="BtnStartSimulation_OnClick"/>
         </Grid>
 
 
