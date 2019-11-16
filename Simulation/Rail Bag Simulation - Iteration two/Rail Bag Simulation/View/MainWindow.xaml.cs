@@ -14,7 +14,7 @@ namespace Rail_Bag_Simulation
         private readonly ViewModel.ViewModel vm;
 
         private int totalnbrbags;
-        private int control, control2 = 0;
+      //  private int control, control2 = 0;
         private Node checker = null;
         private bool notnull = false;
         DispatcherTimer dispatcherTimer;
@@ -52,7 +52,6 @@ namespace Rail_Bag_Simulation
                                 {
                                     Name = "t1"
                                 };
-
                                 var f = new Image
                                 {
                                     Width = 40,
@@ -65,58 +64,58 @@ namespace Rail_Bag_Simulation
                                 Canvas.SetLeft(f, 0);
                                 bag.HitboxCanvas.Children.Add(f);
                                 canvas.Children.Add(bag.HitboxCanvas);
-                                /*Canvas.SetTop(bag.HitboxCanvas, checkinNode.Top + 130 + total);
+                                Canvas.SetTop(bag.HitboxCanvas, checkinNode.Top + 130 + total);
                                 Canvas.SetLeft(bag.HitboxCanvas, checkinNode.Left + 100);
-                                Canvas.SetZIndex(bag.HitboxCanvas, 6);*/
+                                Canvas.SetZIndex(bag.HitboxCanvas, 6);
                             }
                         }
 
-                        /*if (node is ConveyorNode con)
+                        if (node is ConveyorNode con)
                         {
-                            // con.MovingHandler += (moveBag);
-                            con.MovingHandler += (s, se, x, y) =>
-                            {
-                                this.Dispatcher?.Invoke(() =>
-                                {
-                                    lock (s)
-                                    {
-                                        lock (se)
-                                        {
+                             con.MovingHandler += (MoveBag);
+                            //con.MovingHandler += (s, se, x, y) =>
+                            //{
+                            //    this.Dispatcher?.Invoke(() =>
+                            //    {
+                            //        lock (s)
+                            //        {
+                            //            lock (se)
+                            //            {
 
-                                            if (s is GateNode)
-                                            {
-                                                if (s == checker)
-                                                {
-                                                    Canvas.SetTop(se.HitboxCanvas, s.Top + 50 + control2);
-                                                    Canvas.SetLeft(se.HitboxCanvas, s.Left);
-                                                    control2 += 40;
-                                                }
-                                                else
-                                                {
-                                                    Canvas.SetTop(se.HitboxCanvas, s.Top + 50 + control);
-                                                    Canvas.SetLeft(se.HitboxCanvas, s.Left);
-                                                    control += 40;
-                                                }
+                            //                if (s is GateNode)
+                            //                {
+                            //                    if (s == checker)
+                            //                    {
+                            //                        Canvas.SetTop(se.HitboxCanvas, s.Top + 50 + control2);
+                            //                        Canvas.SetLeft(se.HitboxCanvas, s.Left);
+                            //                        control2 += 40;
+                            //                    }
+                            //                    else
+                            //                    {
+                            //                        Canvas.SetTop(se.HitboxCanvas, s.Top + 50 + control);
+                            //                        Canvas.SetLeft(se.HitboxCanvas, s.Left);
+                            //                        control += 40;
+                            //                    }
 
-                                                if (notnull == false)
-                                                {
-                                                    checker = s;
-                                                }
-                                            }
-                                            else
-                                            {
-                                                Canvas.SetTop(se.HitboxCanvas, s.Top);
-                                                Canvas.SetLeft(se.HitboxCanvas, s.Left);
-                                            }
+                            //                    if (notnull == false)
+                            //                    {
+                            //                        checker = s;
+                            //                    }
+                            //                }
+                            //                else
+                            //                {
+                            //                    Canvas.SetTop(se.HitboxCanvas, s.Top);
+                            //                    Canvas.SetLeft(se.HitboxCanvas, s.Left);
+                            //                }
 
-                                            if (checker != null)
-                                            {
-                                                notnull = true;
-                                            }
-                                        }
-                                    }
-                                });
-                            };
+                            //                if (checker != null)
+                            //                {
+                            //                    notnull = true;
+                            //                }
+                            //            }
+                            //        }
+                            //    });
+                            //};
                             canvas.Children.Add(con.conveyorline);
                             Canvas.SetTop(con.conveyorline, con.Top);
                             Canvas.SetLeft(con.conveyorline, con.Left);
@@ -153,7 +152,7 @@ namespace Rail_Bag_Simulation
                             Canvas.SetTop(gn.image, gn.Top);
                             Canvas.SetLeft(gn.image, gn.Left);
                             Canvas.SetZIndex(gn.image, 5);
-                        }*/
+                        }
                     });
                 }
             });
@@ -170,34 +169,48 @@ namespace Rail_Bag_Simulation
 
                     if (currentNode is GateNode)
                     {
-                        if (currentNode == checker)
+                        //if (currentNode == checker)
+                        //{
+                        //    Canvas.SetTop(currentBag.HitboxCanvas, currentNode.Top + 50 + control2);
+                        //    Canvas.SetLeft(currentBag.HitboxCanvas, currentNode.Left);
+                        //    control2 += 40;
+                        //}
+                        //else
+                        //{
+                        if (currentBag.HitboxCanvas != null)
                         {
-                            Canvas.SetTop(currentBag.HitboxCanvas, currentNode.Top + 50 + control2);
-                            Canvas.SetLeft(currentBag.HitboxCanvas, currentNode.Left);
-                            control2 += 40;
-                        }
-                        else
-                        {
-                            Canvas.SetTop(currentBag.HitboxCanvas, currentNode.Top + 50 + control);
-                            Canvas.SetLeft(currentBag.HitboxCanvas, currentNode.Left);
-                            control += 40;
+                            Application.Current.Dispatcher.Invoke((Action)(() =>
+                            {
+                                Canvas.SetTop(currentBag.HitboxCanvas, currentNode.Top + 50);
+                                Canvas.SetLeft(currentBag.HitboxCanvas, currentNode.Left);
+
+                            }));
                         }
 
-                        if (notnull == false)
-                        {
-                            checker = currentNode;
-                        }
+
+
+
+                        //if (notnull == false)
+                        //{
+                        //    checker = currentNode;
+                        //}
                     }
                     else
                     {
-                        Canvas.SetTop(currentBag.HitboxCanvas, currentNode.Top);
-                        Canvas.SetLeft(currentBag.HitboxCanvas, currentNode.Left);
+                        if (currentBag.HitboxCanvas != null && currentNode != null)
+                        {
+                            Application.Current.Dispatcher.Invoke((Action)(() =>
+                            {
+                                Canvas.SetTop(currentBag.HitboxCanvas, currentNode.Top);
+                                Canvas.SetLeft(currentBag.HitboxCanvas, currentNode.Left);
+                            }));
+                        }
                     }
 
-                    if (checker != null)
-                    {
-                        notnull = true;
-                    }
+                    //if (checker != null)
+                    //{
+                    //    notnull = true;
+                    //}
                 }
             }
         }
