@@ -22,7 +22,6 @@ namespace Rail_Bag_Simulation
     /// </summary>
     public partial class Settings : Page
     {
-        
         public Settings()
         {
           
@@ -39,10 +38,9 @@ namespace Rail_Bag_Simulation
             {
                
                 MainWindow.vm.StartSimulation(MainWindow.vm.NumberOfBags);
-                LogWindow logWindow = new LogWindow(Convert.ToInt32(this.tbNrOfBags.Text));
-                logWindow.Show();
                 mainGrid.Visibility = Visibility.Hidden;
-
+                MainWindow m = new MainWindow();
+                m.Run(ViewModel.ViewModel.numberOfBags);
             }
         }
 

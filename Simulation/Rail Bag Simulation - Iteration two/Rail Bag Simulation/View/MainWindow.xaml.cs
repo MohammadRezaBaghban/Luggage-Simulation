@@ -24,7 +24,12 @@ namespace Rail_Bag_Simulation
         DispatcherTimer dispatcherTimer;
         public static ViewModel.ViewModel vm = new ViewModel.ViewModel();
 
-        public MainWindow(int nodes)
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        public void Run(int nodes)
         {
             totalnbrbags = nodes;
             vm = new ViewModel.ViewModel();
@@ -180,6 +185,7 @@ namespace Rail_Bag_Simulation
                 }
             }
         }
+    
 
 
 
