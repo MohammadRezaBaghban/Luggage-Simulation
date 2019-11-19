@@ -81,7 +81,9 @@
                 </ListView>
             </StackPanel>
         </Grid>
-        
-        <Frame NavigationUIVisibility="Hidden" Background="AliceBlue" Name="MainFrame" Margin="217,65,-0.4,57.8"/>
+
+        <Canvas x:Name="canvas" Background="AliceBlue" Margin="217,65,-0.4,57.8">
+            <Frame NavigationUIVisibility="Hidden" Background="AliceBlue" Name="MainFrame" Margin="217,65,-0.4,57.8"/>
+        </Canvas>
     </Grid>
 </Window>
