@@ -74,12 +74,12 @@ namespace Rail_Bag_Simulation
             LL.AddNode(ConveyorNode = new ConveyorNode(Setsize, 88, 0, 40, 0, 148, 1002), t);
 
 
-            GateNode = new GateNode(new Gate("G1"),148,1114);
+            GateNode = new GateNode(new Gate("G1"),ConveyorNode.Top,1114);
             LL.AddNode(GateNode, ConveyorNode);
 
-            LL.AddNode(ConveyorNode = new ConveyorNode(Setsize, 90, 0, 0, 40, 500, 1027), t);
+            LL.AddNode(ConveyorNode = new ConveyorNode(Setsize, 90, 0, 0, 40, t.Top-10, 1002), t);
 
-            GateNode = new GateNode(new Gate("G2"), 426, 1128);
+            GateNode = new GateNode(new Gate("G2"), ConveyorNode.Top-30, 1128);
             LL.AddNode(GateNode, ConveyorNode);
 
 
@@ -91,11 +91,11 @@ namespace Rail_Bag_Simulation
 
             LL.AddNode(ConveyorNode = new ConveyorNode(Setsize, 90, 0, 0, 40, 500, 1027), t);
 
-            GateNode = new GateNode(new Gate("G1"),426,1128);
+            GateNode = new GateNode(new Gate("G1"),ConveyorNode.Top,1128);
             LL.AddNode(GateNode, ConveyorNode);
-            LL.AddNode(ConveyorNode = new ConveyorNode(Setsize, 90, 0, 0, 40, 500, 1027), t);
+            LL.AddNode(ConveyorNode = new ConveyorNode(Setsize, 90, 0, 0, -40, t.Top+100, 1027), t);
 
-            GateNode = new GateNode(new Gate("G2"), 426, 1128);
+            GateNode = new GateNode(new Gate("G2"), ConveyorNode.Top+10, 1128);
             LL.AddNode(GateNode, ConveyorNode);
 
         }

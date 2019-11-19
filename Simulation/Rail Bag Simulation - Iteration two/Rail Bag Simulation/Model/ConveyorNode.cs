@@ -14,7 +14,7 @@ namespace Rail_Bag_Simulation
     class ConveyorNode : Node
     {
         private static int _idToGive = 100;
-        public delegate void IsMove(Node f,Bag s, int x, int y);
+        public delegate void IsMove(Node f,Bag s);
         public IsMove MovingHandler;
         public Line conveyorline { get; private set; }
         public int Id { get; }
@@ -57,7 +57,7 @@ namespace Rail_Bag_Simulation
                 if (_bagQueue.Count >= _setsize) return;
                 _bagQueue.Enqueue(bagtoqueue);
                 _isEmpty = false;
-                MovingHandler?.Invoke(this, bagtoqueue, 1, 0);
+                MovingHandler?.Invoke(this, bagtoqueue);
                 var count = _bagQueue.Count;
                 if (count < _setsize-1) _bagQueue.Enqueue(null);
                 if (count == _setsize)_isFull = true;
@@ -73,7 +73,7 @@ namespace Rail_Bag_Simulation
             _isFull = false;
             if (bag != null)
             {
-                MovingHandler?.Invoke(this.Next, bag, 1, 0);
+                MovingHandler?.Invoke(this.Next, bag);
             }
             return bag;
         }

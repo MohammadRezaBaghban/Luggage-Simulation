@@ -35,7 +35,7 @@ namespace Rail_Bag_Simulation
             _threadList.Add(t1);*/
             TerminalNode.SimulationFinishedEvent += (sender, args) =>
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
                 IsSimulationFinished = true;
             };
 

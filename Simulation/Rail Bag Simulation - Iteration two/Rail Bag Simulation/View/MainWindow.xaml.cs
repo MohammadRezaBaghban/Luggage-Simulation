@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
 using System.Windows.Controls;
@@ -18,7 +19,7 @@ namespace Rail_Bag_Simulation
         Statistics statistics = new Statistics();
 
         private int totalnbrbags;
-        private int control, control2 = 0;
+      //  private int control, control2 = 0;
         private Node checker = null;
         private bool notnull = false;
 
@@ -85,6 +86,9 @@ namespace Rail_Bag_Simulation
             //             }
 
             /*if (node is ConveyorNode con)
+           
+            Thread.Sleep(2000);
+           vm.GetEverythingInTheLinkedList().ForEach(node =>
             {
                  con.MovingHandler += (moveBag);
                 con.MovingHandler += (s, se, x, y) =>
@@ -121,6 +125,52 @@ namespace Rail_Bag_Simulation
                                     Canvas.SetTop(se.HitboxCanvas, s.Top);
                                     Canvas.SetLeft(se.HitboxCanvas, s.Left);
                                 }
+                            var image = checkinNode.image;
+                            canvas.Children.Add(image);
+                            Canvas.SetTop(image, checkinNode.Top);
+                            Canvas.SetLeft(image, checkinNode.Left);
+
+                            int total = 0;
+                            var bagToQueue = checkinNode.BagsQueue;
+                            lock (bagToQueue)
+                            {
+
+
+                                foreach (Bag bag in bagToQueue)
+                                {
+                                    total += 50;
+                                    bag.HitboxCanvas = new Canvas
+                                    {
+                                        Name = "t1"
+                                    };
+                                    var f = new Image
+                                    {
+                                        Width = 40,
+                                        Height = 40,
+                                        HorizontalAlignment = HorizontalAlignment.Left,
+                                        VerticalAlignment = VerticalAlignment.Center,
+                                        Source = new BitmapImage(new Uri("../Resources/luggage.png", UriKind.Relative))
+                                    };
+                                    Canvas.SetTop(f, 0);
+                                    Canvas.SetLeft(f, 0);
+                                    bag.HitboxCanvas.Children.Add(f);
+                                    canvas.Children.Add(bag.HitboxCanvas);
+                                    Canvas.SetTop(bag.HitboxCanvas, checkinNode.Top + 130 + total);
+                                    Canvas.SetLeft(bag.HitboxCanvas, checkinNode.Left + 100);
+                                    Canvas.SetZIndex(bag.HitboxCanvas, 6);
+                                }
+                            }
+                        }
+
+                        if (node is ConveyorNode con)
+                        {
+                             con.MovingHandler += (MoveBag);
+                           
+                            canvas.Children.Add(con.conveyorline);
+                            Canvas.SetTop(con.conveyorline, con.Top);
+                            Canvas.SetLeft(con.conveyorline, con.Left);
+                            Canvas.SetZIndex(con.conveyorline, 2);
+                        }
 
                                 if (checker != null)
                                 {
@@ -175,6 +225,17 @@ namespace Rail_Bag_Simulation
 
 
 });*/
+
+                        if (node is GateNode gn)
+                        {
+                            canvas.Children.Add(gn.image);
+                            Canvas.SetTop(gn.image, gn.Top);
+                            Canvas.SetLeft(gn.image, gn.Left);
+                            Canvas.SetZIndex(gn.image, 5);
+                        }
+                    });
+                }
+            });
         }
 
     public ViewModel.ViewModel Vm => vm;
@@ -205,6 +266,49 @@ namespace Rail_Bag_Simulation
                     {
                         checker = currentNode;
                     }
+
+                        //if (currentNode == checker)
+                        //{
+                        //    Canvas.SetTop(currentBag.HitboxCanvas, currentNode.Top + 50 + control2);
+                        //    Canvas.SetLeft(currentBag.HitboxCanvas, currentNode.Left);
+                        //    control2 += 40;
+                        //}
+                        //else
+                        //{
+                        if (currentBag.HitboxCanvas != null)
+                        {
+                            Application.Current.Dispatcher?.Invoke((Action)(() =>
+                            {
+                                Canvas.SetTop(currentBag.HitboxCanvas, currentNode.Top + 50);
+                                Canvas.SetLeft(currentBag.HitboxCanvas, currentNode.Left);
+
+                            }));
+                        }
+
+
+
+
+                        //if (notnull == false)
+                        //{
+                        //    checker = currentNode;
+                        //}
+                    }
+                    else
+                    {
+                        if (currentBag.HitboxCanvas != null && currentNode != null)
+                        {
+                            Application.Current.Dispatcher?.Invoke((Action)(() =>
+                            {
+                                Canvas.SetTop(currentBag.HitboxCanvas, currentNode.Top);
+                                Canvas.SetLeft(currentBag.HitboxCanvas, currentNode.Left);
+                            }));
+                        }
+                    }
+
+                    //if (checker != null)
+                    //{
+                    //    notnull = true;
+                    //}
                 }
                 else
                 {
@@ -225,9 +329,7 @@ namespace Rail_Bag_Simulation
 
         }
 
-        private void dispatcherTimer_Tick(object sender, EventArgs e)
-        {
-        }
+       
 
         private void TbBagsWep_TextChanged(object sender, TextChangedEventArgs e)
         {
