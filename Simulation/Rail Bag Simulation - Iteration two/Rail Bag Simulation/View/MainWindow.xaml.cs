@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using System.Windows.Controls;
@@ -29,11 +30,11 @@ namespace Rail_Bag_Simulation
             InitializeComponent();
         }
 
-        public void Run(int nodes)
+        public async Task Run(int nodes)
         {
             totalnbrbags = nodes;
             vm = new ViewModel.ViewModel();
-            vm.StartSimulation(totalnbrbags);
+            await vm.StartSimulation(totalnbrbags);
 
             InitializeComponent();
 

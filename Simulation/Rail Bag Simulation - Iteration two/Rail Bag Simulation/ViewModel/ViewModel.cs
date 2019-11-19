@@ -21,7 +21,7 @@ namespace Rail_Bag_Simulation.ViewModel
         private static Airport airport;
         public static LinkedList LL => airport.LL;
 
-        public void StartSimulation(int totalbags)
+        public async Task StartSimulation(int totalbags)
         {
             airport = new Airport("Schiphol");
             NumberOfBags = totalbags;

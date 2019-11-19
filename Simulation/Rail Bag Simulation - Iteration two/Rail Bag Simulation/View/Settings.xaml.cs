@@ -28,7 +28,7 @@ namespace Rail_Bag_Simulation
             InitializeComponent();
         }
 
-        private void BtnStartSimulation_OnClick(object sender, RoutedEventArgs e)
+        private async void BtnStartSimulation_OnClick(object sender, RoutedEventArgs e)
         {
             if (tbNrOfBags.Text == null)
             {
@@ -36,11 +36,9 @@ namespace Rail_Bag_Simulation
             }
             else
             {
-               
-                MainWindow.vm.StartSimulation(MainWindow.vm.NumberOfBags);
                 mainGrid.Visibility = Visibility.Hidden;
-                MainWindow m = new MainWindow();
-                m.Run(ViewModel.ViewModel.numberOfBags);
+                MainWindow m = new MainWindow(); 
+                await m.Run(ViewModel.ViewModel.numberOfBags);
             }
         }
 
