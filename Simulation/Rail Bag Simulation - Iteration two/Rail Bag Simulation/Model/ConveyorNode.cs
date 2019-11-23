@@ -14,34 +14,20 @@ namespace Rail_Bag_Simulation
     class ConveyorNode : Node
     {
         private static int _idToGive = 100;
-        public delegate void IsMove(Node f,Bag s);
-        public IsMove MovingHandler;
-        public Line conveyorline { get; private set; }
         public int Id { get; }
-        private int _setsize;
-        private Queue<Bag> _bagQueue;
-        private bool _isEmpty = true;
-        private bool _isFull = false;
+        private readonly int _setsize;
+        private readonly Queue<Bag> _bagQueue;
 
-
-        public ConveyorNode(int setsize,int X1,int X2,int Y1,int Y2,int top,int left):base(top,left)
+        public ConveyorNode(int setsize)
         {
             _setsize = setsize;
             Id = ++_idToGive;
             _bagQueue = new Queue<Bag>(_setsize);
-            conveyorline = new Line
-            {
-                Stroke = System.Windows.Media.Brushes.White,
-                X1 = X1,
-                X2 = X2,
-                Y1 = Y1,
-                Y2 = Y2,
-                StrokeThickness = 30,
-            };
+            
         }
 
-        public bool IsEmpty => _isEmpty;
-        public bool IsFull => _isFull;
+        public bool IsEmpty { get; private set; } = true;
+        public bool IsFull { get; private set; } = false;
         public Queue<Bag> ListofBagsinqueue()
         {
             lock (_bagQueue)
@@ -49,32 +35,30 @@ namespace Rail_Bag_Simulation
                 return _bagQueue;
             }
         }
-        public void PushBagToConveyorBelt(Bag bagtoqueue)
+        public override void Push(Bag bagtoqueue)
         {
             if (bagtoqueue == null) return;
             lock (_bagQueue)
             {
                 if (_bagQueue.Count >= _setsize) return;
                 _bagQueue.Enqueue(bagtoqueue);
-                _isEmpty = false;
-                MovingHandler?.Invoke(this, bagtoqueue);
+                IsEmpty = false;
                 var count = _bagQueue.Count;
                 if (count < _setsize-1) _bagQueue.Enqueue(null);
-                if (count == _setsize)_isFull = true;
+                if (count == _setsize)IsFull = true;
 
             }
         }
 
-        public Bag RemoveBagFromConveyorBelt()
+        public override Bag Remove()
         {
-            if (_bagQueue.Count < 1){ _isEmpty = true; return null; }
-
-        var bag = _bagQueue.Dequeue();
-            _isFull = false;
-            if (bag != null)
+            lock (_bagQueue)
             {
-                MovingHandler?.Invoke(this.Next, bag);
+                if (_bagQueue.Count < 1){ IsEmpty = true; return null; }
+
             }
+            var bag = _bagQueue.Dequeue();
+            IsFull = false;
             return bag;
         }
 

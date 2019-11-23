@@ -11,20 +11,17 @@ namespace Rail_Bag_Simulation.View
     /// </summary>
     public partial class LogWindow : Window
     {
+        private readonly DispatcherTimer dispatcherTimer;
 
-        private int bagsnr;
-        
-        private DispatcherTimer dispatcherTimer;
         public LogWindow(int bags)
         {
-            
             dispatcherTimer = new DispatcherTimer();
-   
-            bagsnr = bags;
-      
-            InitializeComponent();
-          
 
+            InitializeComponent();
+
+            var vm = new ViewModel.ViewModel();
+            vm.StartSimulation(vm.NumberOfBags);
+            
             dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0,0,500);

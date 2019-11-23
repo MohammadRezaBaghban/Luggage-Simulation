@@ -11,28 +11,18 @@ namespace Rail_Bag_Simulation
 {
     class CheckinNode : Node
     {
-        private readonly Queue<Bag> _bagsQueue;
-        public Image image { get; private set; }
         public static string control;
-        public CheckinNode(int top,int left):base(top, left)
+        public CheckinNode():base()
         {
-            _bagsQueue = new Queue<Bag>();
-            image = new Image
-            {
-                Width = 150,
-                Height = 150,
-           
-                Source = new BitmapImage(new Uri("../../Resources/check-in.png", UriKind.Relative))
-            };
-
+            BagsQueue = new Queue<Bag>();
         }
 
         public override string Nodeinfo()
         {
             string sender = "Check in: \n";
-            lock (_bagsQueue)
+            lock (BagsQueue)
             {
-                foreach (Bag g in _bagsQueue)
+                foreach (Bag g in BagsQueue)
                 {
                     sender += g.GetBagInfo() + "\n";
                 }
@@ -41,35 +31,40 @@ namespace Rail_Bag_Simulation
             return sender;
         }
 
-        public int QueueCount => _bagsQueue.Count;
+        public int QueueCount => BagsQueue.Count;
         internal bool IsEmpty()
         {
-            lock (_bagsQueue)
+            lock (BagsQueue)
             {
                 return QueueCount < 1;
             }
         }
-        public Queue<Bag> BagsQueue => _bagsQueue;
+        public Queue<Bag> BagsQueue { get; }
 
         public void Push(List<Bag> bagsList)
         { 
             bagsList.ForEach(p =>
             {
                 control += p.GetBagInfo() + "\n";
-                lock (_bagsQueue)
+                lock (BagsQueue)
                 {
-                    _bagsQueue.Enqueue(p);
+                    BagsQueue.Enqueue(p);
                 }
             });
         }
 
-        public Bag RemoveBag()
+        public override void Push(Bag b)
         {
-            lock (_bagsQueue)
+         
+        }
+
+        public override Bag Remove()
+        {
+            lock (BagsQueue)
             {
-                if (_bagsQueue.Count < 1)
+                if (BagsQueue.Count < 1)
                     return null;
-                var bag = _bagsQueue.Dequeue();
+                var bag = BagsQueue.Dequeue();
                 return bag;
             }
         }

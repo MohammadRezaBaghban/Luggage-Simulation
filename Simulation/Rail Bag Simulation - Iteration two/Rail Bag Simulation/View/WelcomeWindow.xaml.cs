@@ -37,12 +37,12 @@ namespace Rail_Bag_Simulation
             }
             else
             {
-                MainWindow mainWindow = new MainWindow(Convert.ToInt32(this.tbNrOfBags.Text));
-               // LogWindow logWindow = new LogWindow(Convert.ToInt32(this.tbNrOfBags.Text));
+               // MainWindow mainWindow = new MainWindow(Convert.ToInt32(this.tbNrOfBags.Text));
+                LogWindow logWindow = new LogWindow(Convert.ToInt32(this.tbNrOfBags.Text));
            
                 this.Close();
                 //this.DataContext = mainWindow.
-                mainWindow.tbBagsNum.Text = this.tbNrOfBags.Text;
+                /*mainWindow.tbBagsNum.Text = this.tbNrOfBags.Text;
                
                 int totalSuspBags = Convert.ToInt32(this.pistol.Text)
                                     + Convert.ToInt32(this.flame.Text)
@@ -52,9 +52,9 @@ namespace Rail_Bag_Simulation
                 mainWindow.tbBagsWep.Text = this.pistol.Text;
                 mainWindow.tbBagsFlam.Text = this.flame.Text;
                 mainWindow.tbBagsDrug.Text = this.cigarette.Text;
-                mainWindow.tbBagsOther.Text = this.warning.Text;
-                mainWindow.Show();
-          ////      logWindow.Show();
+                mainWindow.tbBagsOther.Text = this.warning.Text;*/
+               // mainWindow.Show();
+               logWindow.Show();
             }
         }
 

@@ -12,14 +12,13 @@ namespace Rail_Bag_Simulation
     {
         private static int Setsize;
         private readonly string _name;
-        private readonly Dictionary<Gate, Destination> _gateDestinations= new Dictionary<Gate, Destination>();
-        private readonly List<Bag> _bagsList = new List<Bag>();
-        private bool IsMapCreated = false;
+        private List<Bag> _bagsList;
+        private readonly bool IsMapCreated = false;
         
-        private ConveyorNode ConveyorNode;
-        private BagSortNode BagSortNode;
+        private ConveyorNode _conveyorNode;
+        private BagSortNode _bagSortNode;
         private TerminalNode t;
-        private GateNode GateNode;
+        private GateNode _gateNode;
 
         public static Storage Storage { get; } = new Storage();
 
@@ -31,9 +30,9 @@ namespace Rail_Bag_Simulation
         }
 
         public void StartBagsMovement(int nbrOfBags, int nbrOfBagsDrugs, int nbrOfBagsWeapons, int nbrOfBagsFlammable, int nbrBagsOthers)
-        { 
-          
-            LL.AddGeneratedBags(Bag.GenerateBag( nbrOfBags, nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable, nbrBagsOthers));
+        {
+            _bagsList = Bag.GenerateBag(nbrOfBags, nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable, nbrBagsOthers);
+            LL.AddGeneratedBags(_bagsList);
         }
 
         public void CreateMapLayout(int QueueSizeOfBelts)
@@ -47,62 +46,57 @@ namespace Rail_Bag_Simulation
             Setsize = QueueSizeOfBelts;
        
 
-            LL.AddNode(new CheckinNode(213,10));
+            LL.AddNode(new CheckinNode());
 
-            LL.AddNode(ConveyorNode = new ConveyorNode(Setsize,205,0,0,0,295,160));
+            LL.AddNode(_conveyorNode = new ConveyorNode(Setsize));
 
-            LL.AddNode(new SecurityNode(246,355));
+            LL.AddNode(new SecurityNode());
 
-            LL.AddNode(ConveyorNode = new ConveyorNode(Setsize,200,0,0,0,295,435));
+            LL.AddNode(_conveyorNode = new ConveyorNode(Setsize));
 
-            BagSortNode = new BagSortNode(257,630);
+            _bagSortNode = new BagSortNode();
 
-            LL.AddNode(BagSortNode);
+            LL.AddNode(_bagSortNode);
 
 
 
-            LL.AddNode(ConveyorNode = new ConveyorNode(Setsize, 270, 0, -180, 0, 280, 701), BagSortNode);
+            LL.AddNode(_conveyorNode = new ConveyorNode(Setsize), _bagSortNode);
     
 
 
-            t = new TerminalNode(new Terminal("T1"),70,952);
+            t = new TerminalNode(new Terminal());
 
-            LL.AddNode(t, ConveyorNode);
+            LL.AddNode(t, _conveyorNode);
             
 
 
-            LL.AddNode(ConveyorNode = new ConveyorNode(Setsize, 88, 0, 40, 0, 148, 1002), t);
+            LL.AddNode(_conveyorNode = new ConveyorNode(Setsize), t);
 
 
-            GateNode = new GateNode(new Gate("G1"),ConveyorNode.Top,1114);
-            LL.AddNode(GateNode, ConveyorNode);
+            _gateNode = new GateNode(new Gate("G1"));
+            LL.AddNode(_gateNode, _conveyorNode);
 
-            LL.AddNode(ConveyorNode = new ConveyorNode(Setsize, 90, 0, 0, 40, t.Top-10, 1002), t);
+            LL.AddNode(_conveyorNode = new ConveyorNode(Setsize), t);
 
-            GateNode = new GateNode(new Gate("G2"), ConveyorNode.Top-30, 1128);
-            LL.AddNode(GateNode, ConveyorNode);
-
-
-            LL.AddNode(ConveyorNode = new ConveyorNode(Setsize, 270, 0, 270, 0, 316, 701), BagSortNode);
-
-            t = new TerminalNode(new Terminal("T2"),536,952);
-            LL.AddNode(t, ConveyorNode);
+            _gateNode = new GateNode(new Gate("G2"));
+            LL.AddNode(_gateNode, _conveyorNode);
 
 
-            LL.AddNode(ConveyorNode = new ConveyorNode(Setsize, 90, 0, 0, 40, 500, 1027), t);
+            LL.AddNode(_conveyorNode = new ConveyorNode(Setsize), _bagSortNode);
 
-            GateNode = new GateNode(new Gate("G1"),ConveyorNode.Top,1128);
-            LL.AddNode(GateNode, ConveyorNode);
-            LL.AddNode(ConveyorNode = new ConveyorNode(Setsize, 90, 0, 0, -40, t.Top+100, 1027), t);
+            t = new TerminalNode(new Terminal());
+            LL.AddNode(t, _conveyorNode);
 
-            GateNode = new GateNode(new Gate("G2"), ConveyorNode.Top+10, 1128);
-            LL.AddNode(GateNode, ConveyorNode);
 
-        }
+            LL.AddNode(_conveyorNode = new ConveyorNode(Setsize), t);
 
-        public Bag GetBagById(int bagId)
-        {
-            return null;
+            _gateNode = new GateNode(new Gate("G1"));
+            LL.AddNode(_gateNode, _conveyorNode);
+            LL.AddNode(_conveyorNode = new ConveyorNode(Setsize), t);
+
+            _gateNode = new GateNode(new Gate("G2"));
+            LL.AddNode(_gateNode, _conveyorNode);
+
         }
     }
 }

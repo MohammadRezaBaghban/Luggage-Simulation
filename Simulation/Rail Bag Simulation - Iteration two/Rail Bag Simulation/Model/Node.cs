@@ -9,18 +9,19 @@ namespace Rail_Bag_Simulation
         public Node Next { get;  set; } // the next node it refers to; null if there does not exist a next node
         public Node Previous { get;  set; }
 
-        public int Top { get; private set; }
-        public int Left { get; private set; }
+ 
         public static List<string> log=new List<string>();
 
-        public Node(int top, int left)
+        public Node()
         {
-            Top = top;
-            Left = left;
+           
             Next = null;
             Previous = null;
         }
 
+        public abstract void Push(Bag b);
+        public abstract Bag Remove();
+        
         public abstract string Nodeinfo();
 
         

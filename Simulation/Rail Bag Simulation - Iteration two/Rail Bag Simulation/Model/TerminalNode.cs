@@ -17,21 +17,13 @@ namespace Rail_Bag_Simulation
         public static int counter=0;
         public static EventHandler SimulationFinishedEvent;
 
-        public Image image { get; private set; }
         public Queue<Bag> BagQueue { get; }
         public Terminal Terminal { get; private set; }
-        public TerminalNode(Terminal terminal,int top, int left) : base(top, left)
+        public TerminalNode(Terminal terminal)
         {
             BagQueue = new Queue<Bag>();
 
             Terminal = terminal;
-            image = new Image
-            {
-                Width = 80,
-                Height = 80,
-                
-                Source = new BitmapImage(new Uri("../../Resources/terminal.jpg", UriKind.Relative))
-            };
         }
         public List<ConveyorNode> ListOfConnectedNodes { get; } = new List<ConveyorNode>();
 
@@ -45,16 +37,15 @@ namespace Rail_Bag_Simulation
         }
 
 
-        public bool Push(Bag bag)
+        public override void Push(Bag bag)
         {
             lock (BagQueue)
             {
                 BagQueue.Enqueue(bag);
-                return true;
             }
         }
 
-        public Bag Remove()
+        public override Bag Remove()
         {
             lock (BagQueue)
             {
@@ -65,11 +56,22 @@ namespace Rail_Bag_Simulation
             }
         }
 
-        public Node DetermineNextNode(out Bag g)
+        public Bag Peek()
         {
-            Node tnode = null;
-            g = this.Remove();
-            if (!g.IsNotNull()) return null;
+            lock (BagQueue)
+            {
+                if (BagQueue.Count < 1)
+                    return null;
+                var bag = BagQueue.Peek();
+                return bag;
+            }
+        }
+
+        public ConveyorNode DetermineNextConveyorNode(out Bag g)
+        {
+            ConveyorNode tnode = null;
+            g = Remove();
+            if (g.IsNull()) return null;
             foreach (var p in ListOfConnectedNodes)
             {
                 Node currentNode = p;
@@ -80,9 +82,11 @@ namespace Rail_Bag_Simulation
                 }
 
                 string str = g?.TerminalAndGate;
-                string[] words = str.Split('-');
-                var result = words[1];
-                if ((currentNode as GateNode)?.Gate.GateNr.ToString() != result) continue;
+                if (str.IsNull()) return null;
+                string[] words = str?.Split('-');
+                
+                var result =words[1];
+                if ((currentNode as GateNode)?.Gate.GateNr != result) continue;
                 tnode = p;
                 counter++;
                 if (counter + Storage.GetNumberOfBagsInStorage() >= ViewModel.ViewModel.numberOfBags)

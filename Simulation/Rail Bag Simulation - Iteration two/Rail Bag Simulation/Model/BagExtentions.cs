@@ -8,9 +8,9 @@ namespace Rail_Bag_Simulation.Model
 {
     static class Extentions
     {
-        public static bool IsNotNull<T>(this T source)
+        public static bool IsNull<T>(this T source)
         {
-            return source!=null;
+            return source==null;
         }
     }
 }

@@ -12,39 +12,39 @@ namespace Rail_Bag_Simulation
 {
     internal class BagSortNode : Node
     {
-        public BagSortNode(int top, int left) : base(top, left)
+        public BagSortNode() 
         {
             _bagQueue = new Queue<Bag>();
-            var tr = new TransformedBitmap();
-
-
-            image = new Image
-            {
-                Width = 72,
-                Height = 72,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Center
-            };
-
-            var bmp = new BitmapImage(new Uri("../../Resources/sorter.png", UriKind.Relative));
-            tr.BeginInit();
-
-            tr.Source = bmp;
-
-            var transform = new RotateTransform(90);
-
-            tr.Transform = transform;
-
-            tr.EndInit();
-
-            image.Source = tr;
         }
 
-        public Image image { get; }
+      
         public List<ConveyorNode> ListOfConnectedNodes { get; } = new List<ConveyorNode>();
 
-        private Queue<Bag> _bagQueue;
+        private readonly Queue<Bag> _bagQueue;
 
+        public void AddTerminal(int nbrOfConveyorbeltsBeforeTerminal)
+        {
+            ConveyorNode conveyorbelt = new ConveyorNode(5);
+            if (nbrOfConveyorbeltsBeforeTerminal == 1)
+            {
+                TerminalNode terminalNode =new TerminalNode(new Terminal());
+                conveyorbelt.Next = terminalNode;
+                ListOfConnectedNodes.Add(conveyorbelt);
+                return;
+            }
+
+
+            ConveyorNode currentNodelocator = conveyorbelt;
+
+            for (int i = 1; i < nbrOfConveyorbeltsBeforeTerminal; i++)
+            {
+                currentNodelocator.Next = new ConveyorNode(5);
+                currentNodelocator = (ConveyorNode)currentNodelocator.Next;
+
+            }
+            currentNodelocator.Next = new TerminalNode(new Terminal());
+
+        }
 
         public void ConnectNodeToSorter(ConveyorNode n)
         {
@@ -52,16 +52,15 @@ namespace Rail_Bag_Simulation
         }
         
 
-        public bool Push(Bag bag)
+        public override void Push(Bag bag)
         {
             lock (_bagQueue)
             {
                 _bagQueue.Enqueue(bag);
-                return true;
             }
         }
 
-        public Bag Remove()
+        public override Bag Remove()
         {
             lock (_bagQueue)
             {
@@ -72,32 +71,32 @@ namespace Rail_Bag_Simulation
             }
         }
 
-        public Node determineNextNode(out Bag g)
+        public Node DetermineNextNode(out Bag g)
         {
             Node tnode = null;
-            g = this.Remove();
-            if (g != null)
-                lock (ListOfConnectedNodes)
+            g = Remove();
+            if (g.IsNull()) return null;
+            lock (ListOfConnectedNodes)
+            {
+                foreach (var p in ListOfConnectedNodes)
                 {
-                    foreach (var p in ListOfConnectedNodes)
-                    {
-                        Node currentNode = p;
+                    Node currentNode = p;
 
-                        while (currentNode.Next != null && !(currentNode is TerminalNode node))
-                            currentNode = currentNode.Next;
+                    while (currentNode.Next != null && !(currentNode is TerminalNode node))
+                        currentNode = currentNode.Next;
 
-                        var str = g?.TerminalAndGate;
-                        var words = str.Split('-');
-                        var result = words[0];
-                        if ((currentNode as TerminalNode)?.Terminal.TerminalId != result) continue;
-                        tnode = p;
-                        break;
+                    var str = g?.TerminalAndGate;
+                    var words = str.Split('-');
+                    var result = Convert.ToInt32(words[0].Substring(1));
+                    if ((currentNode as TerminalNode)?.Terminal.TerminalId != result) 
+                    { 
+                        continue;
                     }
-
-                    return tnode;
+                    tnode = p;
+                    break;
                 }
-
-            return null;
+                return tnode;
+            }
         }
 
 

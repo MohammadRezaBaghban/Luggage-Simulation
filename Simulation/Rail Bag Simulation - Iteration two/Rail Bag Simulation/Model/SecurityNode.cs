@@ -13,9 +13,9 @@ namespace Rail_Bag_Simulation
 {
     class SecurityNode : Node
     {
-        private Queue<Bag> _bagQueue;
+        private readonly Queue<Bag> _bagQueue;
         public Image image { get; private set; }
-        public SecurityNode(int top,int left):base(top,left)
+        public SecurityNode():base()
         {
             _bagQueue = new Queue<Bag>();
             image = new Image
@@ -28,14 +28,19 @@ namespace Rail_Bag_Simulation
             };
         }
 
-        public bool PushBag(Bag bag)
+        public override void Push(Bag bag)
         {
             lock (_bagQueue)
             {
                 _bagQueue.Enqueue(bag);
-                return true;
             }
         }
+
+        public override Bag Remove()
+        {
+            return ScanBagSecurity();
+        }
+
         public override string Nodeinfo()
         {
             string sender = "Security: \n";
@@ -47,7 +52,7 @@ namespace Rail_Bag_Simulation
             return sender;
         }
 
-        public Bag ScanBagSecurity()
+        private Bag ScanBagSecurity()
         {
             Bag b = null;
             try
@@ -66,6 +71,7 @@ namespace Rail_Bag_Simulation
             {
                 return b;
             }
+
             
             Airport.Storage.StoreSuspiciousBag(b);
             return null;

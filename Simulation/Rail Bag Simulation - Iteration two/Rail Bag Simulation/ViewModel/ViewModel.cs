@@ -29,7 +29,7 @@ namespace Rail_Bag_Simulation.ViewModel
             _airport = new Airport("Schiphol");
             CreateMap(5);
             _airport.StartBagsMovement(totalbags, 3, 1, 0, 0);
-            _airport.LL.MoveBags(NumberOfBags);
+            _airport.LL.MoveBags();
 
         }
 
@@ -38,10 +38,6 @@ namespace Rail_Bag_Simulation.ViewModel
             _airport.CreateMapLayout(m);
         }
 
-        public List<Node> GetEverythingInTheLinkedList()
-        {
-            return _airport.ListOfNodes;
-        }
 
         public string Name
         {
