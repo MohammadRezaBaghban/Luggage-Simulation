@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rail_Bag_Simulation.View"
         mc:Ignorable="d"
-        Title="LogWindow" Height="624" Width="674">
-    <Grid>
+        Title="LogWindow" Height="1000" Width="674">
+    <Grid Margin="0,0,0,-279">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="25*"/>
             <ColumnDefinition Width="639*"/>
         </Grid.ColumnDefinitions>
-        <ListBox  Margin="45,10,50,22" Name="listBox1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="544" Height="561" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="2"/>
+        <ListBox  Margin="45,10,50,68" Name="listBox1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="544" Height="1170" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="2"/>
     </Grid>
 </Window>

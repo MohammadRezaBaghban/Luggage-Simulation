@@ -12,16 +12,7 @@ namespace Rail_Bag_Simulation
 {
     internal class BagSortNode : Node
     {
-        public BagSortNode() 
-        {
-            _bagQueue = new Queue<Bag>();
-        }
-
-      
         public List<ConveyorNode> ListOfConnectedNodes { get; } = new List<ConveyorNode>();
-
-        private readonly Queue<Bag> _bagQueue;
-
         public void AddTerminal(int nbrOfConveyorbeltsBeforeTerminal)
         {
             ConveyorNode conveyorbelt = new ConveyorNode(5);
@@ -51,10 +42,11 @@ namespace Rail_Bag_Simulation
             ListOfConnectedNodes.Add(n);
         }
 
-        public Node DetermineNextNode(out Bag g)
+        public ConveyorNode DetermineNextNode()
         {
-            Node tnode = null;
-            g = Remove();
+
+            ConveyorNode tnode = null;
+            Bag g = Peek();
             if (g.IsNull()) return null;
             lock (ListOfConnectedNodes)
             {
@@ -79,10 +71,21 @@ namespace Rail_Bag_Simulation
             }
         }
 
+        public override void MoveBagToNextNode()
+        {
+            var next = DetermineNextNode();
+            if (next.IsNull()) return;
+            if (!next.IsFull)
+            {
+                var bag = Remove();
+                if (bag.IsNull()) return;
+                next.Push(bag);
+            }
+        }
 
         public override string NodeInfo()
         {
-            return _bagQueue.Aggregate("Bag Sorter: \n", (current, g) => current + (g.GetBagInfo() + "\n"));
+            return BagsQueue.Aggregate("Bag Sorter: \n", (current, g) => current + (g.GetBagInfo() + "\n"));
         }
     }
 }

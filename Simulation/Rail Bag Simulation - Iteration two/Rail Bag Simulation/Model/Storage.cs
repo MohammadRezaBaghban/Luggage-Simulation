@@ -10,14 +10,6 @@ namespace Rail_Bag_Simulation
    public  class Storage
     {
         private static readonly List<Bag> Suspicious=new List<Bag>();
-        public Bag GetBagById(int id) 
-        {
-            foreach(var bag in Suspicious)
-            {
-                if(bag.Id == id) { return bag;  } 
-            }
-            return null;
-        }
 
         public static int GetNumberOfBagsInStorage()
         {

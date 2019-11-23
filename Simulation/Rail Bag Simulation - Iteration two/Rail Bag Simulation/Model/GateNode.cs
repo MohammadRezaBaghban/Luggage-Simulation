@@ -20,6 +20,10 @@ namespace Rail_Bag_Simulation
         {
             return ListOfBagsInQueue.Aggregate($"Gate: {Gate.GateNr} \n", (current, g) => current + (g.GetBagInfo() + "\n"));
         }
+
+        public override void MoveBagToNextNode()
+        {
+        }
     }
 }
 

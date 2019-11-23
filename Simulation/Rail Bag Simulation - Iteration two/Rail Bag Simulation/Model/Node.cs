@@ -54,6 +54,7 @@ namespace Rail_Bag_Simulation
 
         public virtual string NodeInfo()
         {
+            Sender = " ";
             lock (BagsQueue)
             {
                 foreach (Bag g in BagsQueue)
@@ -67,9 +68,14 @@ namespace Rail_Bag_Simulation
 
         public int QueueCount => ListOfBagsInQueue.Count;
 
-        public virtual void MoveBag(ref Node from, ref Node to)
+        public virtual void MoveBagToNextNode()
         {
-            if (@from.IsNull()) return;
+            if (!this.Next.IsNull())
+            {
+                this.Next.Push(Remove());
+            }
+
+            /*if (@from.IsNull()) return;
 
             if (@from is ConveyorNode fromConveyorNode)
             {
@@ -107,7 +113,7 @@ namespace Rail_Bag_Simulation
                     if (to.IsNull()) return;
                     to.Push(@from.Remove());
                     break;
-            }
+            }*/
         }
     }
 }

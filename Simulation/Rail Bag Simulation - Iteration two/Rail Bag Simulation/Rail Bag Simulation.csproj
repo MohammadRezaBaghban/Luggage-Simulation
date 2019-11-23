@@ -69,7 +69,6 @@
     <Compile Include="Model\Gate.cs" />
     <Compile Include="Model\GateNode.cs" />
     <Compile Include="Model\LinkedList.cs" />
-    <Compile Include="Model\NextStop.cs" />
     <Compile Include="Model\Node.cs" />
     <Compile Include="Model\SecurityNode.cs" />
     <Compile Include="Model\Storage.cs" />

@@ -33,10 +33,10 @@ namespace Rail_Bag_Simulation
             ListOfConnectedNodes.Add(n);
         }
 
-        public ConveyorNode DetermineNextConveyorNode(out Bag g)
+        public ConveyorNode DetermineNextConveyorNode()
         {
             ConveyorNode tnode = null;
-            g = Remove();
+            Bag g = Peek();
             if (g.IsNull()) return null;
             foreach (var p in ListOfConnectedNodes)
             {
@@ -63,6 +63,18 @@ namespace Rail_Bag_Simulation
             }
 
             return tnode;
+        }
+
+        public override void MoveBagToNextNode()
+        {
+            var next = DetermineNextConveyorNode();
+            if (next.IsNull()) return; 
+            if (!next.IsFull)
+            {
+                var bag = Remove();
+                if (bag.IsNull()) return;
+                next.Push(bag);
+            }
         }
     }
 }

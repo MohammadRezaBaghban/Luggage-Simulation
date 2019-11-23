@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
 {
@@ -23,6 +24,14 @@ namespace Rail_Bag_Simulation
             {
                 return QueueCount < 1;
             }
+        }
+
+        public override void MoveBagToNextNode()
+        {
+            if (((ConveyorNode)Next).IsFull) return;
+            var bag = Remove();
+            if (bag.IsNull()) { return; }
+            Next.Push(bag);
         }
     }
 }

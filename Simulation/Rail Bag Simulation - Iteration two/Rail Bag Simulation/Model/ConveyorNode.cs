@@ -74,6 +74,24 @@ namespace Rail_Bag_Simulation
             return bagqueueinfo;
         }
 
-       
+        public override void MoveBagToNextNode()
+        {
+            if(IsEmpty) return;
+            if(Next is ConveyorNode next) { 
+                if(!next.IsFull)
+                {
+                    var bag = Remove();
+                    if(bag.IsNull())return;
+                    Next.Push(bag);
+                    return;
+                };
+                return;
+            }
+
+            var bag1 = Remove();
+            if(bag1.IsNull())return;
+            Next.Push(bag1);
+        }
+
     }
 }
