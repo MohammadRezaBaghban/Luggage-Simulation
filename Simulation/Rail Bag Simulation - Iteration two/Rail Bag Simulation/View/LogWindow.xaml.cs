@@ -38,7 +38,7 @@ namespace Rail_Bag_Simulation.View
             {
 
                 listBox1.Items.Clear();
-                ViewModel.ViewModel.LL.GetAllNodes().ForEach(p => listBox1.Items.Add(p.Nodeinfo()));
+                ViewModel.ViewModel.LL.GetAllNodes().ForEach(p => listBox1.Items.Add(p.NodeInfo()));
                 listBox1.Items.Add("** Bags In Storage ***");
                 Airport.Storage.GetAllSuspiciousBags().ForEach(
                     bag => { listBox1.Items.Add(bag.GetBagInfo()); });

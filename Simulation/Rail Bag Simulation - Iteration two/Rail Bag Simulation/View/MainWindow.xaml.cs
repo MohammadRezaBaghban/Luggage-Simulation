@@ -12,12 +12,10 @@ namespace Rail_Bag_Simulation
     /// </summary>
     public partial class MainWindow : Window
     {
-        private int totalnbrbags;
         public MainWindow(int nodes)
         {
-            totalnbrbags = nodes;
             Vm = new ViewModel.ViewModel();
-            Vm.StartSimulation(totalnbrbags);
+            Vm.StartSimulation(nodes);
 
             InitializeComponent();
            

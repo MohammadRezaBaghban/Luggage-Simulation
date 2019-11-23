@@ -11,23 +11,9 @@ namespace Rail_Bag_Simulation
 {
     class CheckinNode : Node
     {
-        public static string control;
-        public CheckinNode():base()
+        public override string NodeInfo()
         {
-            BagsQueue = new Queue<Bag>();
-        }
-
-        public override string Nodeinfo()
-        {
-            string sender = "Check in: \n";
-            lock (BagsQueue)
-            {
-                foreach (Bag g in BagsQueue)
-                {
-                    sender += g.GetBagInfo() + "\n";
-                }
-            }
-
+            string sender = "Check in: \n"+ base.NodeInfo();
             return sender;
         }
 
@@ -37,35 +23,6 @@ namespace Rail_Bag_Simulation
             lock (BagsQueue)
             {
                 return QueueCount < 1;
-            }
-        }
-        public Queue<Bag> BagsQueue { get; }
-
-        public void Push(List<Bag> bagsList)
-        { 
-            bagsList.ForEach(p =>
-            {
-                control += p.GetBagInfo() + "\n";
-                lock (BagsQueue)
-                {
-                    BagsQueue.Enqueue(p);
-                }
-            });
-        }
-
-        public override void Push(Bag b)
-        {
-         
-        }
-
-        public override Bag Remove()
-        {
-            lock (BagsQueue)
-            {
-                if (BagsQueue.Count < 1)
-                    return null;
-                var bag = BagsQueue.Dequeue();
-                return bag;
             }
         }
     }

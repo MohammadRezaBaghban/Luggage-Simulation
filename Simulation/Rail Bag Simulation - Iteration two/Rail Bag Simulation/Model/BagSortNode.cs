@@ -50,26 +50,6 @@ namespace Rail_Bag_Simulation
         {
             ListOfConnectedNodes.Add(n);
         }
-        
-
-        public override void Push(Bag bag)
-        {
-            lock (_bagQueue)
-            {
-                _bagQueue.Enqueue(bag);
-            }
-        }
-
-        public override Bag Remove()
-        {
-            lock (_bagQueue)
-            {
-                if (_bagQueue.Count < 1)
-                    return null;
-                var bag = _bagQueue.Dequeue();
-                return bag;
-            }
-        }
 
         public Node DetermineNextNode(out Bag g)
         {
@@ -100,7 +80,7 @@ namespace Rail_Bag_Simulation
         }
 
 
-        public override string Nodeinfo()
+        public override string NodeInfo()
         {
             return _bagQueue.Aggregate("Bag Sorter: \n", (current, g) => current + (g.GetBagInfo() + "\n"));
         }

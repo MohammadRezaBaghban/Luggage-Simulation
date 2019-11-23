@@ -13,42 +13,17 @@ namespace Rail_Bag_Simulation
 {
     class SecurityNode : Node
     {
-        private readonly Queue<Bag> _bagQueue;
         public Image image { get; private set; }
-        public SecurityNode():base()
-        {
-            _bagQueue = new Queue<Bag>();
-            image = new Image
-            {
-                Width = 80,
-                Height = 80,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Center,
-                Source = new BitmapImage(new Uri("../Resources/securityCheckHouse.png", UriKind.Relative))
-            };
-        }
-
-        public override void Push(Bag bag)
-        {
-            lock (_bagQueue)
-            {
-                _bagQueue.Enqueue(bag);
-            }
-        }
+       
 
         public override Bag Remove()
         {
             return ScanBagSecurity();
         }
 
-        public override string Nodeinfo()
-        {
-            string sender = "Security: \n";
-            foreach (Bag g in _bagQueue)
-            {
-                sender += g.GetBagInfo() + "\n";
-            }
-
+        public override string NodeInfo()
+        { 
+            string sender = "Security: \n" + base.NodeInfo();
             return sender;
         }
 
@@ -57,9 +32,9 @@ namespace Rail_Bag_Simulation
             Bag b = null;
             try
             {
-                lock (_bagQueue)
+                lock (BagsQueue)
                 {
-                    b = _bagQueue.Dequeue();
+                    b = BagsQueue.Dequeue();
                 }
             }
             catch (Exception)

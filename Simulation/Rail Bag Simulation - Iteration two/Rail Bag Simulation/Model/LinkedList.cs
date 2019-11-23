@@ -39,7 +39,7 @@ namespace Rail_Bag_Simulation
 
         public void AddGeneratedBags(List<Bag> bagstoqueue)
         {
-            ((CheckinNode)First).Push(bagstoqueue);
+            bagstoqueue.ForEach(bag => First.Push(bag));
         }
 
         public void AddNode(Node nd)
@@ -81,9 +81,9 @@ namespace Rail_Bag_Simulation
                             {
                                 if (((ConveyorNode) currentnode2).IsEmpty) continue;
                                 Thread.Sleep(_delayTime);
-
+                                                         
                                 var b = ((ConveyorNode)currentnode2).Remove();
-                                if (!b.IsNull())
+                                if(!b.IsNull())
                                 {
                                     node.Push(b);
                                 }
@@ -464,47 +464,6 @@ namespace Rail_Bag_Simulation
             return temp;
         }
 
-        private void MoveBag(ref Node from, ref Node to)
-        {
-            if (@from.IsNull()) return;
-
-            if (@from is ConveyorNode fromConveyorNode)
-            {
-                if (fromConveyorNode.IsEmpty)
-                {
-                    return;
-                }
-            }
-
-            if (@to is ConveyorNode toConveyorNode)
-            {
-                if (toConveyorNode.IsFull)
-                {
-                    return;
-                }
-            }
-
-            switch (@from)
-            {
-                case BagSortNode bagSortNode:
-                {
-                    to = bagSortNode.DetermineNextNode(out var g);
-                    if(to.IsNull())return;
-                    to.Push(g);
-                    return;
-                }
-                case TerminalNode terminalNode:
-                {
-                    to = terminalNode.DetermineNextConveyorNode(out var g);
-                    if (to.IsNull()) return;
-                    to.Push(g);
-                    return;
-                }
-                default:
-                    if (to.IsNull()) return;
-                    to.Push(@from.Remove());
-                    break;
-            }
-        }
+        
     }
 }

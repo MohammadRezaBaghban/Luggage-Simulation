@@ -11,28 +11,14 @@ namespace Rail_Bag_Simulation
     {
         public Gate Gate { get; }
 
-        public List<Bag> ListOfBags { get; } = new List<Bag>();
-
-        public GateNode(Gate g) : base()
+        public GateNode(Gate g)
         {
             this.Gate = g;
         }
-        public override void Push(Bag g)
-        {
-            lock (ListOfBags)
-            {
-                this.ListOfBags.Add(g);
-            }
-        }
 
-        public override Bag Remove()
+        public override string NodeInfo()
         {
-            return null;
-        }
-
-        public override string Nodeinfo()
-        {
-            return ListOfBags.Aggregate($"Gate: {Gate.GateNr} \n", (current, g) => current + (g.GetBagInfo() + "\n"));
+            return BagsQueue.Aggregate($"Gate: {Gate.GateNr} \n", (current, g) => current + (g.GetBagInfo() + "\n"));
         }
     }
 }
