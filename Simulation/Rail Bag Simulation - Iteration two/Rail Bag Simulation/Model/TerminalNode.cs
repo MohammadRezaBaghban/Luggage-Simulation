@@ -26,7 +26,7 @@ namespace Rail_Bag_Simulation
 
         public override string NodeInfo()
         {
-            return BagsQueue.Aggregate("Terminal: \n" + Terminal.TerminalId + "\n", (current, g) => current + (g.GetBagInfo() + "\n"));
+            return ListOfBagsInQueue.Aggregate("Terminal: \n" + Terminal.TerminalId + "\n", (current, g) => current + (g.GetBagInfo() + "\n"));
         }
         public void ConnectNodeToSorter(ConveyorNode n)
         {

@@ -13,9 +13,6 @@ namespace Rail_Bag_Simulation
 {
     class SecurityNode : Node
     {
-        public Image image { get; private set; }
-       
-
         public override Bag Remove()
         {
             return ScanBagSecurity();
@@ -32,9 +29,9 @@ namespace Rail_Bag_Simulation
             Bag b = null;
             try
             {
-                lock (BagsQueue)
+                lock (ListOfBagsInQueue)
                 {
-                    b = BagsQueue.Dequeue();
+                    b = ListOfBagsInQueue.Dequeue();
                 }
             }
             catch (Exception)

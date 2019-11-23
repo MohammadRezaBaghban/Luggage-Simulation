@@ -16,27 +16,19 @@ namespace Rail_Bag_Simulation.View
         public LogWindow(int bags)
         {
             dispatcherTimer = new DispatcherTimer();
-
             InitializeComponent();
-
             var vm = new ViewModel.ViewModel();
             vm.StartSimulation(vm.NumberOfBags);
-            
             dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-            dispatcherTimer.Tick += dispatcherTimer_Tick;
+            dispatcherTimer.Tick += DispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0,0,500);
             dispatcherTimer.Start();
-            
-            
-            
         }
 
-        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        private void DispatcherTimer_Tick(object sender, EventArgs e)
         {
-           
             if (!LinkedList.IsSimulationFinished)
             {
-
                 listBox1.Items.Clear();
                 ViewModel.ViewModel.LL.GetAllNodes().ForEach(p => listBox1.Items.Add(p.NodeInfo()));
                 listBox1.Items.Add("** Bags In Storage ***");
@@ -45,14 +37,8 @@ namespace Rail_Bag_Simulation.View
             }
             else
             {
-              
                 dispatcherTimer.Stop();
             }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-           
         }
     }
 }

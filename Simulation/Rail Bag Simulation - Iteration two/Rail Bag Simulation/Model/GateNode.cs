@@ -18,7 +18,7 @@ namespace Rail_Bag_Simulation
 
         public override string NodeInfo()
         {
-            return BagsQueue.Aggregate($"Gate: {Gate.GateNr} \n", (current, g) => current + (g.GetBagInfo() + "\n"));
+            return ListOfBagsInQueue.Aggregate($"Gate: {Gate.GateNr} \n", (current, g) => current + (g.GetBagInfo() + "\n"));
         }
     }
 }

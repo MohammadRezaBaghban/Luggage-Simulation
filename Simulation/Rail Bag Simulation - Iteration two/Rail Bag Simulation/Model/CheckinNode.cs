@@ -17,10 +17,9 @@ namespace Rail_Bag_Simulation
             return sender;
         }
 
-        public int QueueCount => BagsQueue.Count;
         internal bool IsEmpty()
         {
-            lock (BagsQueue)
+            lock (ListOfBagsInQueue)
             {
                 return QueueCount < 1;
             }

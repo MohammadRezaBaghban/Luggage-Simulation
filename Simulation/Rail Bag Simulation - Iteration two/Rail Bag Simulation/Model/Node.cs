@@ -10,11 +10,10 @@ namespace Rail_Bag_Simulation
         public Node Next { get;  set; } // the next node it refers to; null if there does not exist a next node
         public Node Previous { get;  set; }
 
-        string sender = " ";
+        protected Queue<Bag> ListOfBagsInQueue => BagsQueue;
+
+        protected string Sender = " ";
         protected readonly Queue<Bag> BagsQueue;
-
-
-        public static List<string> log=new List<string>();
 
         protected Node()
         {
@@ -59,12 +58,14 @@ namespace Rail_Bag_Simulation
             {
                 foreach (Bag g in BagsQueue)
                 {
-                    sender += g.GetBagInfo() + "\n";
+                    Sender += g.GetBagInfo() + "\n";
                 }
             }
 
-            return sender;
+            return Sender;
         }
+
+        public int QueueCount => ListOfBagsInQueue.Count;
 
         public virtual void MoveBag(ref Node from, ref Node to)
         {
