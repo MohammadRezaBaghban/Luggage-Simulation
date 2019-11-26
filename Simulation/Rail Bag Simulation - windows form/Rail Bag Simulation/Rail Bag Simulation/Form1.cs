@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MainForm
+namespace Rail_Bag_Simulation
 {
     public partial class Form1 : Form
     {

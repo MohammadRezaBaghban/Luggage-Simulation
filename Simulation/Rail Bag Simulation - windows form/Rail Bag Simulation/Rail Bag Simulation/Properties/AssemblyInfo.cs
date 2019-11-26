@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MainForm")]
+[assembly: AssemblyTitle("Rail Bag Simulation")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MainForm")]
+[assembly: AssemblyProduct("Rail Bag Simulation")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("309d5280-6d5c-44c1-b50e-52402a4b9b78")]
+[assembly: Guid("7a4f3a91-fb15-4d56-a799-adb9c1f649f4")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -1,4 +1,4 @@
-﻿namespace MainForm
+﻿namespace Rail_Bag_Simulation
 {
     partial class Form1
     {

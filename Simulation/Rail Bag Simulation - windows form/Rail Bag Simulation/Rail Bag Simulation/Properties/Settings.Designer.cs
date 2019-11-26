@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MainForm.Properties
+namespace Rail_Bag_Simulation.Properties
 {
 
 
