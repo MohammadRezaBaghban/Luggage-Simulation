@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation

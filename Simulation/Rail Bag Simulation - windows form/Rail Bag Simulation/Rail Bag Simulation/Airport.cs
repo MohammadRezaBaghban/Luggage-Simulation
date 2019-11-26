@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 
 namespace Rail_Bag_Simulation
@@ -19,11 +14,15 @@ namespace Rail_Bag_Simulation
         private BagSortNode _bagSortNode;
         private TerminalNode t;
         private GateNode _gateNode;
+        private static int _totalNumberOfBags = 0;
 
         public static Storage Storage { get; } = new Storage();
 
         public static List<Node> ListOfNodes => LinkedList.GetAllNodes();
         public LinkedList LL { get; } = new LinkedList(400);
+
+        public static int TotalNumberOfBags => _totalNumberOfBags;
+
         public Airport(string name)
         {
             _name = name;
@@ -31,6 +30,7 @@ namespace Rail_Bag_Simulation
 
         public void StartBagsMovement(int nbrOfBags, int nbrOfBagsDrugs, int nbrOfBagsWeapons, int nbrOfBagsFlammable, int nbrBagsOthers)
         {
+            _totalNumberOfBags = nbrOfBags;
             _bagsList = Bag.GenerateBag(nbrOfBags, nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable, nbrBagsOthers);
             LL.AddGeneratedBags(_bagsList);
         }

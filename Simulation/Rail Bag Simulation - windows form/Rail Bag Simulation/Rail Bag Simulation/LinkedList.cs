@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Timers;
-using System.Windows;
 using System.Windows.Forms;
-using Rail_Bag_Simulation.Model;
-using Timer = System.Threading.Timer;
 
 namespace Rail_Bag_Simulation
 {

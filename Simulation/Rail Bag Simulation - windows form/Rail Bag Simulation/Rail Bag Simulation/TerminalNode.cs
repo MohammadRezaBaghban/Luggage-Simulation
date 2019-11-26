@@ -8,11 +8,13 @@ namespace Rail_Bag_Simulation
     class TerminalNode : Node
     {
         public static int counter=0;
+        public static int totalNumberOfBags=0;
         public static EventHandler SimulationFinishedEvent;
 
         public Terminal Terminal { get; private set; }
         public TerminalNode(Terminal terminal)
         {
+            totalNumberOfBags = Airport.TotalNumberOfBags;
             Terminal = terminal;
         }
         public List<ConveyorNode> ListOfConnectedNodes { get; } = new List<ConveyorNode>();
@@ -48,10 +50,10 @@ namespace Rail_Bag_Simulation
                 if ((currentNode as GateNode)?.Gate.GateNr != result) continue;
                 tnode = p;
                 counter++;
-              /*  if (counter + Storage.GetNumberOfBagsInStorage() >= ViewModel.ViewModel.numberOfBags)
+                if (counter + Storage.GetNumberOfBagsInStorage() >= totalNumberOfBags)
                 {
                     SimulationFinishedEvent?.Invoke(this, EventArgs.Empty);
-                }*/
+                }
                 break;
             }
 
