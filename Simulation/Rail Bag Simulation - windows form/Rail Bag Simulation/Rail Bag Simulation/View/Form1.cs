@@ -7,6 +7,7 @@ namespace Rail_Bag_Simulation
         public Form1()
         {
             InitializeComponent();
+            
         }
     }
 }

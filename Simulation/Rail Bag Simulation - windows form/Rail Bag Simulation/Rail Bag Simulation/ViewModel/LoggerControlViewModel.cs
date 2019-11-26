@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Rail_Bag_Simulation
+namespace Rail_Bag_Simulation.ViewModel
 {
-    public enum SuspiciousBagtype
+    class LoggerControlViewModel
     {
-        Drug, Weapons, Flammables, Other
     }
 }

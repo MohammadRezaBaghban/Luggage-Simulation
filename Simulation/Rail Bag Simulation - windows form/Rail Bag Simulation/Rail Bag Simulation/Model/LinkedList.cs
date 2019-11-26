@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Timers;
-using System.Windows;
-using Rail_Bag_Simulation.Model;
-using Timer = System.Threading.Timer;
+using System.Windows.Forms;
 
 namespace Rail_Bag_Simulation
 {
@@ -22,6 +18,8 @@ namespace Rail_Bag_Simulation
         { 
             _delayTime = speedDelayTime;
             timer = new System.Timers.Timer(speedDelayTime);
+            ThreadPool.SetMaxThreads(3, 3);
+
             timer.Elapsed += (sender, args) =>
             {
                 ThreadPool.QueueUserWorkItem(MakeBagsMoveOneAtATime);
