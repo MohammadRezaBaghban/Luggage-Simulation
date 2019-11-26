@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
 {
     public abstract class Node
     {
-       
-        public Node Next { get;  set; } // the next node it refers to; null if there does not exist a next node
-        public Node Previous { get;  set; }
+        public Node Next { get; set; } // the next node it refers to; null if there does not exist a next node
+        public Node Previous { get; set; }
 
         protected Queue<Bag> ListOfBagsInQueue => BagsQueue;
 
-        protected string Sender = " ";
+        protected List<string> Sender;
         protected readonly Queue<Bag> BagsQueue;
 
         protected Node()
@@ -19,7 +19,7 @@ namespace Rail_Bag_Simulation
             Next = null;
             Previous = null;
             BagsQueue = new Queue<Bag>();
-
+            Sender = new List<string>();
         }
 
         public virtual void Push(Bag b)
@@ -29,6 +29,7 @@ namespace Rail_Bag_Simulation
                 BagsQueue.Enqueue(b);
             }
         }
+
         public virtual Bag Remove()
         {
             lock (BagsQueue)
@@ -51,15 +52,11 @@ namespace Rail_Bag_Simulation
             }
         }
 
-        public virtual string NodeInfo()
+        public virtual List<string> NodeInfo()
         {
-            Sender = " ";
             lock (BagsQueue)
             {
-                foreach (Bag g in BagsQueue)
-                {
-                    Sender += g.GetBagInfo() + "\n";
-                }
+                foreach (var g in BagsQueue.Where(g => !g.IsNull())) Sender.Add(g.GetBagInfo());
             }
 
             return Sender;
@@ -69,51 +66,12 @@ namespace Rail_Bag_Simulation
 
         public virtual void MoveBagToNextNode()
         {
-            if (!this.Next.IsNull())
+            if (Next.IsNull()) return;
+            while (Next is ConveyorNode next && next.IsFull)
             {
-                this.Next.Push(Remove());
             }
 
-            /*if (@from.IsNull()) return;
-
-            if (@from is ConveyorNode fromConveyorNode)
-            {
-                if (fromConveyorNode.IsEmpty)
-                {
-                    return;
-                }
-            }
-
-            if (@to is ConveyorNode toConveyorNode)
-            {
-                if (toConveyorNode.IsFull)
-                {
-                    return;
-                }
-            }
-
-            switch (@from)
-            {
-                case BagSortNode bagSortNode:
-                {
-                    to = bagSortNode.DetermineNextNode(out var g);
-                    if (to.IsNull()) return;
-                    to.Push(g);
-                    return;
-                }
-                case TerminalNode terminalNode:
-                {
-                    to = terminalNode.DetermineNextConveyorNode(out var g);
-                    if (to.IsNull()) return;
-                    to.Push(g);
-                    return;
-                }
-                default:
-                    if (to.IsNull()) return;
-                    to.Push(@from.Remove());
-                    break;
-            }*/
+            Next.Push(Remove());
         }
     }
 }
-

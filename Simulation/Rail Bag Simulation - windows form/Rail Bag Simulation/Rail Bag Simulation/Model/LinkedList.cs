@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
+using Timer = System.Timers.Timer;
 
 namespace Rail_Bag_Simulation
 {
@@ -12,13 +12,13 @@ namespace Rail_Bag_Simulation
         private readonly List<Thread> _threadListAfterBagSort = new List<Thread>();
         private readonly int _delayTime;
 
-        private System.Timers.Timer timer;
+        private readonly Timer timer;
 
         public LinkedList(int speedDelayTime)
-        { 
+        {
             _delayTime = speedDelayTime;
-            timer = new System.Timers.Timer(speedDelayTime);
-            ThreadPool.SetMaxThreads(3, 3);
+            timer = new Timer(speedDelayTime);
+            //ThreadPool.SetMaxThreads(5, 5);
 
             timer.Elapsed += (sender, args) =>
             {
@@ -28,7 +28,6 @@ namespace Rail_Bag_Simulation
                 ThreadPool.QueueUserWorkItem(MakeBagsMoveOneAtATime);
             };
             timer.Enabled = true;
-
         }
 
         public static Node First { get; private set; }
@@ -40,7 +39,7 @@ namespace Rail_Bag_Simulation
             timer.Start();
             TerminalNode.SimulationFinishedEvent += (sender, args) =>
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(4000);
                 timer.Stop();
             };
         }
@@ -71,7 +70,7 @@ namespace Rail_Bag_Simulation
         {
             if (First == null)
             {
-                MessageBox.Show("There is no first node");
+                MessageBox.Show(@"There is no first node");
             }
             else
             {
@@ -79,14 +78,15 @@ namespace Rail_Bag_Simulation
 
                 while (current.Next != null && !(current is BagSortNode)) current = current.Next;
 
-                if (current is BagSortNode node)
+                if (!(current is BagSortNode node)) return;
+                if (node == parent && childNode is ConveyorNode conveyor)
                 {
-                    if (node == parent && childNode is ConveyorNode conveyor)
-                    {
-                        node.ConnectNodeToSorter(conveyor);
-                        conveyor.Next = null;
-                    }
-                    else if (parent is ConveyorNode conv && childNode is TerminalNode terminal)
+                    node.ConnectNodeToSorter(conveyor);
+                    conveyor.Next = null;
+                }
+                else switch (parent)
+                {
+                    case ConveyorNode conv when childNode is TerminalNode terminal:
                     {
                         foreach (var conveyorNode in node.ListOfConnectedNodes)
                         {
@@ -99,8 +99,10 @@ namespace Rail_Bag_Simulation
                                 break;
                             }
                         }
+
+                        break;
                     }
-                    else if (parent is TerminalNode terminalNode && childNode is ConveyorNode co)
+                    case TerminalNode terminalNode when childNode is ConveyorNode co:
                     {
                         foreach (var conveyorNode in node.ListOfConnectedNodes)
                         {
@@ -114,25 +116,30 @@ namespace Rail_Bag_Simulation
                                 break;
                             }
                         }
+
+                        break;
                     }
-                    else if (parent is ConveyorNode && childNode is GateNode)
+                    case ConveyorNode _ when childNode is GateNode:
                     {
                         foreach (var conveyorNode in node.ListOfConnectedNodes)
                         {
                             Node near = conveyorNode;
                             while (!(near is TerminalNode) || near.Next != null) near = near.Next;
-                            foreach (var s in ((TerminalNode)near).ListOfConnectedNodes)
+                            foreach (var s in ((TerminalNode) near).ListOfConnectedNodes)
                             {
-                                    Node nearNode = s;
-                                    while (nearNode != parent && nearNode.Next != null) nearNode = nearNode.Next;
+                                Node nearNode = s;
+                                while (nearNode != parent && nearNode.Next != null) nearNode = nearNode.Next;
 
-                                    if (nearNode != parent) continue;
-                                    childNode.Next = nearNode.Next;
-                                    nearNode.Next = childNode;
-                                    break;
+                                if (nearNode != parent) continue;
+                                childNode.Next = nearNode.Next;
+                                nearNode.Next = childNode;
+                                break;
                             }
+
                             if (parent.Next != null) break;
                         }
+
+                        break;
                     }
                 }
             }
@@ -164,22 +171,22 @@ namespace Rail_Bag_Simulation
 
                 temp.Add(tmp);
 
-                ((TerminalNode)tmp).ListOfConnectedNodes.ForEach(cnode2 =>
-               {
-                   Node tmp1 = cnode2;
-                   while (!(tmp1 is GateNode))
-                   {
-                       temp.Add(tmp1);
-                       tmp1 = tmp1.Next;
-                   }
+                ((TerminalNode) tmp).ListOfConnectedNodes.ForEach(cnode2 =>
+                {
+                    Node tmp1 = cnode2;
+                    while (!(tmp1 is GateNode))
+                    {
+                        temp.Add(tmp1);
+                        tmp1 = tmp1.Next;
+                    }
 
-                   temp.Add(tmp1);
-               });
+                    temp.Add(tmp1);
+                });
             });
             return temp;
         }
 
-        private static void MakeBagsMoveOneAtATime(Object Stateinfo)
+        private static void MakeBagsMoveOneAtATime(object Stateinfo)
         {
             GetAllNodes().ForEach(node => node.MoveBagToNextNode());
         }

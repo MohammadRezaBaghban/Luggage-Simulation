@@ -1,4 +1,6 @@
-﻿using Rail_Bag_Simulation.Model;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
 {
@@ -49,40 +51,23 @@ namespace Rail_Bag_Simulation
         }
 
 
-        public override string NodeInfo() // change the method to return a list of bags
+        public override List<string> NodeInfo() // change the method to return a list of bags
         {
-            var bagqueueinfo = "Conveyor " + Id.ToString() + ": \n";
-            var listOfBags = ListOfBagsInQueue;
-            lock (listOfBags)
-            {
-                foreach (Bag g in listOfBags)
-                {
-                    if(g != null){bagqueueinfo += string.Format( g.GetBagInfo() + "\n ");}
-                    else
-                    {
-                        bagqueueinfo += "\n ** \n";
-                    }
-                }}
-            return bagqueueinfo;
+            Sender.Clear();
+
+            Sender.Add("Conveyor " + Id);
+            base.NodeInfo();
+            return Sender;
         }
 
         public override void MoveBagToNextNode()
         {
             if(IsEmpty) return;
-            if(Next is ConveyorNode next) { 
-                if(!next.IsFull)
-                {
-                    var bag = Remove();
-                    if(bag.IsNull())return;
-                    Next.Push(bag);
-                    return;
-                };
-                return;
-            }
+            if(Next is ConveyorNode next && next.IsFull) return;
 
-            var bag1 = Remove();
-            if(bag1.IsNull())return;
-            Next.Push(bag1);
+            var bag = Remove();
+            if(bag.IsNull())return;
+            Next.Push(bag);
         }
 
     }

@@ -1,28 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
 {
-    class TerminalNode : Node
+    internal class TerminalNode : Node
     {
-        public static int counter=0;
-        public static int totalNumberOfBags=0;
+        public static int Counter;
         public static EventHandler SimulationFinishedEvent;
 
-        public Terminal Terminal { get; private set; }
+        public Terminal Terminal { get; }
+
         public TerminalNode(Terminal terminal)
         {
-            totalNumberOfBags = Airport.TotalNumberOfBags;
             Terminal = terminal;
         }
+
         public List<ConveyorNode> ListOfConnectedNodes { get; } = new List<ConveyorNode>();
 
-        public override string NodeInfo()
+        public override List<string> NodeInfo()
         {
-            return ListOfBagsInQueue.Aggregate("Terminal: \n" + Terminal.TerminalId + "\n", (current, g) => current + (g.GetBagInfo() + "\n"));
+            Sender.Clear();
+
+            Sender.Add("Terminal: \n" + Terminal.TerminalId);
+            base.NodeInfo();
+            return Sender;
         }
+
         public void ConnectNodeToSorter(ConveyorNode n)
         {
             ListOfConnectedNodes.Add(n);
@@ -31,45 +35,54 @@ namespace Rail_Bag_Simulation
         public ConveyorNode DetermineNextConveyorNode()
         {
             ConveyorNode tnode = null;
-            Bag g = Peek();
+            var g = Peek();
             if (g.IsNull()) return null;
             foreach (var p in ListOfConnectedNodes)
             {
                 Node currentNode = p;
 
-                while (currentNode.Next != null && !(currentNode is GateNode node))
-                {
-                    currentNode = currentNode.Next;
-                }
+                while (currentNode.Next != null && !(currentNode is GateNode node)) currentNode = currentNode.Next;
 
-                string str = g?.TerminalAndGate;
-                if (str.IsNull()) return null;
-                string[] words = str?.Split('-');
-                
-                var result =words[1];
+                if (GetGateNumber(g, out var result)) return null;
                 if ((currentNode as GateNode)?.Gate.GateNr != result) continue;
                 tnode = p;
-                counter++;
-                if (counter + Storage.GetNumberOfBagsInStorage() >= totalNumberOfBags)
-                {
-                    SimulationFinishedEvent?.Invoke(this, EventArgs.Empty);
-                }
                 break;
             }
 
             return tnode;
         }
 
+        private bool GetGateNumber(Bag g, out string result)
+        {
+            var str = g?.TerminalAndGate;
+            if (str.IsNull()) return true;
+            var words = str?.Split('-');
+
+            result = words[1];
+            return false;
+        }
+
         public override void MoveBagToNextNode()
         {
             var next = DetermineNextConveyorNode();
-            if (next.IsNull()) return; 
-            if (!next.IsFull)
+            while (next.IsNull()) return;
+
+            var bag = Remove();
+            if (bag.IsNull()) return;
+
+            while (next.IsFull)
             {
-                var bag = Remove();
-                if (bag.IsNull()) return;
-                next.Push(bag);
             }
+
+            next.Push(bag);
+            VerifyBagsCount();
+        }
+
+        private void VerifyBagsCount()
+        {
+            Counter++;
+            if (Counter + Storage.GetNumberOfBagsInStorage() >= Airport.TotalNumberOfBags)
+                SimulationFinishedEvent?.Invoke(this, EventArgs.Empty);
         }
     }
 }

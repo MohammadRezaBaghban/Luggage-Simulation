@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Rail_Bag_Simulation
 {
@@ -11,9 +12,13 @@ namespace Rail_Bag_Simulation
             this.Gate = g;
         }
 
-        public override string NodeInfo()
+        public override List<string> NodeInfo()
         {
-            return ListOfBagsInQueue.Aggregate($"Gate: {Gate.GateNr} \n", (current, g) => current + (g.GetBagInfo() + "\n"));
+            Sender.Clear();
+
+            Sender.Add($"Gate: {Gate.GateNr}");
+            base.NodeInfo();
+            return Sender;
         }
 
         public override void MoveBagToNextNode()

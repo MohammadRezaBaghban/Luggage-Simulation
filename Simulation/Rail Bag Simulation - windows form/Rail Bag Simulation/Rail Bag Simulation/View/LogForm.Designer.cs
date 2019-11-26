@@ -1,13 +1,13 @@
-﻿namespace Rail_Bag_Simulation
+﻿namespace Rail_Bag_Simulation.View
 {
-    partial class LogControl
+    partial class LogForm
     {
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -20,10 +20,10 @@
             base.Dispose(disposing);
         }
 
-        #region Component Designer generated code
+        #region Windows Form Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -34,19 +34,20 @@
             // lbLog
             // 
             this.lbLog.FormattingEnabled = true;
-            this.lbLog.Location = new System.Drawing.Point(3, 3);
+            this.lbLog.Location = new System.Drawing.Point(4, 3);
             this.lbLog.Name = "lbLog";
-            this.lbLog.Size = new System.Drawing.Size(423, 693);
+            this.lbLog.Size = new System.Drawing.Size(1002, 667);
             this.lbLog.TabIndex = 0;
-            this.lbLog.SelectedIndexChanged += new System.EventHandler(this.lbLog_SelectedIndexChanged);
+            this.lbLog.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
-            // LogControl
+            // LogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1013, 672);
             this.Controls.Add(this.lbLog);
-            this.Name = "LogControl";
-            this.Size = new System.Drawing.Size(429, 691);
+            this.Name = "LogForm";
+            this.Text = "LogForm";
             this.ResumeLayout(false);
 
         }

@@ -1,19 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
 using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
 {
-    class SecurityNode : Node
+    internal class SecurityNode : Node
     {
         public override Bag Remove()
         {
             return ScanBagSecurity();
         }
 
-        public override string NodeInfo()
-        { 
-            string sender = "Security: \n" + base.NodeInfo();
-            return sender;
+        public override List<String> NodeInfo()
+        {
+            Sender.Clear();
+
+            Sender.Add("Security:");
+          base.NodeInfo();
+            return Sender;
         }
 
         private Bag ScanBagSecurity()
@@ -41,12 +45,5 @@ namespace Rail_Bag_Simulation
             return null;
         }
 
-        public override void MoveBagToNextNode()
-        {
-            if (((ConveyorNode) Next).IsFull) return;
-            var bag = Remove();
-            if (bag.IsNull()) { return;}
-            Next.Push(bag);
-        }
     }
 }

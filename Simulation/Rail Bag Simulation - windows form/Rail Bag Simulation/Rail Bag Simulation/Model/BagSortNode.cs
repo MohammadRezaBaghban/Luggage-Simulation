@@ -52,9 +52,7 @@ namespace Rail_Bag_Simulation
                     while (currentNode.Next != null && !(currentNode is TerminalNode node))
                         currentNode = currentNode.Next;
 
-                    var str = g?.TerminalAndGate;
-                    var words = str.Split('-');
-                    var result = Convert.ToInt32(words[0].Substring(1));
+                    var result = GetTerminalNumber(g);
                     if ((currentNode as TerminalNode)?.Terminal.TerminalId != result) 
                     { 
                         continue;
@@ -66,21 +64,33 @@ namespace Rail_Bag_Simulation
             }
         }
 
+        private int GetTerminalNumber(Bag g)
+        {
+            var str = g?.TerminalAndGate;
+            var words = str.Split('-');
+            var result = Convert.ToInt32(words[0].Substring(1));
+            return result;
+        }
+
         public override void MoveBagToNextNode()
         {
             var next = DetermineNextNode();
             if (next.IsNull()) return;
-            if (!next.IsFull)
-            {
-                var bag = Remove();
-                if (bag.IsNull()) return;
-                next.Push(bag);
-            }
+            var bag = Remove();
+            if (bag.IsNull()) return;
+
+            while(next.IsFull) { }
+
+            next.Push(bag);
         }
 
-        public override string NodeInfo()
+
+        public override List<String> NodeInfo()
         {
-            return BagsQueue.Aggregate("Bag Sorter: \n", (current, g) => current + (g.GetBagInfo() + "\n"));
+            Sender.Clear();
+            Sender.Add("Bag Sort:");
+            base.NodeInfo();
+            return Sender;
         }
     }
 }
