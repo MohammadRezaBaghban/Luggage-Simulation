@@ -9,35 +9,21 @@ namespace Rail_Bag_Simulation
 {
     class GateNode : Node 
     {
-        public Gate Gate { get; private set; }
+        public Gate Gate { get; }
 
-        public static string control;
-        public Image image { get; private set; }
-        public List<Bag> ListOfBags { get; } = new List<Bag>();
-
-        public GateNode(Gate g,int top, int left) : base(top, left)
+        public GateNode(Gate g)
         {
             this.Gate = g;
-            image = new Image
-            {
-                Width = 80,
-                Height = 80,
-                Source = new BitmapImage(new Uri("../../Resources/gate.png", UriKind.Relative))
-            };
-        }
-        public void AddBag(Bag g)
-        {
-            lock (ListOfBags)
-            {
-                this.ListOfBags.Add(g);
-            }
-        }
-        public override string Nodeinfo()
-        {
-            return ListOfBags.Aggregate($"Gate: {Gate.GateNr} \n", (current, g) => current + (g.GetBagInfo() + "\n"));
         }
 
-        
+        public override string NodeInfo()
+        {
+            return ListOfBagsInQueue.Aggregate($"Gate: {Gate.GateNr} \n", (current, g) => current + (g.GetBagInfo() + "\n"));
+        }
+
+        public override void MoveBagToNextNode()
+        {
+        }
     }
 }
 

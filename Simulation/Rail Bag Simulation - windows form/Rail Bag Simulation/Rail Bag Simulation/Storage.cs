@@ -1,42 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Rail_Bag_Simulation
 {
-    class Storage
+   public  class Storage
     {
-        private static List<Bag> _suspicious = new List<Bag>();
-        public Bag GetBagById(int id)
-        {
-            foreach (var bag in _suspicious)
-            {
-                if (bag.Id == id) { return bag; }
-            }
-            return null;
-        }
+        private static readonly List<Bag> Suspicious=new List<Bag>();
 
         public static int GetNumberOfBagsInStorage()
         {
-            return _suspicious.Count;
+            return Suspicious.Count;
         }
 
         public List<Bag> GetAllSuspiciousBags()
         {
-            return _suspicious;
+            return Suspicious;
         }
 
         public void StoreSuspiciousBag(Bag bag)
         {
-            _suspicious.Add(bag);
+            Suspicious.Add(bag);
         }
 
         public override string ToString()
         {
             string sender = "\n Storage \n";
-            foreach (Bag bag in _suspicious)
+            foreach (Bag bag in Suspicious)
             {
                 sender += bag.GetBagInfo() + "\n";
             }

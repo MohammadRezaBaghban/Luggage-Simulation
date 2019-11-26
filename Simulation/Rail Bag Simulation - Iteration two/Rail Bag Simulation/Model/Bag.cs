@@ -16,56 +16,49 @@ namespace Rail_Bag_Simulation
     public class Bag
     {
         private static int _idToGive = 100;
-        public Canvas HitboxCanvas { get;  set; }
 
-        
-        public Image image { get; private set; }
-        private string _lastSeenLocation;
-        private int _id;
         private SuspiciousBagtype? _suspicious;
-        private float _weight;
-        private Destination _destination;
-        private string _terminalAndGate;
-        
-        public string LastSeenLocation{get{return _lastSeenLocation; } set{ _lastSeenLocation = value;}}
-        public int Id{get { return _id; }set { _id = value; }}
+
+        public string LastSeenLocation { get; set; }
+
+        public int Id { get; set; }
         public SuspiciousBagtype SuspiciousBagtype { get { return (SuspiciousBagtype) _suspicious; } set { _suspicious = value; } }
-        public Destination Destination { get { return _destination; } set { _destination = value; } }
-        public float Weight{get { return _weight; }set { _weight = value; }}
-        public string TerminalAndGate{get { return _terminalAndGate; } set { _terminalAndGate = value; }}
-     
+        public Destination Destination { get; set; }
+        public float Weight { get; set; }
+        public string TerminalAndGate { get; set; }
 
 
-        private static Random _random = new Random();
+
+        private static readonly Random Random = new Random();
 
         public Bag(SuspiciousBagtype suspicious, float weight, Destination destination, string terminalAndGate)
         {
             this._suspicious = suspicious;
-            this._weight = weight;
-            this._id = ++_idToGive;
-            this._destination = destination;
-            this._terminalAndGate = terminalAndGate;
+            this.Weight = weight;
+            this.Id = ++_idToGive;
+            this.Destination = destination;
+            this.TerminalAndGate = terminalAndGate;
            
 
         }
         public Bag(float weight, Destination destination, string terminalAndGate)
         {
             this._suspicious = null;
-            this._weight = weight;
-            this._id = ++_idToGive;
-            this._destination = destination;
-            this._terminalAndGate = terminalAndGate;
+            this.Weight = weight;
+            this.Id = ++_idToGive;
+            this.Destination = destination;
+            this.TerminalAndGate = terminalAndGate;
         }
 
 
         public string GetBagInfo()
         {
-            return string.Format($"Id : {_id} Weight: {_weight}  Destination: {_destination} Terminal and Gate: {_terminalAndGate}");
+            return string.Format($"Id : {Id} Weight: {Weight}  Destination: {Destination} Terminal and Gate: {TerminalAndGate}");
         }
 
         public void UpdateLastSeenLocation(string newLocation)
         {
-            _lastSeenLocation = newLocation;
+            LastSeenLocation = newLocation;
         }
 
         private static int GetTheSuspiciousBagDistr(int totalNrOfBags, int totalNrOfSuspBags)
@@ -104,8 +97,8 @@ namespace Rail_Bag_Simulation
                     suspiciousbags.RemoveAt(0);
                     continue;
                 }
-                bags.Add(new Bag(_random.Next(10, 22), (Destination) _random.Next(1, 12),
-                    "T" + _random.Next(1, 3) + "-"+"G" + _random.Next(1, 3)));
+                bags.Add(new Bag(Random.Next(10, 22), (Destination) Random.Next(1, 12),
+                    "T" + Random.Next(1, 3) + "-"+"G" + Random.Next(1, 3)));
             }
             return bags;
         }
@@ -119,14 +112,14 @@ namespace Rail_Bag_Simulation
             {
                 if (nbrOfBagsDrugs > 0)
                 {
-                    templist.Add(new Bag(SuspiciousBagtype.Drug, _random.Next(10, 22), (Destination)_random.Next(1, 12), "T" + _random.Next(1, 3) + "-" + "G" + _random.Next(1, 3)));
+                    templist.Add(new Bag(SuspiciousBagtype.Drug, Random.Next(10, 22), (Destination)Random.Next(1, 12), "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, 3)));
                     nbrOfBagsDrugs--;
                     totalnumber--;
                 }
 
                 if (nbrOfBagsWeapons > 0)
                 {
-                    templist.Add(new Bag(SuspiciousBagtype.Weapons, _random.Next(10, 22), (Destination)_random.Next(1, 12), "T" + _random.Next(1, 3)+ "-" + "G" + _random.Next(1, 3)));
+                    templist.Add(new Bag(SuspiciousBagtype.Weapons, Random.Next(10, 22), (Destination)Random.Next(1, 12), "T" + Random.Next(1, 3)+ "-" + "G" + Random.Next(1, 3)));
                     nbrOfBagsWeapons--;
                     totalnumber--;
 
@@ -134,7 +127,7 @@ namespace Rail_Bag_Simulation
 
                 if (nbrOfBagsFlammable > 0)
                 {
-                    templist.Add(new Bag(SuspiciousBagtype.Flammables, _random.Next(10, 22), (Destination)_random.Next(1, 12), "T" + _random.Next(1, 3) + "-" +"G" + _random.Next(1, 3)));
+                    templist.Add(new Bag(SuspiciousBagtype.Flammables, Random.Next(10, 22), (Destination)Random.Next(1, 12), "T" + Random.Next(1, 3) + "-" +"G" + Random.Next(1, 3)));
                     nbrOfBagsFlammable--;
                     totalnumber--;
 
@@ -142,7 +135,7 @@ namespace Rail_Bag_Simulation
 
                 if (nbrBagsOthers > 0)
                 {
-                    templist.Add(new Bag(SuspiciousBagtype.Other, _random.Next(10, 22), (Destination)_random.Next(1, 12), "T" + _random.Next(1, 3) + "-" + "G" + _random.Next(1, 3)));
+                    templist.Add(new Bag(SuspiciousBagtype.Other, Random.Next(10, 22), (Destination)Random.Next(1, 12), "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, 3)));
                     nbrBagsOthers--;
                     totalnumber--;
                 }

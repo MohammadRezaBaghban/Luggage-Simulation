@@ -1,55 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
 {
     class SecurityNode : Node
     {
-        private Queue<Bag> _bagQueue;
-        public Image image { get; private set; }
-        public SecurityNode(int top, int left) : base(top, left)
+        public override Bag Remove()
         {
-            _bagQueue = new Queue<Bag>();
-            image = new Image
-            {
-                Width = 80,
-                Height = 80,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Center,
-                Source = new BitmapImage(new Uri("../Resources/securityCheckHouse.png", UriKind.Relative))
-            };
+            return ScanBagSecurity();
         }
 
-        public bool PushBag(Bag bag)
-        {
-            lock (_bagQueue)
-            {
-                _bagQueue.Enqueue(bag);
-                return true;
-            }
-        }
-        public override string Nodeinfo()
-        {
-            string sender = "Security: \n";
-            foreach (Bag g in _bagQueue)
-            {
-                sender += g.GetBagInfo() + "\n";
-            }
-
+        public override string NodeInfo()
+        { 
+            string sender = "Security: \n" + base.NodeInfo();
             return sender;
         }
 
-        public Bag ScanBagSecurity()
+        private Bag ScanBagSecurity()
         {
             Bag b = null;
             try
             {
-                lock (_bagQueue)
+                lock (ListOfBagsInQueue)
                 {
-                    b = _bagQueue.Dequeue();
+                    b = ListOfBagsInQueue.Dequeue();
                 }
             }
             catch (Exception)
@@ -62,8 +36,17 @@ namespace Rail_Bag_Simulation
                 return b;
             }
 
+            
             Airport.Storage.StoreSuspiciousBag(b);
             return null;
+        }
+
+        public override void MoveBagToNextNode()
+        {
+            if (((ConveyorNode) Next).IsFull) return;
+            var bag = Remove();
+            if (bag.IsNull()) { return;}
+            Next.Push(bag);
         }
     }
 }
