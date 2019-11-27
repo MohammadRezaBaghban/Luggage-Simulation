@@ -7,10 +7,9 @@ namespace Rail_Bag_Simulation
     {
         public override List<string> NodeInfo()
         {
-            Sender.Clear();
-            Sender.Add("Check-in: ");
-            base.NodeInfo();
-            return Sender;
+            var sender = new List<string> {"Check-in: "};
+            sender.AddRange(base.NodeInfo());
+            return sender;
         }
     }
 }

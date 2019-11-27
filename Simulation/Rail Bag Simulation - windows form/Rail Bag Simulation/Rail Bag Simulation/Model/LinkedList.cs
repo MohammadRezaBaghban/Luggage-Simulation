@@ -8,8 +8,6 @@ namespace Rail_Bag_Simulation
     public class LinkedList
     {
         public static bool IsSimulationFinished;
-        private readonly List<Thread> _threadList = new List<Thread>();
-        private readonly List<Thread> _threadListAfterBagSort = new List<Thread>();
         private readonly int _delayTime;
 
         private readonly Timer timer;
@@ -27,7 +25,13 @@ namespace Rail_Bag_Simulation
                 ThreadPool.QueueUserWorkItem(MakeBagsMoveOneAtATime);
                 ThreadPool.QueueUserWorkItem(MakeBagsMoveOneAtATime);
             };
+
             timer.Enabled = true;
+            TerminalNode.SimulationFinishedEvent += (sender, args) =>
+            {
+                IsSimulationFinished = true;
+                timer.Stop();
+            };
         }
 
         public static Node First { get; private set; }
@@ -37,11 +41,7 @@ namespace Rail_Bag_Simulation
         public void MoveBags()
         {
             timer.Start();
-            TerminalNode.SimulationFinishedEvent += (sender, args) =>
-            {
-                Thread.Sleep(4000);
-                timer.Stop();
-            };
+           
         }
 
         public void AddGeneratedBags(List<Bag> bagstoqueue)

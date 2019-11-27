@@ -8,10 +8,12 @@ namespace Rail_Bag_Simulation
 
         public Form1()
         {
-            InitializeComponent();
+            //InitializeComponent();
             
-            LogForm lgForm = new LogForm();
+            var lgForm = new LogForm();
             lgForm.Show();
+            this.Hide();
+            
         }
 
         private void Form1_Load(object sender, System.EventArgs e)

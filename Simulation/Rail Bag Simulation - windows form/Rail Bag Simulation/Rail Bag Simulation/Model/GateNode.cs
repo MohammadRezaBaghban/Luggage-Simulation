@@ -9,16 +9,17 @@ namespace Rail_Bag_Simulation
 
         public GateNode(Gate g)
         {
-            this.Gate = g;
+            Gate = g;
         }
 
         public override List<string> NodeInfo()
         {
-            Sender.Clear();
-
-            Sender.Add($"Gate: {Gate.GateNr}");
-            base.NodeInfo();
-            return Sender;
+            var sender = new List<string>
+            {
+                $"Gate: {Gate.GateNr}"
+            };
+            sender.AddRange(base.NodeInfo());
+            return sender;
         }
 
         public override void MoveBagToNextNode()

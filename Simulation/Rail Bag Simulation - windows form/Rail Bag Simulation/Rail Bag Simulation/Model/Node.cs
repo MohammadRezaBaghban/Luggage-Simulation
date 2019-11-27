@@ -4,22 +4,29 @@ using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
 {
-    public abstract class Node
+    public interface INode
+    {
+        Node Next { get; set; } // the next node it refers to; null if there does not exist a next node
+        Queue<Bag> ListOfBagsInQueue { get; }
+        void Push(Bag b);
+        Bag Remove();
+        Bag Peek();
+        List<string> NodeInfo();
+        void MoveBagToNextNode();
+    }
+
+    public class Node : INode
     {
         public Node Next { get; set; } // the next node it refers to; null if there does not exist a next node
-        public Node Previous { get; set; }
 
-        protected Queue<Bag> ListOfBagsInQueue => BagsQueue;
+        public Queue<Bag> ListOfBagsInQueue => BagsQueue;
 
-        protected List<string> Sender;
         protected readonly Queue<Bag> BagsQueue;
 
         protected Node()
         {
             Next = null;
-            Previous = null;
             BagsQueue = new Queue<Bag>();
-            Sender = new List<string>();
         }
 
         public virtual void Push(Bag b)
@@ -54,12 +61,13 @@ namespace Rail_Bag_Simulation
 
         public virtual List<string> NodeInfo()
         {
+            var sender = new List<string>();
             lock (BagsQueue)
             {
-                foreach (var g in BagsQueue.Where(g => !g.IsNull())) Sender.Add(g.GetBagInfo());
+                sender.AddRange(BagsQueue.Where(g => !g.IsNull()).Select(g => g.GetBagInfo()));
             }
 
-            return Sender;
+            return sender;
         }
 
         public int QueueCount => ListOfBagsInQueue.Count;

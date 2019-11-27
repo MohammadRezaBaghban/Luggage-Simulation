@@ -15,33 +15,36 @@ namespace Rail_Bag_Simulation.View
 {
     public partial class LogForm : Form
     {
+        private BindingList<string> _lbLogDataSource;
+
         public LogForm()
         {
             InitializeComponent();
             var vm = new LoggerControlViewModel();
+            var timer = new DispatcherTimer {Interval = new TimeSpan(0, 0, 0,0,1000)};
+            _lbLogDataSource = new BindingList<string>();
             vm.StartSimulation(43);
-            var timer = new DispatcherTimer {Interval = new TimeSpan(0, 0, 0,0,500)};
-            timer.Tick += (sender, args) => {
-                lbLog.Items.Clear();
-                    LinkedList.GetAllNodes()
-                        .ForEach(p => p.NodeInfo()
-                            .ForEach(s => lbLog.Items.Add(s)));
-
-
-                    lbLog.Items.Add("*** Bags In Storage ***");
-                    Airport.Storage.GetAllSuspiciousBags().ForEach(
-                        bag => {
-                            lbLog.Items.Add(bag.GetBagInfo());
-
-                        });
-                    lbLog.SetSelected(lbLog.Items.Count-1,true);
-                };
-            timer.Start();
-            TerminalNode.SimulationFinishedEvent += (sender, args) =>
-            {
-                Thread.Sleep(1000);
-                timer.Stop();
+            lbLog.DataSource = _lbLogDataSource;
+            timer.Tick += (sender, args) =>
+            { 
+                if (LinkedList.IsSimulationFinished) { timer.Stop();}
+                UpdateDataSource();
+               
             };
+            timer.Start();
+
+        }
+
+        private void UpdateDataSource()
+        {
+            _lbLogDataSource.Clear();
+            LinkedList.GetAllNodes()
+                .ForEach(p => p.NodeInfo()
+                    .ForEach(s => _lbLogDataSource.Add(s)));
+
+            _lbLogDataSource.Add("*** Bags In Storage ***");
+            Airport.Storage.GetAllSuspiciousBags().ForEach(
+                bag => { _lbLogDataSource.Add(bag.GetBagInfo()); });
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)

@@ -53,11 +53,9 @@ namespace Rail_Bag_Simulation
 
         public override List<string> NodeInfo() // change the method to return a list of bags
         {
-            Sender.Clear();
-
-            Sender.Add("Conveyor " + Id);
-            base.NodeInfo();
-            return Sender;
+            var sender = new List<string> {"Conveyor " + Id};
+            sender.AddRange(base.NodeInfo());
+            return sender;
         }
 
         public override void MoveBagToNextNode()

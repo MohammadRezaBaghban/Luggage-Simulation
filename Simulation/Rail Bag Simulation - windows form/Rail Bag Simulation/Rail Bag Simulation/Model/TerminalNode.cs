@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
@@ -20,11 +21,10 @@ namespace Rail_Bag_Simulation
 
         public override List<string> NodeInfo()
         {
-            Sender.Clear();
+            var sender = new List<string> {"Terminal: \n" + Terminal.TerminalId};
+            sender.AddRange(base.NodeInfo());
 
-            Sender.Add("Terminal: \n" + Terminal.TerminalId);
-            base.NodeInfo();
-            return Sender;
+            return sender;
         }
 
         public void ConnectNodeToSorter(ConveyorNode n)
@@ -52,9 +52,10 @@ namespace Rail_Bag_Simulation
             return tnode;
         }
 
-        private bool GetGateNumber(Bag g, out string result)
+        private static bool GetGateNumber(Bag g, out string result)
         {
             var str = g?.TerminalAndGate;
+            result = null;
             if (str.IsNull()) return true;
             var words = str?.Split('-');
 
@@ -81,8 +82,8 @@ namespace Rail_Bag_Simulation
         private void VerifyBagsCount()
         {
             Counter++;
-            if (Counter + Storage.GetNumberOfBagsInStorage() >= Airport.TotalNumberOfBags)
-                SimulationFinishedEvent?.Invoke(this, EventArgs.Empty);
+            if (Counter + Storage.GetNumberOfBagsInStorage() < Airport.TotalNumberOfBags) return;
+            Thread.Sleep(1000); SimulationFinishedEvent?.Invoke(this, EventArgs.Empty);
         }
     }
 }

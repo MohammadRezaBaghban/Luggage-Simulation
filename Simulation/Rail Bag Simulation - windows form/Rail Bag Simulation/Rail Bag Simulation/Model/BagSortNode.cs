@@ -8,29 +8,6 @@ namespace Rail_Bag_Simulation
     internal class BagSortNode : Node
     {
         public List<ConveyorNode> ListOfConnectedNodes { get; } = new List<ConveyorNode>();
-        public void AddTerminal(int nbrOfConveyorbeltsBeforeTerminal)
-        {
-            ConveyorNode conveyorbelt = new ConveyorNode(5);
-            if (nbrOfConveyorbeltsBeforeTerminal == 1)
-            {
-                TerminalNode terminalNode =new TerminalNode(new Terminal());
-                conveyorbelt.Next = terminalNode;
-                ListOfConnectedNodes.Add(conveyorbelt);
-                return;
-            }
-
-
-            ConveyorNode currentNodelocator = conveyorbelt;
-
-            for (int i = 1; i < nbrOfConveyorbeltsBeforeTerminal; i++)
-            {
-                currentNodelocator.Next = new ConveyorNode(5);
-                currentNodelocator = (ConveyorNode)currentNodelocator.Next;
-
-            }
-            currentNodelocator.Next = new TerminalNode(new Terminal());
-
-        }
 
         public void ConnectNodeToSorter(ConveyorNode n)
         {
@@ -39,9 +16,8 @@ namespace Rail_Bag_Simulation
 
         public ConveyorNode DetermineNextNode()
         {
-
             ConveyorNode tnode = null;
-            Bag g = Peek();
+            var g = Peek();
             if (g.IsNull()) return null;
             lock (ListOfConnectedNodes)
             {
@@ -64,11 +40,11 @@ namespace Rail_Bag_Simulation
             }
         }
 
-        private int GetTerminalNumber(Bag g)
+        private static int GetTerminalNumber(Bag g)
         {
             var str = g?.TerminalAndGate;
-            var words = str.Split('-');
-            var result = Convert.ToInt32(words[0].Substring(1));
+            var words = str?.Split('-');
+            var result = Convert.ToInt32(words?[0].Substring(1));
             return result;
         }
 
@@ -85,12 +61,11 @@ namespace Rail_Bag_Simulation
         }
 
 
-        public override List<String> NodeInfo()
+        public override List<string> NodeInfo()
         {
-            Sender.Clear();
-            Sender.Add("Bag Sort:");
-            base.NodeInfo();
-            return Sender;
+            var sender = new List<string> {"Bag Sort:"};
+            sender.AddRange(base.NodeInfo());
+            return sender;
         }
     }
 }

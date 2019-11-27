@@ -13,11 +13,9 @@ namespace Rail_Bag_Simulation
 
         public override List<String> NodeInfo()
         {
-            Sender.Clear();
-
-            Sender.Add("Security:");
-          base.NodeInfo();
-            return Sender;
+            var sender = new List<string> {"Security:"};
+            sender.AddRange(base.NodeInfo());
+            return sender;
         }
 
         private Bag ScanBagSecurity()
