@@ -127,12 +127,19 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="Resources\terminal.jpg" />
+    <None Include="Resources\sorter1.png" />
+    <None Include="Resources\sorter.png" />
+    <None Include="Resources\securityCheckHouse.png" />
+    <None Include="Resources\storage.png" />
     <None Include="Resources\stat.PNG" />
     <None Include="Resources\others.png" />
     <None Include="Resources\weapon.png" />
     <None Include="Resources\close.png" />
     <None Include="Resources\flamable.png" />
     <None Include="Resources\drugs.jpg" />
+    <None Include="Resources\check-in.png" />
+    <None Include="Resources\gate.png" />
     <Content Include="Resources\logomini.png" />
     <None Include="Resources\statistics.png" />
     <None Include="Resources\simulation.png" />
