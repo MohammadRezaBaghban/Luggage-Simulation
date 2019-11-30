@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using Timer = System.Timers.Timer;
@@ -12,7 +13,6 @@ namespace Rail_Bag_Simulation
         public static bool IsSimulationFinished;
         public static Dictionary<Stopwatch, Bag> TimelyWatchedBagWithStopWatch = new Dictionary<Stopwatch, Bag>();
         private readonly Timer timer;
-        private Stopwatch st;
 
         public LinkedList(int speedDelayTime)
         {
@@ -30,14 +30,21 @@ namespace Rail_Bag_Simulation
             timer.Enabled = true;
             GateNode.SimulationFinishedEvent += (sender, args) =>
             {
+                decimal totalTime = 0;
                 IsSimulationFinished = true;
                 timer.Stop();
+                TimelyWatchedBagWithStopWatch.Keys.ToList()
+                    .ForEach(stopwatch => totalTime += (int)stopwatch.ElapsedMilliseconds);
+                totalTime /= 1000;
+                AverageTimePerBag = totalTime / TimelyWatchedBagWithStopWatch.Keys.Count;
             };
         }
 
         public static Node First { get; private set; }
 
         public Node Current { get; set; }
+
+        public static decimal AverageTimePerBag { get; private set; } = 0;
 
         public void MoveBags()
         {
@@ -52,23 +59,28 @@ namespace Rail_Bag_Simulation
             TimelyWatchedBagWithStopWatch.Add(new Stopwatch(), bagstoqueue[0]);
             if (totalNumberOfBags >= 5)
             {
-                TimelyWatchedBagWithStopWatch.Add(new Stopwatch(), bagstoqueue[firstQuater]);
-                TimelyWatchedBagWithStopWatch.Add(new Stopwatch(), bagstoqueue[firstQuater*2]);
-                TimelyWatchedBagWithStopWatch.Add(new Stopwatch(), bagstoqueue[firstQuater*3]);
-                TimelyWatchedBagWithStopWatch.Add(new Stopwatch(), bagstoqueue[bagstoqueue.Count - 1]);
+                AddTimerWithABag(bagstoqueue, firstQuater);
+                AddTimerWithABag(bagstoqueue, firstQuater*2);
+                AddTimerWithABag(bagstoqueue, firstQuater*3);
+                AddTimerWithABag(bagstoqueue, firstQuater*4);
             }
 
-            foreach (var bag in TimelyWatchedBagWithStopWatch)
+            foreach (var val in TimelyWatchedBagWithStopWatch.Values)
             {
-                bag.Value.IsObserving = true;
-                bag.Key.Start();
+               val.IsObserving = true;
             }
 
             bagstoqueue.ForEach(bag =>
             {
+                TimelyWatchedBagWithStopWatch.First(pair => pair.Value == bag).Key.Start();
                 First.Push(bag);
             });
 
+        }
+
+        private static void AddTimerWithABag(List<Bag> bagstoqueue, int firstQuater)
+        {
+            TimelyWatchedBagWithStopWatch.Add(new Stopwatch(), bagstoqueue[firstQuater]);
         }
 
         public void AddNode(Node nd)

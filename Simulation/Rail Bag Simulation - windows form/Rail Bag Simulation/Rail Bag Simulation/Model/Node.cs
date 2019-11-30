@@ -18,8 +18,14 @@ namespace Rail_Bag_Simulation
         Node GetNext();
     }
 
+    public class QueueEventArgs : EventArgs
+    {
+        public List<Bag> ListOfBags { get; set; }
+    }
+
     public class Node : INode
     {
+        public EventHandler<QueueEventArgs> OnQueueChangedEventHandler;
         public void SetNext(Node value)
         {
             _next = value;

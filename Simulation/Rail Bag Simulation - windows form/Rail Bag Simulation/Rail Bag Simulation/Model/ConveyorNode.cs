@@ -30,6 +30,8 @@ namespace Rail_Bag_Simulation
                 var count = BagsQueue.Count;
                 if (count < _setsize-1) BagsQueue.Enqueue(null);
                 if (count == _setsize)IsFull = true;
+                OnQueueChangedEventHandler?.Invoke(this, new QueueEventArgs { ListOfBags = BagsQueue.ToList() });
+
 
             }
         }
@@ -46,7 +48,8 @@ namespace Rail_Bag_Simulation
 
                 var bag = BagsQueue.Dequeue(); 
                 IsFull = false;
-             return bag;
+                OnQueueChangedEventHandler?.Invoke(this, new QueueEventArgs { ListOfBags = BagsQueue.ToList() });
+                return bag;
             }
         }
 

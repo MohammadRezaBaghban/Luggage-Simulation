@@ -1,43 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Rail_Bag_Simulation.ViewModel
+﻿namespace Rail_Bag_Simulation.ViewModel
 {
-    class LoggerControlViewModel
+    internal class LoggerControlViewModel
     {
-        private string name;
-        public static int numberOfBags;
-        private int nrOfSusBagsGuns;
-        private int nrOfSusBagsDrugs;
-        private int nrOfSusBagsFlamable;
-        private int nrOfSusBagsOthers;
+        public static int NumberOfBags;
 
+        public static LinkedList LL => Airport.Ll;
 
-        private static Airport _airport;
-        public static LinkedList LL => _airport.LL;
-
-
-        public void StartSimulation(int totalbags
-        )
+        public void StartSimulation(int totalbags, int delayTime)
         {
-            numberOfBags = totalbags;
-            _airport = new Airport("Schiphol");
+            NumberOfBags = totalbags;
+            Airport = new Airport(delayTime);
             CreateMap(5);
-            _airport.StartBagsMovement(totalbags, 3, 1, 0, 0);
-            _airport.LL.MoveBags();
-
+            Airport.StartBagsMovement(totalbags, 3, 1, 0, 0);
+            Airport.Ll.MoveBags();
         }
 
         public void CreateMap(int m)
         {
-            _airport.CreateMapLayout(m);
+            Airport.CreateMapLayout(m);
         }
 
-        public static Airport Airport => _airport;
-
+        public static Airport Airport { get; private set; }
     }
 }

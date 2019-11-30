@@ -30,6 +30,10 @@ namespace Rail_Bag_Simulation
         public override void Push(Bag b)
         {
             base.Push(b);
+            if (b.IsObserving)
+            {
+                LinkedList.TimelyWatchedBagWithStopWatch.First(pair => pair.Value == b).Key.Stop();
+            }
             VerifyBagsCount();
         }
 

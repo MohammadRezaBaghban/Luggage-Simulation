@@ -15,7 +15,7 @@ namespace Rail_Bag_Simulation.View
 {
     public partial class LogForm : Form
     {
-        private BindingList<string> _lbLogDataSource;
+        private readonly BindingList<string> _lbLogDataSource;
 
         public LogForm()
         {
@@ -23,7 +23,7 @@ namespace Rail_Bag_Simulation.View
             var vm = new LoggerControlViewModel();
             var timer = new DispatcherTimer {Interval = new TimeSpan(0, 0, 0,0,1000)};
             _lbLogDataSource = new BindingList<string>();
-            vm.StartSimulation(43);
+            vm.StartSimulation(43,99);
             lbLog.DataSource = _lbLogDataSource;
             timer.Tick += (sender, args) =>
             { 
@@ -47,7 +47,7 @@ namespace Rail_Bag_Simulation.View
                 bag => { _lbLogDataSource.Add(bag.GetBagInfo()); });
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
