@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Rail_Bag_Simulation.Model;
 
@@ -6,26 +7,42 @@ namespace Rail_Bag_Simulation
 {
     public interface INode
     {
-        Node Next { get; set; } // the next node it refers to; null if there does not exist a next node
+        void SetNext(Node value);
+        Type GetNextType();
         Queue<Bag> ListOfBagsInQueue { get; }
         void Push(Bag b);
         Bag Remove();
         Bag Peek();
         List<string> NodeInfo();
         void MoveBagToNextNode();
+        Node GetNext();
     }
 
     public class Node : INode
     {
-        public Node Next { get; set; } // the next node it refers to; null if there does not exist a next node
+        public void SetNext(Node value)
+        {
+            _next = value;
+        }
+
+        public Type GetNextType()
+        {
+            return _next.GetType();
+        }
+
+        public Node GetNext()
+        {
+            return _next;
+        }
 
         public Queue<Bag> ListOfBagsInQueue => BagsQueue;
 
         protected readonly Queue<Bag> BagsQueue;
+        private Node _next;
 
         protected Node()
         {
-            Next = null;
+            SetNext(null);
             BagsQueue = new Queue<Bag>();
         }
 
@@ -74,12 +91,12 @@ namespace Rail_Bag_Simulation
 
         public virtual void MoveBagToNextNode()
         {
-            if (Next.IsNull()) return;
-            while (Next is ConveyorNode next && next.IsFull)
+            if (GetNext().IsNull()) return;
+            while (GetNext() is ConveyorNode next && next.IsFull)
             {
             }
 
-            Next.Push(Remove());
+            GetNext().Push(Remove());
         }
     }
 }

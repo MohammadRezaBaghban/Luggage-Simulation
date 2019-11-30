@@ -5,23 +5,25 @@ namespace Rail_Bag_Simulation
 {
     public class Bag
     {
-        private static int _idToGive = 100;
+        private static int _idToGive = 0;
 
         private SuspiciousBagtype? _suspicious;
 
-        public string LastSeenLocation { get; set; }
+        public string LastSeenLocation { get; private set; }
 
-        public int Id { get; set; }
+        public int Id { get; }
 
         public SuspiciousBagtype SuspiciousBagtype
         {
             get => (SuspiciousBagtype) _suspicious;
             set => _suspicious = value;
         }
-
         public Destination Destination { get; set; }
         public float Weight { get; set; }
         public string TerminalAndGate { get; set; }
+
+        public bool IsObserving;
+
 
 
         private static readonly Random Random = new Random();

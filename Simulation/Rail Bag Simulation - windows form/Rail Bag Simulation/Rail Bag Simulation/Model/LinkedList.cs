@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
 using Timer = System.Timers.Timer;
@@ -8,13 +10,12 @@ namespace Rail_Bag_Simulation
     public class LinkedList
     {
         public static bool IsSimulationFinished;
-        private readonly int _delayTime;
-
+        public static Dictionary<Stopwatch, Bag> TimelyWatchedBagWithStopWatch = new Dictionary<Stopwatch, Bag>();
         private readonly Timer timer;
+        private Stopwatch st;
 
         public LinkedList(int speedDelayTime)
         {
-            _delayTime = speedDelayTime;
             timer = new Timer(speedDelayTime);
             //ThreadPool.SetMaxThreads(5, 5);
 
@@ -27,7 +28,7 @@ namespace Rail_Bag_Simulation
             };
 
             timer.Enabled = true;
-            TerminalNode.SimulationFinishedEvent += (sender, args) =>
+            GateNode.SimulationFinishedEvent += (sender, args) =>
             {
                 IsSimulationFinished = true;
                 timer.Stop();
@@ -46,7 +47,28 @@ namespace Rail_Bag_Simulation
 
         public void AddGeneratedBags(List<Bag> bagstoqueue)
         {
-            bagstoqueue.ForEach(bag => First.Push(bag));
+            var totalNumberOfBags = bagstoqueue.Count;
+            var firstQuater = (int)(totalNumberOfBags / 4);
+            TimelyWatchedBagWithStopWatch.Add(new Stopwatch(), bagstoqueue[0]);
+            if (totalNumberOfBags >= 5)
+            {
+                TimelyWatchedBagWithStopWatch.Add(new Stopwatch(), bagstoqueue[firstQuater]);
+                TimelyWatchedBagWithStopWatch.Add(new Stopwatch(), bagstoqueue[firstQuater*2]);
+                TimelyWatchedBagWithStopWatch.Add(new Stopwatch(), bagstoqueue[firstQuater*3]);
+                TimelyWatchedBagWithStopWatch.Add(new Stopwatch(), bagstoqueue[bagstoqueue.Count - 1]);
+            }
+
+            foreach (var bag in TimelyWatchedBagWithStopWatch)
+            {
+                bag.Value.IsObserving = true;
+                bag.Key.Start();
+            }
+
+            bagstoqueue.ForEach(bag =>
+            {
+                First.Push(bag);
+            });
+
         }
 
         public void AddNode(Node nd)
@@ -59,10 +81,10 @@ namespace Rail_Bag_Simulation
             else
             {
                 var current = First;
-                while (current.Next != null) current = current.Next;
+                while (current.GetNext() != null) current = current.GetNext();
 
-                nd.Next = current.Next;
-                current.Next = nd;
+                nd.SetNext(current.GetNext());
+                current.SetNext(nd);
             }
         }
 
@@ -76,13 +98,13 @@ namespace Rail_Bag_Simulation
             {
                 var current = First;
 
-                while (current.Next != null && !(current is BagSortNode)) current = current.Next;
+                while (current.GetNext() != null && !(current is BagSortNode)) current = current.GetNext();
 
                 if (!(current is BagSortNode node)) return;
                 if (node == parent && childNode is ConveyorNode conveyor)
                 {
                     node.ConnectNodeToSorter(conveyor);
-                    conveyor.Next = null;
+                    conveyor.SetNext(null);
                 }
                 else switch (parent)
                 {
@@ -91,11 +113,11 @@ namespace Rail_Bag_Simulation
                         foreach (var conveyorNode in node.ListOfConnectedNodes)
                         {
                             Node near = conveyorNode;
-                            while (near != parent && near.Next != null) near = near.Next;
+                            while (near != parent && near.GetNext() != null) near = near.GetNext();
 
                             if (near == conv)
                             {
-                                near.Next = terminal;
+                                near.SetNext(terminal);
                                 break;
                             }
                         }
@@ -107,12 +129,12 @@ namespace Rail_Bag_Simulation
                         foreach (var conveyorNode in node.ListOfConnectedNodes)
                         {
                             Node near = conveyorNode;
-                            while (near != parent && near.Next != null) near = near.Next;
+                            while (near != parent && near.GetNext() != null) near = near.GetNext();
 
                             if (near == terminalNode)
                             {
                                 terminalNode.ConnectNodeToSorter(co);
-                                co.Next = near.Next;
+                                co.SetNext(near.GetNext());
                                 break;
                             }
                         }
@@ -124,19 +146,19 @@ namespace Rail_Bag_Simulation
                         foreach (var conveyorNode in node.ListOfConnectedNodes)
                         {
                             Node near = conveyorNode;
-                            while (!(near is TerminalNode) || near.Next != null) near = near.Next;
+                            while (!(near is TerminalNode) || near.GetNext() != null) near = near.GetNext();
                             foreach (var s in ((TerminalNode) near).ListOfConnectedNodes)
                             {
                                 Node nearNode = s;
-                                while (nearNode != parent && nearNode.Next != null) nearNode = nearNode.Next;
+                                while (nearNode != parent && nearNode.GetNext() != null) nearNode = nearNode.GetNext();
 
                                 if (nearNode != parent) continue;
-                                childNode.Next = nearNode.Next;
-                                nearNode.Next = childNode;
+                                childNode.SetNext(nearNode.GetNext());
+                                nearNode.SetNext(childNode);
                                 break;
                             }
 
-                            if (parent.Next != null) break;
+                            if (parent.GetNext() != null) break;
                         }
 
                         break;
@@ -152,10 +174,10 @@ namespace Rail_Bag_Simulation
 
             var i = First;
 
-            while (i.Next != null && !(i is BagSortNode))
+            while (i.GetNext() != null && !(i is BagSortNode))
             {
                 temp.Add(i);
-                i = i.Next;
+                i = i.GetNext();
             }
 
             temp.Add(i);
@@ -166,7 +188,7 @@ namespace Rail_Bag_Simulation
                 while (!(tmp is TerminalNode))
                 {
                     temp.Add(tmp);
-                    tmp = tmp.Next;
+                    tmp = tmp.GetNext();
                 }
 
                 temp.Add(tmp);
@@ -177,7 +199,7 @@ namespace Rail_Bag_Simulation
                     while (!(tmp1 is GateNode))
                     {
                         temp.Add(tmp1);
-                        tmp1 = tmp1.Next;
+                        tmp1 = tmp1.GetNext();
                     }
 
                     temp.Add(tmp1);

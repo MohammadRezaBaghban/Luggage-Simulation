@@ -5,12 +5,12 @@ using Rail_Bag_Simulation.Model;
 namespace Rail_Bag_Simulation
 {
     
-    class ConveyorNode : Node
+    class ConveyorType : Type
     {
-        private static int _idToGive = 100;
+        private static int _idToGive = 0;
         public int Id { get; }
         private readonly int _setsize;
-        public ConveyorNode(int setsize)
+        public ConveyorType(int setsize)
         {
             _setsize = setsize;
             Id = ++_idToGive;
@@ -21,7 +21,7 @@ namespace Rail_Bag_Simulation
         
         public override void Push(Bag bagtoqueue)
         {
-            if (bagtoqueue.IsNull()) return;
+            if (bagtoqueue == null) return;
             lock (BagsQueue)
             {
                 if (BagsQueue.Count >= _setsize) return;
@@ -61,7 +61,7 @@ namespace Rail_Bag_Simulation
         public override void MoveBagToNextNode()
         {
             if(IsEmpty) return;
-            if(GetNext() is ConveyorNode next && next.IsFull) return;
+            if(GetNext() is ConveyorType next && next.IsFull) return;
 
             var bag = Remove();
             if(bag.IsNull())return;

@@ -7,8 +7,7 @@ namespace Rail_Bag_Simulation
 {
     internal class TerminalNode : Node
     {
-        public static int Counter;
-        public static EventHandler SimulationFinishedEvent;
+        
 
         public Terminal Terminal { get; }
 
@@ -41,7 +40,7 @@ namespace Rail_Bag_Simulation
             {
                 Node currentNode = p;
 
-                while (currentNode.Next != null && !(currentNode is GateNode node)) currentNode = currentNode.Next;
+                while (currentNode.GetNext() != null && !(currentNode is GateNode node)) currentNode = currentNode.GetNext();
 
                 if (GetGateNumber(g, out var result)) return null;
                 if ((currentNode as GateNode)?.Gate.GateNr != result) continue;
@@ -76,14 +75,8 @@ namespace Rail_Bag_Simulation
             }
 
             next.Push(bag);
-            VerifyBagsCount();
         }
 
-        private void VerifyBagsCount()
-        {
-            Counter++;
-            if (Counter + Storage.GetNumberOfBagsInStorage() < Airport.TotalNumberOfBags) return;
-            Thread.Sleep(1000); SimulationFinishedEvent?.Invoke(this, EventArgs.Empty);
-        }
+        
     }
 }

@@ -25,8 +25,8 @@ namespace Rail_Bag_Simulation
                 {
                     Node currentNode = p;
 
-                    while (currentNode.Next != null && !(currentNode is TerminalNode node))
-                        currentNode = currentNode.Next;
+                    while (currentNode.GetNext() != null && !(currentNode is TerminalNode node))
+                        currentNode = currentNode.GetNext();
 
                     var result = GetTerminalNumber(g);
                     if ((currentNode as TerminalNode)?.Terminal.TerminalId != result) 
