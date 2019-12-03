@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rail Bag Simulation", "Rail Bag Simulation\Rail Bag Simulation.csproj", "{7A4F3A91-FB15-4D56-A799-ADB9C1F649F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulation Unit Tests", "Simulation Unit Tests\Simulation Unit Tests.csproj", "{5D95BA33-139B-4722-9C9D-D394F636384F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7A4F3A91-FB15-4D56-A799-ADB9C1F649F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A4F3A91-FB15-4D56-A799-ADB9C1F649F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A4F3A91-FB15-4D56-A799-ADB9C1F649F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D95BA33-139B-4722-9C9D-D394F636384F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D95BA33-139B-4722-9C9D-D394F636384F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D95BA33-139B-4722-9C9D-D394F636384F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D95BA33-139B-4722-9C9D-D394F636384F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

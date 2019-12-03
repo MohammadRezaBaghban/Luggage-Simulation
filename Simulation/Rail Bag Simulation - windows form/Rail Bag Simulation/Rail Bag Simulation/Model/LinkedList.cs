@@ -12,7 +12,7 @@ namespace Rail_Bag_Simulation
     {
         public static bool IsSimulationFinished;
         public static Dictionary<Stopwatch, Bag> TimelyWatchedBagWithStopWatch = new Dictionary<Stopwatch, Bag>();
-        private readonly Timer _timer;
+        private Timer _timer;
 
 
 
@@ -54,12 +54,14 @@ namespace Rail_Bag_Simulation
         /// </summary>
         public void PauseSimulation()
         {
+            if (_timer == null) return;
             _timer.Stop();
             _timer.Enabled = false;
         }
 
         public void RunSimulation()
-        { 
+        {
+            if (_timer == null) return;
             _timer.Enabled = true;
             _timer.Start();
         }
@@ -104,6 +106,11 @@ namespace Rail_Bag_Simulation
         private static void AddTimerWithABag(List<Bag> bagstoqueue, int firstQuater)
         {
             TimelyWatchedBagWithStopWatch.Add(new Stopwatch(), bagstoqueue[firstQuater]);
+        }
+
+        public void DestroySimulation()
+        {
+            _timer = null;
         }
 
         public void AddNode(Node nd)
