@@ -56,7 +56,7 @@ namespace Rail_Bag_Simulation
             Node security = new SecurityNode();
 
             Node stconveyor4 = new ConveyorNode(queueSizeOfBelts);
-
+            Node stconveyoradd = new ConveyorNode(queueSizeOfBelts);
             Node bagsort = new BagSortNode();
             Node bsconveyor5 = new ConveyorNode(queueSizeOfBelts);
             Node bsconveyor6 = new ConveyorNode(queueSizeOfBelts);
@@ -98,7 +98,7 @@ namespace Rail_Bag_Simulation
             Ll.AddNode(terminal2.Id, terminal2.GetType(), t2conveyor8);
             Ll.AddNode(t2conveyor7.Id, t2conveyor7.GetType(), t2gate1);
             Ll.AddNode(t2conveyor8.Id, t2conveyor8.GetType(), t2gate2);
-
+            Ll.AddNode(stconveyor4.Id, stconveyor4.GetType(), stconveyoradd);
             //Node cn4 = new CheckinNode();
             //Node cn4conveyor4 = new ConveyorNode(queueSizeOfBelts);
             //Node security1 = new SecurityNode();
