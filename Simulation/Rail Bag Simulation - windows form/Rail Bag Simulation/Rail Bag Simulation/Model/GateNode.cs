@@ -36,6 +36,11 @@ namespace Rail_Bag_Simulation
             }
             VerifyBagsCount();
         }
+        public override void PrintNodes(ref List<Node> Nodes)
+        {
+            if (!Nodes.Contains(this))
+                Nodes.Add(this);
+        }
 
         public override void MoveBagToNextNode()
         {

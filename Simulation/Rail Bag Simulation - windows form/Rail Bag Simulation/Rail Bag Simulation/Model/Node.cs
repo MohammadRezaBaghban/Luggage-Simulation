@@ -13,9 +13,13 @@ namespace Rail_Bag_Simulation
         void Push(Bag b);
         Bag Remove();
         Bag Peek();
+
+        void AddNode(int _ID,Type t,Node nodetoadd);
+        void PrintNodes( ref List<Node>Nodes);
         List<string> NodeInfo();
         void MoveBagToNextNode();
         Node GetNext();
+        
     }
 
     public class QueueEventArgs : EventArgs
@@ -40,11 +44,13 @@ namespace Rail_Bag_Simulation
         {
             return _next;
         }
-
+       
         public Queue<Bag> ListOfBagsInQueue => BagsQueue;
 
         protected readonly Queue<Bag> BagsQueue;
         private Node _next;
+        public int Id { get; set; }
+        private int _id;
 
         protected Node()
         {
@@ -60,6 +66,16 @@ namespace Rail_Bag_Simulation
             }
         }
 
+        public virtual void AddNode(int parentid,Type parenttype, Node _nodetoadd)
+        {
+            //this is to satisfy virtual method
+           
+        }
+       public virtual void PrintNodes(ref List<Node> Nodes)
+        {
+            this.GetNext().PrintNodes(ref Nodes);
+        }
+
         public virtual Bag Remove()
         {
             lock (BagsQueue)
@@ -71,7 +87,8 @@ namespace Rail_Bag_Simulation
             }
         }
 
-        public Bag Peek()
+      
+            public Bag Peek()
         {
             lock (BagsQueue)
             {

@@ -14,6 +14,7 @@ namespace Rail_Bag_Simulation
         public TerminalNode(Terminal terminal)
         {
             Terminal = terminal;
+            Id = terminal.TerminalId;
         }
 
         public List<ConveyorNode> ListOfConnectedNodes { get; } = new List<ConveyorNode>();
@@ -30,7 +31,31 @@ namespace Rail_Bag_Simulation
         {
             ListOfConnectedNodes.Add(n);
         }
+        public override void AddNode(int parentid, Type parenttype, Node _nodetoadd)
 
+        {
+            if (this.Id == parentid && this.GetType() == parenttype && _nodetoadd is ConveyorNode conveyorNode)
+            {
+                this.ConnectNodeToSorter(conveyorNode);
+            }
+            else
+            {
+                foreach (Node connectednodes in ListOfConnectedNodes)
+                {
+                    connectednodes.AddNode(parentid, parenttype, _nodetoadd);
+                }
+            }
+        }
+        public override void PrintNodes(ref List<Node> Nodes)
+        {
+            if (!Nodes.Contains(this))
+                Nodes.Add(this);
+
+            foreach (Node connectednodes in ListOfConnectedNodes)
+            {
+                connectednodes.PrintNodes(ref Nodes);
+            }
+        }
         public ConveyorNode DetermineNextConveyorNode()
         {
             ConveyorNode tnode = null;

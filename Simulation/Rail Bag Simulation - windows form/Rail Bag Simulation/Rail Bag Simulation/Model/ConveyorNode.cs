@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Rail_Bag_Simulation.Model;
+using System;
 
 namespace Rail_Bag_Simulation
 {
@@ -8,7 +9,7 @@ namespace Rail_Bag_Simulation
     class ConveyorNode : Node
     {
         private static int _idToGive = 100;
-        public int Id { get; }
+     
         private readonly int _setsize;
         public ConveyorNode(int setsize)
         {
@@ -34,6 +35,29 @@ namespace Rail_Bag_Simulation
 
 
             }
+        }
+
+        public override void AddNode(int parentid,Type parenttype,Node _nodetoadd)
+        {
+            if (parentid == Id && this.GetType() == parenttype && this.GetNext() != _nodetoadd)
+            {
+                _nodetoadd.SetNext(this.GetNext());
+                this.SetNext(_nodetoadd);
+            }
+            else
+            {
+                if (this.GetNext() != null)
+                    GetNext().AddNode(parentid, parenttype, _nodetoadd);
+            }
+            
+        }
+        public override void PrintNodes(ref List<Node> Nodes)
+        {
+            if (!Nodes.Contains(this))
+            Nodes.Add(this);
+
+            if (GetNext()!=null)
+            this.GetNext().PrintNodes(ref Nodes);
         }
 
         public override Bag Remove()
