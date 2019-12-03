@@ -43,7 +43,9 @@ namespace Rail_Bag_Simulation.View
                     .ForEach(s => _lbLogDataSource.Add(s)));
 
             _lbLogDataSource.Add("*** Bags In Storage ***");
-            Airport.Storage.GetAllSuspiciousBags().ForEach(
+            var SusBags = Airport.Storage.GetAllSuspiciousBags();
+            
+            SusBags.ForEach(
                 bag => { _lbLogDataSource.Add(bag.GetBagInfo()); });
         }
 
