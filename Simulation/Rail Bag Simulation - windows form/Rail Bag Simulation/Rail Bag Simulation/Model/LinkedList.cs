@@ -12,32 +12,56 @@ namespace Rail_Bag_Simulation
     {
         public static bool IsSimulationFinished;
         public static Dictionary<Stopwatch, Bag> TimelyWatchedBagWithStopWatch = new Dictionary<Stopwatch, Bag>();
-        private readonly Timer timer;
+        private readonly Timer _timer;
+
+
 
         public LinkedList(int speedDelayTime)
         {
-            timer = new Timer(speedDelayTime);
+            _timer = new Timer(speedDelayTime);
             //ThreadPool.SetMaxThreads(5, 5);
+            AssignTimerElapsedFunc();
+            OnSimulationFinishedEvent();
+        }
 
-            timer.Elapsed += (sender, args) =>
+        private void AssignTimerElapsedFunc()
+        {
+            _timer.Elapsed += (sender, args) =>
             {
                 ThreadPool.QueueUserWorkItem(MakeBagsMoveOneAtATime);
                 ThreadPool.QueueUserWorkItem(MakeBagsMoveOneAtATime);
                 ThreadPool.QueueUserWorkItem(MakeBagsMoveOneAtATime);
                 ThreadPool.QueueUserWorkItem(MakeBagsMoveOneAtATime);
             };
+        }
 
-            timer.Enabled = true;
+        private void OnSimulationFinishedEvent()
+        {
             GateNode.SimulationFinishedEvent += (sender, args) =>
             {
                 decimal totalTime = 0;
                 IsSimulationFinished = true;
-                timer.Stop();
+                _timer.Stop();
                 TimelyWatchedBagWithStopWatch.Keys.ToList()
-                    .ForEach(stopwatch => totalTime += (int)stopwatch.ElapsedMilliseconds);
+                    .ForEach(stopwatch => totalTime += (int) stopwatch.ElapsedMilliseconds);
                 totalTime /= 1000;
                 AverageTimePerBag = totalTime / TimelyWatchedBagWithStopWatch.Keys.Count;
             };
+        }
+
+        /// <summary>
+        /// This stops the timer that moveS THE bags
+        /// </summary>
+        public void PauseSimulation()
+        {
+            _timer.Stop();
+            _timer.Enabled = false;
+        }
+
+        public void RunSimulation()
+        { 
+            _timer.Enabled = true;
+            _timer.Start();
         }
 
         public static Node First { get; private set; }
@@ -48,8 +72,7 @@ namespace Rail_Bag_Simulation
 
         public void MoveBags()
         {
-            timer.Start();
-           
+            RunSimulation();
         }
 
         public void AddGeneratedBags(List<Bag> bagstoqueue)
@@ -72,7 +95,7 @@ namespace Rail_Bag_Simulation
 
             bagstoqueue.ForEach(bag =>
             {
-                TimelyWatchedBagWithStopWatch.First(pair => pair.Value == bag).Key.Start();
+                TimelyWatchedBagWithStopWatch.FirstOrDefault(pair => pair.Value == bag).Key?.Start();
                 First.Push(bag);
             });
 
