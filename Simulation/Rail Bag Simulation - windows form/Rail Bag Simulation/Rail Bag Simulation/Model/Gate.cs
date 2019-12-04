@@ -1,12 +1,12 @@
 ﻿namespace Rail_Bag_Simulation
 {
-    class Gate
+    internal class Gate
     {
-       public string GateNr { get; private set; }
-       public Gate(string gateNr)
+        public Gate(string gateNr)
         {
-            this.GateNr = gateNr;
+            GateNr = gateNr;
         }
 
+        public string GateNr { get; }
     }
 }

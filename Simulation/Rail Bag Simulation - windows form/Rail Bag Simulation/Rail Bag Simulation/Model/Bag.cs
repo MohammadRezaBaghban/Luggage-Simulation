@@ -5,28 +5,14 @@ namespace Rail_Bag_Simulation
 {
     public class Bag
     {
-        private static int _idToGive = 0;
-
-        private SuspiciousBagtype? _suspicious;
-
-        public string LastSeenLocation { get; private set; }
-
-        public int Id { get; }
-
-        public SuspiciousBagtype SuspiciousBagtype
-        {
-            get => (SuspiciousBagtype) _suspicious;
-            set => _suspicious = value;
-        }
-        public Destination Destination { get; set; }
-        public float Weight { get; set; }
-        public string TerminalAndGate { get; set; }
-
-        public bool IsObserving;
-
+        private static int _idToGive;
 
 
         private static readonly Random Random = new Random();
+
+        private SuspiciousBagtype? _suspicious;
+
+        public bool IsObserving;
 
         public Bag(SuspiciousBagtype suspicious, float weight, Destination destination, string terminalAndGate)
         {
@@ -45,6 +31,20 @@ namespace Rail_Bag_Simulation
             Destination = destination;
             TerminalAndGate = terminalAndGate;
         }
+
+        public string LastSeenLocation { get; private set; }
+
+        public int Id { get; }
+
+        public SuspiciousBagtype SuspiciousBagtype
+        {
+            get => (SuspiciousBagtype) _suspicious;
+            set => _suspicious = value;
+        }
+
+        public Destination Destination { get; set; }
+        public float Weight { get; set; }
+        public string TerminalAndGate { get; set; }
 
 
         public string GetBagInfo()

@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
 {
     internal class TerminalNode : Node
     {
-        
-
-        public Terminal Terminal { get; }
-
         public TerminalNode(Terminal terminal)
         {
             Terminal = terminal;
             Id = terminal.TerminalId;
         }
+
+
+        public Terminal Terminal { get; }
 
         public List<ConveyorNode> ListOfConnectedNodes { get; } = new List<ConveyorNode>();
 
@@ -31,31 +29,25 @@ namespace Rail_Bag_Simulation
         {
             ListOfConnectedNodes.Add(n);
         }
+
         public override void AddNode(int parentid, Type parenttype, Node _nodetoadd)
 
         {
-            if (this.Id == parentid && this.GetType() == parenttype && _nodetoadd is ConveyorNode conveyorNode)
-            {
-                this.ConnectNodeToSorter(conveyorNode);
-            }
+            if (Id == parentid && GetType() == parenttype && _nodetoadd is ConveyorNode conveyorNode)
+                ConnectNodeToSorter(conveyorNode);
             else
-            {
                 foreach (Node connectednodes in ListOfConnectedNodes)
-                {
                     connectednodes.AddNode(parentid, parenttype, _nodetoadd);
-                }
-            }
         }
+
         public override void PrintNodes(ref List<Node> Nodes)
         {
             if (!Nodes.Contains(this))
                 Nodes.Add(this);
 
-            foreach (Node connectednodes in ListOfConnectedNodes)
-            {
-                connectednodes.PrintNodes(ref Nodes);
-            }
+            foreach (Node connectednodes in ListOfConnectedNodes) connectednodes.PrintNodes(ref Nodes);
         }
+
         public ConveyorNode DetermineNextConveyorNode()
         {
             ConveyorNode tnode = null;
@@ -65,7 +57,8 @@ namespace Rail_Bag_Simulation
             {
                 Node currentNode = p;
 
-                while (currentNode.GetNext() != null && !(currentNode is GateNode node)) currentNode = currentNode.GetNext();
+                while (currentNode.GetNext() != null && !(currentNode is GateNode node))
+                    currentNode = currentNode.GetNext();
 
                 if (GetGateNumber(g, out var result)) return null;
                 if ((currentNode as GateNode)?.Gate.GateNr != result) continue;
@@ -101,7 +94,5 @@ namespace Rail_Bag_Simulation
 
             next.Push(bag);
         }
-
-        
     }
 }

@@ -6,6 +6,8 @@
 
         public static LinkedList LL => Airport.Ll;
 
+        public static Airport Airport { get; private set; }
+
         public void StartSimulation(int totalbags, int delayTime)
         {
             NumberOfBags = totalbags;
@@ -19,7 +21,5 @@
         {
             Airport.CreateMapLayout(m);
         }
-
-        public static Airport Airport { get; private set; }
     }
 }

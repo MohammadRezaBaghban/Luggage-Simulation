@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Rail_Bag_Simulation.Model;
-using System;
 
 namespace Rail_Bag_Simulation
 {
-    
-    class ConveyorNode : Node
+    internal class ConveyorNode : Node
     {
         private static int _idToGive = 100;
-     
+
         private readonly int _setsize;
+
         public ConveyorNode(int setsize)
         {
             _setsize = setsize;
@@ -18,8 +18,8 @@ namespace Rail_Bag_Simulation
         }
 
         public bool IsEmpty { get; private set; } = true;
-        public bool IsFull { get; private set; } = false;
-        
+        public bool IsFull { get; private set; }
+
         public override void Push(Bag bagtoqueue)
         {
             if (bagtoqueue.IsNull()) return;
@@ -29,35 +29,33 @@ namespace Rail_Bag_Simulation
                 BagsQueue.Enqueue(bagtoqueue);
                 IsEmpty = false;
                 var count = BagsQueue.Count;
-                if (count < _setsize-1) BagsQueue.Enqueue(null);
-                if (count == _setsize)IsFull = true;
-                OnQueueChangedEventHandler?.Invoke(this, new QueueEventArgs { ListOfBags = BagsQueue.ToList() });
-
-
+                if (count < _setsize - 1) BagsQueue.Enqueue(null);
+                if (count == _setsize) IsFull = true;
+                OnQueueChangedEventHandler?.Invoke(this, new QueueEventArgs {ListOfBags = BagsQueue.ToList()});
             }
         }
 
-        public override void AddNode(int parentid,Type parenttype,Node _nodetoadd)
+        public override void AddNode(int parentid, Type parenttype, Node _nodetoadd)
         {
-            if (parentid == Id && this.GetType() == parenttype && this.GetNext() != _nodetoadd)
+            if (parentid == Id && GetType() == parenttype && GetNext() != _nodetoadd)
             {
-                _nodetoadd.SetNext(this.GetNext());
-                this.SetNext(_nodetoadd);
+                _nodetoadd.SetNext(GetNext());
+                SetNext(_nodetoadd);
             }
             else
             {
-                if (this.GetNext() != null)
+                if (GetNext() != null)
                     GetNext().AddNode(parentid, parenttype, _nodetoadd);
             }
-            
         }
+
         public override void PrintNodes(ref List<Node> Nodes)
         {
             if (!Nodes.Contains(this))
-            Nodes.Add(this);
+                Nodes.Add(this);
 
-            if (GetNext()!=null)
-            this.GetNext().PrintNodes(ref Nodes);
+            if (GetNext() != null)
+                GetNext().PrintNodes(ref Nodes);
         }
 
         public override Bag Remove()
@@ -70,9 +68,9 @@ namespace Rail_Bag_Simulation
                     return null;
                 }
 
-                var bag = BagsQueue.Dequeue(); 
+                var bag = BagsQueue.Dequeue();
                 IsFull = false;
-                OnQueueChangedEventHandler?.Invoke(this, new QueueEventArgs { ListOfBags = BagsQueue.ToList() });
+                OnQueueChangedEventHandler?.Invoke(this, new QueueEventArgs {ListOfBags = BagsQueue.ToList()});
                 return bag;
             }
         }
@@ -87,13 +85,12 @@ namespace Rail_Bag_Simulation
 
         public override void MoveBagToNextNode()
         {
-            if(IsEmpty) return;
-            if(GetNext() is ConveyorNode next && next.IsFull) return;
+            if (IsEmpty) return;
+            if (GetNext() is ConveyorNode next && next.IsFull) return;
 
             var bag = Remove();
-            if(bag.IsNull())return;
+            if (bag.IsNull()) return;
             GetNext().Push(bag);
         }
-
     }
 }

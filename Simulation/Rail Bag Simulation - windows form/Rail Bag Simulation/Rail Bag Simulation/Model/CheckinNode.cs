@@ -1,40 +1,43 @@
-﻿using System.Collections.Generic;
-using Rail_Bag_Simulation.Model;
-using System;
-
+﻿using System;
+using System.Collections.Generic;
 
 namespace Rail_Bag_Simulation
 {
     public class CheckinNode : Node
     {
-        private static int _idToGive = 1;
-        public CheckinNode() => Id = ++_idToGive;
+        private static int _idToGive;
+
+        public CheckinNode()
+        {
+            Id = ++_idToGive;
+        }
+
         public override void AddNode(int parentid, Type parenttype, Node _nodetoadd)
         {
-           
-            if (parentid == this.Id&& this.GetType() == parenttype)
+            if (parentid == Id && GetType() == parenttype)
             {
-                _nodetoadd.SetNext(this.GetNext());
-                this.SetNext(_nodetoadd);
+                _nodetoadd.SetNext(GetNext());
+                SetNext(_nodetoadd);
             }
             else
             {
-                if (this.GetNext() != null)
+                if (GetNext() != null)
                     GetNext().AddNode(parentid, parenttype, _nodetoadd);
             }
-
         }
+
         public override void PrintNodes(ref List<Node> Nodes)
         {
             if (!Nodes.Contains(this))
                 Nodes.Add(this);
 
-            if (this.GetNext()!=null)
-            this.GetNext().PrintNodes(ref Nodes);
+            if (GetNext() != null)
+                GetNext().PrintNodes(ref Nodes);
         }
+
         public override List<string> NodeInfo()
         {
-            var sender = new List<string> {"Check-in" +this.Id+": "};
+            var sender = new List<string> {"Check-in" + Id + ": "};
             sender.AddRange(base.NodeInfo());
             return sender;
         }
