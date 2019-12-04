@@ -1,49 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
-using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
 {
     internal class SecurityNode : Node
     {
+        private static int _idToGive;
+
+        public SecurityNode()
+        {
+            Id = ++_idToGive;
+        }
+
         public override Bag Remove()
         {
             return ScanBagSecurity();
         }
-        private static int _idToGive = 1;
-        public SecurityNode()
-        {
 
-            Id = ++_idToGive;
-        }
-        public override List<String> NodeInfo()
+        public override List<string> NodeInfo()
         {
             var sender = new List<string> {"Security "+this.Id+":"};
             sender.AddRange(base.NodeInfo());
             return sender;
         }
+
         public override void AddNode(int parentid, Type parenttype, Node _nodetoadd)
         {
-            if (this.GetType() == parenttype)
+            if (GetType() == parenttype)
             {
-                _nodetoadd.SetNext(this.GetNext());
-                this.SetNext(_nodetoadd);
+                _nodetoadd.SetNext(GetNext());
+                SetNext(_nodetoadd);
             }
             else
             {
-                if (this.GetNext() != null)
+                if (GetNext() != null)
                     GetNext().AddNode(parentid, parenttype, _nodetoadd);
             }
-
         }
+
         public override void PrintNodes(ref List<Node> Nodes)
         {
             if (!Nodes.Contains(this))
                 Nodes.Add(this);
 
-            if(this.GetNext()!=null)
-            this.GetNext().PrintNodes(ref Nodes);
+            if (GetNext() != null)
+                GetNext().PrintNodes(ref Nodes);
         }
+
         private Bag ScanBagSecurity()
         {
             Bag b = null;
@@ -59,15 +62,11 @@ namespace Rail_Bag_Simulation
                 // ignored
             }
 
-            if (b?.GetSecurityStatus() == null)
-            {
-                return b;
-            }
+            if (b?.GetSecurityStatus() == null) return b;
 
-            
+
             Airport.Storage.StoreSuspiciousBag(b);
             return null;
         }
-
     }
 }

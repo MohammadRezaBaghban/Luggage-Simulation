@@ -1,48 +1,42 @@
 ﻿using System.Collections.Generic;
 
-
 namespace Rail_Bag_Simulation
 {
     public class Airport
     {
         private static int _setSize;
-        private List<Bag> _bagsList;
         private readonly bool _isMapCreated = false;
-        
-        private ConveyorNode _conveyorNode;
+        private List<Bag> _bagsList;
         private BagSortNode _bagSortNode;
-        private TerminalNode t;
+
+        private ConveyorNode _conveyorNode;
         private GateNode _gateNode;
-        private readonly LinkedList _ll;
-        private static int _totalNumberOfBags = 0;
+        private TerminalNode t;
+
+        public Airport(int speedDelay)
+        {
+            Ll = new LinkedList(speedDelay);
+        }
 
         public static Storage Storage { get; } = new Storage();
 
         public static List<Node> ListOfNodes => LinkedList.GetAllNodes();
 
-        public LinkedList Ll => _ll;
+        public LinkedList Ll { get; }
 
-        public static int TotalNumberOfBags => _totalNumberOfBags;
+        public static int TotalNumberOfBags { get; private set; }
 
-        public Airport(int speedDelay)
+        public void StartBagsMovement(int nbrOfBags, int nbrOfBagsDrugs, int nbrOfBagsWeapons, int nbrOfBagsFlammable,
+            int nbrBagsOthers)
         {
-            _ll = new LinkedList(speedDelay);
-        }
-
-        public void StartBagsMovement(int nbrOfBags, int nbrOfBagsDrugs, int nbrOfBagsWeapons, int nbrOfBagsFlammable, int nbrBagsOthers)
-        {
-            _totalNumberOfBags = nbrOfBags;
+            TotalNumberOfBags = nbrOfBags;
             _bagsList = Bag.GenerateBag(nbrOfBags, nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable, nbrBagsOthers);
             Ll.AddGeneratedBags(_bagsList);
         }
 
         public void CreateMapLayout(int queueSizeOfBelts)
         {
-
-            if (_isMapCreated)
-            {
-                return;
-            }
+            if (_isMapCreated) return;
 
             _setSize = queueSizeOfBelts;
 
@@ -64,12 +58,12 @@ namespace Rail_Bag_Simulation
             Node terminal2 = new TerminalNode(new Terminal());
             Node t1conveyor7 = new ConveyorNode(queueSizeOfBelts);
             Node t1conveyor8 = new ConveyorNode(queueSizeOfBelts);
-          
+
             Node t1gate1 = new GateNode(new Gate("G1"));
             Node t1gate2 = new GateNode(new Gate("G2"));
             Node t2conveyor7 = new ConveyorNode(queueSizeOfBelts);
             Node t2conveyor8 = new ConveyorNode(queueSizeOfBelts);
-   
+
             Node t2gate1 = new GateNode(new Gate("G1"));
             Node t2gate2 = new GateNode(new Gate("G2"));
             Ll.AddNode(cn1);
@@ -82,7 +76,7 @@ namespace Rail_Bag_Simulation
             Ll.AddNode(cn2conveyor2.Id, cn2conveyor2.GetType(), security);
             Ll.AddNode(cn3conveyor3.Id, cn3conveyor3.GetType(), security);
             Ll.AddNode(security.Id, security.GetType(), stconveyor4);
-            Ll.AddNode(stconveyor4.Id,stconveyor4.GetType(), bagsort);
+            Ll.AddNode(stconveyor4.Id, stconveyor4.GetType(), bagsort);
             Ll.AddNode(bagsort.Id, bagsort.GetType(), bsconveyor5);
             Ll.AddNode(bagsort.Id, bagsort.GetType(), bsconveyor6);
             Ll.AddNode(bsconveyor5.Id, bsconveyor5.GetType(), terminal1);
@@ -109,8 +103,6 @@ namespace Rail_Bag_Simulation
             //Ll.AddNode(cn4conveyor4.Id, cn4conveyor4.GetType(), security1);
             //Ll.AddNode(security1.Id, security1.GetType(), st1conveyor4);
             //Ll.AddNode(st1conveyor4.Id, stconveyor4.GetType(), bagsort);
-
         }
-
     }
 }
