@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
@@ -15,7 +14,6 @@ namespace Rail_Bag_Simulation
         private Timer _timer;
 
 
-
         public LinkedList(int speedDelayTime)
         {
             _timer = new Timer(speedDelayTime);
@@ -23,6 +21,12 @@ namespace Rail_Bag_Simulation
             AssignTimerElapsedFunc();
             OnSimulationFinishedEvent();
         }
+
+        public static Node First { get; private set; }
+
+        public Node Current { get; set; }
+
+        public static decimal AverageTimePerBag { get; private set; }
 
         private void AssignTimerElapsedFunc()
         {
@@ -50,7 +54,7 @@ namespace Rail_Bag_Simulation
         }
 
         /// <summary>
-        /// This stops the timer that moveS THE bags
+        ///     This stops the timer that moveS THE bags
         /// </summary>
         public void PauseSimulation()
         {
@@ -66,12 +70,6 @@ namespace Rail_Bag_Simulation
             _timer.Start();
         }
 
-        public static Node First { get; private set; }
-
-        public Node Current { get; set; }
-
-        public static decimal AverageTimePerBag { get; private set; } = 0;
-
         public void MoveBags()
         {
             RunSimulation();
@@ -80,27 +78,23 @@ namespace Rail_Bag_Simulation
         public void AddGeneratedBags(List<Bag> bagstoqueue)
         {
             var totalNumberOfBags = bagstoqueue.Count;
-            var firstQuater = (int)(totalNumberOfBags / 4);
+            var firstQuater = totalNumberOfBags / 4;
             TimelyWatchedBagWithStopWatch.Add(new Stopwatch(), bagstoqueue[0]);
             if (totalNumberOfBags >= 5)
             {
                 AddTimerWithABag(bagstoqueue, firstQuater);
-                AddTimerWithABag(bagstoqueue, firstQuater*2);
-                AddTimerWithABag(bagstoqueue, firstQuater*3);
-                AddTimerWithABag(bagstoqueue, firstQuater*4);
+                AddTimerWithABag(bagstoqueue, firstQuater * 2);
+                AddTimerWithABag(bagstoqueue, firstQuater * 3);
+                AddTimerWithABag(bagstoqueue, firstQuater * 4);
             }
 
-            foreach (var val in TimelyWatchedBagWithStopWatch.Values)
-            {
-               val.IsObserving = true;
-            }
+            foreach (var val in TimelyWatchedBagWithStopWatch.Values) val.IsObserving = true;
 
             bagstoqueue.ForEach(bag =>
             {
                 TimelyWatchedBagWithStopWatch.FirstOrDefault(pair => pair.Value == bag).Key?.Start();
                 First.Push(bag);
             });
-
         }
 
         private static void AddTimerWithABag(List<Bag> bagstoqueue, int firstQuater)
@@ -148,62 +142,66 @@ namespace Rail_Bag_Simulation
                     node.ConnectNodeToSorter(conveyor);
                     conveyor.SetNext(null);
                 }
-                else switch (parent)
+                else
                 {
-                    case ConveyorNode conv when childNode is TerminalNode terminal:
+                    switch (parent)
                     {
-                        foreach (var conveyorNode in node.ListOfConnectedNodes)
+                        case ConveyorNode conv when childNode is TerminalNode terminal:
                         {
-                            Node near = conveyorNode;
-                            while (near != parent && near.GetNext() != null) near = near.GetNext();
-
-                            if (near == conv)
+                            foreach (var conveyorNode in node.ListOfConnectedNodes)
                             {
-                                near.SetNext(terminal);
-                                break;
-                            }
-                        }
+                                Node near = conveyorNode;
+                                while (near != parent && near.GetNext() != null) near = near.GetNext();
 
-                        break;
-                    }
-                    case TerminalNode terminalNode when childNode is ConveyorNode co:
-                    {
-                        foreach (var conveyorNode in node.ListOfConnectedNodes)
-                        {
-                            Node near = conveyorNode;
-                            while (near != parent && near.GetNext() != null) near = near.GetNext();
-
-                            if (near == terminalNode)
-                            {
-                                terminalNode.ConnectNodeToSorter(co);
-                                co.SetNext(near.GetNext());
-                                break;
-                            }
-                        }
-
-                        break;
-                    }
-                    case ConveyorNode _ when childNode is GateNode:
-                    {
-                        foreach (var conveyorNode in node.ListOfConnectedNodes)
-                        {
-                            Node near = conveyorNode;
-                            while (!(near is TerminalNode) || near.GetNext() != null) near = near.GetNext();
-                            foreach (var s in ((TerminalNode) near).ListOfConnectedNodes)
-                            {
-                                Node nearNode = s;
-                                while (nearNode != parent && nearNode.GetNext() != null) nearNode = nearNode.GetNext();
-
-                                if (nearNode != parent) continue;
-                                childNode.SetNext(nearNode.GetNext());
-                                nearNode.SetNext(childNode);
-                                break;
+                                if (near == conv)
+                                {
+                                    near.SetNext(terminal);
+                                    break;
+                                }
                             }
 
-                            if (parent.GetNext() != null) break;
+                            break;
                         }
+                        case TerminalNode terminalNode when childNode is ConveyorNode co:
+                        {
+                            foreach (var conveyorNode in node.ListOfConnectedNodes)
+                            {
+                                Node near = conveyorNode;
+                                while (near != parent && near.GetNext() != null) near = near.GetNext();
 
-                        break;
+                                if (near == terminalNode)
+                                {
+                                    terminalNode.ConnectNodeToSorter(co);
+                                    co.SetNext(near.GetNext());
+                                    break;
+                                }
+                            }
+
+                            break;
+                        }
+                        case ConveyorNode _ when childNode is GateNode:
+                        {
+                            foreach (var conveyorNode in node.ListOfConnectedNodes)
+                            {
+                                Node near = conveyorNode;
+                                while (!(near is TerminalNode) || near.GetNext() != null) near = near.GetNext();
+                                foreach (var s in ((TerminalNode) near).ListOfConnectedNodes)
+                                {
+                                    Node nearNode = s;
+                                    while (nearNode != parent && nearNode.GetNext() != null)
+                                        nearNode = nearNode.GetNext();
+
+                                    if (nearNode != parent) continue;
+                                    childNode.SetNext(nearNode.GetNext());
+                                    nearNode.SetNext(childNode);
+                                    break;
+                                }
+
+                                if (parent.GetNext() != null) break;
+                            }
+
+                            break;
+                        }
                     }
                 }
             }

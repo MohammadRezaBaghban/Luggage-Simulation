@@ -1,18 +1,22 @@
 ﻿using System.Collections.Generic;
 
-
 namespace Rail_Bag_Simulation
 {
     public class Airport
     {
         private static int _setSize;
-        private List<Bag> _bagsList;
         private readonly bool _isMapCreated = false;
+        private List<Bag> _bagsList;
+        private BagSortNode _bagSortNode;
 
         private ConveyorNode _conveyorNode;
-        private BagSortNode _bagSortNode;
-        private TerminalNode t;
         private GateNode _gateNode;
+        private TerminalNode t;
+
+        public Airport(int speedDelay)
+        {
+            Ll = new LinkedList(speedDelay);
+        }
 
         public static Storage Storage { get; } = new Storage();
 
@@ -20,12 +24,7 @@ namespace Rail_Bag_Simulation
 
         public LinkedList Ll { get; }
 
-        public static int TotalNumberOfBags { get; private set; } = 0;
-
-        public Airport(int speedDelay)
-        {
-            Ll = new LinkedList(speedDelay);
-        }
+        public static int TotalNumberOfBags { get; private set; }
 
         public void StartBagsMovement(int nbrOfBags, int nbrOfBagsDrugs, int nbrOfBagsWeapons, int nbrOfBagsFlammable,
             int nbrBagsOthers)

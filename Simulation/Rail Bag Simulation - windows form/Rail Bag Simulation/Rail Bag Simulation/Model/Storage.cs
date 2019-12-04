@@ -2,9 +2,9 @@
 
 namespace Rail_Bag_Simulation
 {
-   public  class Storage
+    public class Storage
     {
-        private static readonly List<Bag> Suspicious=new List<Bag>();
+        private static readonly List<Bag> Suspicious = new List<Bag>();
 
         public static int GetNumberOfBagsInStorage()
         {
@@ -23,11 +23,8 @@ namespace Rail_Bag_Simulation
 
         public override string ToString()
         {
-            string sender = "\n Storage \n";
-            foreach (Bag bag in Suspicious)
-            {
-                sender += bag.GetBagInfo() + "\n";
-            }
+            var sender = "\n Storage \n";
+            foreach (var bag in Suspicious) sender += bag.GetBagInfo() + "\n";
             return sender;
         }
     }

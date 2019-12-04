@@ -5,9 +5,8 @@ using System.Threading;
 
 namespace Rail_Bag_Simulation
 {
-    class GateNode : Node 
+    internal class GateNode : Node
     {
-        public Gate Gate { get; }
         public static EventHandler SimulationFinishedEvent;
 
         public static int Counter;
@@ -16,6 +15,8 @@ namespace Rail_Bag_Simulation
         {
             Gate = g;
         }
+
+        public Gate Gate { get; }
 
         public override List<string> NodeInfo()
         {
@@ -30,10 +31,7 @@ namespace Rail_Bag_Simulation
         public override void Push(Bag b)
         {
             base.Push(b);
-            if (b.IsObserving)
-            {
-                LinkedList.TimelyWatchedBagWithStopWatch.First(pair => pair.Value == b).Key.Stop();
-            }
+            if (b.IsObserving) LinkedList.TimelyWatchedBagWithStopWatch.First(pair => pair.Value == b).Key.Stop();
             VerifyBagsCount();
         }
 
@@ -45,9 +43,8 @@ namespace Rail_Bag_Simulation
         {
             Counter++;
             if (Counter + Storage.GetNumberOfBagsInStorage() < Airport.TotalNumberOfBags) return;
-            Thread.Sleep(1000); SimulationFinishedEvent?.Invoke(this, EventArgs.Empty);
+            Thread.Sleep(1000);
+            SimulationFinishedEvent?.Invoke(this, EventArgs.Empty);
         }
     }
 }
-
-

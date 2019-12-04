@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
+﻿using System.Collections.Generic;
 using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
 {
     internal class TerminalNode : Node
     {
-        
-
-        public Terminal Terminal { get; }
-
         public TerminalNode(Terminal terminal)
         {
             Terminal = terminal;
         }
+
+
+        public Terminal Terminal { get; }
 
         public List<ConveyorNode> ListOfConnectedNodes { get; } = new List<ConveyorNode>();
 
@@ -40,7 +37,8 @@ namespace Rail_Bag_Simulation
             {
                 Node currentNode = p;
 
-                while (currentNode.GetNext() != null && !(currentNode is GateNode node)) currentNode = currentNode.GetNext();
+                while (currentNode.GetNext() != null && !(currentNode is GateNode node))
+                    currentNode = currentNode.GetNext();
 
                 if (GetGateNumber(g, out var result)) return null;
                 if ((currentNode as GateNode)?.Gate.GateNr != result) continue;
@@ -76,7 +74,5 @@ namespace Rail_Bag_Simulation
 
             next.Push(bag);
         }
-
-        
     }
 }

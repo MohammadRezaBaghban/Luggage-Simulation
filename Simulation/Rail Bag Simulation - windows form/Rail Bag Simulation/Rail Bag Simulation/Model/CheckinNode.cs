@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
 {
-    class CheckinNode : Node
+    internal class CheckinNode : Node
     {
         public override List<string> NodeInfo()
         {

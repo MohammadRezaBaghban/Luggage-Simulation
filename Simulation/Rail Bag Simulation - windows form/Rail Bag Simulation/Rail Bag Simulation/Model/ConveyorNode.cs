@@ -4,21 +4,22 @@ using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
 {
-    
     public class ConveyorNode : Node
     {
         private static int _idToGive = 100;
-        public int Id { get; }
         private readonly int _setsize;
+
         public ConveyorNode(int setsize)
         {
             _setsize = setsize;
             Id = ++_idToGive;
         }
 
+        public int Id { get; }
+
         public bool IsEmpty { get; private set; } = true;
-        public bool IsFull { get; private set; } = false;
-        
+        public bool IsFull { get; private set; }
+
         public override void Push(Bag bagtoqueue)
         {
             if (bagtoqueue.IsNull()) return;
@@ -28,11 +29,9 @@ namespace Rail_Bag_Simulation
                 BagsQueue.Enqueue(bagtoqueue);
                 IsEmpty = false;
                 var count = BagsQueue.Count;
-                if (count < _setsize-1) BagsQueue.Enqueue(null);
-                if (count == _setsize)IsFull = true;
-                OnQueueChangedEventHandler?.Invoke(this, new QueueEventArgs { ListOfBags = BagsQueue.ToList() });
-
-
+                if (count < _setsize - 1) BagsQueue.Enqueue(null);
+                if (count == _setsize) IsFull = true;
+                OnQueueChangedEventHandler?.Invoke(this, new QueueEventArgs {ListOfBags = BagsQueue.ToList()});
             }
         }
 
@@ -46,9 +45,9 @@ namespace Rail_Bag_Simulation
                     return null;
                 }
 
-                var bag = BagsQueue.Dequeue(); 
+                var bag = BagsQueue.Dequeue();
                 IsFull = false;
-                OnQueueChangedEventHandler?.Invoke(this, new QueueEventArgs { ListOfBags = BagsQueue.ToList() });
+                OnQueueChangedEventHandler?.Invoke(this, new QueueEventArgs {ListOfBags = BagsQueue.ToList()});
                 return bag;
             }
         }
@@ -63,13 +62,12 @@ namespace Rail_Bag_Simulation
 
         public override void MoveBagToNextNode()
         {
-            if(IsEmpty) return;
-            if(GetNext() is ConveyorNode next && next.IsFull) return;
+            if (IsEmpty) return;
+            if (GetNext() is ConveyorNode next && next.IsFull) return;
 
             var bag = Remove();
-            if(bag.IsNull())return;
+            if (bag.IsNull()) return;
             GetNext().Push(bag);
         }
-
     }
 }

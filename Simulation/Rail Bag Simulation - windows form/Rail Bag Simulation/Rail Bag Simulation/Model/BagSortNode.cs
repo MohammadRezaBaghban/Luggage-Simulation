@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
@@ -29,13 +28,11 @@ namespace Rail_Bag_Simulation
                         currentNode = currentNode.GetNext();
 
                     var result = GetTerminalNumber(g);
-                    if ((currentNode as TerminalNode)?.Terminal.TerminalId != result) 
-                    { 
-                        continue;
-                    }
+                    if ((currentNode as TerminalNode)?.Terminal.TerminalId != result) continue;
                     tnode = p;
                     break;
                 }
+
                 return tnode;
             }
         }
@@ -55,7 +52,9 @@ namespace Rail_Bag_Simulation
             var bag = Remove();
             if (bag.IsNull()) return;
 
-            while(next.IsFull) { }
+            while (next.IsFull)
+            {
+            }
 
             next.Push(bag);
         }

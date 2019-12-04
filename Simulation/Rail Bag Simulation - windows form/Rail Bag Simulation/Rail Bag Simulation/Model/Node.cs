@@ -7,9 +7,9 @@ namespace Rail_Bag_Simulation
 {
     public interface INode
     {
+        Queue<Bag> ListOfBagsInQueue { get; }
         void SetNext(Node value);
         Type GetNextType();
-        Queue<Bag> ListOfBagsInQueue { get; }
         void Push(Bag b);
         Bag Remove();
         Bag Peek();
@@ -25,7 +25,18 @@ namespace Rail_Bag_Simulation
 
     public class Node : INode
     {
+        protected readonly Queue<Bag> BagsQueue;
+        private Node _next;
         public EventHandler<QueueEventArgs> OnQueueChangedEventHandler;
+
+        protected Node()
+        {
+            SetNext(null);
+            BagsQueue = new Queue<Bag>();
+        }
+
+        public int QueueCount => ListOfBagsInQueue.Count;
+
         public void SetNext(Node value)
         {
             _next = value;
@@ -42,15 +53,6 @@ namespace Rail_Bag_Simulation
         }
 
         public Queue<Bag> ListOfBagsInQueue => BagsQueue;
-
-        protected readonly Queue<Bag> BagsQueue;
-        private Node _next;
-
-        protected Node()
-        {
-            SetNext(null);
-            BagsQueue = new Queue<Bag>();
-        }
 
         public virtual void Push(Bag b)
         {
@@ -92,8 +94,6 @@ namespace Rail_Bag_Simulation
 
             return sender;
         }
-
-        public int QueueCount => ListOfBagsInQueue.Count;
 
         public virtual void MoveBagToNextNode()
         {

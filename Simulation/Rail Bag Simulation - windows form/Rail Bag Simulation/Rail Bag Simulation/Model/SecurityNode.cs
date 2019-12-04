@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
 {
@@ -11,7 +10,7 @@ namespace Rail_Bag_Simulation
             return ScanBagSecurity();
         }
 
-        public override List<String> NodeInfo()
+        public override List<string> NodeInfo()
         {
             var sender = new List<string> {"Security:"};
             sender.AddRange(base.NodeInfo());
@@ -33,15 +32,11 @@ namespace Rail_Bag_Simulation
                 // ignored
             }
 
-            if (b?.GetSecurityStatus() == null)
-            {
-                return b;
-            }
+            if (b?.GetSecurityStatus() == null) return b;
 
-            
+
             Airport.Storage.StoreSuspiciousBag(b);
             return null;
         }
-
     }
 }
