@@ -23,7 +23,7 @@ namespace Rail_Bag_Simulation.View
             var vm = new LoggerControlViewModel();
             var timer = new DispatcherTimer {Interval = new TimeSpan(0, 0, 0,0,1000)};
             _lbLogDataSource = new BindingList<string>();
-            vm.StartSimulation(6,99);
+            vm.StartSimulation(20,99);
             lbLog.DataSource = _lbLogDataSource;
             timer.Tick += (sender, args) =>
             { 
