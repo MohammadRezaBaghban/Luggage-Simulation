@@ -33,13 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+    <Reference Include="LiveCharts">
       <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
     </Reference>
-    <Reference Include="LiveCharts.WinForms, Version=0.9.7.1, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+    <Reference Include="LiveCharts.WinForms">
       <HintPath>..\packages\LiveCharts.WinForms.0.9.7.1\lib\net45\LiveCharts.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+    <Reference Include="LiveCharts.Wpf">
       <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
@@ -82,6 +82,12 @@
     <Compile Include="Model\Destination.cs" />
     <Compile Include="Model\INode.cs" />
     <Compile Include="ViewModel\LoggerControlViewModel.cs" />
+    <Compile Include="View\Configurations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Configurations.Designer.cs">
+      <DependentUpon>Configurations.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +105,12 @@
     <Compile Include="Model\SuspiciousBagtype.cs" />
     <Compile Include="Model\Terminal.cs" />
     <Compile Include="Model\TerminalNode.cs" />
+    <Compile Include="View\StatisticsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\StatisticsForm.Designer.cs">
+      <DependentUpon>StatisticsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\UserControls\Simulation.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -117,6 +129,9 @@
     <EmbeddedResource Include="CustomizedControl\ConveyorVertical.resx">
       <DependentUpon>ConveyorVertical.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Configurations.resx">
+      <DependentUpon>Configurations.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -130,6 +145,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="View\StatisticsForm.resx">
+      <DependentUpon>StatisticsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\UserControls\Simulation.resx">
       <DependentUpon>Simulation.cs</DependentUpon>
     </EmbeddedResource>
