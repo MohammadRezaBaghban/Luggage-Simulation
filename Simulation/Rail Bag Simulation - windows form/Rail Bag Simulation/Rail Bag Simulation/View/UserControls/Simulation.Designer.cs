@@ -37,15 +37,16 @@
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
-            this.Cn_CheckIn_To_Security = new Rail_Bag_Simulation.CustomizedControl.ConveyorHorizontal();
-            this.Cn_Security_Sorter = new Rail_Bag_Simulation.CustomizedControl.ConveyorHorizontal();
-            this.Cn_Sorter_To_Terminal1 = new Rail_Bag_Simulation.CustomizedControl.ConveyorVertical();
-            this.Cn_Sorter_To_Terminal2 = new Rail_Bag_Simulation.CustomizedControl.ConveyorVertical();
-            this.Cn_Terminal1_To_Gate1 = new Rail_Bag_Simulation.CustomizedControl.ConveyorHorizontal();
-            this.Cn_Terminal1_To_Gate2 = new Rail_Bag_Simulation.CustomizedControl.ConveyorHorizontal();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.Cn_Terminal2_To_Gate2 = new Rail_Bag_Simulation.CustomizedControl.ConveyorHorizontal();
             this.Cn_Terminal2_To_Gate1 = new Rail_Bag_Simulation.CustomizedControl.ConveyorHorizontal();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.Cn_Terminal1_To_Gate2 = new Rail_Bag_Simulation.CustomizedControl.ConveyorHorizontal();
+            this.Cn_Terminal1_To_Gate1 = new Rail_Bag_Simulation.CustomizedControl.ConveyorHorizontal();
+            this.Cn_Sorter_To_Terminal2 = new Rail_Bag_Simulation.CustomizedControl.ConveyorVertical();
+            this.Cn_Sorter_To_Terminal1 = new Rail_Bag_Simulation.CustomizedControl.ConveyorVertical();
+            this.Cn_Security_Sorter = new Rail_Bag_Simulation.CustomizedControl.ConveyorHorizontal();
+            this.Cn_CheckIn_To_Security = new Rail_Bag_Simulation.CustomizedControl.ConveyorHorizontal();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -158,72 +159,6 @@
             this.pictureBox13.TabIndex = 44;
             this.pictureBox13.TabStop = false;
             // 
-            // Cn_CheckIn_To_Security
-            // 
-            this.Cn_CheckIn_To_Security.Location = new System.Drawing.Point(62, 245);
-            this.Cn_CheckIn_To_Security.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Cn_CheckIn_To_Security.Name = "Cn_CheckIn_To_Security";
-            this.Cn_CheckIn_To_Security.Size = new System.Drawing.Size(254, 65);
-            this.Cn_CheckIn_To_Security.TabIndex = 47;
-            // 
-            // Cn_Security_Sorter
-            // 
-            this.Cn_Security_Sorter.Location = new System.Drawing.Point(389, 245);
-            this.Cn_Security_Sorter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Cn_Security_Sorter.Name = "Cn_Security_Sorter";
-            this.Cn_Security_Sorter.Size = new System.Drawing.Size(254, 65);
-            this.Cn_Security_Sorter.TabIndex = 48;
-            // 
-            // Cn_Sorter_To_Terminal1
-            // 
-            this.Cn_Sorter_To_Terminal1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.Cn_Sorter_To_Terminal1.Location = new System.Drawing.Point(645, 5);
-            this.Cn_Sorter_To_Terminal1.Margin = new System.Windows.Forms.Padding(2);
-            this.Cn_Sorter_To_Terminal1.Name = "Cn_Sorter_To_Terminal1";
-            this.Cn_Sorter_To_Terminal1.Size = new System.Drawing.Size(65, 236);
-            this.Cn_Sorter_To_Terminal1.TabIndex = 49;
-            // 
-            // Cn_Sorter_To_Terminal2
-            // 
-            this.Cn_Sorter_To_Terminal2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.Cn_Sorter_To_Terminal2.Location = new System.Drawing.Point(647, 314);
-            this.Cn_Sorter_To_Terminal2.Margin = new System.Windows.Forms.Padding(2);
-            this.Cn_Sorter_To_Terminal2.Name = "Cn_Sorter_To_Terminal2";
-            this.Cn_Sorter_To_Terminal2.Size = new System.Drawing.Size(65, 236);
-            this.Cn_Sorter_To_Terminal2.TabIndex = 50;
-            // 
-            // Cn_Terminal1_To_Gate1
-            // 
-            this.Cn_Terminal1_To_Gate1.Location = new System.Drawing.Point(836, 5);
-            this.Cn_Terminal1_To_Gate1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Cn_Terminal1_To_Gate1.Name = "Cn_Terminal1_To_Gate1";
-            this.Cn_Terminal1_To_Gate1.Size = new System.Drawing.Size(236, 47);
-            this.Cn_Terminal1_To_Gate1.TabIndex = 51;
-            // 
-            // Cn_Terminal1_To_Gate2
-            // 
-            this.Cn_Terminal1_To_Gate2.Location = new System.Drawing.Point(836, 69);
-            this.Cn_Terminal1_To_Gate2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Cn_Terminal1_To_Gate2.Name = "Cn_Terminal1_To_Gate2";
-            this.Cn_Terminal1_To_Gate2.Size = new System.Drawing.Size(236, 47);
-            this.Cn_Terminal1_To_Gate2.TabIndex = 52;
-            // 
-            // Cn_Terminal2_To_Gate2
-            // 
-            this.Cn_Terminal2_To_Gate2.Location = new System.Drawing.Point(836, 503);
-            this.Cn_Terminal2_To_Gate2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Cn_Terminal2_To_Gate2.Name = "Cn_Terminal2_To_Gate2";
-            this.Cn_Terminal2_To_Gate2.Size = new System.Drawing.Size(236, 47);
-            this.Cn_Terminal2_To_Gate2.TabIndex = 54;
-            // 
-            // Cn_Terminal2_To_Gate1
-            // 
-            this.Cn_Terminal2_To_Gate1.Location = new System.Drawing.Point(836, 439);
-            this.Cn_Terminal2_To_Gate1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Cn_Terminal2_To_Gate1.Name = "Cn_Terminal2_To_Gate1";
-            this.Cn_Terminal2_To_Gate1.Size = new System.Drawing.Size(236, 47);
-            this.Cn_Terminal2_To_Gate1.TabIndex = 53;
-            // 
             // pictureBox3
             // 
             this.pictureBox3.Image = global::Rail_Bag_Simulation.Properties.Resources.check_in;
@@ -235,11 +170,88 @@
             this.pictureBox3.TabIndex = 31;
             this.pictureBox3.TabStop = false;
             // 
+            // Cn_Terminal2_To_Gate2
+            // 
+            this.Cn_Terminal2_To_Gate2.Location = new System.Drawing.Point(836, 503);
+            this.Cn_Terminal2_To_Gate2.Margin = new System.Windows.Forms.Padding(2);
+            this.Cn_Terminal2_To_Gate2.Name = "Cn_Terminal2_To_Gate2";
+            this.Cn_Terminal2_To_Gate2.Size = new System.Drawing.Size(236, 47);
+            this.Cn_Terminal2_To_Gate2.TabIndex = 54;
+            // 
+            // Cn_Terminal2_To_Gate1
+            // 
+            this.Cn_Terminal2_To_Gate1.Location = new System.Drawing.Point(836, 439);
+            this.Cn_Terminal2_To_Gate1.Margin = new System.Windows.Forms.Padding(2);
+            this.Cn_Terminal2_To_Gate1.Name = "Cn_Terminal2_To_Gate1";
+            this.Cn_Terminal2_To_Gate1.Size = new System.Drawing.Size(236, 47);
+            this.Cn_Terminal2_To_Gate1.TabIndex = 53;
+            // 
+            // Cn_Terminal1_To_Gate2
+            // 
+            this.Cn_Terminal1_To_Gate2.Location = new System.Drawing.Point(836, 69);
+            this.Cn_Terminal1_To_Gate2.Margin = new System.Windows.Forms.Padding(2);
+            this.Cn_Terminal1_To_Gate2.Name = "Cn_Terminal1_To_Gate2";
+            this.Cn_Terminal1_To_Gate2.Size = new System.Drawing.Size(236, 47);
+            this.Cn_Terminal1_To_Gate2.TabIndex = 52;
+            // 
+            // Cn_Terminal1_To_Gate1
+            // 
+            this.Cn_Terminal1_To_Gate1.Location = new System.Drawing.Point(836, 5);
+            this.Cn_Terminal1_To_Gate1.Margin = new System.Windows.Forms.Padding(2);
+            this.Cn_Terminal1_To_Gate1.Name = "Cn_Terminal1_To_Gate1";
+            this.Cn_Terminal1_To_Gate1.Size = new System.Drawing.Size(236, 47);
+            this.Cn_Terminal1_To_Gate1.TabIndex = 51;
+            // 
+            // Cn_Sorter_To_Terminal2
+            // 
+            this.Cn_Sorter_To_Terminal2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.Cn_Sorter_To_Terminal2.Location = new System.Drawing.Point(647, 314);
+            this.Cn_Sorter_To_Terminal2.Margin = new System.Windows.Forms.Padding(2);
+            this.Cn_Sorter_To_Terminal2.Name = "Cn_Sorter_To_Terminal2";
+            this.Cn_Sorter_To_Terminal2.Size = new System.Drawing.Size(65, 236);
+            this.Cn_Sorter_To_Terminal2.TabIndex = 50;
+            // 
+            // Cn_Sorter_To_Terminal1
+            // 
+            this.Cn_Sorter_To_Terminal1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.Cn_Sorter_To_Terminal1.Location = new System.Drawing.Point(645, 5);
+            this.Cn_Sorter_To_Terminal1.Margin = new System.Windows.Forms.Padding(2);
+            this.Cn_Sorter_To_Terminal1.Name = "Cn_Sorter_To_Terminal1";
+            this.Cn_Sorter_To_Terminal1.Size = new System.Drawing.Size(65, 236);
+            this.Cn_Sorter_To_Terminal1.TabIndex = 49;
+            // 
+            // Cn_Security_Sorter
+            // 
+            this.Cn_Security_Sorter.Location = new System.Drawing.Point(389, 245);
+            this.Cn_Security_Sorter.Margin = new System.Windows.Forms.Padding(2);
+            this.Cn_Security_Sorter.Name = "Cn_Security_Sorter";
+            this.Cn_Security_Sorter.Size = new System.Drawing.Size(254, 65);
+            this.Cn_Security_Sorter.TabIndex = 48;
+            // 
+            // Cn_CheckIn_To_Security
+            // 
+            this.Cn_CheckIn_To_Security.Location = new System.Drawing.Point(62, 245);
+            this.Cn_CheckIn_To_Security.Margin = new System.Windows.Forms.Padding(2);
+            this.Cn_CheckIn_To_Security.Name = "Cn_CheckIn_To_Security";
+            this.Cn_CheckIn_To_Security.Size = new System.Drawing.Size(254, 65);
+            this.Cn_CheckIn_To_Security.TabIndex = 47;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(94, 28);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 55;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Simulation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.Cn_Terminal2_To_Gate2);
             this.Controls.Add(this.Cn_Terminal2_To_Gate1);
             this.Controls.Add(this.Cn_Terminal1_To_Gate2);
@@ -295,5 +307,6 @@
         private CustomizedControl.ConveyorHorizontal Cn_Terminal2_To_Gate2;
         private CustomizedControl.ConveyorHorizontal Cn_Terminal2_To_Gate1;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Button button1;
     }
 }

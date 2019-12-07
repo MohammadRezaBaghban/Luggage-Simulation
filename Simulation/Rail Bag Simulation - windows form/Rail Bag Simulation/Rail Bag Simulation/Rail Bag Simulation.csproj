@@ -59,6 +59,7 @@
     <Compile Include="CustomizedControl\ConveyorVertical.Designer.cs">
       <DependentUpon>ConveyorVertical.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomizedControl\IConveyor.cs" />
     <Compile Include="Model\Airport.cs" />
     <Compile Include="Model\Bag.cs" />
     <Compile Include="Model\BagExtentions.cs" />
