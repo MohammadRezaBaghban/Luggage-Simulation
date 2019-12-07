@@ -49,12 +49,13 @@
             this.slot2Vert.Dock = System.Windows.Forms.DockStyle.Fill;
             this.slot2Vert.Image = ((System.Drawing.Image)(resources.GetObject("slot2Vert.Image")));
             this.slot2Vert.Location = new System.Drawing.Point(2, 72);
-            this.slot2Vert.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.slot2Vert.Margin = new System.Windows.Forms.Padding(2);
             this.slot2Vert.Name = "slot2Vert";
             this.slot2Vert.Size = new System.Drawing.Size(80, 66);
             this.slot2Vert.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.slot2Vert.TabIndex = 0;
             this.slot2Vert.TabStop = false;
+            this.slot2Vert.Visible = false;
             // 
             // slot1Vert
             // 
@@ -62,12 +63,13 @@
             this.slot1Vert.Dock = System.Windows.Forms.DockStyle.Fill;
             this.slot1Vert.Image = ((System.Drawing.Image)(resources.GetObject("slot1Vert.Image")));
             this.slot1Vert.Location = new System.Drawing.Point(2, 2);
-            this.slot1Vert.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.slot1Vert.Margin = new System.Windows.Forms.Padding(2);
             this.slot1Vert.Name = "slot1Vert";
             this.slot1Vert.Size = new System.Drawing.Size(80, 66);
             this.slot1Vert.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.slot1Vert.TabIndex = 1;
             this.slot1Vert.TabStop = false;
+            this.slot1Vert.Visible = false;
             // 
             // slot3Vert
             // 
@@ -75,12 +77,13 @@
             this.slot3Vert.Dock = System.Windows.Forms.DockStyle.Fill;
             this.slot3Vert.Image = ((System.Drawing.Image)(resources.GetObject("slot3Vert.Image")));
             this.slot3Vert.Location = new System.Drawing.Point(2, 142);
-            this.slot3Vert.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.slot3Vert.Margin = new System.Windows.Forms.Padding(2);
             this.slot3Vert.Name = "slot3Vert";
             this.slot3Vert.Size = new System.Drawing.Size(80, 66);
             this.slot3Vert.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.slot3Vert.TabIndex = 2;
             this.slot3Vert.TabStop = false;
+            this.slot3Vert.Visible = false;
             // 
             // slot4Vert
             // 
@@ -88,12 +91,13 @@
             this.slot4Vert.Dock = System.Windows.Forms.DockStyle.Fill;
             this.slot4Vert.Image = ((System.Drawing.Image)(resources.GetObject("slot4Vert.Image")));
             this.slot4Vert.Location = new System.Drawing.Point(2, 212);
-            this.slot4Vert.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.slot4Vert.Margin = new System.Windows.Forms.Padding(2);
             this.slot4Vert.Name = "slot4Vert";
             this.slot4Vert.Size = new System.Drawing.Size(80, 66);
             this.slot4Vert.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.slot4Vert.TabIndex = 3;
             this.slot4Vert.TabStop = false;
+            this.slot4Vert.Visible = false;
             // 
             // slot5Vert
             // 
@@ -101,12 +105,13 @@
             this.slot5Vert.Dock = System.Windows.Forms.DockStyle.Fill;
             this.slot5Vert.Image = ((System.Drawing.Image)(resources.GetObject("slot5Vert.Image")));
             this.slot5Vert.Location = new System.Drawing.Point(2, 282);
-            this.slot5Vert.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.slot5Vert.Margin = new System.Windows.Forms.Padding(2);
             this.slot5Vert.Name = "slot5Vert";
             this.slot5Vert.Size = new System.Drawing.Size(80, 68);
             this.slot5Vert.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.slot5Vert.TabIndex = 4;
             this.slot5Vert.TabStop = false;
+            this.slot5Vert.Visible = false;
             // 
             // tableLayoutPanel1
             // 
@@ -138,7 +143,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ConveyorVertical";
             this.Size = new System.Drawing.Size(87, 358);
             ((System.ComponentModel.ISupportInitialize)(this.slot2Vert)).EndInit();

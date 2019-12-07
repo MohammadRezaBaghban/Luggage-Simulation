@@ -9,9 +9,9 @@ namespace Rail_Bag_Simulation
 
         private readonly bool _isMapCreated = false;
         private static List<Bag> _bagsList;
-
         public static List<Bag> GetBagList => _bagsList;
 
+        private List<Node> conveyors;
         public Airport(int speedDelay)
         {
             Ll = new LinkedList(speedDelay);
@@ -38,6 +38,7 @@ namespace Rail_Bag_Simulation
         public void CreateMapLayout(int queueSizeOfBelts)
         {
             if (_isMapCreated) return;
+            
             Node checkIn1 = new CheckinNode();
             Node CheckIn_To_Security_Conveyor = new ConveyorNode(queueSizeOfBelts);
             //Node cn2 = new CheckinNode();
@@ -103,6 +104,21 @@ namespace Rail_Bag_Simulation
             //Ll.AddNode(cn4conveyor4.Id, cn4conveyor4.GetType(), security1);
             //Ll.AddNode(security1.Id, security1.GetType(), st1conveyor4);
             //Ll.AddNode(st1conveyor4.Id, stconveyor4.GetType(), bagsort);
+
+            conveyors = new List<Node>()
+            {
+                CheckIn_To_Security_Conveyor,
+                security_Conveyor_To_BagSort,
+                bagSort_Conveyor_To_Terminal1,
+                bagSort_Conveyor_To_Terminal2,
+                terminal1_Conveyor_To_Gate1,
+                terminal1_Conveyor_To_Gate2,
+                terminal2_Conveyor_To_Gate1,
+                terminal2_Conveyor_To_Gate2
+
+            };
         }
+
+        public List<Node> GetConveyorsList() => conveyors;
     }
 }

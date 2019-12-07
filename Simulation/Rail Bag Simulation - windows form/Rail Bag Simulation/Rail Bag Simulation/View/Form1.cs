@@ -13,6 +13,7 @@ namespace Rail_Bag_Simulation
 
         Color darkColor = Color.FromArgb(95, 108, 140);
         Color normalColor = Color.FromArgb(105, 119, 155);
+        private Airport airport;
         public Form1()
         {
             
@@ -116,5 +117,41 @@ namespace Rail_Bag_Simulation
             pbConfigurations.BackColor = this.normalColor;
             pbSimulation.BackColor = this.normalColor;
         }
+
+        private void btnRunSimulation_Click(object sender, EventArgs e)
+        { 
+            ShowSimulationPanel();
+
+            airport = new Airport(200);
+            airport.CreateMapLayout(5);
+
+            simulation1 = new Simulation();
+            simulation1.Map_The_Converyors(airport.GetConveyorsList());
+
+            /*airport.StartBagsMovement(
+            Convert.ToInt32(tb_numberOfBags.Text),
+                Convert.ToInt32(tb_drugs.Text),
+                Convert.ToInt32(tb_weapons.Text),
+                Convert.ToInt32(tb_flammables.Text),
+                Convert.ToInt32(tb_Others.Text)
+            );*/
+
+            airport.StartBagsMovement(
+                122,2,1,3,3
+            );
+
+
+
+        }
+
+        private void ShowSimulationPanel()
+        {
+            palenlConfigurations.Visible = false;
+            simulation1.Visible = true;
+            panelBorder.Visible = false;
+            panelBorder1.Visible = false;
+        }
+
+        
     }
 }
