@@ -34,18 +34,21 @@
             // lbLog
             // 
             this.lbLog.FormattingEnabled = true;
-            this.lbLog.Location = new System.Drawing.Point(4, 3);
+            this.lbLog.ItemHeight = 16;
+            this.lbLog.Location = new System.Drawing.Point(13, 13);
+            this.lbLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lbLog.Name = "lbLog";
-            this.lbLog.Size = new System.Drawing.Size(1002, 667);
+            this.lbLog.Size = new System.Drawing.Size(778, 500);
             this.lbLog.TabIndex = 0;
             this.lbLog.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
             // 
             // LogForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1013, 672);
+            this.ClientSize = new System.Drawing.Size(800, 528);
             this.Controls.Add(this.lbLog);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "LogForm";
             this.Text = "LogForm";
             this.ResumeLayout(false);

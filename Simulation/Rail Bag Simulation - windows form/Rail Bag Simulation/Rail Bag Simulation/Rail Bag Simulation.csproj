@@ -79,6 +79,18 @@
     <Compile Include="View\LogForm.Designer.cs">
       <DependentUpon>LogForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\UserControls\Simulation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UserControls\Simulation.Designer.cs">
+      <DependentUpon>Simulation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\Statistics.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UserControls\Statistics.Designer.cs">
+      <DependentUpon>Statistics.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="View\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -90,11 +102,17 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="View\LogForm.resx">
       <DependentUpon>LogForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
+    <EmbeddedResource Include="View\UserControls\Simulation.resx">
+      <DependentUpon>Simulation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\UserControls\Statistics.resx">
+      <DependentUpon>Statistics.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -109,6 +127,26 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\terminal.jpg" />
+    <None Include="Resources\sorter1.png" />
+    <None Include="Resources\sorter.png" />
+    <None Include="Resources\securityCheckHouse.png" />
+    <None Include="Resources\storage.png" />
+    <None Include="Resources\stat.PNG" />
+    <None Include="Resources\others.png" />
+    <None Include="Resources\weapon.png" />
+    <None Include="Resources\close.png" />
+    <None Include="Resources\flamable.png" />
+    <None Include="Resources\drugs.jpg" />
+    <None Include="Resources\check-in.png" />
+    <None Include="Resources\gate.png" />
+    <Content Include="Resources\logomini.png" />
+    <None Include="Resources\statistics.png" />
+    <None Include="Resources\simulation.png" />
+    <None Include="Resources\settings.jpg" />
+    <None Include="Resources\logomini1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
