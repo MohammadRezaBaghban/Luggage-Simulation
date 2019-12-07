@@ -39,6 +39,7 @@
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.Cn_Terminal2_To_Gate2 = new Rail_Bag_Simulation.CustomizedControl.ConveyorHorizontal();
             this.Cn_Terminal2_To_Gate1 = new Rail_Bag_Simulation.CustomizedControl.ConveyorHorizontal();
             this.Cn_Terminal1_To_Gate2 = new Rail_Bag_Simulation.CustomizedControl.ConveyorHorizontal();
@@ -47,8 +48,9 @@
             this.Cn_Sorter_To_Terminal1 = new Rail_Bag_Simulation.CustomizedControl.ConveyorVertical();
             this.Cn_Security_Sorter = new Rail_Bag_Simulation.CustomizedControl.ConveyorHorizontal();
             this.Cn_CheckIn_To_Security = new Rail_Bag_Simulation.CustomizedControl.ConveyorHorizontal();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnPause = new System.Windows.Forms.Button();
+            this.btnContinue = new System.Windows.Forms.Button();
+            this.btnPowerOut = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -172,6 +174,15 @@
             this.pictureBox3.TabIndex = 31;
             this.pictureBox3.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1113, 577);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 56;
+            this.label1.Text = "label1";
+            // 
             // Cn_Terminal2_To_Gate2
             // 
             this.Cn_Terminal2_To_Gate2.Location = new System.Drawing.Point(836, 503);
@@ -238,32 +249,66 @@
             this.Cn_CheckIn_To_Security.Size = new System.Drawing.Size(254, 65);
             this.Cn_CheckIn_To_Security.TabIndex = 47;
             // 
-            // button1
+            // btnPause
             // 
-            this.button1.Location = new System.Drawing.Point(36, 29);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 55;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnPause.BackColor = System.Drawing.Color.Black;
+            this.btnPause.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPause.FlatAppearance.BorderSize = 0;
+            this.btnPause.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPause.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btnPause.ForeColor = System.Drawing.Color.White;
+            this.btnPause.Location = new System.Drawing.Point(389, 44);
+            this.btnPause.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPause.Name = "btnPause";
+            this.btnPause.Size = new System.Drawing.Size(74, 27);
+            this.btnPause.TabIndex = 57;
+            this.btnPause.Text = "Pause";
+            this.btnPause.UseVisualStyleBackColor = false;
+            this.btnPause.Click += new System.EventHandler(this.BtnPause_Click);
             // 
-            // label1
+            // btnContinue
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1113, 577);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 56;
-            this.label1.Text = "label1";
+            this.btnContinue.BackColor = System.Drawing.Color.Black;
+            this.btnContinue.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnContinue.FlatAppearance.BorderSize = 0;
+            this.btnContinue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnContinue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btnContinue.ForeColor = System.Drawing.Color.White;
+            this.btnContinue.Location = new System.Drawing.Point(389, 13);
+            this.btnContinue.Margin = new System.Windows.Forms.Padding(2);
+            this.btnContinue.Name = "btnContinue";
+            this.btnContinue.Size = new System.Drawing.Size(74, 27);
+            this.btnContinue.TabIndex = 58;
+            this.btnContinue.Text = "Continue";
+            this.btnContinue.UseVisualStyleBackColor = false;
+            this.btnContinue.Click += new System.EventHandler(this.BtnContinue_Click);
+            // 
+            // btnPowerOut
+            // 
+            this.btnPowerOut.BackColor = System.Drawing.Color.Black;
+            this.btnPowerOut.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPowerOut.FlatAppearance.BorderSize = 0;
+            this.btnPowerOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPowerOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btnPowerOut.ForeColor = System.Drawing.Color.Red;
+            this.btnPowerOut.Location = new System.Drawing.Point(71, 408);
+            this.btnPowerOut.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPowerOut.Name = "btnPowerOut";
+            this.btnPowerOut.Size = new System.Drawing.Size(173, 127);
+            this.btnPowerOut.TabIndex = 59;
+            this.btnPowerOut.Text = "Power outage";
+            this.btnPowerOut.UseVisualStyleBackColor = false;
+            this.btnPowerOut.Click += new System.EventHandler(this.BtnPowerOut_Click);
             // 
             // Simulation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.btnPowerOut);
+            this.Controls.Add(this.btnContinue);
+            this.Controls.Add(this.btnPause);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.Cn_Terminal2_To_Gate2);
             this.Controls.Add(this.Cn_Terminal2_To_Gate1);
             this.Controls.Add(this.Cn_Terminal1_To_Gate2);
@@ -320,7 +365,9 @@
         private CustomizedControl.ConveyorHorizontal Cn_Terminal2_To_Gate2;
         private CustomizedControl.ConveyorHorizontal Cn_Terminal2_To_Gate1;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnPause;
+        private System.Windows.Forms.Button btnContinue;
+        private System.Windows.Forms.Button btnPowerOut;
     }
 }

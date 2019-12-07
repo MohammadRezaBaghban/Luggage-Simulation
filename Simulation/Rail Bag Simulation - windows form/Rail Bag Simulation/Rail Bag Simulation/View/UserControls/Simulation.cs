@@ -59,13 +59,7 @@ namespace Rail_Bag_Simulation.View.UserControls
         private void button1_Click(object sender, EventArgs e)
         {
             
-                for (var j = 0; j < conveyors.Count; j++)
-                {
-                    for (var k = 0; k < conveyors[j].slots.Count; k++)
-                    {
-                        conveyors[j].slots[k].Visible = false;
-                    }
-                }
+              
             
         }
 
@@ -77,15 +71,47 @@ namespace Rail_Bag_Simulation.View.UserControls
             {
                 frontEnd.slots[j].Visible = ls[j] != null;
             }
-            label1.Text = GateNode.Counter.ToString();
+            label1.Text = (GateNode.Counter).ToString();
 
+            if ((Airport.TotalNumberOfBags - Storage.GetNumberOfBagsInStorage() ).ToString() == label1.Text)
+            {
+                try
+                {
+                    for (var j = 0; j < conveyors.Count; j++)
+                    {
+                        for (var k = 0; k < conveyors[j].slots.Count; k++)
+                        {
+                            conveyors[j].slots[k].Visible = false;
+                        }
+                    }
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception);
 
-           
+                }
+            }
+
         }
 
         private void Cn_CheckIn_To_Security_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void BtnPause_Click(object sender, EventArgs e)
+        {
+            ((Form1)Parent).airport.Ll.PauseSimulation();
+        }
+
+        private void BtnPowerOut_Click(object sender, EventArgs e)
+        {
+            ((Form1)Parent).airport.Ll.DestroySimulation();
+        }
+
+        private void BtnContinue_Click(object sender, EventArgs e)
+        {
+            ((Form1)Parent).airport.Ll.RunSimulation();
         }
     }
 }

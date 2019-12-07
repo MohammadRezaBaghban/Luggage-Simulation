@@ -1,14 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Rail_Bag_Simulation
 {
+    [Serializable]
     public class Airport
     {
 
         private readonly bool _isMapCreated = false;
-        private List<Bag> _bagsList;
+        private static List<Bag> _bagsList;
+        public static List<Bag> GetBagList => _bagsList;
+        public static int BagsCountTotalArrived;
+
+
         private List<Node> conveyors;
-       
         public Airport(int speedDelay)
         {
             Ll = new LinkedList(speedDelay);
@@ -30,14 +35,16 @@ namespace Rail_Bag_Simulation
             Ll.AddGeneratedBags(_bagsList);
         }
 
+        
+
         public void CreateMapLayout(int queueSizeOfBelts)
         {
             if (_isMapCreated) return;
             
             Node checkIn1 = new CheckinNode();
             Node CheckIn_To_Security_Conveyor = new ConveyorNode(queueSizeOfBelts);
-            //Node cn2 = new CheckinNode();
-            //Node cn2conveyor2 = new ConveyorNode(queueSizeOfBelts);
+            Node cn2 = new CheckinNode();
+            Node cn2conveyor2 = new ConveyorNode(queueSizeOfBelts);
             //Node cn3 = new CheckinNode();
             //Node cn3conveyor3 = new ConveyorNode(queueSizeOfBelts);
 
@@ -60,6 +67,7 @@ namespace Rail_Bag_Simulation
 
             Node t2gate1 = new GateNode(new Gate("G1"));
             Node t2gate2 = new GateNode(new Gate("G2"));
+
             Ll.AddNode(checkIn1);
             //Ll.AddNode(cn2);
             //Ll.AddNode(cn3);

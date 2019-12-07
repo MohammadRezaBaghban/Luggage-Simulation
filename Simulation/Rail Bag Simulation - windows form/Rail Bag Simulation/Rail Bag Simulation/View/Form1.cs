@@ -8,19 +8,25 @@ namespace Rail_Bag_Simulation
 {
     public partial class Form1 : Form
     {
+        StatisticsForm stat = new StatisticsForm();
+        Configurations cf = new Configurations();
 
         Color darkColor = Color.FromArgb(95, 108, 140);
         Color normalColor = Color.FromArgb(105, 119, 155);
-        private Airport airport;
+        public Airport airport;
         public Form1()
         {
+            
             InitializeComponent();
+            stat.Show();
+            cf.Show();
             btnConfigurations.BackColor = this.darkColor;
             btnSimulation.BackColor = this.normalColor;
             btnStatistics.BackColor = this.normalColor;
             pbConfigurations.BackColor = this.darkColor;
             pbSimulation.BackColor = this.normalColor;
             pbStatistics.BackColor = this.normalColor;
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -116,22 +122,21 @@ namespace Rail_Bag_Simulation
         { 
             ShowSimulationPanel();
 
-            airport = new Airport(50);
+            airport = new Airport(140);
             airport.CreateMapLayout(5);
 
             simulation1.Map_The_Converyors(airport.GetConveyorsList());
 
-            /*airport.StartBagsMovement(
+            airport.StartBagsMovement(
             Convert.ToInt32(tb_numberOfBags.Text),
                 Convert.ToInt32(tb_drugs.Text),
                 Convert.ToInt32(tb_weapons.Text),
                 Convert.ToInt32(tb_flammables.Text),
                 Convert.ToInt32(tb_Others.Text)
-            );*/
-
-            airport.StartBagsMovement(
-                199,2,1,3,3
             );
+
+          
+
 
         }
 
