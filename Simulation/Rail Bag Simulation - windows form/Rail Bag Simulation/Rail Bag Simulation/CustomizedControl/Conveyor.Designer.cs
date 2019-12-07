@@ -69,7 +69,7 @@
             // Slot1
             // 
             this.Slot1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Slot1.Image = global::Rail_Bag_Simulation.Properties.Resources.travel_bag_1552353_1314543;
+            this.Slot1.Image = global::Rail_Bag_Simulation.Properties.Resources.travelbag;
             this.Slot1.Location = new System.Drawing.Point(3, 3);
             this.Slot1.Name = "Slot1";
             this.Slot1.Size = new System.Drawing.Size(100, 110);
@@ -80,7 +80,7 @@
             // Slot2
             // 
             this.Slot2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Slot2.Image = global::Rail_Bag_Simulation.Properties.Resources.travel_bag_1552353_1314543;
+            this.Slot2.Image = global::Rail_Bag_Simulation.Properties.Resources.travelbag;
             this.Slot2.Location = new System.Drawing.Point(109, 3);
             this.Slot2.Name = "Slot2";
             this.Slot2.Size = new System.Drawing.Size(100, 110);
@@ -91,7 +91,7 @@
             // Slot3
             // 
             this.Slot3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Slot3.Image = global::Rail_Bag_Simulation.Properties.Resources.travel_bag_1552353_1314543;
+            this.Slot3.Image = global::Rail_Bag_Simulation.Properties.Resources.travelbag;
             this.Slot3.Location = new System.Drawing.Point(215, 3);
             this.Slot3.Name = "Slot3";
             this.Slot3.Size = new System.Drawing.Size(100, 110);
@@ -102,7 +102,7 @@
             // Slot4
             // 
             this.Slot4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Slot4.Image = global::Rail_Bag_Simulation.Properties.Resources.travel_bag_1552353_1314543;
+            this.Slot4.Image = global::Rail_Bag_Simulation.Properties.Resources.travelbag;
             this.Slot4.Location = new System.Drawing.Point(321, 3);
             this.Slot4.Name = "Slot4";
             this.Slot4.Size = new System.Drawing.Size(100, 110);
@@ -113,7 +113,7 @@
             // Slot5
             // 
             this.Slot5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Slot5.Image = global::Rail_Bag_Simulation.Properties.Resources.travel_bag_1552353_1314543;
+            this.Slot5.Image = global::Rail_Bag_Simulation.Properties.Resources.travelbag;
             this.Slot5.Location = new System.Drawing.Point(427, 3);
             this.Slot5.Name = "Slot5";
             this.Slot5.Size = new System.Drawing.Size(102, 110);
