@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Threading;
 using Rail_Bag_Simulation.CustomizedControl;
@@ -9,7 +10,7 @@ namespace Rail_Bag_Simulation.View.UserControls
 {
     public partial class Simulation : UserControl
     {
-        private List<IConveyor> conveyors;
+        public List<IConveyor> conveyors;
         public Simulation()
         {
             InitializeComponent();
@@ -23,6 +24,12 @@ namespace Rail_Bag_Simulation.View.UserControls
                 Cn_Terminal1_To_Gate2,
                 Cn_Terminal2_To_Gate1,
                 Cn_Terminal2_To_Gate2,
+            };
+
+            GateNode.SimulationFinishedEvent += (sender, args) =>
+            {
+
+               button1_Click(this,EventArgs.Empty);
             };
         }
 
@@ -51,20 +58,29 @@ namespace Rail_Bag_Simulation.View.UserControls
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            
+                for (var j = 0; j < conveyors.Count; j++)
+                {
+                    for (var k = 0; k < conveyors[j].slots.Count; k++)
+                    {
+                        conveyors[j].slots[k].Visible = false;
+                    }
+                }
+            
         }
 
 
-        public async void Update(ConveyorNode conveyorNodeBackend,IConveyor frontEnd)
+        public void Update(ConveyorNode conveyorNodeBackend, IConveyor frontEnd)
         {
             List<Bag> ls = conveyorNodeBackend.ListOfBagsInQueue.ToList();
-            
-            for (var j = 0; j < ls.Count; j++) {
+            for (var j = ls.Count - 1; j >= 0; j--)
+            {
                 frontEnd.slots[j].Visible = ls[j] != null;
             }
-
             label1.Text = GateNode.Counter.ToString();
 
+
+           
         }
 
         private void Cn_CheckIn_To_Security_Load(object sender, EventArgs e)

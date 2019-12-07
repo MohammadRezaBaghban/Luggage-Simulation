@@ -116,7 +116,7 @@ namespace Rail_Bag_Simulation
         { 
             ShowSimulationPanel();
 
-            airport = new Airport(500);
+            airport = new Airport(50);
             airport.CreateMapLayout(5);
 
             simulation1.Map_The_Converyors(airport.GetConveyorsList());
@@ -130,7 +130,7 @@ namespace Rail_Bag_Simulation
             );*/
 
             airport.StartBagsMovement(
-                38,2,1,3,3
+                199,2,1,3,3
             );
 
         }

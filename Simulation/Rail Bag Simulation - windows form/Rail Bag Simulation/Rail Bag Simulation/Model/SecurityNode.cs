@@ -52,9 +52,9 @@ namespace Rail_Bag_Simulation
             Bag b = null;
             try
             {
-                lock (ListOfBagsInQueue)
+                lock (BagsQueue)
                 {
-                    b = ListOfBagsInQueue.Dequeue();
+                    b = base.Remove();
                 }
             }
             catch (Exception)
