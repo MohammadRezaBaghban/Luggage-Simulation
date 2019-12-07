@@ -5,7 +5,7 @@ using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
 {
-    internal class ConveyorNode : Node
+    public class ConveyorNode : Node
     {
         private static int _idToGive = 100;
 

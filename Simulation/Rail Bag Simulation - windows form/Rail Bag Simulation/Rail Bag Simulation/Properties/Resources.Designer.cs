@@ -223,6 +223,16 @@ namespace Rail_Bag_Simulation.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap travelbag {
+            get {
+                object obj = ResourceManager.GetObject("travelbag", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap weapon {
             get {
                 object obj = ResourceManager.GetObject("weapon", resourceCulture);
