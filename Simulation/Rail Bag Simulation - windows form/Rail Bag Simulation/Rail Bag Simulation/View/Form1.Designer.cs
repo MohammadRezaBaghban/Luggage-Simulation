@@ -30,7 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pbStatistics = new System.Windows.Forms.PictureBox();
+            this.pbSimulation = new System.Windows.Forms.PictureBox();
+            this.pbConfigurations = new System.Windows.Forms.PictureBox();
             this.btnStatistics = new System.Windows.Forms.Button();
             this.btnSimulation = new System.Windows.Forms.Button();
             this.btnConfigurations = new System.Windows.Forms.Button();
@@ -52,24 +56,24 @@
             this.btnRunSimulation = new System.Windows.Forms.Button();
             this.palenlConfigurations = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.panelBorder1 = new System.Windows.Forms.Panel();
-            this.panelBorder = new System.Windows.Forms.Panel();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.panelBorder1 = new System.Windows.Forms.Panel();
+            this.panelBorder = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pbStatistics = new System.Windows.Forms.PictureBox();
-            this.pbSimulation = new System.Windows.Forms.PictureBox();
-            this.pbConfigurations = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.simulation1 = new Rail_Bag_Simulation.View.UserControls.Simulation();
             this.statistics1 = new Rail_Bag_Simulation.View.UserControls.Statistics();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbStatistics)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSimulation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbConfigurations)).BeginInit();
             this.palenlConfigurations.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -77,10 +81,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbStatistics)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSimulation)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbConfigurations)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -92,6 +92,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1942, 46);
             this.panel1.TabIndex = 0;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox5.Image = global::Rail_Bag_Simulation.Properties.Resources.close;
+            this.pictureBox5.Location = new System.Drawing.Point(1931, 5);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(40, 38);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 0;
+            this.pictureBox5.TabStop = false;
+            this.pictureBox5.Click += new System.EventHandler(this.PictureBox5_Click);
             // 
             // panel2
             // 
@@ -107,6 +119,42 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1942, 114);
             this.panel2.TabIndex = 1;
+            // 
+            // pbStatistics
+            // 
+            this.pbStatistics.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbStatistics.Image = global::Rail_Bag_Simulation.Properties.Resources.statistics;
+            this.pbStatistics.Location = new System.Drawing.Point(1793, 23);
+            this.pbStatistics.Name = "pbStatistics";
+            this.pbStatistics.Size = new System.Drawing.Size(75, 57);
+            this.pbStatistics.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbStatistics.TabIndex = 3;
+            this.pbStatistics.TabStop = false;
+            this.pbStatistics.Click += new System.EventHandler(this.PbStatistics_Click);
+            // 
+            // pbSimulation
+            // 
+            this.pbSimulation.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbSimulation.Image = global::Rail_Bag_Simulation.Properties.Resources.simulation;
+            this.pbSimulation.Location = new System.Drawing.Point(983, 23);
+            this.pbSimulation.Name = "pbSimulation";
+            this.pbSimulation.Size = new System.Drawing.Size(64, 57);
+            this.pbSimulation.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbSimulation.TabIndex = 3;
+            this.pbSimulation.TabStop = false;
+            this.pbSimulation.Click += new System.EventHandler(this.PbSimulation_Click);
+            // 
+            // pbConfigurations
+            // 
+            this.pbConfigurations.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbConfigurations.Image = global::Rail_Bag_Simulation.Properties.Resources.settings;
+            this.pbConfigurations.Location = new System.Drawing.Point(190, 13);
+            this.pbConfigurations.Name = "pbConfigurations";
+            this.pbConfigurations.Size = new System.Drawing.Size(70, 67);
+            this.pbConfigurations.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbConfigurations.TabIndex = 3;
+            this.pbConfigurations.TabStop = false;
+            this.pbConfigurations.Click += new System.EventHandler(this.PbConfigurations_Click);
             // 
             // btnStatistics
             // 
@@ -349,6 +397,16 @@
             this.label10.TabIndex = 29;
             this.label10.Text = "Previous statistics\r\n\r\n";
             // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = global::Rail_Bag_Simulation.Properties.Resources.stat;
+            this.pictureBox7.Location = new System.Drawing.Point(1683, 83);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(246, 674);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox7.TabIndex = 28;
+            this.pictureBox7.TabStop = false;
+            // 
             // comboBox1
             // 
             this.comboBox1.Font = new System.Drawing.Font("Miriam Libre", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -373,32 +431,6 @@
             this.label9.Size = new System.Drawing.Size(362, 54);
             this.label9.TabIndex = 26;
             this.label9.Text = "Use previous simulations \r\nconfigurations\r\n";
-            // 
-            // panelBorder1
-            // 
-            this.panelBorder1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(119)))), ((int)(((byte)(155)))));
-            this.panelBorder1.Location = new System.Drawing.Point(1534, 33);
-            this.panelBorder1.Name = "panelBorder1";
-            this.panelBorder1.Size = new System.Drawing.Size(10, 971);
-            this.panelBorder1.TabIndex = 28;
-            // 
-            // panelBorder
-            // 
-            this.panelBorder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(119)))), ((int)(((byte)(155)))));
-            this.panelBorder.Location = new System.Drawing.Point(448, 18);
-            this.panelBorder.Name = "panelBorder";
-            this.panelBorder.Size = new System.Drawing.Size(10, 952);
-            this.panelBorder.TabIndex = 29;
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Image = global::Rail_Bag_Simulation.Properties.Resources.stat;
-            this.pictureBox7.Location = new System.Drawing.Point(1683, 83);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(246, 674);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox7.TabIndex = 28;
-            this.pictureBox7.TabStop = false;
             // 
             // pictureBox6
             // 
@@ -440,6 +472,22 @@
             this.pictureBox2.TabIndex = 18;
             this.pictureBox2.TabStop = false;
             // 
+            // panelBorder1
+            // 
+            this.panelBorder1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(119)))), ((int)(((byte)(155)))));
+            this.panelBorder1.Location = new System.Drawing.Point(1534, 33);
+            this.panelBorder1.Name = "panelBorder1";
+            this.panelBorder1.Size = new System.Drawing.Size(10, 971);
+            this.panelBorder1.TabIndex = 28;
+            // 
+            // panelBorder
+            // 
+            this.panelBorder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(119)))), ((int)(((byte)(155)))));
+            this.panelBorder.Location = new System.Drawing.Point(448, 18);
+            this.panelBorder.Name = "panelBorder";
+            this.panelBorder.Size = new System.Drawing.Size(10, 952);
+            this.panelBorder.TabIndex = 29;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Rail_Bag_Simulation.Properties.Resources.logomini;
@@ -449,48 +497,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
-            // 
-            // pbStatistics
-            // 
-            this.pbStatistics.Image = global::Rail_Bag_Simulation.Properties.Resources.statistics;
-            this.pbStatistics.Location = new System.Drawing.Point(1793, 23);
-            this.pbStatistics.Name = "pbStatistics";
-            this.pbStatistics.Size = new System.Drawing.Size(75, 57);
-            this.pbStatistics.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbStatistics.TabIndex = 3;
-            this.pbStatistics.TabStop = false;
-            // 
-            // pbSimulation
-            // 
-            this.pbSimulation.Image = global::Rail_Bag_Simulation.Properties.Resources.simulation;
-            this.pbSimulation.Location = new System.Drawing.Point(983, 23);
-            this.pbSimulation.Name = "pbSimulation";
-            this.pbSimulation.Size = new System.Drawing.Size(64, 57);
-            this.pbSimulation.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbSimulation.TabIndex = 3;
-            this.pbSimulation.TabStop = false;
-            // 
-            // pbConfigurations
-            // 
-            this.pbConfigurations.Image = global::Rail_Bag_Simulation.Properties.Resources.settings;
-            this.pbConfigurations.Location = new System.Drawing.Point(190, 13);
-            this.pbConfigurations.Name = "pbConfigurations";
-            this.pbConfigurations.Size = new System.Drawing.Size(70, 67);
-            this.pbConfigurations.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbConfigurations.TabIndex = 3;
-            this.pbConfigurations.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox5.Image = global::Rail_Bag_Simulation.Properties.Resources.close;
-            this.pictureBox5.Location = new System.Drawing.Point(1931, 5);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(40, 38);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 0;
-            this.pictureBox5.TabStop = false;
-            this.pictureBox5.Click += new System.EventHandler(this.PictureBox5_Click);
             // 
             // simulation1
             // 
@@ -532,7 +538,11 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbStatistics)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSimulation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbConfigurations)).EndInit();
             this.palenlConfigurations.ResumeLayout(false);
             this.palenlConfigurations.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
@@ -541,10 +551,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbStatistics)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSimulation)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbConfigurations)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
 
         }
