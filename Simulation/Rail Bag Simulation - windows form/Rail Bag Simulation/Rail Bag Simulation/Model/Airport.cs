@@ -104,8 +104,7 @@ namespace Rail_Bag_Simulation
             //3 check ins 3 security 1 bag sort 2 terminals 5 gates
             if (_isMapCreated) return;
 
-            _setSize = queueSizeOfBelts;
-
+        
             //Create Check in One then conveyor to Security 1 then security 1 then conveyor to BagSort
             Node checkIn1 = new CheckinNode();
             Node CheckIn1_To_Security1_Conveyor = new ConveyorNode(queueSizeOfBelts);
