@@ -54,6 +54,7 @@
     <Compile Include="Model\CheckinNode.cs" />
     <Compile Include="Model\ConveyorNode.cs" />
     <Compile Include="Model\Destination.cs" />
+    <Compile Include="Model\INode.cs" />
     <Compile Include="ViewModel\LoggerControlViewModel.cs" />
     <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
@@ -93,6 +94,7 @@
     <EmbeddedResource Include="View\LogForm.resx">
       <DependentUpon>LogForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

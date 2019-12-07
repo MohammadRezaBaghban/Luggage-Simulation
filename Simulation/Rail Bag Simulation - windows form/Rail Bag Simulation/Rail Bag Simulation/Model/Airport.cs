@@ -41,16 +41,16 @@ namespace Rail_Bag_Simulation
             _setSize = queueSizeOfBelts;
 
             Node cn1 = new CheckinNode();
-            Node cn1conveyor1 = new ConveyorNode(queueSizeOfBelts);
-            Node cn2 = new CheckinNode();
-            Node cn2conveyor2 = new ConveyorNode(queueSizeOfBelts);
-            Node cn3 = new CheckinNode();
-            Node cn3conveyor3 = new ConveyorNode(queueSizeOfBelts);
+            Node CheckIn_To_Security_Conveyor = new ConveyorNode(queueSizeOfBelts);
+            //Node cn2 = new CheckinNode();
+            //Node cn2conveyor2 = new ConveyorNode(queueSizeOfBelts);
+            //Node cn3 = new CheckinNode();
+            //Node cn3conveyor3 = new ConveyorNode(queueSizeOfBelts);
 
             Node security = new SecurityNode();
 
             Node stconveyor4 = new ConveyorNode(queueSizeOfBelts);
-            Node stconveyoradd = new ConveyorNode(queueSizeOfBelts);
+            //Node stconveyoradd = new ConveyorNode(queueSizeOfBelts);
             Node bagsort = new BagSortNode();
             Node bsconveyor5 = new ConveyorNode(queueSizeOfBelts);
             Node bsconveyor6 = new ConveyorNode(queueSizeOfBelts);
@@ -67,16 +67,18 @@ namespace Rail_Bag_Simulation
             Node t2gate1 = new GateNode(new Gate("G1"));
             Node t2gate2 = new GateNode(new Gate("G2"));
             Ll.AddNode(cn1);
-            Ll.AddNode(cn2);
-            Ll.AddNode(cn3);
-            Ll.AddNode(cn1.Id, cn1.GetType(), cn1conveyor1);
-            Ll.AddNode(cn2.Id, cn1.GetType(), cn2conveyor2);
-            Ll.AddNode(cn3.Id, cn3.GetType(), cn3conveyor3);
-            Ll.AddNode(cn1conveyor1.Id, cn1conveyor1.GetType(), security);
-            Ll.AddNode(cn2conveyor2.Id, cn2conveyor2.GetType(), security);
-            Ll.AddNode(cn3conveyor3.Id, cn3conveyor3.GetType(), security);
+            //Ll.AddNode(cn2);
+            //Ll.AddNode(cn3);
+            Ll.AddNode(cn1.Id, cn1.GetType(), CheckIn_To_Security_Conveyor);
+            //Ll.AddNode(cn2.Id, cn1.GetType(), cn2conveyor2);
+            //Ll.AddNode(cn3.Id, cn3.GetType(), cn3conveyor3);
+            Ll.AddNode(CheckIn_To_Security_Conveyor.Id, CheckIn_To_Security_Conveyor.GetType(), security);
+           // Ll.AddNode(cn2conveyor2.Id, cn2conveyor2.GetType(), security);
+            //Ll.AddNode(cn3conveyor3.Id, cn3conveyor3.GetType(), security);
             Ll.AddNode(security.Id, security.GetType(), stconveyor4);
+            //Added Bagsort to connections 
             Ll.AddNode(stconveyor4.Id, stconveyor4.GetType(), bagsort);
+            //Bagsort connections
             Ll.AddNode(bagsort.Id, bagsort.GetType(), bsconveyor5);
             Ll.AddNode(bagsort.Id, bagsort.GetType(), bsconveyor6);
             Ll.AddNode(bsconveyor5.Id, bsconveyor5.GetType(), terminal1);
@@ -92,7 +94,7 @@ namespace Rail_Bag_Simulation
             Ll.AddNode(terminal2.Id, terminal2.GetType(), t2conveyor8);
             Ll.AddNode(t2conveyor7.Id, t2conveyor7.GetType(), t2gate1);
             Ll.AddNode(t2conveyor8.Id, t2conveyor8.GetType(), t2gate2);
-            Ll.AddNode(stconveyor4.Id, stconveyor4.GetType(), stconveyoradd);
+            //Ll.AddNode(stconveyor4.Id, stconveyor4.GetType(), stconveyoradd);
             //Node cn4 = new CheckinNode();
             //Node cn4conveyor4 = new ConveyorNode(queueSizeOfBelts);
             //Node security1 = new SecurityNode();
