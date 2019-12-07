@@ -21,7 +21,7 @@ namespace Rail_Bag_Simulation.View
 
         private void btnSaveSimulation_Click(object sender, EventArgs e)
         {
-            using (FileStream stream = new FileStream("C:\\mysecretfile.txt", FileMode.Create))
+            using (FileStream stream = new FileStream("C://mysecretfile.txt", FileMode.Create))
             {
                 BinaryFormatter bw = new BinaryFormatter();
                 bw.Serialize(stream, Airport.GetBagList);
