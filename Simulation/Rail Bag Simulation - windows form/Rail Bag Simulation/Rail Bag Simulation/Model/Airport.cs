@@ -1,13 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Rail_Bag_Simulation
 {
+    [Serializable]
     public class Airport
     {
 
         private readonly bool _isMapCreated = false;
-        private List<Bag> _bagsList;
-       
+        private static List<Bag> _bagsList;
+
+        public static List<Bag> GetBagList => _bagsList;
+
         public Airport(int speedDelay)
         {
             Ll = new LinkedList(speedDelay);
@@ -28,6 +32,8 @@ namespace Rail_Bag_Simulation
             _bagsList = Bag.GenerateBag(nbrOfBags, nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable, nbrBagsOthers);
             Ll.AddGeneratedBags(_bagsList);
         }
+
+        
 
         public void CreateMapLayout(int queueSizeOfBelts)
         {

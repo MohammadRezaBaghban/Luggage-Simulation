@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Rail_Bag_Simulation
 {
+    [Serializable]
     public class Bag
     {
         private static int _idToGive;

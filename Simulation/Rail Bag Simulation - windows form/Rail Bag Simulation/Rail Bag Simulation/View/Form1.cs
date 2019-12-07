@@ -8,18 +8,24 @@ namespace Rail_Bag_Simulation
 {
     public partial class Form1 : Form
     {
+        StatisticsForm stat = new StatisticsForm();
+        Configurations cf = new Configurations();
 
         Color darkColor = Color.FromArgb(95, 108, 140);
         Color normalColor = Color.FromArgb(105, 119, 155);
         public Form1()
         {
+            
             InitializeComponent();
+            stat.Show();
+            cf.Show();
             btnConfigurations.BackColor = this.darkColor;
             btnSimulation.BackColor = this.normalColor;
             btnStatistics.BackColor = this.normalColor;
             pbConfigurations.BackColor = this.darkColor;
             pbSimulation.BackColor = this.normalColor;
             pbStatistics.BackColor = this.normalColor;
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
