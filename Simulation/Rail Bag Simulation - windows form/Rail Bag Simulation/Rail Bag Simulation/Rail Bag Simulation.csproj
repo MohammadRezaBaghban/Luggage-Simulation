@@ -47,11 +47,17 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-   <Compile Include="CustomizedControl\Conveyor.cs">
+    <Compile Include="CustomizedControl\Conveyor.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="CustomizedControl\Conveyor.Designer.cs">
       <DependentUpon>Conveyor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomizedControl\ConveyorVertical.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomizedControl\ConveyorVertical.Designer.cs">
+      <DependentUpon>ConveyorVertical.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Airport.cs" />
     <Compile Include="Model\Bag.cs" />
@@ -84,10 +90,13 @@
     <Compile Include="View\LogForm.Designer.cs">
       <DependentUpon>LogForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CustomizedControl\ConveyorVertical.resx">
+      <DependentUpon>ConveyorVertical.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-	<EmbeddedResource Include="CustomizedControl\Conveyor.resx">
+    <EmbeddedResource Include="CustomizedControl\Conveyor.resx">
       <DependentUpon>Conveyor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
