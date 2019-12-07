@@ -40,7 +40,7 @@
             this.lbLog.Name = "lbLog";
             this.lbLog.Size = new System.Drawing.Size(778, 500);
             this.lbLog.TabIndex = 0;
-            this.lbLog.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.lbLog.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
             // 
             // LogForm
             // 

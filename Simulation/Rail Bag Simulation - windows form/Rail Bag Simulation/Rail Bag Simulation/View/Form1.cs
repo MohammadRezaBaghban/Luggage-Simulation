@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using Rail_Bag_Simulation.View;
 using Rail_Bag_Simulation.View.UserControls;
 using System.Drawing;
@@ -7,6 +8,7 @@ namespace Rail_Bag_Simulation
 {
     public partial class Form1 : Form
     {
+
         Color darkColor = Color.FromArgb(95, 108, 140);
         Color normalColor = Color.FromArgb(105, 119, 155);
         public Form1()
@@ -15,7 +17,7 @@ namespace Rail_Bag_Simulation
             
             var lgForm = new LogForm();
             lgForm.Show();
-            this.Hide();
+            
 
             btnConfigurations.BackColor = this.darkColor;
             btnSimulation.BackColor = this.normalColor;
@@ -23,12 +25,10 @@ namespace Rail_Bag_Simulation
             pbConfigurations.BackColor = this.darkColor;
             pbSimulation.BackColor = this.normalColor;
             pbStatistics.BackColor = this.normalColor;
-
         }
 
-        private void Form1_Load(object sender, System.EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-           
         }
 
         private void PictureBox5_Click(object sender, System.EventArgs e)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Rail_Bag_Simulation.Model;
 
@@ -6,28 +7,58 @@ namespace Rail_Bag_Simulation
 {
     public interface INode
     {
-        Node Next { get; set; } // the next node it refers to; null if there does not exist a next node
         Queue<Bag> ListOfBagsInQueue { get; }
+        void SetNext(Node value);
+        Type GetNextType();
         void Push(Bag b);
         Bag Remove();
         Bag Peek();
+
+        void AddNode(int _ID, Type t, Node nodetoadd);
+        void PrintNodes(ref List<Node> Nodes);
         List<string> NodeInfo();
         void MoveBagToNextNode();
+        Node GetNext();
+    }
+
+    public class QueueEventArgs : EventArgs
+    {
+        public List<Bag> ListOfBags { get; set; }
     }
 
     public class Node : INode
     {
-        public Node Next { get; set; } // the next node it refers to; null if there does not exist a next node
-
-        public Queue<Bag> ListOfBagsInQueue => BagsQueue;
-
         protected readonly Queue<Bag> BagsQueue;
+        private int _id;
+        private Node _next;
+        public EventHandler<QueueEventArgs> OnQueueChangedEventHandler;
 
         protected Node()
         {
-            Next = null;
+            SetNext(null);
             BagsQueue = new Queue<Bag>();
         }
+
+        public int Id { get; set; }
+
+        public int QueueCount => ListOfBagsInQueue.Count;
+
+        public void SetNext(Node value)
+        {
+            _next = value;
+        }
+
+        public Type GetNextType()
+        {
+            return _next.GetType();
+        }
+
+        public Node GetNext()
+        {
+            return _next;
+        }
+
+        public Queue<Bag> ListOfBagsInQueue => BagsQueue;
 
         public virtual void Push(Bag b)
         {
@@ -35,6 +66,16 @@ namespace Rail_Bag_Simulation
             {
                 BagsQueue.Enqueue(b);
             }
+        }
+
+        public virtual void AddNode(int parentid, Type parenttype, Node _nodetoadd)
+        {
+            //this is to satisfy virtual method
+        }
+
+        public virtual void PrintNodes(ref List<Node> Nodes)
+        {
+            GetNext().PrintNodes(ref Nodes);
         }
 
         public virtual Bag Remove()
@@ -47,6 +88,7 @@ namespace Rail_Bag_Simulation
                 return bag;
             }
         }
+
 
         public Bag Peek()
         {
@@ -70,16 +112,14 @@ namespace Rail_Bag_Simulation
             return sender;
         }
 
-        public int QueueCount => ListOfBagsInQueue.Count;
-
         public virtual void MoveBagToNextNode()
         {
-            if (Next.IsNull()) return;
-            while (Next is ConveyorNode next && next.IsFull)
+            if (GetNext().IsNull()) return;
+            while (GetNext() is ConveyorNode next && next.IsFull)
             {
             }
 
-            Next.Push(Remove());
+            GetNext().Push(Remove());
         }
     }
 }

@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Threading;
 using Rail_Bag_Simulation.ViewModel;
@@ -15,24 +8,23 @@ namespace Rail_Bag_Simulation.View
 {
     public partial class LogForm : Form
     {
-        private BindingList<string> _lbLogDataSource;
+        private readonly BindingList<string> _lbLogDataSource;
 
         public LogForm()
         {
             InitializeComponent();
             var vm = new LoggerControlViewModel();
-            var timer = new DispatcherTimer {Interval = new TimeSpan(0, 0, 0,0,1000)};
+            var timer = new DispatcherTimer {Interval = new TimeSpan(0, 0, 0, 0, 1000)};
             _lbLogDataSource = new BindingList<string>();
-            vm.StartSimulation(603);
+
+            vm.StartSimulation(20, 199);
             lbLog.DataSource = _lbLogDataSource;
             timer.Tick += (sender, args) =>
-            { 
-                if (LinkedList.IsSimulationFinished) { timer.Stop();}
+            {
+                if (LinkedList.IsSimulationFinished) timer.Stop();
                 UpdateDataSource();
-               
             };
             timer.Start();
-
         }
 
         private void UpdateDataSource()
@@ -47,9 +39,8 @@ namespace Rail_Bag_Simulation.View
                 bag => { _lbLogDataSource.Add(bag.GetBagInfo()); });
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
     }
 }

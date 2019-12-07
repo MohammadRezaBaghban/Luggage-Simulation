@@ -2,6 +2,9 @@
 {
     public enum SuspiciousBagtype
     {
-        Drug, Weapons, Flammables, Other
+        Drug,
+        Weapons,
+        Flammables,
+        Other
     }
 }

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
@@ -25,19 +24,35 @@ namespace Rail_Bag_Simulation
                 {
                     Node currentNode = p;
 
-                    while (currentNode.Next != null && !(currentNode is TerminalNode node))
-                        currentNode = currentNode.Next;
+                    while (currentNode.GetNext() != null && !(currentNode is TerminalNode node))
+                        currentNode = currentNode.GetNext();
 
                     var result = GetTerminalNumber(g);
-                    if ((currentNode as TerminalNode)?.Terminal.TerminalId != result) 
-                    { 
-                        continue;
-                    }
+                    if ((currentNode as TerminalNode)?.Terminal.TerminalId != result) continue;
                     tnode = p;
                     break;
                 }
+
                 return tnode;
             }
+        }
+
+        public override void AddNode(int parentid, Type parenttype, Node _nodetoadd)
+
+        {
+            if (GetType() == parenttype && _nodetoadd is ConveyorNode conveyorNode)
+                ConnectNodeToSorter(conveyorNode);
+            else
+                foreach (Node connectednodes in ListOfConnectedNodes)
+                    connectednodes.AddNode(parentid, parenttype, _nodetoadd);
+        }
+
+        public override void PrintNodes(ref List<Node> Nodes)
+        {
+            if (!Nodes.Contains(this))
+                Nodes.Add(this);
+
+            foreach (Node connectednodes in ListOfConnectedNodes) connectednodes.PrintNodes(ref Nodes);
         }
 
         private static int GetTerminalNumber(Bag g)
@@ -55,7 +70,9 @@ namespace Rail_Bag_Simulation
             var bag = Remove();
             if (bag.IsNull()) return;
 
-            while(next.IsFull) { }
+            while (next.IsFull)
+            {
+            }
 
             next.Push(bag);
         }

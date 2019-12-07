@@ -1,20 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading;
-using System.Windows.Forms;
 using Timer = System.Timers.Timer;
 
 namespace Rail_Bag_Simulation
 {
     public class LinkedList
     {
-        public static bool IsSimulationFinished;
-        private readonly int _delayTime;
+        /*use a map dictionary to store a shadow copy of the linked list storing the ids of the nodes */
 
+        /*basically to add the idea of having more control over adding the destination */
+        public static bool IsSimulationFinished;
+        public static Dictionary<Stopwatch, Bag> TimelyWatchedBagWithStopWatch = new Dictionary<Stopwatch, Bag>();
         private readonly Timer timer;
 
         public LinkedList(int speedDelayTime)
         {
-            _delayTime = speedDelayTime;
             timer = new Timer(speedDelayTime);
             //ThreadPool.SetMaxThreads(5, 5);
 
@@ -27,163 +30,92 @@ namespace Rail_Bag_Simulation
             };
 
             timer.Enabled = true;
-            TerminalNode.SimulationFinishedEvent += (sender, args) =>
+            GateNode.SimulationFinishedEvent += (sender, args) =>
             {
+                decimal totalTime = 0;
                 IsSimulationFinished = true;
                 timer.Stop();
+                TimelyWatchedBagWithStopWatch.Keys.ToList()
+                    .ForEach(stopwatch => totalTime += (int) stopwatch.ElapsedMilliseconds);
+                totalTime /= 1000;
+                AverageTimePerBag = totalTime / TimelyWatchedBagWithStopWatch.Keys.Count;
             };
         }
 
-        public static Node First { get; private set; }
+        public static List<CheckinNode> First { get; } = new List<CheckinNode>();
+
 
         public Node Current { get; set; }
+
+        public static decimal AverageTimePerBag { get; private set; }
 
         public void MoveBags()
         {
             timer.Start();
-           
         }
 
         public void AddGeneratedBags(List<Bag> bagstoqueue)
         {
-            bagstoqueue.ForEach(bag => First.Push(bag));
+            var counter = 0;
+            var totalNumberOfBags = bagstoqueue.Count;
+            var firstQuater = totalNumberOfBags / 4;
+            TimelyWatchedBagWithStopWatch.Add(new Stopwatch(), bagstoqueue[0]);
+            if (totalNumberOfBags >= 5)
+            {
+                AddTimerWithABag(bagstoqueue, firstQuater);
+                AddTimerWithABag(bagstoqueue, firstQuater * 2);
+                AddTimerWithABag(bagstoqueue, firstQuater * 3);
+                AddTimerWithABag(bagstoqueue, firstQuater * 4 - 1);
+            }
+
+            foreach (var val in TimelyWatchedBagWithStopWatch.Values) val.IsObserving = true;
+
+            bagstoqueue.ForEach(bag =>
+            {
+                counter++;
+                TimelyWatchedBagWithStopWatch.FirstOrDefault(pair => pair.Value == bag).Key?.Start();
+                if (counter % 2 != 0)
+                    First[0].Push(bag);
+                else
+                    First[1].Push(bag);
+            });
         }
 
-        public void AddNode(Node nd)
+        private static void AddTimerWithABag(List<Bag> bagstoqueue, int firstQuater)
         {
-            if (First == null)
-            {
-                First = nd;
-                Current = First;
-            }
-            else
-            {
-                var current = First;
-                while (current.Next != null) current = current.Next;
-
-                nd.Next = current.Next;
-                current.Next = nd;
-            }
+            TimelyWatchedBagWithStopWatch.Add(new Stopwatch(), bagstoqueue[firstQuater]);
         }
 
-        public void AddNode(Node childNode, Node parent)
+        public void AddNode(Node node)
         {
-            if (First == null)
-            {
-                MessageBox.Show(@"There is no first node");
-            }
-            else
-            {
-                var current = First;
-
-                while (current.Next != null && !(current is BagSortNode)) current = current.Next;
-
-                if (!(current is BagSortNode node)) return;
-                if (node == parent && childNode is ConveyorNode conveyor)
-                {
-                    node.ConnectNodeToSorter(conveyor);
-                    conveyor.Next = null;
-                }
-                else switch (parent)
-                {
-                    case ConveyorNode conv when childNode is TerminalNode terminal:
-                    {
-                        foreach (var conveyorNode in node.ListOfConnectedNodes)
-                        {
-                            Node near = conveyorNode;
-                            while (near != parent && near.Next != null) near = near.Next;
-
-                            if (near == conv)
-                            {
-                                near.Next = terminal;
-                                break;
-                            }
-                        }
-
-                        break;
-                    }
-                    case TerminalNode terminalNode when childNode is ConveyorNode co:
-                    {
-                        foreach (var conveyorNode in node.ListOfConnectedNodes)
-                        {
-                            Node near = conveyorNode;
-                            while (near != parent && near.Next != null) near = near.Next;
-
-                            if (near == terminalNode)
-                            {
-                                terminalNode.ConnectNodeToSorter(co);
-                                co.Next = near.Next;
-                                break;
-                            }
-                        }
-
-                        break;
-                    }
-                    case ConveyorNode _ when childNode is GateNode:
-                    {
-                        foreach (var conveyorNode in node.ListOfConnectedNodes)
-                        {
-                            Node near = conveyorNode;
-                            while (!(near is TerminalNode) || near.Next != null) near = near.Next;
-                            foreach (var s in ((TerminalNode) near).ListOfConnectedNodes)
-                            {
-                                Node nearNode = s;
-                                while (nearNode != parent && nearNode.Next != null) nearNode = nearNode.Next;
-
-                                if (nearNode != parent) continue;
-                                childNode.Next = nearNode.Next;
-                                nearNode.Next = childNode;
-                                break;
-                            }
-
-                            if (parent.Next != null) break;
-                        }
-
-                        break;
-                    }
-                }
-            }
+            if (node is CheckinNode checkin) First.Add(checkin);
         }
+
+        public void AddNode(int id, Type t, Node nodetoadd)
+        {
+            if (First.Count == 0 || nodetoadd is CheckinNode)
+                First.Add((CheckinNode) nodetoadd);
+            else
+                foreach (Node s in First)
+                    s.AddNode(id, t, nodetoadd);
+        }
+
 
         public static List<Node> GetAllNodes()
         {
-            var temp = new List<Node>();
-            if (First == null) return null;
-
-            var i = First;
-
-            while (i.Next != null && !(i is BagSortNode))
+            var check = new List<Node>();
+            for (var i = 0; i <= First.Count - 1; i++)
             {
-                temp.Add(i);
-                i = i.Next;
+                Node current = First[i];
+                while (!(current is SecurityNode))
+                {
+                    check.Add(current);
+                    current = current.GetNext();
+                }
             }
 
-            temp.Add(i);
-            var node = i as BagSortNode;
-            node?.ListOfConnectedNodes.ForEach(cnode1 =>
-            {
-                Node tmp = cnode1;
-                while (!(tmp is TerminalNode))
-                {
-                    temp.Add(tmp);
-                    tmp = tmp.Next;
-                }
-
-                temp.Add(tmp);
-
-                ((TerminalNode) tmp).ListOfConnectedNodes.ForEach(cnode2 =>
-                {
-                    Node tmp1 = cnode2;
-                    while (!(tmp1 is GateNode))
-                    {
-                        temp.Add(tmp1);
-                        tmp1 = tmp1.Next;
-                    }
-
-                    temp.Add(tmp1);
-                });
-            });
-            return temp;
+            foreach (Node first in First) first.PrintNodes(ref check);
+            return check;
         }
 
         private static void MakeBagsMoveOneAtATime(object Stateinfo)
