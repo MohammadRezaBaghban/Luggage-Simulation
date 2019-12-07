@@ -55,10 +55,12 @@ namespace Rail_Bag_Simulation.View.UserControls
         }
 
 
-        public void Update(ConveyorNode conveyorNodeBackend,IConveyor frontEnd)
+        public async void Update(ConveyorNode conveyorNodeBackend,IConveyor frontEnd)
         {
-            for (var j = 0; j < conveyorNodeBackend.ListOfBagsInQueue.ToList().Count; j++) {
-                    frontEnd.slots[j].Visible = conveyorNodeBackend.ListOfBagsInQueue.ToList()[j] != null;
+            List<Bag> ls = conveyorNodeBackend.ListOfBagsInQueue.ToList();
+            
+            for (var j = 0; j < ls.Count; j++) {
+                frontEnd.slots[j].Visible = ls[j] != null;
             }
 
             label1.Text = GateNode.Counter.ToString();
