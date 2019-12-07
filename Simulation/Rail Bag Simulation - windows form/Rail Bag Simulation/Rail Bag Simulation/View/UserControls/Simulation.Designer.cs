@@ -44,6 +44,9 @@
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.pictureBox14 = new System.Windows.Forms.PictureBox();
+            this.btnPause = new System.Windows.Forms.Button();
+            this.btnContinue = new System.Windows.Forms.Button();
+            this.btnPowerOutage = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -219,11 +222,59 @@
             this.pictureBox14.TabIndex = 43;
             this.pictureBox14.TabStop = false;
             // 
+            // btnPause
+            // 
+            this.btnPause.BackColor = System.Drawing.Color.Black;
+            this.btnPause.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPause.FlatAppearance.BorderSize = 0;
+            this.btnPause.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPause.Font = new System.Drawing.Font("Miriam Mono CLM", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btnPause.ForeColor = System.Drawing.Color.White;
+            this.btnPause.Location = new System.Drawing.Point(447, 3);
+            this.btnPause.Name = "btnPause";
+            this.btnPause.Size = new System.Drawing.Size(129, 35);
+            this.btnPause.TabIndex = 47;
+            this.btnPause.Text = "Pause";
+            this.btnPause.UseVisualStyleBackColor = false;
+            // 
+            // btnContinue
+            // 
+            this.btnContinue.BackColor = System.Drawing.Color.Black;
+            this.btnContinue.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnContinue.FlatAppearance.BorderSize = 0;
+            this.btnContinue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnContinue.Font = new System.Drawing.Font("Miriam Mono CLM", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btnContinue.ForeColor = System.Drawing.Color.White;
+            this.btnContinue.Location = new System.Drawing.Point(608, 3);
+            this.btnContinue.Name = "btnContinue";
+            this.btnContinue.Size = new System.Drawing.Size(117, 35);
+            this.btnContinue.TabIndex = 48;
+            this.btnContinue.Text = "Continue";
+            this.btnContinue.UseVisualStyleBackColor = false;
+            // 
+            // btnPowerOutage
+            // 
+            this.btnPowerOutage.BackColor = System.Drawing.Color.Black;
+            this.btnPowerOutage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPowerOutage.FlatAppearance.BorderSize = 0;
+            this.btnPowerOutage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPowerOutage.Font = new System.Drawing.Font("Miriam Mono CLM", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btnPowerOutage.ForeColor = System.Drawing.Color.Red;
+            this.btnPowerOutage.Location = new System.Drawing.Point(13, 3);
+            this.btnPowerOutage.Name = "btnPowerOutage";
+            this.btnPowerOutage.Size = new System.Drawing.Size(163, 35);
+            this.btnPowerOutage.TabIndex = 49;
+            this.btnPowerOutage.Text = "Power outage";
+            this.btnPowerOutage.UseVisualStyleBackColor = false;
+            // 
             // Simulation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.btnPowerOutage);
+            this.Controls.Add(this.btnContinue);
+            this.Controls.Add(this.btnPause);
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.pictureBox10);
             this.Controls.Add(this.pictureBox13);
@@ -279,5 +330,8 @@
         private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.PictureBox pictureBox13;
         private System.Windows.Forms.PictureBox pictureBox14;
+        private System.Windows.Forms.Button btnPause;
+        private System.Windows.Forms.Button btnContinue;
+        private System.Windows.Forms.Button btnPowerOutage;
     }
 }

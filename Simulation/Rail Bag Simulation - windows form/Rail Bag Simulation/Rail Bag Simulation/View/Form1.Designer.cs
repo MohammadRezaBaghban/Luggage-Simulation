@@ -90,7 +90,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1942, 46);
+            this.panel1.Size = new System.Drawing.Size(989, 46);
             this.panel1.TabIndex = 0;
             // 
             // pictureBox5
@@ -117,7 +117,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 988);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1942, 114);
+            this.panel2.Size = new System.Drawing.Size(989, 114);
             this.panel2.TabIndex = 1;
             // 
             // pbStatistics
