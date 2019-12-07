@@ -19,7 +19,7 @@ namespace Rail_Bag_Simulation
 
         public override List<string> NodeInfo()
         {
-            var sender = new List<string> {"Security "+this.Id+":"};
+            var sender = new List<string> {"Security " + Id + ":"};
             sender.AddRange(base.NodeInfo());
             return sender;
         }

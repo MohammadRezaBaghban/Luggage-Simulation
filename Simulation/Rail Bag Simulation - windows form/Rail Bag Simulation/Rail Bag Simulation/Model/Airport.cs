@@ -4,15 +4,10 @@ namespace Rail_Bag_Simulation
 {
     public class Airport
     {
-        private static int _setSize;
+
         private readonly bool _isMapCreated = false;
         private List<Bag> _bagsList;
-        private BagSortNode _bagSortNode;
-
-        private ConveyorNode _conveyorNode;
-        private GateNode _gateNode;
-        private TerminalNode t;
-
+       
         public Airport(int speedDelay)
         {
             Ll = new LinkedList(speedDelay);
@@ -37,9 +32,6 @@ namespace Rail_Bag_Simulation
         public void CreateMapLayout(int queueSizeOfBelts)
         {
             if (_isMapCreated) return;
-
-            _setSize = queueSizeOfBelts;
-
             Node checkIn1 = new CheckinNode();
             Node CheckIn_To_Security_Conveyor = new ConveyorNode(queueSizeOfBelts);
             //Node cn2 = new CheckinNode();
@@ -73,7 +65,7 @@ namespace Rail_Bag_Simulation
             //Ll.AddNode(cn2.Id, cn1.GetType(), cn2conveyor2);
             //Ll.AddNode(cn3.Id, cn3.GetType(), cn3conveyor3);
             Ll.AddNode(CheckIn_To_Security_Conveyor.Id, CheckIn_To_Security_Conveyor.GetType(), security);
-           // Ll.AddNode(cn2conveyor2.Id, cn2conveyor2.GetType(), security);
+            // Ll.AddNode(cn2conveyor2.Id, cn2conveyor2.GetType(), security);
             //Ll.AddNode(cn3conveyor3.Id, cn3conveyor3.GetType(), security);
             Ll.AddNode(security.Id, security.GetType(), security_Conveyor_To_BagSort);
             //Added Bagsort to connections 

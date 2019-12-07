@@ -14,11 +14,6 @@ namespace Rail_Bag_Simulation
         public Form1()
         {
             InitializeComponent();
-            
-            var lgForm = new LogForm();
-            lgForm.Show();
-            
-
             btnConfigurations.BackColor = this.darkColor;
             btnSimulation.BackColor = this.normalColor;
             btnStatistics.BackColor = this.normalColor;

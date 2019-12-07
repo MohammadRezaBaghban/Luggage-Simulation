@@ -6,20 +6,15 @@ using Rail_Bag_Simulation.Model;
 namespace Rail_Bag_Simulation
 {
 
-    public class QueueEventArgs : EventArgs
-    {
-        public List<Bag> ListOfBags { get; set; }
-    }
-
     public class Node : INode
     {
         protected readonly Queue<Bag> BagsQueue;
-        private int _id;
         private Node _next;
-        public EventHandler<QueueEventArgs> OnQueueChangedEventHandler;
+        public EventHandler OnQueueChangedEventHandler;
 
         protected Node()
         {
+           
             SetNext(null);
             BagsQueue = new Queue<Bag>();
         }
