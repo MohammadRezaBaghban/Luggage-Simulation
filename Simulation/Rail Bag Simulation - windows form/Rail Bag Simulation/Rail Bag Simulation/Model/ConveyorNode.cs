@@ -31,7 +31,7 @@ namespace Rail_Bag_Simulation
                 var count = BagsQueue.Count;
                 if (count < _setsize - 1) BagsQueue.Enqueue(null);
                 if (count == _setsize) IsFull = true;
-                OnQueueChangedEventHandler?.Invoke(this, new QueueEventArgs {ListOfBags = BagsQueue.ToList()});
+                OnQueueChangedEventHandler?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -70,7 +70,8 @@ namespace Rail_Bag_Simulation
 
                 var bag = BagsQueue.Dequeue();
                 IsFull = false;
-                OnQueueChangedEventHandler?.Invoke(this, new QueueEventArgs {ListOfBags = BagsQueue.ToList()});
+                OnQueueChangedEventHandler?.Invoke(this, EventArgs.Empty);
+
                 return bag;
             }
         }
@@ -78,7 +79,7 @@ namespace Rail_Bag_Simulation
 
         public override List<string> NodeInfo() // change the method to return a list of bags
         {
-            var sender = new List<string> {"Conveyor " + Id};
+            var sender = new List<string> {"ConveyorHorizontal " + Id};
             sender.AddRange(base.NodeInfo());
             return sender;
         }

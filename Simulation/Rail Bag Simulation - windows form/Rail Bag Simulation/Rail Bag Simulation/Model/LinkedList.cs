@@ -74,10 +74,8 @@ namespace Rail_Bag_Simulation
             {
                 counter++;
                 TimelyWatchedBagWithStopWatch.FirstOrDefault(pair => pair.Value == bag).Key?.Start();
-                    
+
                 First[0].Push(bag);
-                
-              
             });
         }
 

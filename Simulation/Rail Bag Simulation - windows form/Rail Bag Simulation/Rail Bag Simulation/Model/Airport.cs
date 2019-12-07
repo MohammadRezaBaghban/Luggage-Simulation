@@ -4,15 +4,10 @@ namespace Rail_Bag_Simulation
 {
     public class Airport
     {
-        private static int _setSize;
+
         private readonly bool _isMapCreated = false;
         private List<Bag> _bagsList;
-        private BagSortNode _bagSortNode;
-
-        private ConveyorNode _conveyorNode;
-        private GateNode _gateNode;
-        private TerminalNode t;
-
+       
         public Airport(int speedDelay)
         {
             Ll = new LinkedList(speedDelay);
@@ -37,9 +32,6 @@ namespace Rail_Bag_Simulation
         public void CreateMapLayoutOne(int queueSizeOfBelts)
         {
             if (_isMapCreated) return;
-
-            _setSize = queueSizeOfBelts;
-
             Node checkIn1 = new CheckinNode();
             Node CheckIn_To_Security_Conveyor = new ConveyorNode(queueSizeOfBelts);
             //Node cn2 = new CheckinNode();

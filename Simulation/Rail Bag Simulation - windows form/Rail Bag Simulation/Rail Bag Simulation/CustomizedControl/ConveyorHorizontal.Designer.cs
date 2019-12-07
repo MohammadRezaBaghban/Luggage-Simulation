@@ -1,6 +1,6 @@
 ﻿namespace Rail_Bag_Simulation.CustomizedControl
 {
-    partial class Conveyor
+    partial class ConveyorHorizontal
     {
         /// <summary> 
         /// Required designer variable.
@@ -121,12 +121,12 @@
             this.Slot5.TabIndex = 4;
             this.Slot5.TabStop = false;
             // 
-            // Conveyor
+            // ConveyorHorizontal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "Conveyor";
+            this.Name = "ConveyorHorizontal";
             this.Size = new System.Drawing.Size(538, 122);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Slot1)).EndInit();
