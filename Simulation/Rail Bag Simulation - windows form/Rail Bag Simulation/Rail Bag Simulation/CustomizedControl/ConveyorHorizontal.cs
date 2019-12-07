@@ -4,13 +4,14 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Threading;
+using Rail_Bag_Simulation.View.UserControls;
 
 namespace Rail_Bag_Simulation.CustomizedControl
 {
     public partial class ConveyorHorizontal : UserControl, IConveyor
     {
         private ConveyorNode conveyor;
-        public readonly List<PictureBox> slots;
+        public List<PictureBox> slots { get; set; }
 
         public ConveyorHorizontal()
         {
@@ -47,13 +48,16 @@ namespace Rail_Bag_Simulation.CustomizedControl
 
         public void UpdateTheConveyor(object o, EventArgs eventArgs)
         {
-            lock (conveyor.ListOfBagsInQueue)
+            /*lock (conveyor.ListOfBagsInQueue)
             {
-                for (var i = 0; i < conveyor.ListOfBagsInQueue.ToList().Count; i++)
+                /*for (var i = 0; i < conveyor.ListOfBagsInQueue.ToList().Count; i++)
                 { 
                    slots[i].Visible = conveyor.ListOfBagsInQueue.ToList()[i] != null;
-                }
-            }
+                }#1#
+
+               
+            }*/
+            ((Simulation) Parent).Update(conveyor);
         }
     }
 }

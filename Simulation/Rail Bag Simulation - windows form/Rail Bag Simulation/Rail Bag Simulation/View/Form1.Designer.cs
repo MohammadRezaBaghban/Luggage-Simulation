@@ -606,7 +606,7 @@
         private System.Windows.Forms.PictureBox pbStatistics;
         private System.Windows.Forms.PictureBox pictureBox5;
         private View.UserControls.Statistics statistics1;
-        private View.UserControls.Simulation simulation1;
+        public View.UserControls.Simulation simulation1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label label2;

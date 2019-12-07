@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
+using System.Windows.Threading;
 using Rail_Bag_Simulation.CustomizedControl;
 
 namespace Rail_Bag_Simulation.View.UserControls
@@ -35,6 +37,7 @@ namespace Rail_Bag_Simulation.View.UserControls
 
         private void Panel1_Paint(object sender, PaintEventArgs e)
         {
+
         }
 
         private void Simulation_Load(object sender, EventArgs e)
@@ -48,6 +51,19 @@ namespace Rail_Bag_Simulation.View.UserControls
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+        }
+
+
+        public void Update(ConveyorNode conveyorNodeBackend)
+        {
+            Cn_CheckIn_To_Security.slots.ForEach(box =>
+            {
+                for (var j = 0; j < conveyorNodeBackend.ListOfBagsInQueue.ToList().Count; j++)
+                {
+                    Cn_CheckIn_To_Security.slots[j].Visible = conveyorNodeBackend.ListOfBagsInQueue.ToList()[j] != null;
+                }
+            });
         }
     }
 }
