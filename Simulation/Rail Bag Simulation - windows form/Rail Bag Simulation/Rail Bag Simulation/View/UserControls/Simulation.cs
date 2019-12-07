@@ -55,15 +55,19 @@ namespace Rail_Bag_Simulation.View.UserControls
         }
 
 
-        public void Update(ConveyorNode conveyorNodeBackend)
+        public void Update(ConveyorNode conveyorNodeBackend,IConveyor frontEnd)
         {
-            Cn_CheckIn_To_Security.slots.ForEach(box =>
-            {
-                for (var j = 0; j < conveyorNodeBackend.ListOfBagsInQueue.ToList().Count; j++)
-                {
-                    Cn_CheckIn_To_Security.slots[j].Visible = conveyorNodeBackend.ListOfBagsInQueue.ToList()[j] != null;
-                }
-            });
+            for (var j = 0; j < conveyorNodeBackend.ListOfBagsInQueue.ToList().Count; j++) {
+                    frontEnd.slots[j].Visible = conveyorNodeBackend.ListOfBagsInQueue.ToList()[j] != null;
+            }
+
+            label1.Text = GateNode.Counter.ToString();
+
+        }
+
+        private void Cn_CheckIn_To_Security_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Simulation));
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
@@ -47,6 +48,7 @@
             this.Cn_Security_Sorter = new Rail_Bag_Simulation.CustomizedControl.ConveyorHorizontal();
             this.Cn_CheckIn_To_Security = new Rail_Bag_Simulation.CustomizedControl.ConveyorHorizontal();
             this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -61,7 +63,7 @@
             // 
             // pictureBox9
             // 
-            this.pictureBox9.Image = global::Rail_Bag_Simulation.Properties.Resources.gate;
+            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
             this.pictureBox9.Location = new System.Drawing.Point(1076, 5);
             this.pictureBox9.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox9.Name = "pictureBox9";
@@ -72,7 +74,7 @@
             // 
             // pictureBox6
             // 
-            this.pictureBox6.Image = global::Rail_Bag_Simulation.Properties.Resources.sorter1;
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
             this.pictureBox6.Location = new System.Drawing.Point(645, 245);
             this.pictureBox6.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox6.Name = "pictureBox6";
@@ -83,7 +85,7 @@
             // 
             // pictureBox5
             // 
-            this.pictureBox5.Image = global::Rail_Bag_Simulation.Properties.Resources.securityCheckHouse;
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
             this.pictureBox5.Location = new System.Drawing.Point(316, 245);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox5.Name = "pictureBox5";
@@ -95,7 +97,7 @@
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Image = global::Rail_Bag_Simulation.Properties.Resources.storage;
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
             this.pictureBox4.Location = new System.Drawing.Point(316, 314);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox4.Name = "pictureBox4";
@@ -106,7 +108,7 @@
             // 
             // pictureBox11
             // 
-            this.pictureBox11.Image = global::Rail_Bag_Simulation.Properties.Resources.terminal;
+            this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
             this.pictureBox11.Location = new System.Drawing.Point(714, 5);
             this.pictureBox11.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox11.Name = "pictureBox11";
@@ -117,7 +119,7 @@
             // 
             // pictureBox8
             // 
-            this.pictureBox8.Image = global::Rail_Bag_Simulation.Properties.Resources.gate;
+            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
             this.pictureBox8.Location = new System.Drawing.Point(1076, 69);
             this.pictureBox8.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox8.Name = "pictureBox8";
@@ -128,7 +130,7 @@
             // 
             // pictureBox7
             // 
-            this.pictureBox7.Image = global::Rail_Bag_Simulation.Properties.Resources.gate;
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
             this.pictureBox7.Location = new System.Drawing.Point(1076, 503);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox7.Name = "pictureBox7";
@@ -139,7 +141,7 @@
             // 
             // pictureBox10
             // 
-            this.pictureBox10.Image = global::Rail_Bag_Simulation.Properties.Resources.gate;
+            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
             this.pictureBox10.Location = new System.Drawing.Point(1076, 439);
             this.pictureBox10.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox10.Name = "pictureBox10";
@@ -150,7 +152,7 @@
             // 
             // pictureBox13
             // 
-            this.pictureBox13.Image = global::Rail_Bag_Simulation.Properties.Resources.terminal;
+            this.pictureBox13.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox13.Image")));
             this.pictureBox13.Location = new System.Drawing.Point(714, 450);
             this.pictureBox13.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox13.Name = "pictureBox13";
@@ -161,7 +163,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::Rail_Bag_Simulation.Properties.Resources.check_in;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(2, 245);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
@@ -246,11 +248,21 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1113, 577);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 56;
+            this.label1.Text = "label1";
+            // 
             // Simulation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Cn_Terminal2_To_Gate2);
             this.Controls.Add(this.Cn_Terminal2_To_Gate1);
@@ -285,6 +297,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -308,5 +321,6 @@
         private CustomizedControl.ConveyorHorizontal Cn_Terminal2_To_Gate1;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
     }
 }

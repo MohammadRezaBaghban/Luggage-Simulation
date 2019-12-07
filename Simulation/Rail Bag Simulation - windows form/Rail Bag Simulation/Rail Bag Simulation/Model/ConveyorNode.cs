@@ -71,7 +71,6 @@ namespace Rail_Bag_Simulation
                 var bag = BagsQueue.Dequeue();
                 IsFull = false;
                 OnQueueChangedEventHandler?.Invoke(this, EventArgs.Empty);
-
                 return bag;
             }
         }
