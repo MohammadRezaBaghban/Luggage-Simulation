@@ -33,8 +33,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.WinForms, Version=0.9.7.1, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.WinForms.0.9.7.1\lib\net45\LiveCharts.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,13 +57,14 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomizedControl\Conveyor.cs">
+    <Compile Include="CustomizedControl\ConveyorHorizontal.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomizedControl\Conveyor.Designer.cs">
-      <DependentUpon>Conveyor.cs</DependentUpon>
+    <Compile Include="CustomizedControl\ConveyorHorizontal.Designer.cs">
+      <DependentUpon>ConveyorHorizontal.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomizedControl\ConveyorVertical.cs">
       <SubType>UserControl</SubType>
@@ -59,6 +72,7 @@
     <Compile Include="CustomizedControl\ConveyorVertical.Designer.cs">
       <DependentUpon>ConveyorVertical.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomizedControl\IConveyor.cs" />
     <Compile Include="Model\Airport.cs" />
     <Compile Include="Model\Bag.cs" />
     <Compile Include="Model\BagExtentions.cs" />
@@ -85,12 +99,6 @@
     <Compile Include="Model\SuspiciousBagtype.cs" />
     <Compile Include="Model\Terminal.cs" />
     <Compile Include="Model\TerminalNode.cs" />
-    <Compile Include="View\LogForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\LogForm.Designer.cs">
-      <DependentUpon>LogForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\UserControls\Simulation.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -103,8 +111,8 @@
     <Compile Include="View\UserControls\Statistics.Designer.cs">
       <DependentUpon>Statistics.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="CustomizedControl\Conveyor.resx">
-      <DependentUpon>Conveyor.cs</DependentUpon>
+    <EmbeddedResource Include="CustomizedControl\ConveyorHorizontal.resx">
+      <DependentUpon>ConveyorHorizontal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomizedControl\ConveyorVertical.resx">
       <DependentUpon>ConveyorVertical.cs</DependentUpon>
@@ -122,15 +130,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="View\LogForm.resx">
-      <DependentUpon>LogForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\UserControls\Simulation.resx">
       <DependentUpon>Simulation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\UserControls\Statistics.resx">
       <DependentUpon>Statistics.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

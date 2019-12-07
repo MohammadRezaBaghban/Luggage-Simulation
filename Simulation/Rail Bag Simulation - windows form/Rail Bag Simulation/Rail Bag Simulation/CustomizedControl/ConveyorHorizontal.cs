@@ -1,26 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Threading;
 
 namespace Rail_Bag_Simulation.CustomizedControl
 {
-    public partial class ConveyorVertical : UserControl, IConveyor
+    public partial class ConveyorHorizontal : UserControl, IConveyor
     {
         private ConveyorNode conveyor;
         public readonly List<PictureBox> slots;
 
-        public ConveyorVertical()
+        public ConveyorHorizontal()
         {
             InitializeComponent();
             slots = new List<PictureBox>
             {
-                slot1Vert,
-                slot2Vert,
-                slot3Vert,
-                slot4Vert,
-                slot5Vert
+                Slot1,
+                Slot2,
+                Slot3,
+                Slot4,
+                Slot5
             };
         }
 
@@ -36,7 +37,7 @@ namespace Rail_Bag_Simulation.CustomizedControl
         {
             if (this.InvokeRequired)
             {
-                this.Invoke(new ConveyorHorizontal.UpdateControlsDelegate(UpdateTheConveyor));
+                this.Invoke(new UpdateControlsDelegate(UpdateTheConveyor));
             }
             else
             {
@@ -49,8 +50,8 @@ namespace Rail_Bag_Simulation.CustomizedControl
             lock (conveyor.ListOfBagsInQueue)
             {
                 for (var i = 0; i < conveyor.ListOfBagsInQueue.ToList().Count; i++)
-                {
-                    slots[i].Visible = conveyor.ListOfBagsInQueue.ToList()[i] != null;
+                { 
+                   slots[i].Visible = conveyor.ListOfBagsInQueue.ToList()[i] != null;
                 }
             }
         }

@@ -12,8 +12,8 @@
         {
             NumberOfBags = totalbags;
             Airport = new Airport(delayTime);
-            CreateMap(5);
-            Airport.StartBagsMovement(totalbags, 25, 0, 0, 0);
+            CreateMap(7);
+            Airport.StartBagsMovement(totalbags, 0, 0, 0, 0);
             Airport.Ll.MoveBags();
         }
 
