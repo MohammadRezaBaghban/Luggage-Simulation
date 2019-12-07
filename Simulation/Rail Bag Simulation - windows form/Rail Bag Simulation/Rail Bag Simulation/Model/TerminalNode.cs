@@ -93,6 +93,8 @@ namespace Rail_Bag_Simulation
             }
 
             next.Push(bag);
+            OnQueueChangedEventHandler?.Invoke(this, EventArgs.Empty);
+
         }
     }
 }

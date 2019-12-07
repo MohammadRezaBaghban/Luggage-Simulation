@@ -11,7 +11,7 @@ namespace Rail_Bag_Simulation
 
         Color darkColor = Color.FromArgb(95, 108, 140);
         Color normalColor = Color.FromArgb(105, 119, 155);
-        private Airport airport;
+        public Airport airport;
         public Form1()
         {
             InitializeComponent();
@@ -116,10 +116,9 @@ namespace Rail_Bag_Simulation
         { 
             ShowSimulationPanel();
 
-            airport = new Airport(200);
+            airport = new Airport(500);
             airport.CreateMapLayout(5);
 
-            simulation1 = new Simulation();
             simulation1.Map_The_Converyors(airport.GetConveyorsList());
 
             /*airport.StartBagsMovement(
@@ -131,7 +130,7 @@ namespace Rail_Bag_Simulation
             );*/
 
             airport.StartBagsMovement(
-                122,2,1,3,3
+                38,2,1,3,3
             );
 
 

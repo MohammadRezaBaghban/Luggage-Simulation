@@ -14,14 +14,14 @@ namespace Rail_Bag_Simulation
         /*basically to add the idea of having more control over adding the destination */
         public static bool IsSimulationFinished;
         public static Dictionary<Stopwatch, Bag> TimelyWatchedBagWithStopWatch = new Dictionary<Stopwatch, Bag>();
-        private readonly Timer timer;
+        private Timer _timer;
 
         public LinkedList(int speedDelayTime)
         {
-            timer = new Timer(speedDelayTime);
+            _timer = new Timer(speedDelayTime);
             //ThreadPool.SetMaxThreads(5, 5);
 
-            timer.Elapsed += (sender, args) =>
+            _timer.Elapsed += (sender, args) =>
             {
                 ThreadPool.QueueUserWorkItem(MakeBagsMoveOneAtATime);
                 ThreadPool.QueueUserWorkItem(MakeBagsMoveOneAtATime);
@@ -29,12 +29,11 @@ namespace Rail_Bag_Simulation
                 ThreadPool.QueueUserWorkItem(MakeBagsMoveOneAtATime);
             };
 
-            timer.Enabled = true;
             GateNode.SimulationFinishedEvent += (sender, args) =>
             {
                 decimal totalTime = 0;
                 IsSimulationFinished = true;
-                timer.Stop();
+                _timer.Stop();
                 TimelyWatchedBagWithStopWatch.Keys.ToList()
                     .ForEach(stopwatch => totalTime += (int) stopwatch.ElapsedMilliseconds);
                 totalTime /= 1000;
@@ -51,7 +50,7 @@ namespace Rail_Bag_Simulation
 
         public void MoveBags()
         {
-            timer.Start();
+            RunSimulation();
         }
 
         public void AddGeneratedBags(List<Bag> bagstoqueue)
@@ -78,6 +77,9 @@ namespace Rail_Bag_Simulation
                 First[0].Push(bag);
 
             });
+
+            Thread.Sleep(200);
+            MoveBags();
         }
 
         private static void AddTimerWithABag(List<Bag> bagstoqueue, int firstQuater)
@@ -120,6 +122,31 @@ namespace Rail_Bag_Simulation
         private static void MakeBagsMoveOneAtATime(object Stateinfo)
         {
             GetAllNodes().ForEach(node => node.MoveBagToNextNode());
+        }
+
+
+        /// <summary>
+        /// This stops the timer that moveS THE bags
+        /// </summary>
+        public void PauseSimulation()
+        {
+            if (_timer == null) return;
+            _timer.Stop();
+            _timer.Enabled = false;
+        }
+
+        public void RunSimulation()
+        {
+            if (_timer == null) return;
+            _timer.Enabled = true;
+            _timer.Start();
+        }
+
+
+        public void DestroySimulation()
+        {
+            PauseSimulation();
+            _timer = null;
         }
     }
 }

@@ -45,6 +45,8 @@ namespace Rail_Bag_Simulation
             lock (BagsQueue)
             {
                 BagsQueue.Enqueue(b);
+                OnQueueChangedEventHandler?.Invoke(this, EventArgs.Empty);
+
             }
         }
 
@@ -65,6 +67,8 @@ namespace Rail_Bag_Simulation
                 if (BagsQueue.Count < 1)
                     return null;
                 var bag = BagsQueue.Dequeue();
+                OnQueueChangedEventHandler?.Invoke(this, EventArgs.Empty);
+
                 return bag;
             }
         }

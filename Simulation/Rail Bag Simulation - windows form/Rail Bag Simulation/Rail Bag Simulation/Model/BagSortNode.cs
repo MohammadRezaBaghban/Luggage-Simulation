@@ -16,25 +16,24 @@ namespace Rail_Bag_Simulation
         public ConveyorNode DetermineNextNode()
         {
             ConveyorNode tnode = null;
-            
-                var g = Peek();
-                 if (g.IsNull()) return null;
-            
-                foreach (var p in ListOfConnectedNodes)
-                {
-                    Node currentNode = p;
 
-                    while (currentNode.GetNext() != null && !(currentNode is TerminalNode node))
-                        currentNode = currentNode.GetNext();
+            var g = Peek();
+            if (g.IsNull()) return null;
 
-                    var result = GetTerminalNumber(g);
-                    if ((currentNode as TerminalNode)?.Terminal.TerminalId != result) continue;
-                    tnode = p;
-                    break;
-                }
+            foreach (var p in ListOfConnectedNodes)
+            {
+                Node currentNode = p;
 
-                return tnode;
-            
+                while (currentNode.GetNext() != null && !(currentNode is TerminalNode node))
+                    currentNode = currentNode.GetNext();
+
+                var result = GetTerminalNumber(g);
+                if ((currentNode as TerminalNode)?.Terminal.TerminalId != result) continue;
+                tnode = p;
+                break;
+            }
+
+            return tnode;
         }
 
         public override void AddNode(int parentid, Type parenttype, Node _nodetoadd)
@@ -77,6 +76,7 @@ namespace Rail_Bag_Simulation
                 }
 
                 next.Push(bag);
+                OnQueueChangedEventHandler?.Invoke(this, EventArgs.Empty);
             }
         }
 
