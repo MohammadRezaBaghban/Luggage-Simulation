@@ -5,21 +5,21 @@ using System.Windows.Forms;
 
 namespace Rail_Bag_Simulation.CustomizedControl
 {
-    public partial class ConveyorVertical : UserControl
+    public partial class ConveyorHorizontal : UserControl
     {
         private ConveyorNode conveyor;
         private readonly List<PictureBox> slots;
 
-        public ConveyorVertical()
+        public ConveyorHorizontal()
         {
             InitializeComponent();
             slots = new List<PictureBox>
             {
-                slot1Vert,
-                slot2Vert,
-                slot3Vert,
-                slot4Vert,
-                slot5Vert
+                Slot1,
+                Slot2,
+                Slot3,
+                Slot4,
+                Slot5
             };
         }
 
