@@ -29,7 +29,7 @@ namespace Rail_Bag_Simulation.View
 
         private void UpdateDataSource()
         {
-            _lbLogDataSource.Clear();
+            //_lbLogDataSource.Clear();
             LinkedList.GetAllNodes()
                 .ForEach(p => p.NodeInfo()
                     .ForEach(s => _lbLogDataSource.Add(s)));

@@ -91,6 +91,18 @@
     <Compile Include="View\LogForm.Designer.cs">
       <DependentUpon>LogForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Maps\Map2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Maps\Map2.Designer.cs">
+      <DependentUpon>Map2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Maps\Map3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Maps\Map3.Designer.cs">
+      <DependentUpon>Map3.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\UserControls\Simulation.cs">
       <SubType>UserControl</SubType>
     </Compile>

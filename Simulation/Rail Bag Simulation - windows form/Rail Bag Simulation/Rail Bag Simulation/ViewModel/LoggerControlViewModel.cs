@@ -19,7 +19,7 @@
 
         public void CreateMap(int m)
         {
-            Airport.CreateMapLayout(m);
+            Airport.CreateMapLayoutTwo(m);
         }
     }
 }
