@@ -11,6 +11,7 @@ namespace Rail_Bag_Simulation.View
         private readonly BindingList<string> _lbLogDataSource;
 
         public LogForm()
+
         {
             InitializeComponent();
             var vm = new LoggerControlViewModel();
@@ -41,6 +42,7 @@ namespace Rail_Bag_Simulation.View
 
         private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+
         }
     }
 }
