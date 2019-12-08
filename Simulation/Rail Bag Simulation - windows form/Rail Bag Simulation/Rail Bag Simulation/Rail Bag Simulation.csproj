@@ -145,6 +145,7 @@
     <EmbeddedResource Include="View\UserControls\Statistics.resx">
       <DependentUpon>Statistics.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Class Diagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
