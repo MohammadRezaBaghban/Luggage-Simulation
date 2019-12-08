@@ -82,19 +82,21 @@ namespace Rail_Bag_Simulation
 
         public override void MoveBagToNextNode()
         {
-            var next = DetermineNextConveyorNode();
-            while (next.IsNull()) return;
-
-            var bag = Remove();
-            if (bag.IsNull()) return;
-
-            while (next.IsFull)
+            lock (BagsQueue)
             {
+                var next = DetermineNextConveyorNode();
+                while (next.IsNull()) return;
+
+                var bag = Remove();
+                if (bag.IsNull()) return;
+
+                while (next.IsFull)
+                {
+                }
+
+                next.Push(bag);
+                OnQueueChangedEventHandler?.Invoke(this, EventArgs.Empty);
             }
-
-            next.Push(bag);
-            OnQueueChangedEventHandler?.Invoke(this, EventArgs.Empty);
-
         }
     }
 }

@@ -128,23 +128,20 @@ namespace Rail_Bag_Simulation
         { 
             ShowSimulationPanel();
 
-            airport = new Airport(500);
+            airport = new Airport(140);
             airport.CreateMapLayout(5);
 
             simulation1.Map_The_Converyors(airport.GetConveyorsList());
 
-            /*airport.StartBagsMovement(
+            airport.StartBagsMovement(
             Convert.ToInt32(tb_numberOfBags.Text),
                 Convert.ToInt32(tb_drugs.Text),
                 Convert.ToInt32(tb_weapons.Text),
                 Convert.ToInt32(tb_flammables.Text),
                 Convert.ToInt32(tb_Others.Text)
-            );*/
-
-            airport.StartBagsMovement(
-                38,2,1,3,3
             );
 
+          
 
 
         }

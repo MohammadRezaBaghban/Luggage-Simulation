@@ -98,12 +98,15 @@ namespace Rail_Bag_Simulation
 
         public virtual void MoveBagToNextNode()
         {
-            if (GetNext().IsNull()) return;
-            while (GetNext() is ConveyorNode next && next.IsFull)
+            lock (BagsQueue)
             {
-            }
+                if (GetNext().IsNull()) return;
+                while (GetNext() is ConveyorNode next && next.IsFull)
+                {
+                }
 
-            GetNext().Push(Remove());
+                GetNext().Push(Remove());
+            }
         }
     }
 }

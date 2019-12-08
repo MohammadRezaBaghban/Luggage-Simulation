@@ -10,6 +10,8 @@ namespace Rail_Bag_Simulation
         private readonly bool _isMapCreated = false;
         private static List<Bag> _bagsList;
         public static List<Bag> GetBagList => _bagsList;
+        public static int BagsCountTotalArrived;
+
 
         private List<Node> conveyors;
         public Airport(int speedDelay)
