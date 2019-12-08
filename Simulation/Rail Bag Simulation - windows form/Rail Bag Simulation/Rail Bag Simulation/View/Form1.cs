@@ -137,13 +137,25 @@ namespace Rail_Bag_Simulation
 
         private void btnRunSimulation_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(tb_numberOfBags.Text))
+            if (tb_drugs.Text == "" || tb_weapons.Text == "" || tb_flammables.Text == "" || tb_Others.Text == "")
+            {
+                tb_drugs.Text = "0";
+                tb_weapons.Text = "0";
+                tb_flammables.Text = "0";
+                tb_Others.Text = "0";
+            }
+            if (string.IsNullOrEmpty(tb_numberOfBags.Text))
             {
                 errorProvider.SetError(tb_numberOfBags, "Please fill the number of bags.");
             }
             else if(string.IsNullOrEmpty(tb_nrOfCarts.Text))
             {
                 errorProvider.SetError(tb_nrOfCarts, "Please fill the number of cards");
+            }
+            else if(Convert.ToInt32(tb_numberOfBags.Text) < Convert.ToInt32(tb_drugs.Text) + Convert.ToInt32(tb_weapons.Text) + Convert.ToInt32(tb_flammables.Text) + Convert.ToInt32(tb_Others.Text))
+            {
+                MessageBox.Show("The number of suspecios bags cannot be more than the total number of bags.");
+                ClearConfigurationData();
             }
             else
             {
