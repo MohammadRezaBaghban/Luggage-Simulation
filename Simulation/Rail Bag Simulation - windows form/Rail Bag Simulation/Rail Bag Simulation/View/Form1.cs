@@ -143,10 +143,10 @@ namespace Rail_Bag_Simulation
             var others = tb_Others.Text;
             if (drugs == "" || weapons == "" || flammables == "" || others == "")
             {
-                tb_drugs.Text = "0";
-                tb_weapons.Text = "0";
-                tb_flammables.Text = "0";
-                tb_Others.Text = "0";
+                drugs = "0";
+                weapons = "0";
+                flammables = "0";
+                others = "0";
             }
 
             var total = tb_numberOfBags.Text;
