@@ -48,11 +48,10 @@ namespace Rail_Bag_Simulation
 
         private void VerifyBagsCount()
         {
-            
             if (Counter + Storage.GetNumberOfBagsInStorage() < Airport.TotalNumberOfBags) return;
             Thread.Sleep(1000);
             SimulationFinishedEvent?.Invoke(this, EventArgs.Empty);
-            OnQueueChangedEventHandler?.Invoke(this,EventArgs.Empty);
+            OnQueueChangedEventHandler?.Invoke(this, EventArgs.Empty);
         }
     }
 }

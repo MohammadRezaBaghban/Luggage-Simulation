@@ -5,7 +5,6 @@ using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
 {
-
     public class Node : INode
     {
         protected readonly Queue<Bag> BagsQueue;
@@ -14,7 +13,6 @@ namespace Rail_Bag_Simulation
 
         protected Node()
         {
-           
             SetNext(null);
             BagsQueue = new Queue<Bag>();
         }
@@ -46,7 +44,6 @@ namespace Rail_Bag_Simulation
             {
                 BagsQueue.Enqueue(b);
                 OnQueueChangedEventHandler?.Invoke(this, EventArgs.Empty);
-
             }
         }
 

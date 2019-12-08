@@ -6,18 +6,19 @@ namespace Rail_Bag_Simulation
     [Serializable]
     public class Airport
     {
+        public static int BagsCountTotalArrived;
 
         private readonly bool _isMapCreated = false;
-        private static List<Bag> _bagsList;
-        public static List<Bag> GetBagList => _bagsList;
-        public static int BagsCountTotalArrived;
 
 
         private List<Node> conveyors;
+
         public Airport(int speedDelay)
         {
             Ll = new LinkedList(speedDelay);
         }
+
+        public static List<Bag> GetBagList { get; private set; }
 
         public static Storage Storage { get; } = new Storage();
 
@@ -31,22 +32,22 @@ namespace Rail_Bag_Simulation
             int nbrBagsOthers)
         {
             TotalNumberOfBags = nbrOfBags;
-            _bagsList = Bag.GenerateBag(nbrOfBags, nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable, nbrBagsOthers);
-            Ll.AddGeneratedBags(_bagsList);
+            GetBagList = Bag.GenerateBag(nbrOfBags, nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable,
+                nbrBagsOthers);
+            Ll.AddGeneratedBags(GetBagList);
         }
 
         public void StartBagsMovement(List<Bag> bag)
         {
-            _bagsList = bag;
-            Ll.AddGeneratedBags(_bagsList);
+            GetBagList = bag;
+            Ll.AddGeneratedBags(GetBagList);
         }
-
 
 
         public void CreateMapLayout(int queueSizeOfBelts)
         {
             if (_isMapCreated) return;
-            
+
             Node checkIn1 = new CheckinNode();
             Node CheckIn_To_Security_Conveyor = new ConveyorNode(queueSizeOfBelts);
             Node cn2 = new CheckinNode();
@@ -114,7 +115,7 @@ namespace Rail_Bag_Simulation
             //Ll.AddNode(security1.Id, security1.GetType(), st1conveyor4);
             //Ll.AddNode(st1conveyor4.Id, stconveyor4.GetType(), bagsort);
 
-            conveyors = new List<Node>()
+            conveyors = new List<Node>
             {
                 CheckIn_To_Security_Conveyor,
                 security_Conveyor_To_BagSort,
@@ -124,10 +125,12 @@ namespace Rail_Bag_Simulation
                 terminal1_Conveyor_To_Gate2,
                 terminal2_Conveyor_To_Gate1,
                 terminal2_Conveyor_To_Gate2
-
             };
         }
 
-        public List<Node> GetConveyorsList() => conveyors;
+        public List<Node> GetConveyorsList()
+        {
+            return conveyors;
+        }
     }
 }
