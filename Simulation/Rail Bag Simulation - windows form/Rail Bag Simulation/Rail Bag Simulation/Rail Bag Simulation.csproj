@@ -179,6 +179,7 @@
   <ItemGroup>
     <Content Include="Resources\logomini.png" />
     <None Include="Resources\travelbag.bmp" />
+    <None Include="Resources\luggage.png" />
     <Content Include="Resources\travelbag.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

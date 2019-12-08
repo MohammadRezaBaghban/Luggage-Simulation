@@ -7,6 +7,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Rail_Bag_Simulation
 {
@@ -25,6 +26,8 @@ namespace Rail_Bag_Simulation
             
             InitializeComponent();
             stat.Show();
+            this.ActiveControl = tb_numberOfBags;
+            tb_numberOfBags.Focus();
 
             btnConfigurations.BackColor = this.darkColor;
             btnSimulation.BackColor = this.normalColor;
@@ -57,6 +60,8 @@ namespace Rail_Bag_Simulation
             pbConfigurations.BackColor = this.darkColor;
             pbSimulation.BackColor = this.normalColor;
             pbStatistics.BackColor = this.normalColor;
+            btnSaveSimulation.Visible = false;
+            ClearConfigurationData();
         }
 
         private void BtnSimulation_Click(object sender, System.EventArgs e)
@@ -72,6 +77,8 @@ namespace Rail_Bag_Simulation
             pbSimulation.BackColor = this.darkColor;
             pbConfigurations.BackColor = this.normalColor;
             pbStatistics.BackColor = this.normalColor;
+            btnSaveSimulation.Visible = true;
+            ClearConfigurationData();
         }
 
         private void BtnStatistics_Click(object sender, System.EventArgs e)
@@ -87,6 +94,8 @@ namespace Rail_Bag_Simulation
             pbStatistics.BackColor = this.darkColor;
             pbConfigurations.BackColor = this.normalColor;
             pbSimulation.BackColor = this.normalColor;
+            btnSaveSimulation.Visible = false;
+            ClearConfigurationData();
         }
 
         private void PbConfigurations_Click(object sender, System.EventArgs e)
@@ -102,11 +111,12 @@ namespace Rail_Bag_Simulation
             pbConfigurations.BackColor = this.darkColor;
             pbSimulation.BackColor = this.normalColor;
             pbStatistics.BackColor = this.normalColor;
+            btnSaveSimulation.Visible = false;
         }
 
         private void PbSimulation_Click(object sender, System.EventArgs e)
         {
-
+            btnSaveSimulation.Visible = true;
         }
 
         private void PbStatistics_Click(object sender, System.EventArgs e)
@@ -122,28 +132,51 @@ namespace Rail_Bag_Simulation
             pbStatistics.BackColor = this.darkColor;
             pbConfigurations.BackColor = this.normalColor;
             pbSimulation.BackColor = this.normalColor;
+            btnSaveSimulation.Visible = false;
         }
 
         private void btnRunSimulation_Click(object sender, EventArgs e)
-        { 
-            ShowSimulationPanel();
+        {
+            if(string.IsNullOrEmpty(tb_numberOfBags.Text))
+            {
+                errorProvider.SetError(tb_numberOfBags, "Please fill the number of bags.");
+            }
+            else if(string.IsNullOrEmpty(tb_nrOfCarts.Text))
+            {
+                errorProvider.SetError(tb_nrOfCarts, "Please fill the number of cards");
+            }
+            else
+            {
+                btnSaveSimulation.Visible = true;
+                ShowSimulationPanel();
 
-            airport = new Airport(140);
-            airport.CreateMapLayout(5);
+                airport = new Airport(140);
+                airport.CreateMapLayout(5);
 
-            simulation1.Map_The_Converyors(airport.GetConveyorsList());
+                simulation1.Map_The_Converyors(airport.GetConveyorsList());
 
-            airport.StartBagsMovement(
-            Convert.ToInt32(tb_numberOfBags.Text),
-                Convert.ToInt32(tb_drugs.Text),
-                Convert.ToInt32(tb_weapons.Text),
-                Convert.ToInt32(tb_flammables.Text),
-                Convert.ToInt32(tb_Others.Text)
-            );
+                if (tb_drugs.Text == "" || tb_weapons.Text == "" || tb_flammables.Text == "" || tb_Others.Text == "")
+                {
+                        airport.StartBagsMovement(
+                        Convert.ToInt32(tb_numberOfBags.Text), 0, 0, 0, 0);
+                }
+                else
+                {
+                        airport.StartBagsMovement(
+                        Convert.ToInt32(tb_numberOfBags.Text),
+                        Convert.ToInt32(tb_drugs.Text),
+                        Convert.ToInt32(tb_weapons.Text),
+                        Convert.ToInt32(tb_flammables.Text),
+                        Convert.ToInt32(tb_Others.Text));
+                }
 
-          
-
-
+                btnSimulation.BackColor = this.darkColor;
+                btnConfigurations.BackColor = this.normalColor;
+                btnStatistics.BackColor = this.normalColor;
+                pbSimulation.BackColor = this.darkColor;
+                pbConfigurations.BackColor = this.normalColor;
+                pbStatistics.BackColor = this.normalColor;
+            }
         }
 
         private void ShowSimulationPanel()
@@ -219,6 +252,67 @@ namespace Rail_Bag_Simulation
                     }
                 }
             }
+        }
+
+
+
+        private void Tb_nrOfCarts_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void Tb_flammables_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void Tb_weapons_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void Tb_drugs_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void Tb_Others_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void Tb_numberOfBags_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void ClearConfigurationData()
+        {
+            errorProvider.Dispose();
+            tb_numberOfBags.Clear();
+            tb_nrOfCarts.Clear();
+            tb_flammables.Clear();
+            tb_Others.Clear();
+            tb_weapons.Clear();
+            tb_drugs.Clear();
         }
     }
 }
