@@ -37,7 +37,7 @@ namespace Rail_Bag_Simulation.View
 
             // Start of the DataGrid
             DataTable dt = new DataTable();
-
+            dataGridView1.DataSource = dt;
             dt.Columns.Add("Percentile #.");
             dt.Columns.Add("Avg Time.");
 
@@ -53,6 +53,11 @@ namespace Rail_Bag_Simulation.View
         private double updateChartFailedBags()
         {
             return (double)Storage.GetNumberOfBagsInStorage();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

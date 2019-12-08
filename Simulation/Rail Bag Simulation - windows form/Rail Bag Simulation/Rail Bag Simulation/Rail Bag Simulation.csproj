@@ -82,12 +82,6 @@
     <Compile Include="Model\Destination.cs" />
     <Compile Include="Model\INode.cs" />
     <Compile Include="ViewModel\LoggerControlViewModel.cs" />
-    <Compile Include="View\Configurations.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Configurations.Designer.cs">
-      <DependentUpon>Configurations.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,9 +122,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomizedControl\ConveyorVertical.resx">
       <DependentUpon>ConveyorVertical.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Configurations.resx">
-      <DependentUpon>Configurations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

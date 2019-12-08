@@ -33,7 +33,13 @@ namespace Rail_Bag_Simulation
             Ll.AddGeneratedBags(_bagsList);
         }
 
-        
+        public void StartBagsMovement(List<Bag> bag)
+        {
+            _bagsList = bag;
+            Ll.AddGeneratedBags(_bagsList);
+        }
+
+
 
         public void CreateMapLayout(int queueSizeOfBelts)
         {

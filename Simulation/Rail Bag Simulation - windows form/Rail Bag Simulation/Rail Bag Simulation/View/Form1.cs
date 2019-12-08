@@ -3,13 +3,19 @@ using System.Windows.Forms;
 using Rail_Bag_Simulation.View;
 using Rail_Bag_Simulation.View.UserControls;
 using System.Drawing;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
+using System.Collections.Generic;
 
 namespace Rail_Bag_Simulation
 {
     public partial class Form1 : Form
     {
         StatisticsForm stat = new StatisticsForm();
-        Configurations cf = new Configurations();
+        
+        //string fileName = "../../config.txt";
+
 
         Color darkColor = Color.FromArgb(95, 108, 140);
         Color normalColor = Color.FromArgb(105, 119, 155);
@@ -19,7 +25,7 @@ namespace Rail_Bag_Simulation
             
             InitializeComponent();
             stat.Show();
-            cf.Show();
+
             btnConfigurations.BackColor = this.darkColor;
             btnSimulation.BackColor = this.normalColor;
             btnStatistics.BackColor = this.normalColor;
@@ -151,6 +157,71 @@ namespace Rail_Bag_Simulation
             panelBorder1.Visible = false;
         }
 
-        
+        private void btnSaveSimulation_Click(object sender, EventArgs e)
+        {
+            saveLog = new SaveFileDialog();
+            saveLog.Filter = "Text Files (*.txt)|*.txt";
+            saveLog.DefaultExt = "txt";
+            saveLog.AddExtension = true;
+            saveLog.Title = "Select config file";
+            if (saveLog.ShowDialog() == DialogResult.OK)
+            {
+                FileStream fs = null;
+                BinaryFormatter bf = null;
+                try
+                {
+                    fs = new FileStream(saveLog.FileName, FileMode.Create, FileAccess.Write);
+                    bf = new BinaryFormatter();
+                    bf.Serialize(fs, Airport.GetBagList);
+
+                }
+                catch (SerializationException) { MessageBox.Show("Error opening/creating file"); }
+                finally 
+                { 
+                    if (fs != null) 
+                    { 
+                        fs.Close();
+                    }
+                }
+            }
+        }
+
+        private void btnLoadSimulation_Click(object sender, EventArgs e)
+        {
+            openLog = new OpenFileDialog();
+            openLog.Filter = "Text Files (*.txt)|*.txt";
+            openLog.DefaultExt = "txt";
+            openLog.AddExtension = true;
+            openLog.Title = "Select config file";
+            if (openLog.ShowDialog() == DialogResult.OK)
+            {
+                FileStream fs = null;
+                BinaryFormatter bf = null;
+
+                List<Bag> tempList;
+
+                fs = new FileStream(openLog.FileName, FileMode.OpenOrCreate, FileAccess.Read);
+                bf = new BinaryFormatter();
+                try
+                {
+                    tempList = (List<Bag>)bf.Deserialize(fs);
+                    this.ShowSimulationPanel();
+                    if (airport == null)
+                    {
+                        airport = new Airport(500);
+                        airport.CreateMapLayout(5);
+                        simulation1.Map_The_Converyors(airport.GetConveyorsList());
+                    }
+                }
+                catch (SerializationException) { MessageBox.Show("Something wrong with serialization"); }
+                finally
+                {
+                    if (fs != null)
+                    {
+                        fs.Close();
+                    }
+                }
+            }
+        }
     }
 }
