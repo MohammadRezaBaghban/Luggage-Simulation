@@ -6,11 +6,15 @@ using System.Threading;
 using System.Data;
 using System.Linq;
 using System;
+using System.Threading.Tasks;
+using Timer = System.Windows.Forms.Timer;
+
 
 namespace Rail_Bag_Simulation.View
 {
     public partial class StatisticsForm : Form
     {
+
         public StatisticsForm()
         {
             InitializeComponent();
@@ -18,7 +22,7 @@ namespace Rail_Bag_Simulation.View
 
         private void btnLoadData_Click(object sender, EventArgs e)
         {
-            pieChart1.Series = new SeriesCollection
+                pieChart1.Series = new SeriesCollection
             {
                 new PieSeries
                 {
@@ -39,12 +43,17 @@ namespace Rail_Bag_Simulation.View
             DataTable dt = new DataTable();
             dataGridView1.DataSource = dt;
             dt.Columns.Add("Percentile #.");
-            dt.Columns.Add("Avg Time.");
+            dt.Columns.Add("Time Taken To Reach Gate Per Second");
 
+            if (!LinkedList.IsSimulationFinished) return;
             for (int i = 0; i < LinkedList.TimelyWatchedBagWithStopWatch.Keys.ToList().Count; i++)
             {
-                dt.Rows.Add(new object[] { i, LinkedList.TimelyWatchedBagWithStopWatch.Keys.ToList()[i].ElapsedMilliseconds });
+                dt.Rows.Add(new object[]
+                    {i, LinkedList.TimelyWatchedBagWithStopWatch.Keys.ToList()[i].ElapsedMilliseconds / 1000});
             }
+
+            dt.Rows.Add(new object[] {"Average", LinkedList.AverageTimePerBag});
+            
         }
         private double updateChartSuccessfullBags()
         {

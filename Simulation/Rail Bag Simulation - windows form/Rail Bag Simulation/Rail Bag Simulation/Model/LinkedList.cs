@@ -34,6 +34,10 @@ namespace Rail_Bag_Simulation
                 decimal totalTime = 0;
                 IsSimulationFinished = true;
                 _timer.Stop();
+                foreach (var stopwatch in TimelyWatchedBagWithStopWatch.Keys)
+                {
+                    stopwatch.Stop();
+                }
                 TimelyWatchedBagWithStopWatch.Keys.ToList()
                     .ForEach(stopwatch => totalTime += (int) stopwatch.ElapsedMilliseconds);
                 totalTime /= 1000;

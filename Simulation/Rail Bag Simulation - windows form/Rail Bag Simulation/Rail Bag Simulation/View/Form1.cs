@@ -137,57 +137,97 @@ namespace Rail_Bag_Simulation
 
         private void btnRunSimulation_Click(object sender, EventArgs e)
         {
-            if (tb_drugs.Text == "" || tb_weapons.Text == "" || tb_flammables.Text == "" || tb_Others.Text == "")
+            var drugs = tb_drugs.Text;
+            var weapons = tb_weapons.Text;
+            var flammables = tb_flammables.Text;
+            var others = tb_Others.Text;
+            if (drugs == "" || weapons == "" || flammables == "" || others == "")
             {
                 tb_drugs.Text = "0";
                 tb_weapons.Text = "0";
                 tb_flammables.Text = "0";
                 tb_Others.Text = "0";
             }
-            if (string.IsNullOrEmpty(tb_numberOfBags.Text))
+
+            var total = tb_numberOfBags.Text;
+            if (string.IsNullOrEmpty(total))
             {
                 errorProvider.SetError(tb_numberOfBags, "Please fill the number of bags.");
             }
-            else if(string.IsNullOrEmpty(tb_nrOfCarts.Text))
-            {
-                errorProvider.SetError(tb_nrOfCarts, "Please fill the number of cards");
-            }
-            else if(Convert.ToInt32(tb_numberOfBags.Text) < Convert.ToInt32(tb_drugs.Text) + Convert.ToInt32(tb_weapons.Text) + Convert.ToInt32(tb_flammables.Text) + Convert.ToInt32(tb_Others.Text))
-            {
-                MessageBox.Show("The number of suspecios bags cannot be more than the total number of bags.");
-                ClearConfigurationData();
-            }
             else
             {
-                btnSaveSimulation.Visible = true;
-                ShowSimulationPanel();
-
-                airport = new Airport(140);
-                airport.CreateMapLayout(5);
-
-                simulation1.Map_The_Converyors(airport.GetConveyorsList());
-
-                if (tb_drugs.Text == "" || tb_weapons.Text == "" || tb_flammables.Text == "" || tb_Others.Text == "")
+                var carts = tb_nrOfCarts.Text;
+                if(string.IsNullOrEmpty(carts))
                 {
-                        airport.StartBagsMovement(
-                        Convert.ToInt32(tb_numberOfBags.Text), 0, 0, 0, 0);
+                    errorProvider.SetError(tb_nrOfCarts, "Please fill the number of cards");
                 }
                 else
                 {
-                        airport.StartBagsMovement(
-                        Convert.ToInt32(tb_numberOfBags.Text),
-                        Convert.ToInt32(tb_drugs.Text),
-                        Convert.ToInt32(tb_weapons.Text),
-                        Convert.ToInt32(tb_flammables.Text),
-                        Convert.ToInt32(tb_Others.Text));
-                }
+                    var nbrOfBags = Convert.ToInt32(total);
+                    int nbrOfBagsDrugs = Convert.ToInt32(drugs);
+                    int nbrOfBagsWeapons = Convert.ToInt32(weapons);
+                    var nbrOfBagsFlammable = Convert.ToInt32(flammables);
+                    var nbrBagsOthers = Convert.ToInt32(others);
+                    if(nbrOfBags < nbrOfBagsDrugs + nbrOfBagsWeapons + nbrOfBagsFlammable + nbrBagsOthers)
+                    {
+                        MessageBox.Show("The number of suspecios bags cannot be more than the total number of bags.");
+                        ClearConfigurationData();
+                    }
+                    else
+                    {
+                        btnSaveSimulation.Visible = true;
+                        ShowSimulationPanel();
 
-                btnSimulation.BackColor = this.darkColor;
-                btnConfigurations.BackColor = this.normalColor;
-                btnStatistics.BackColor = this.normalColor;
-                pbSimulation.BackColor = this.darkColor;
-                pbConfigurations.BackColor = this.normalColor;
-                pbStatistics.BackColor = this.normalColor;
+
+                        var nbrCarts = Convert.ToInt32(carts);
+                        if (nbrCarts > 1000)
+                        {
+                            nbrCarts = 1;
+                        }
+                        else if(nbrCarts>750)
+                        {
+                            nbrCarts = 100;
+                        }
+                        else if (nbrCarts > 500)
+                        {
+                            nbrCarts = 200;
+                        }
+                        else if (nbrCarts > 250)
+                        {
+                            nbrCarts =350;
+                        }
+                        else
+                        {
+                            nbrCarts = 400;
+                        }
+                        airport = new Airport(nbrCarts);
+                        airport.CreateMapLayout(5);
+
+                        simulation1.Map_The_Converyors(airport.GetConveyorsList());
+
+                        if (drugs == "" || weapons == "" || flammables == "" || others == "")
+                        {
+                            airport.StartBagsMovement(
+                                nbrOfBags, 0, 0, 0, 0);
+                        }
+                        else
+                        {
+                            airport.StartBagsMovement(
+                                nbrOfBags,
+                                nbrOfBagsDrugs,
+                                nbrOfBagsWeapons,
+                                nbrOfBagsFlammable,
+                                nbrBagsOthers);
+                        }
+
+                        btnSimulation.BackColor = this.darkColor;
+                        btnConfigurations.BackColor = this.normalColor;
+                        btnStatistics.BackColor = this.normalColor;
+                        pbSimulation.BackColor = this.darkColor;
+                        pbConfigurations.BackColor = this.normalColor;
+                        pbStatistics.BackColor = this.normalColor;
+                    }
+                }
             }
         }
 
