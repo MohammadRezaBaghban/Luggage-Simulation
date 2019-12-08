@@ -75,7 +75,6 @@ namespace Rail_Bag_Simulation
                 TimelyWatchedBagWithStopWatch.FirstOrDefault(pair => pair.Value == bag).Key?.Start();
 
                 First[0].Push(bag);
-
             });
 
             Thread.Sleep(200);
@@ -119,14 +118,14 @@ namespace Rail_Bag_Simulation
             return check;
         }
 
-        private static void MakeBagsMoveOneAtATime(object Stateinfo)
+        private void MakeBagsMoveOneAtATime(object Stateinfo)
         {
             GetAllNodes().ForEach(node => node.MoveBagToNextNode());
         }
 
 
         /// <summary>
-        /// This stops the timer that moveS THE bags
+        ///     This stops the timer that moveS THE bags
         /// </summary>
         public void PauseSimulation()
         {

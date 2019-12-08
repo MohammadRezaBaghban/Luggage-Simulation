@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Rail_Bag_Simulation
 {
-    internal class SecurityNode : Node
+    public class SecurityNode : Node
     {
         private static int _idToGive;
 
