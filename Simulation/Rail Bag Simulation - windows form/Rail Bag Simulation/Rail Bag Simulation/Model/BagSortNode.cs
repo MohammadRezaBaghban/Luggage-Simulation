@@ -68,15 +68,15 @@ namespace Rail_Bag_Simulation
             {
                 var next = DetermineNextNode();
                 if (next.IsNull()) return;
-                var bag = Remove();
-                if (bag.IsNull()) return;
-
-                while (next.IsFull)
+                
+                if (next.IsFull)
                 {
+                    return;
                 }
 
+                var bag = Remove();
+                if (bag.IsNull()) return;
                 next.Push(bag);
-                OnQueueChangedEventHandler?.Invoke(this, EventArgs.Empty);
             }
         }
 

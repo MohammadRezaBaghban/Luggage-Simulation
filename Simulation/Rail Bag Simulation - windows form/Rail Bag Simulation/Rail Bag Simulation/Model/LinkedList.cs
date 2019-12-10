@@ -13,6 +13,7 @@ namespace Rail_Bag_Simulation
 
         /*basically to add the idea of having more control over adding the destination */
         public static bool IsSimulationFinished;
+        public static bool IsSimulationPaused;
         public static Dictionary<Stopwatch, Bag> TimelyWatchedBagWithStopWatch = new Dictionary<Stopwatch, Bag>();
         private Timer _timer;
 
@@ -136,6 +137,7 @@ namespace Rail_Bag_Simulation
             if (_timer == null) return;
             _timer.Stop();
             _timer.Enabled = false;
+            IsSimulationPaused = true;
         }
 
         public void RunSimulation()
@@ -143,12 +145,14 @@ namespace Rail_Bag_Simulation
             if (_timer == null) return;
             _timer.Enabled = true;
             _timer.Start();
+            IsSimulationPaused = false;
         }
 
 
         public void DestroySimulation()
         {
             PauseSimulation();
+            IsSimulationFinished = true;
             _timer = null;
         }
     }

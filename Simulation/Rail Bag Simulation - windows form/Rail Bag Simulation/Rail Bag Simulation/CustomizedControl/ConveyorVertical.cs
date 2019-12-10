@@ -49,9 +49,11 @@ namespace Rail_Bag_Simulation.CustomizedControl
 
         public void UpdateTheConveyor()
         {
-          
+          lock (conveyor.ListOfBagsInQueue)
+            {
                 ((Simulation) Parent).Update(conveyor, this);
-            
+            }
+
         }
     }
 }
