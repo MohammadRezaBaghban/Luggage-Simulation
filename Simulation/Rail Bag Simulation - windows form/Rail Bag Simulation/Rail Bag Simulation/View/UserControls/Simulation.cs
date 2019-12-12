@@ -66,16 +66,20 @@ namespace Rail_Bag_Simulation.View.UserControls
 
         public void Update(ConveyorNode conveyorNodeBackend, IConveyor frontEnd)
         {
-            List<Bag> ls = conveyorNodeBackend.ListOfBagsInQueue.ToList();
-            for (var j = ls.Count - 1; j >= 0; j--)
+            if(LinkedList.IsSimulationFinished)return;
+            var ls = conveyorNodeBackend.ListOfBagsInQueue.ToArray();
+            if (conveyorNodeBackend.ListOfBagsInQueue.Count > 0)
             {
-                frontEnd.slots[j].Visible = ls[j] != null;
-            }
-            label1.Text = (GateNode.Counter).ToString();
+                for (var j = 0; j < ls.Length; j++)
+                {
+                    frontEnd.slots[j].Visible = ls[j]!= null;
+                }
 
-            if ((Airport.TotalNumberOfBags - Storage.GetNumberOfBagsInStorage()).ToString() != label1.Text) return;
-            try
-            {
+
+                label1.Text = (GateNode.Counter).ToString();
+                if ((Airport.TotalNumberOfBags  != GateNode.Counter+Storage.GetNumberOfBagsInStorage())) return;
+                try
+                {
                     for (var j = 0; j < conveyors.Count; j++)
                     {
                         for (var k = 0; k < conveyors[j].slots.Count; k++)
@@ -88,6 +92,7 @@ namespace Rail_Bag_Simulation.View.UserControls
                 {
                     Console.WriteLine(exception);
                 }
+            }
         }
 
         private void Cn_CheckIn_To_Security_Load(object sender, EventArgs e)
