@@ -269,5 +269,7 @@ namespace Rail_Bag_Simulation
         {
             //2 checkins per security 2 securities 1 bagsort 2 terminals with 2 gates each
         }
+
+
     }
 }
