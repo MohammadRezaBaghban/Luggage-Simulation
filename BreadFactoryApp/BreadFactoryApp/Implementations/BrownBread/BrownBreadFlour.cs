@@ -7,6 +7,7 @@ namespace BreadFactoryApp.Implementations
     {
         String _status = "";
 
+
         public void Bake()
         {
             _status="Baking brown bread";

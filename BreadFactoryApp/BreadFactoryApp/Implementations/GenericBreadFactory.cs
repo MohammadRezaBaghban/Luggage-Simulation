@@ -15,14 +15,17 @@ namespace BreadFactoryApp
         private IBreadFactory factory;
         private bool ManufacturingComplete;
         private readonly int CountOfNeededLoaf;
-        private readonly int CountOfLoafsDone = 0 ;
+        private int CountOfLoafsDone = 0 ;
 
         Timer _timerFlour=new Timer(10000);
         Timer _timerPackage=new Timer(7000);
         Timer _timerLabel=new Timer(5000);
 
         
-        private List<BreadLoaf> Loafs;
+        private Queue<BreadLoaf> Loafs;
+        private Stack<IFlour> flours;
+        private Stack<IPackage> packages;
+        private Stack<ILabel> labels;
 
         public static EventHandler<FlourEventArgs> FlourStatusChanged;
         public static EventHandler<PackagesEventArgs> PackageStatusChanged;
@@ -31,6 +34,12 @@ namespace BreadFactoryApp
         public GenericBreadFactory(IBreadFactory factory, int countOfNeededLoaf)
         {
             this.factory = factory; 
+
+            Loafs= new Queue<BreadLoaf>();
+            flours = new Stack<IFlour>();
+            labels = new Stack<ILabel>();
+            packages = new Stack<IPackage>();
+
             CountOfNeededLoaf = countOfNeededLoaf;
 
             _timerFlour.Elapsed += (sender, args) =>
@@ -63,17 +72,69 @@ namespace BreadFactoryApp
                 FlourStatusChanged?.Invoke(this, new FlourEventArgs(bakingFlour));
                 Thread.Sleep(2000);
 
+                flours.Push(bakingFlour);
+                CountOfLoafsDone++;
+
+
             };
 
 
 
             
-            _timerPackage.Elapsed += (sender, args) => { };
+            _timerPackage.Elapsed += (sender, args) =>
+            {
+                var package = factory.CreatePackage();
+
+                package.Pack();
+                PackageStatusChanged?.Invoke(this, new PackagesEventArgs(package));
+                Thread.Sleep(2000);
+
+                package.Seal();
+                PackageStatusChanged?.Invoke(this, new PackagesEventArgs(package));
+                Thread.Sleep(2000);
+
+                packages.Push(package);
+                CountOfLoafsDone++;
+            };
             
             
             
             
-            _timerLabel.Elapsed += (sender, args) => { };
+            _timerLabel.Elapsed += (sender, args) =>
+            {
+                var label = factory.CreateLabel();
+
+                label.PrintIngredients();
+                label.PrintExpiryDate();
+                label.PrintCertification();
+                LabelStatusChanged?.Invoke(this, new LabelEventArgs(label));
+                labels.Push(label);
+                CountOfLoafsDone++;
+
+                Thread.Sleep(2000);
+            };
+
+            Task.Factory.StartNew(() =>
+            {
+                while (!ManufacturingComplete)
+                {
+                    if (labels.Count > 0 && flours.Count > 0 & packages.Count > 0)
+                    {
+                        var loaf= new BreadLoaf();
+                        loaf.setLabel(labels.Pop());
+                        loaf.setPackage(packages.Pop());
+                        loaf.setFlour(flours.Pop());
+                        Loafs.Enqueue(loaf);
+
+                        Thread.Sleep(2000);
+                    }
+
+                    if (countOfNeededLoaf == CountOfLoafsDone)
+                    {
+                        ManufacturingComplete = true;
+                    }
+                }
+            });
         }
 
         public void StartManufacturing()
@@ -82,41 +143,13 @@ namespace BreadFactoryApp
           _timerFlour.Start();
           _timerLabel.Start();
         }
-    }
 
-    internal class FlourEventArgs:EventArgs
-    {
-        private IFlour flour;
-
-        public FlourEventArgs(IFlour flour)
+        public void StopManufacturing()
         {
-            this.flour = flour;
-        }
-
-        public IFlour Flour => flour;
-    }
-
-    internal class PackagesEventArgs : EventArgs
-    {
-        private IPackage package;
-
-        public PackagesEventArgs(IPackage package)
-        {
-            this.package = package;
-        }
-
-        public IPackage Package => package;
-    }
-
-    internal class LabelEventArgs : EventArgs
-    {
-        private ILabel label;
-
-        public LabelEventArgs(ILabel Label)
-        {
-            this.label = Label;
-        }
-
-        public ILabel Label => label;
+            _timerPackage.Stop();
+            _timerFlour.Stop();
+            _timerLabel.Stop();
+            ManufacturingComplete = true;
+        }   
     }
 }

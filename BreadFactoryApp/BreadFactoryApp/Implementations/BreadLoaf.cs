@@ -27,7 +27,7 @@ namespace BreadFactoryApp.Implementations
         {
             this.package = package;
         }
-        public void setLabel(IFlour flour)
+        public void setFlour(IFlour flour)
         {
             this.flour = flour;
         }
