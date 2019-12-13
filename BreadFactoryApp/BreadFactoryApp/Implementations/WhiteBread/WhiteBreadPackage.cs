@@ -10,11 +10,12 @@ namespace BreadFactoryApp.Implementations
     class WhiteBreadPackage : IPackage
     {
         private string status;
+        private static int id;
 
         public void Pack()
         {
             status = " White bread packing";
-
+            id++;
         }
 
         public void Seal()

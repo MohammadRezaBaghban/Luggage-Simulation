@@ -10,9 +10,11 @@ namespace BreadFactoryApp.Implementations
     class WhiteBreadFlour : IFlour
     {
         private string status = "";
+        private static int id;
         public void Bake()
         {
             status="Baking white bread";
+            id++;
         }
 
         public void Prepare()

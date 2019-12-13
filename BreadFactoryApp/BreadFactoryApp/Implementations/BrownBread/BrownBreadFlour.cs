@@ -5,7 +5,14 @@ namespace BreadFactoryApp.Implementations
 {
     class BrownBreadFlour : IFlour
     {
+        private static int id;
+
         String _status = "";
+
+        public BrownBreadFlour() 
+        {
+            id++;
+        }
 
 
         public void Bake()

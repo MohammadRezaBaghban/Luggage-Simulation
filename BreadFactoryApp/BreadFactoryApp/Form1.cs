@@ -18,5 +18,22 @@ namespace BreadFactoryApp
 
 
         }
+
+        private void btnManufacture_Click(object sender, EventArgs e)
+        {
+            int nbrOfLoafsToBeManufatured=0;
+            nbrOfLoafsToBeManufatured = Convert.ToInt32(tbToBeManufactured.Text);
+            if (rbBrownBread.Checked)
+            {
+
+            }
+            else if (rbWhiteBread.Checked)
+            {
+
+            }
+            else {
+                MessageBox.Show("Please select the type of bread to be manufactured");
+            }
+        }
     }
 }
