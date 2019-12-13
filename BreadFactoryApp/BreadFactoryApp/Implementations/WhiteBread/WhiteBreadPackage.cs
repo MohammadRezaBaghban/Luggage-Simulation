@@ -9,20 +9,23 @@ namespace BreadFactoryApp.Implementations
 {
     class WhiteBreadPackage : IPackage
     {
+        private string status;
+
         public void Pack()
         {
-            
+            status = " White bread packing";
 
         }
 
         public void Seal()
         {
-            throw new NotImplementedException();
+            status = " White bread sealed";
+
         }
 
         public string GetStatus()
         {
-            throw new NotImplementedException();
+            return status;
         }
     }
 }

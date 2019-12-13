@@ -10,19 +10,28 @@ namespace BreadFactoryApp.Implementations
     class WhiteBreadLabel: ILabel
     {
 
+        Random r = new Random();
+        DateTime rDate;
+        public WhiteBreadLabel()
+        {
+            rDate = new DateTime(r.Next(2019, 2020), r.Next(1, 12), r.Next(1, 28));
+
+        }
+
         public String PrintIngredients()
         {
-            throw new NotImplementedException();
+            return $"White Bread";
         }
 
         public DateTime PrintExpiryDate()
         {
-            throw new NotImplementedException();
+            return rDate;
+
         }
 
         public string PrintCertification()
         {
-            throw new NotImplementedException();
+            return $"Dutch certified";
         }
     }
 }

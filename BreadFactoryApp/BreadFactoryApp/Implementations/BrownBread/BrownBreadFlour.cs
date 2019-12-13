@@ -9,32 +9,32 @@ namespace BreadFactoryApp.Implementations
 
         public void Bake()
         {
-            throw new NotImplementedException();
+            _status="Baking brown bread";
         }
 
         public void Prepare()
         {
-            throw new NotImplementedException();
+            _status = "Preparing brown bread";
         }
 
         public void Mix()
         {
-            throw new NotImplementedException();
+            _status = "Mixing brown bread";
         }
 
         public void Freeze()
         {
-            throw new NotImplementedException();
+            _status = "Freezing brown bread";
         }
 
         public void UnFreeze()
         {
-            throw new NotImplementedException();
+            _status = "Unfreezing brown bread";
         }
 
         public void Slice()
         {
-            throw new NotImplementedException();
+            _status = "Slicing brown bread";
         }
 
         public string GetStatus()
