@@ -9,19 +9,27 @@ namespace BreadFactoryApp.Implementations
 {
     class BrownBreadLabel : ILabel
     {
+
+        Random r = new Random();
+        DateTime rDate ;
+        public BrownBreadLabel()
+        {
+             rDate = new DateTime(r.Next(2019, 2020), r.Next(1, 12), r.Next(1, 28));
+
+        }
         public string PrintIngredients()
         {
-            throw new NotImplementedException();
+            return $"Brown Bread";
         }
 
         public DateTime PrintExpiryDate()
         {
-            throw new NotImplementedException();
+            return rDate;
         }
 
         public string PrintCertification()
         {
-            throw new NotImplementedException();
+            return $"French certified";
         }
     }
 }

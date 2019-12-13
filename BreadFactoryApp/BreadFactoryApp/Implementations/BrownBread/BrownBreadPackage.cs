@@ -12,17 +12,17 @@ namespace BreadFactoryApp.Implementations
         private string status;
         public void Pack()
         {
-            throw new NotImplementedException();
+            status = "Brown bread packed";
         }
 
         public void Seal()
         {
-            throw new NotImplementedException();
+            status = "Brown bread sealed";
         }
 
         public string GetStatus()
         {
-            return "";
+            return status;
         }
     }
 }

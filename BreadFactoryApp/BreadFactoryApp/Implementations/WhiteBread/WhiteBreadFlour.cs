@@ -9,39 +9,45 @@ namespace BreadFactoryApp.Implementations
 {
     class WhiteBreadFlour : IFlour
     {
+        private string status = "";
         public void Bake()
         {
-            throw new NotImplementedException();
+            status="Baking white bread";
         }
 
         public void Prepare()
         {
-            throw new NotImplementedException();
+            status = "Preparing white bread";
+
         }
 
         public void Mix()
         {
-            throw new NotImplementedException();
+            status = "Mixing white bread";
+
         }
 
         public void Freeze()
         {
-            throw new NotImplementedException();
+            status = "Freezing white bread";
+
         }
 
         public void UnFreeze()
         {
-            throw new NotImplementedException();
+            status = "Unfreezing white bread";
+
         }
 
         public void Slice()
         {
-            throw new NotImplementedException();
+            status = "Slicing white bread";
+
         }
 
         public string GetStatus()
         {
-            throw new NotImplementedException();
+            return status;
         }
     }
 }
