@@ -16,5 +16,7 @@ namespace BreadFactoryApp.Interfaces
         void Slice();
 
         String GetStatus();
+
+        int getID();
     }
 }

@@ -12,7 +12,15 @@ namespace BreadFactoryApp.Implementations
         private ILabel label;
         private IPackage package;
         private IFlour flour;
-      
+        private int _id;
+        private static int IdToGive;
+
+        public BreadLoaf()
+        {
+            _id = ++IdToGive;
+
+        }
+
         public IPackage Package => package;
 
         public IFlour Flour => flour;
@@ -30,6 +38,16 @@ namespace BreadFactoryApp.Implementations
         public void setFlour(IFlour flour)
         {
             this.flour = flour;
+        }
+
+        public int getID()
+        { 
+            return _id;
+        }
+
+        public string ToString()
+        {
+            return $"Loaf id" + _id + "Expiry Date" + label.PrintExpiryDate() + "" ;
         }
     }
 }

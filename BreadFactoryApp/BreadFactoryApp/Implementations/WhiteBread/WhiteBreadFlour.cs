@@ -10,11 +10,19 @@ namespace BreadFactoryApp.Implementations
     class WhiteBreadFlour : IFlour
     {
         private string status = "";
-        private static int id;
+        private int id;
+        private static int IdToGive;
+
+        public WhiteBreadFlour()
+        {
+            id = ++IdToGive;
+        }
+
         public void Bake()
         {
-            status="Baking white bread";
-            id++;
+            status = "Baking white bread";
+
+
         }
 
         public void Prepare()
@@ -50,6 +58,11 @@ namespace BreadFactoryApp.Implementations
         public string GetStatus()
         {
             return status;
+        }
+
+        public int getID()
+        {
+            return id;
         }
     }
 }

@@ -14,141 +14,178 @@ namespace BreadFactoryApp
     {
         private IBreadFactory factory;
         private bool ManufacturingComplete;
-        private readonly int CountOfNeededLoaf;
-        private int CountOfLoafsDone = 0 ;
+        private readonly int _countOfNeededLoaf;
+        private int _countOfLoafsDone = 0 ;
 
-        Timer _timerFlour=new Timer(10000);
-        Timer _timerPackage=new Timer(7000);
-        Timer _timerLabel=new Timer(5000);
+        Timer _timerFlour=new Timer(6000);
+        Timer _timerPackage=new Timer(4000);
+        Timer _timerLabel=new Timer(2000);
 
+        private int _countOfFlourDone = 0;
+        private int _countOfLabelsDone = 0;
+        private int _countOfPackagesDone = 0;
         
-        private Queue<BreadLoaf> Loafs;
-        private Stack<IFlour> flours;
-        private Stack<IPackage> packages;
-        private Stack<ILabel> labels;
+        private readonly Queue<BreadLoaf> _loafs;
+        private readonly Stack<IFlour> _flours;
+        private readonly Stack<IPackage> _packages;
+        private readonly Stack<ILabel> _labels;
 
         public static EventHandler<FlourEventArgs> FlourStatusChanged;
         public static EventHandler<PackagesEventArgs> PackageStatusChanged;
         public static EventHandler<LabelEventArgs> LabelStatusChanged;
+        public static EventHandler<LoafsEventArgs> LoafsUpdated;
 
         public GenericBreadFactory(IBreadFactory factory, int countOfNeededLoaf)
         {
             this.factory = factory; 
 
-            Loafs= new Queue<BreadLoaf>();
-            flours = new Stack<IFlour>();
-            labels = new Stack<ILabel>();
-            packages = new Stack<IPackage>();
+            _loafs= new Queue<BreadLoaf>();
+            _flours = new Stack<IFlour>();
+            _labels = new Stack<ILabel>();
+            _packages = new Stack<IPackage>();
 
-            CountOfNeededLoaf = countOfNeededLoaf;
+            
+            _countOfNeededLoaf = countOfNeededLoaf;
 
             _timerFlour.Elapsed += (sender, args) =>
             {
-                var bakingFlour = factory.CreateBakingFlour();
-
-                bakingFlour.Prepare();
-                FlourStatusChanged?.Invoke(this, new FlourEventArgs(bakingFlour));
-                Thread.Sleep(2000);
-
-                bakingFlour.Mix();
-                FlourStatusChanged?.Invoke(this, new FlourEventArgs(bakingFlour));
-                Thread.Sleep(2000);
-
-
-                bakingFlour.Freeze();
-                FlourStatusChanged?.Invoke(this, new FlourEventArgs(bakingFlour));
-                Thread.Sleep(2000);
-
-
-                bakingFlour.UnFreeze();
-                FlourStatusChanged?.Invoke(this, new FlourEventArgs(bakingFlour));
-                Thread.Sleep(2000);
-
-                bakingFlour.Bake();
-                FlourStatusChanged?.Invoke(this, new FlourEventArgs(bakingFlour));
-                Thread.Sleep(2000);
-
-                bakingFlour.Slice();
-                FlourStatusChanged?.Invoke(this, new FlourEventArgs(bakingFlour));
-                Thread.Sleep(2000);
-
-                flours.Push(bakingFlour);
-                CountOfLoafsDone++;
-
-
+                if (ManufacturingComplete || _countOfFlourDone == _countOfNeededLoaf) { _timerFlour.Stop(); return; }
+                DoFlour();
             };
 
 
-
-            
             _timerPackage.Elapsed += (sender, args) =>
             {
-                var package = factory.CreatePackage();
+                if(_countOfPackagesDone == _countOfNeededLoaf||ManufacturingComplete  ) {_timerPackage.Stop(); return;}
 
-                package.Pack();
-                PackageStatusChanged?.Invoke(this, new PackagesEventArgs(package));
-                Thread.Sleep(2000);
-
-                package.Seal();
-                PackageStatusChanged?.Invoke(this, new PackagesEventArgs(package));
-                Thread.Sleep(2000);
-
-                packages.Push(package);
-                CountOfLoafsDone++;
+                DoPackage();
             };
-            
-            
-            
-            
+
+
             _timerLabel.Elapsed += (sender, args) =>
             {
-                var label = factory.CreateLabel();
-
-                label.PrintIngredients();
-                label.PrintExpiryDate();
-                label.PrintCertification();
-                LabelStatusChanged?.Invoke(this, new LabelEventArgs(label));
-                labels.Push(label);
-                CountOfLoafsDone++;
-
+                if(ManufacturingComplete || _countOfLabelsDone== _countOfNeededLoaf) {_timerLabel.Stop(); return;}
+                
+                DoLabel();
                 Thread.Sleep(2000);
             };
 
-            Task.Factory.StartNew(() =>
-            {
-                while (!ManufacturingComplete)
-                {
-                    if (labels.Count > 0 && flours.Count > 0 & packages.Count > 0)
-                    {
-                        var loaf= new BreadLoaf();
-                        loaf.setLabel(labels.Pop());
-                        loaf.setPackage(packages.Pop());
-                        loaf.setFlour(flours.Pop());
-                        Loafs.Enqueue(loaf);
-
-                        Thread.Sleep(2000);
-                    }
-
-                    if (countOfNeededLoaf == CountOfLoafsDone)
-                    {
-                        ManufacturingComplete = true;
-                    }
-                }
-            });
+            
         }
+
+        private void DoPackage()
+        {
+            var package = factory.CreatePackage();
+
+            package.Pack();
+            PackageStatusChanged?.Invoke(this, new PackagesEventArgs(package));
+            Thread.Sleep(2000);
+
+            package.Seal();
+            _countOfPackagesDone++;
+            _packages.Push(package);
+            PackageStatusChanged?.Invoke(this, new PackagesEventArgs(package));
+
+
+        }
+
+        private void DoLabel()
+        {
+            var label = factory.CreateLabel();
+            label.PrintIngredients();
+            label.PrintExpiryDate();
+            label.PrintCertification();
+            _countOfLabelsDone++;
+            _labels.Push(label);
+            LabelStatusChanged?.Invoke(this, new LabelEventArgs(label));
+
+        }
+
+        private void DoFlour()
+        {
+            var bakingFlour = factory.CreateBakingFlour();
+
+            bakingFlour.Prepare();
+            FlourStatusChanged?.Invoke(this, new FlourEventArgs(bakingFlour));
+            Thread.Sleep(500);
+
+            bakingFlour.Mix();
+            FlourStatusChanged?.Invoke(this, new FlourEventArgs(bakingFlour));
+            Thread.Sleep(1000);
+
+
+            bakingFlour.Freeze();
+            FlourStatusChanged?.Invoke(this, new FlourEventArgs(bakingFlour));
+            Thread.Sleep(1000);
+
+
+            bakingFlour.UnFreeze();
+            FlourStatusChanged?.Invoke(this, new FlourEventArgs(bakingFlour));
+            Thread.Sleep(1000);
+
+            bakingFlour.Bake();
+            FlourStatusChanged?.Invoke(this, new FlourEventArgs(bakingFlour));
+            Thread.Sleep(2000);
+
+            bakingFlour.Slice();
+
+            _flours.Push(bakingFlour);
+            _countOfFlourDone++;
+            FlourStatusChanged?.Invoke(this, new FlourEventArgs(bakingFlour));
+
+        }
+
+
+        public Queue<BreadLoaf> Loafs => _loafs;
 
         public void StartManufacturing()
         {
-          _timerPackage.Start();
-          _timerFlour.Start();
-          _timerLabel.Start();
+            if (_countOfNeededLoaf == 1)
+            {
+                DoFlour();
+                DoLabel();
+                DoPackage();
+                DoLoaf();
+
+                return;
+            }
+
+            _timerFlour.Start();
+            _timerPackage.Start();
+            _timerLabel.Start();
+            while (!ManufacturingComplete)
+            {
+                if (_labels.Count > 0 && _flours.Count > 0 && _packages.Count > 0)
+                {
+                    DoLoaf();
+                }
+
+                if (_countOfLoafsDone >= _countOfNeededLoaf)
+                {
+                    StopManufacturing();
+                    ManufacturingComplete = true;
+                }
+            }
+        }
+
+        private void DoLoaf()
+        {
+            var loaf = new BreadLoaf();
+            loaf.setLabel(_labels.Pop());
+            loaf.setPackage(_packages.Pop());
+            loaf.setFlour(_flours.Pop());
+            _loafs.Enqueue(loaf);
+            _countOfLoafsDone++;
+
+            LoafsUpdated?.Invoke(this, new LoafsEventArgs(loaf));
         }
 
         public void StopManufacturing()
         {
+            
             _timerPackage.Stop();
-            _timerFlour.Stop();
             _timerLabel.Stop();
+            _timerFlour.Stop();
             ManufacturingComplete = true;
         }   
     }

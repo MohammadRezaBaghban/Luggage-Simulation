@@ -9,17 +9,19 @@ namespace BreadFactoryApp.Implementations
 {
     class WhiteBreadLabel: ILabel
     {
-        private static int id;
+        private int id;
+        private static int IdToGive;
 
         Random r = new Random();
         DateTime rDate;
         public WhiteBreadLabel()
         {
             rDate = new DateTime(r.Next(2019, 2020), r.Next(1, 12), r.Next(1, 28));
-            id++;
+            id = ++IdToGive;
+
         }
 
-    public String PrintIngredients()
+        public String PrintIngredients()
         {
             return $"White Bread";
         }
@@ -33,6 +35,11 @@ namespace BreadFactoryApp.Implementations
         public string PrintCertification()
         {
             return $"Dutch certified";
+        }
+
+        public int getID()
+        {
+            return id;
         }
     }
 }

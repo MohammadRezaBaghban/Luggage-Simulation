@@ -43,9 +43,10 @@
             // rbBrownBread
             // 
             this.rbBrownBread.AutoSize = true;
-            this.rbBrownBread.Location = new System.Drawing.Point(53, 88);
+            this.rbBrownBread.Location = new System.Drawing.Point(26, 46);
+            this.rbBrownBread.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rbBrownBread.Name = "rbBrownBread";
-            this.rbBrownBread.Size = new System.Drawing.Size(172, 29);
+            this.rbBrownBread.Size = new System.Drawing.Size(89, 17);
             this.rbBrownBread.TabIndex = 0;
             this.rbBrownBread.TabStop = true;
             this.rbBrownBread.Text = "Brown Bread ";
@@ -54,9 +55,10 @@
             // rbWhiteBread
             // 
             this.rbWhiteBread.AutoSize = true;
-            this.rbWhiteBread.Location = new System.Drawing.Point(53, 176);
+            this.rbWhiteBread.Location = new System.Drawing.Point(26, 92);
+            this.rbWhiteBread.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rbWhiteBread.Name = "rbWhiteBread";
-            this.rbWhiteBread.Size = new System.Drawing.Size(167, 29);
+            this.rbWhiteBread.Size = new System.Drawing.Size(87, 17);
             this.rbWhiteBread.TabIndex = 1;
             this.rbWhiteBread.TabStop = true;
             this.rbWhiteBread.Text = "White Bread ";
@@ -64,16 +66,18 @@
             // 
             // tbToBeManufactured
             // 
-            this.tbToBeManufactured.Location = new System.Drawing.Point(45, 296);
+            this.tbToBeManufactured.Location = new System.Drawing.Point(22, 154);
+            this.tbToBeManufactured.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbToBeManufactured.Name = "tbToBeManufactured";
-            this.tbToBeManufactured.Size = new System.Drawing.Size(356, 31);
+            this.tbToBeManufactured.Size = new System.Drawing.Size(180, 20);
             this.tbToBeManufactured.TabIndex = 2;
             // 
             // btnManufacture
             // 
-            this.btnManufacture.Location = new System.Drawing.Point(45, 376);
+            this.btnManufacture.Location = new System.Drawing.Point(11, 196);
+            this.btnManufacture.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnManufacture.Name = "btnManufacture";
-            this.btnManufacture.Size = new System.Drawing.Size(175, 62);
+            this.btnManufacture.Size = new System.Drawing.Size(88, 47);
             this.btnManufacture.TabIndex = 3;
             this.btnManufacture.Text = "Manufacture";
             this.btnManufacture.UseVisualStyleBackColor = true;
@@ -82,62 +86,65 @@
             // lbLogger
             // 
             this.lbLogger.FormattingEnabled = true;
-            this.lbLogger.ItemHeight = 25;
-            this.lbLogger.Location = new System.Drawing.Point(433, 12);
+            this.lbLogger.Location = new System.Drawing.Point(216, 6);
+            this.lbLogger.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lbLogger.Name = "lbLogger";
-            this.lbLogger.Size = new System.Drawing.Size(456, 879);
+            this.lbLogger.Size = new System.Drawing.Size(362, 459);
             this.lbLogger.TabIndex = 4;
             // 
             // lbFlourUpdates
             // 
             this.lbFlourUpdates.FormattingEnabled = true;
-            this.lbFlourUpdates.ItemHeight = 25;
-            this.lbFlourUpdates.Location = new System.Drawing.Point(905, 12);
+            this.lbFlourUpdates.Location = new System.Drawing.Point(582, 6);
+            this.lbFlourUpdates.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lbFlourUpdates.Name = "lbFlourUpdates";
-            this.lbFlourUpdates.Size = new System.Drawing.Size(474, 279);
+            this.lbFlourUpdates.Size = new System.Drawing.Size(239, 147);
             this.lbFlourUpdates.TabIndex = 5;
             // 
             // lbPackagingUpdates
             // 
             this.lbPackagingUpdates.FormattingEnabled = true;
-            this.lbPackagingUpdates.ItemHeight = 25;
-            this.lbPackagingUpdates.Location = new System.Drawing.Point(905, 315);
+            this.lbPackagingUpdates.Location = new System.Drawing.Point(582, 164);
+            this.lbPackagingUpdates.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lbPackagingUpdates.Name = "lbPackagingUpdates";
-            this.lbPackagingUpdates.Size = new System.Drawing.Size(474, 279);
+            this.lbPackagingUpdates.Size = new System.Drawing.Size(239, 147);
             this.lbPackagingUpdates.TabIndex = 6;
             // 
             // lbLabelingUpdates
             // 
             this.lbLabelingUpdates.FormattingEnabled = true;
-            this.lbLabelingUpdates.ItemHeight = 25;
-            this.lbLabelingUpdates.Location = new System.Drawing.Point(905, 612);
+            this.lbLabelingUpdates.Location = new System.Drawing.Point(582, 318);
+            this.lbLabelingUpdates.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lbLabelingUpdates.Name = "lbLabelingUpdates";
-            this.lbLabelingUpdates.Size = new System.Drawing.Size(474, 279);
+            this.lbLabelingUpdates.Size = new System.Drawing.Size(239, 147);
             this.lbLabelingUpdates.TabIndex = 7;
             // 
             // btnStopManufacture
             // 
-            this.btnStopManufacture.Location = new System.Drawing.Point(226, 376);
+            this.btnStopManufacture.Location = new System.Drawing.Point(113, 196);
+            this.btnStopManufacture.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStopManufacture.Name = "btnStopManufacture";
-            this.btnStopManufacture.Size = new System.Drawing.Size(175, 62);
+            this.btnStopManufacture.Size = new System.Drawing.Size(88, 47);
             this.btnStopManufacture.TabIndex = 8;
             this.btnStopManufacture.Text = "Stop Manufacture";
             this.btnStopManufacture.UseVisualStyleBackColor = true;
+            this.btnStopManufacture.Click += new System.EventHandler(this.btnStopManufacture_Click);
             // 
             // lbNbrOfLoafToBeMade
             // 
             this.lbNbrOfLoafToBeMade.AutoSize = true;
-            this.lbNbrOfLoafToBeMade.Location = new System.Drawing.Point(40, 266);
+            this.lbNbrOfLoafToBeMade.Location = new System.Drawing.Point(20, 138);
+            this.lbNbrOfLoafToBeMade.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbNbrOfLoafToBeMade.Name = "lbNbrOfLoafToBeMade";
-            this.lbNbrOfLoafToBeMade.Size = new System.Drawing.Size(235, 25);
+            this.lbNbrOfLoafToBeMade.Size = new System.Drawing.Size(117, 13);
             this.lbNbrOfLoafToBeMade.TabIndex = 9;
             this.lbNbrOfLoafToBeMade.Text = "Nbr of loafs to be made";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1664, 908);
+            this.ClientSize = new System.Drawing.Size(832, 472);
             this.Controls.Add(this.lbNbrOfLoafToBeMade);
             this.Controls.Add(this.btnStopManufacture);
             this.Controls.Add(this.lbLabelingUpdates);
@@ -148,6 +155,7 @@
             this.Controls.Add(this.tbToBeManufactured);
             this.Controls.Add(this.rbWhiteBread);
             this.Controls.Add(this.rbBrownBread);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);

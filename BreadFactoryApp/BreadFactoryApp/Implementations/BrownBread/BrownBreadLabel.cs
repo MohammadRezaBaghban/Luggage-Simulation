@@ -9,14 +9,18 @@ namespace BreadFactoryApp.Implementations
 {
     class BrownBreadLabel : ILabel
     {
-        private static int id;
+        private  int id;
+        private static int IdToGive;
 
         Random r = new Random();
         DateTime rDate ;
+        TimeSpan ts = new TimeSpan(10, 30, 0);
         public BrownBreadLabel()
         {
-             rDate = new DateTime(r.Next(2019, 2020), r.Next(1, 12), r.Next(1, 28));
-            id++;
+
+            rDate = new DateTime(r.Next(2019, 2020), r.Next(1, 12), r.Next(1, 28)) +ts;
+            id= ++IdToGive;
+
         }
         public string PrintIngredients()
         {
@@ -31,6 +35,11 @@ namespace BreadFactoryApp.Implementations
         public string PrintCertification()
         {
             return $"French certified";
+        }
+
+        public int getID()
+        {
+            return id;
         }
     }
 }

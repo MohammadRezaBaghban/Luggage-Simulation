@@ -12,5 +12,7 @@ namespace BreadFactoryApp.Interfaces
         DateTime PrintExpiryDate();
         String PrintCertification();
 
+        int getID();
+
     }
 }

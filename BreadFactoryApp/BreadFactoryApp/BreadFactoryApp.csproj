@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implementations\FlourEventArgs.cs" />
+    <Compile Include="Implementations\Events\FlourEventArgs.cs" />
     <Compile Include="Implementations\GenericBreadFactory.cs" />
     <Compile Include="Implementations\BreadLoaf.cs" />
     <Compile Include="Implementations\BrownBread\BrownBreadFactory.cs" />
@@ -59,8 +59,9 @@
     <Compile Include="Implementations\BrownBread\BrownBreadFlour.cs" />
     <Compile Include="Implementations\BrownBread\BrownBreadLabel.cs" />
     <Compile Include="Implementations\BrownBread\BrownBreadPackage.cs" />
-    <Compile Include="Implementations\LabelEventArgs.cs" />
-    <Compile Include="Implementations\PackagesEventArgs.cs" />
+    <Compile Include="Implementations\Events\LabelEventArgs.cs" />
+    <Compile Include="Implementations\Events\LoafsEventArgs.cs" />
+    <Compile Include="Implementations\Events\PackagesEventArgs.cs" />
     <Compile Include="Implementations\WhiteBread\WhiteBreadFlour.cs" />
     <Compile Include="Implementations\WhiteBread\WhiteBreadLabel.cs" />
     <Compile Include="Implementations\WhiteBread\WhiteBreadPackage.cs" />
