@@ -22,7 +22,7 @@ namespace BreadFactoryApp.Implementations
 
         public string GetStatus()
         {
-            return "";
+            return status;
         }
     }
 }

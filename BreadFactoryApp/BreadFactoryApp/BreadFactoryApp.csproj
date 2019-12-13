@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GenericBreadFactory.cs" />
+    <Compile Include="Implementations\GenericBreadFactory.cs" />
     <Compile Include="Implementations\BreadLoaf.cs" />
     <Compile Include="Implementations\BrownBread\BrownBreadFactory.cs" />
     <Compile Include="Form1.cs">
