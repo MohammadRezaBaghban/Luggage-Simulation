@@ -182,25 +182,27 @@ namespace Rail_Bag_Simulation
                         var nbrCarts = Convert.ToInt32(carts);
                         if (nbrCarts > 1000)
                         {
-                            nbrCarts = 1;
+                            nbrCarts = 200;
                         }
                         else if(nbrCarts>750)
                         {
-                            nbrCarts = 100;
+                            nbrCarts = 400;
                         }
                         else if (nbrCarts > 500)
                         {
-                            nbrCarts = 200;
+                            nbrCarts = 600;
                         }
                         else if (nbrCarts > 250)
                         {
-                            nbrCarts =350;
+                            nbrCarts =750;
                         }
                         else
                         {
-                            nbrCarts = 400;
+                            nbrCarts = 900;
                         }
-                        airport = new Airport(nbrCarts);
+
+                        
+                        airport = new Airport(100);
                         airport.CreateMapLayout(5);
 
                         simulation1.Map_The_Converyors(airport.GetConveyorsList());

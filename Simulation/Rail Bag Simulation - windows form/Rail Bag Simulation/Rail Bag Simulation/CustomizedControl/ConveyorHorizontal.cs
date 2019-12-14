@@ -36,9 +36,11 @@ namespace Rail_Bag_Simulation.CustomizedControl
 
         public void InvokeUpdateControls(object sender, EventArgs eventArgs)
         {
+           
             if (this.InvokeRequired)
             {
-                this.Invoke(new UpdateControlsDelegate(UpdateTheConveyor));
+              
+                    this.Invoke(new ConveyorHorizontal.UpdateControlsDelegate(UpdateTheConveyor));
             }
             else
             {
@@ -48,9 +50,11 @@ namespace Rail_Bag_Simulation.CustomizedControl
 
         public void UpdateTheConveyor()
         {
-            
-            ((Simulation) Parent).Update(conveyor, this);
-            
+            lock (conveyor.ListOfBagsInQueue)
+            {
+                ((Simulation) Parent).Update(conveyor, this);
+            }
+
         }
 
         private void Slot3_Click(object sender, EventArgs e)
