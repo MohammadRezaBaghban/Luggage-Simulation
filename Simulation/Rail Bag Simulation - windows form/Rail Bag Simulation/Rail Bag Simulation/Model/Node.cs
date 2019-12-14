@@ -43,7 +43,6 @@ namespace Rail_Bag_Simulation
             lock (BagsQueue)
             {
                 BagsQueue.Enqueue(b);
-                OnQueueChangedEventHandler?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -64,8 +63,6 @@ namespace Rail_Bag_Simulation
                 if (BagsQueue.Count < 1)
                     return null;
                 var bag = BagsQueue.Dequeue();
-                OnQueueChangedEventHandler?.Invoke(this, EventArgs.Empty);
-
                 return bag;
             }
         }
@@ -98,8 +95,9 @@ namespace Rail_Bag_Simulation
             lock (BagsQueue)
             {
                 if (GetNext().IsNull()) return;
-                while (GetNext() is ConveyorNode next && next.IsFull)
+                if (GetNext() is ConveyorNode next && next.IsFull)
                 {
+                    return;
                 }
 
                 GetNext().Push(Remove());

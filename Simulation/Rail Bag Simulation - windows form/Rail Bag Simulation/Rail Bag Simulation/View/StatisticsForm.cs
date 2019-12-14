@@ -45,15 +45,16 @@ namespace Rail_Bag_Simulation.View
             dt.Columns.Add("Percentile #.");
             dt.Columns.Add("Time Taken To Reach Gate Per Second");
 
-            if (!LinkedList.IsSimulationFinished) return;
-            for (int i = 0; i < LinkedList.TimelyWatchedBagWithStopWatch.Keys.ToList().Count; i++)
+            if (LinkedList.IsSimulationFinished)
             {
-                dt.Rows.Add(new object[]
-                    {i, LinkedList.TimelyWatchedBagWithStopWatch.Keys.ToList()[i].ElapsedMilliseconds / 1000});
-            }
+                for (int i = 0; i < LinkedList.TimelyWatchedBagWithStopWatch.Keys.ToList().Count; i++)
+                {
+                    dt.Rows.Add(new object[]
+                        {i, LinkedList.TimelyWatchedBagWithStopWatch.Keys.ToList()[i].ElapsedMilliseconds / 1000});
+                }
 
-            dt.Rows.Add(new object[] {"Average", LinkedList.AverageTimePerBag});
-            
+                dt.Rows.Add(new object[] {"Average", LinkedList.AverageTimePerBag});
+            }
         }
         private double updateChartSuccessfullBags()
         {

@@ -87,13 +87,12 @@ namespace Rail_Bag_Simulation
                 var next = DetermineNextConveyorNode();
                 while (next.IsNull()) return;
 
+                if (next.IsFull)
+                {
+                    return;
+                }
                 var bag = Remove();
                 if (bag.IsNull()) return;
-
-                while (next.IsFull)
-                {
-                }
-
                 next.Push(bag);
                 OnQueueChangedEventHandler?.Invoke(this, EventArgs.Empty);
             }

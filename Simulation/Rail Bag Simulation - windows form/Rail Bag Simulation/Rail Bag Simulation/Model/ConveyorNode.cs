@@ -58,6 +58,7 @@ namespace Rail_Bag_Simulation
 
         public override Bag Remove()
         {
+            Bag bag;
             lock (BagsQueue)
             {
                 if (BagsQueue.Count < 1)
@@ -66,10 +67,12 @@ namespace Rail_Bag_Simulation
                     return null;
                 }
 
-                var bag = BagsQueue.Dequeue();
+                bag = BagsQueue.Dequeue();
                 IsFull = false;
-                return bag;
             }
+
+            return bag;
+            
         }
 
 
