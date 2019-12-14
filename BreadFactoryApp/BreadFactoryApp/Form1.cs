@@ -40,7 +40,7 @@ namespace BreadFactoryApp
                 else
                 {
                     MessageBox.Show("Please select the type of bread to be manufactured");
-
+                    return;
                 }
 
 
@@ -49,7 +49,7 @@ namespace BreadFactoryApp
                 GenericBreadFactory.FlourStatusChanged += flourUpdate;
                 GenericBreadFactory.LoafsUpdated += loafUpdate;
 
-                Thread t = new Thread(() =>
+                var t = new Thread(() =>
                 {
                     _factory.StartManufacturing();
                 });
@@ -90,7 +90,7 @@ namespace BreadFactoryApp
         {
             lbLogger.Invoke(new Action(() =>
             {
-                lbLogger.Items.Add(lf.Loaf.getID() + " " + lf.Loaf.ToString());
+                lbLogger.Items.Add(lf.Loaf);
             }));
         }
 

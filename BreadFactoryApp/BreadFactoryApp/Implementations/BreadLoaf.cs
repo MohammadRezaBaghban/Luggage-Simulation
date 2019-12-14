@@ -21,12 +21,6 @@ namespace BreadFactoryApp.Implementations
 
         }
 
-        public IPackage Package => package;
-
-        public IFlour Flour => flour;
-
-        public ILabel Label => label;
-
         public void setLabel(ILabel label)
         {
             this.label = label;
@@ -45,9 +39,9 @@ namespace BreadFactoryApp.Implementations
             return _id;
         }
 
-        public string ToString()
+        public override string ToString()
         {
-            return $"Loaf id" + _id + "Expiry Date" + label.PrintExpiryDate() + "" ;
+            return $"Loaf id " + _id + " Expiry Date: " + label.PrintExpiryDate();
         }
     }
 }
