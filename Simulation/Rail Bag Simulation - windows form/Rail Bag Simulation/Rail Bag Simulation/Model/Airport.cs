@@ -136,10 +136,6 @@ namespace Rail_Bag_Simulation
             //3 check ins 3 security 1 bag sort 2 terminals 5 gates
             if (_isMapCreated) return;
 
-<<<<<<< HEAD
-        
-=======
->>>>>>> a07b083e01ecbb4abe982c23b52339beb8bc7cd7
             //Create Check in One then conveyor to Security 1 then security 1 then conveyor to BagSort
             Node checkIn1 = new CheckinNode();
             Node CheckIn1_To_Security1_Conveyor = new ConveyorNode(queueSizeOfBelts);
@@ -272,7 +268,7 @@ namespace Rail_Bag_Simulation
         public void CreateMapLayoutThree(int queueSizeOfBelts)
         {
             //2 checkins per security 2 securities 1 bagsort 2 terminals with 2 gates each
-<<<<<<< HEAD
+
             if (_isMapCreated) return;
 
             Node checkIn1 = new CheckinNode();
@@ -358,8 +354,6 @@ namespace Rail_Bag_Simulation
             Ll.AddNode(Conveyor_Terminal2_To_Gate1.Id, Conveyor_Terminal2_To_Gate1.GetType(), t2gate1);
             Ll.AddNode(terminal2.Id, terminal2.GetType(), Conveyor_Terminal2_To_Gate2);
             Ll.AddNode(Conveyor_Terminal2_To_Gate2.Id, Conveyor_Terminal2_To_Gate2.GetType(), t2gate2);
-=======
->>>>>>> a07b083e01ecbb4abe982c23b52339beb8bc7cd7
         }
 
 
