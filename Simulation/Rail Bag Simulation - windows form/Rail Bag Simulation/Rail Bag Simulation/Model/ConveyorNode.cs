@@ -30,7 +30,9 @@ namespace Rail_Bag_Simulation
                 var count = BagsQueue.Count;
                 if (count < _setsize - 1) BagsQueue.Enqueue(null);
                 if (count == _setsize) IsFull = true;
+
             }
+            OnQueueChangedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         public override void AddNode(int parentid, Type parenttype, Node _nodetoadd)
@@ -70,7 +72,7 @@ namespace Rail_Bag_Simulation
                 bag = BagsQueue.Dequeue();
                 IsFull = false;
             }
-
+            OnQueueChangedEventHandler?.Invoke(this, EventArgs.Empty);
             return bag;
             
         }
@@ -89,9 +91,10 @@ namespace Rail_Bag_Simulation
             if (GetNext() is ConveyorNode next && next.IsFull) return;
 
             var bag = Remove();
+           
+
             if (bag.IsNull()) return;
             GetNext().Push(bag);
-            OnQueueChangedEventHandler?.Invoke(this, EventArgs.Empty);
 
         }
     }

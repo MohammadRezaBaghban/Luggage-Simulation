@@ -202,7 +202,7 @@ namespace Rail_Bag_Simulation
                         }
 
                         
-                        airport = new Airport(100);
+                        airport = new Airport(1000);
                         airport.CreateMapLayout(5);
 
                         simulation1.Map_The_Converyors(airport.GetConveyorsList());
