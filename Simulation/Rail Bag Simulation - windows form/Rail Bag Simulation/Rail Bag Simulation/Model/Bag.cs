@@ -158,6 +158,5 @@ namespace Rail_Bag_Simulation
             return _suspicious;
         }
 
-        public 
     }
 }
