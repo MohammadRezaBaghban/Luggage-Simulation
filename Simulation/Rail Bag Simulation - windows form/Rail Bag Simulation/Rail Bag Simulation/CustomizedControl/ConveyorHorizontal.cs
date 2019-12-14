@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
+using System.Windows.Threading;
+using Rail_Bag_Simulation.View.UserControls;
 
 namespace Rail_Bag_Simulation.CustomizedControl
 {
-    public partial class ConveyorHorizontal : UserControl
+    public partial class ConveyorHorizontal : UserControl, IConveyor
     {
         private ConveyorNode conveyor;
-        private readonly List<PictureBox> slots;
+        public List<PictureBox> slots { get; set; }
 
         public ConveyorHorizontal()
         {
@@ -26,16 +29,33 @@ namespace Rail_Bag_Simulation.CustomizedControl
         public void SetConveyor(ConveyorNode cn)
         {
             conveyor = cn;
-            conveyor.OnQueueChangedEventHandler += UpdateTheConveyor;
+            conveyor.OnQueueChangedEventHandler += InvokeUpdateControls;
         }
 
-        public void UpdateTheConveyor(Object o, EventArgs eventArgs)
+        public delegate void UpdateControlsDelegate();
+
+        public void InvokeUpdateControls(object sender, EventArgs eventArgs)
         {
-            lock (conveyor.ListOfBagsInQueue)
+            if (this.InvokeRequired)
             {
-                for (var i = 0; i < conveyor.ListOfBagsInQueue.ToList().Count; i++)
-                    slots[i].Visible = conveyor.ListOfBagsInQueue.ToList()[i] != null;
+                this.Invoke(new UpdateControlsDelegate(UpdateTheConveyor));
             }
+            else
+            {
+                UpdateTheConveyor();
+            }
+        }
+
+        public void UpdateTheConveyor()
+        {
+            
+            ((Simulation) Parent).Update(conveyor, this);
+            
+        }
+
+        private void Slot3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

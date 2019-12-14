@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Rail_Bag_Simulation
 {
-    internal class SecurityNode : Node
+    public class SecurityNode : Node
     {
         private static int _idToGive;
 
@@ -52,9 +52,9 @@ namespace Rail_Bag_Simulation
             Bag b = null;
             try
             {
-                lock (ListOfBagsInQueue)
+                lock (BagsQueue)
                 {
-                    b = ListOfBagsInQueue.Dequeue();
+                    b = base.Remove();
                 }
             }
             catch (Exception)

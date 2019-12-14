@@ -5,7 +5,6 @@ using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
 {
-
     public class Node : INode
     {
         protected readonly Queue<Bag> BagsQueue;
@@ -14,7 +13,6 @@ namespace Rail_Bag_Simulation
 
         protected Node()
         {
-           
             SetNext(null);
             BagsQueue = new Queue<Bag>();
         }
@@ -45,6 +43,7 @@ namespace Rail_Bag_Simulation
             lock (BagsQueue)
             {
                 BagsQueue.Enqueue(b);
+                OnQueueChangedEventHandler?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -65,6 +64,8 @@ namespace Rail_Bag_Simulation
                 if (BagsQueue.Count < 1)
                     return null;
                 var bag = BagsQueue.Dequeue();
+                OnQueueChangedEventHandler?.Invoke(this, EventArgs.Empty);
+
                 return bag;
             }
         }
@@ -94,12 +95,15 @@ namespace Rail_Bag_Simulation
 
         public virtual void MoveBagToNextNode()
         {
-            if (GetNext().IsNull()) return;
-            while (GetNext() is ConveyorNode next && next.IsFull)
+            lock (BagsQueue)
             {
-            }
+                if (GetNext().IsNull()) return;
+                while (GetNext() is ConveyorNode next && next.IsFull)
+                {
+                }
 
-            GetNext().Push(Remove());
+                GetNext().Push(Remove());
+            }
         }
     }
 }

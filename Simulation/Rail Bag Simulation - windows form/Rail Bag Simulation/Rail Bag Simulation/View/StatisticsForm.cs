@@ -1,25 +1,28 @@
-﻿using System;
-using System.Windows.Forms;
-using LiveCharts; 
+﻿using System.Windows.Forms;
+using LiveCharts;
 using LiveCharts.Wpf;
 using LiveCharts.WinForms;
 using System.Threading;
 using System.Data;
 using System.Linq;
+using System;
+using System.Threading.Tasks;
+using Timer = System.Windows.Forms.Timer;
 
-namespace Rail_Bag_Simulation.View.UserControls
+
+namespace Rail_Bag_Simulation.View
 {
-    public partial class Statistics : UserControl
+    public partial class StatisticsForm : Form
     {
-        public Statistics()
+
+        public StatisticsForm()
         {
             InitializeComponent();
         }
 
         private void btnLoadData_Click(object sender, EventArgs e)
         {
-            
-            pieChart1.Series = new SeriesCollection
+                pieChart1.Series = new SeriesCollection
             {
                 new PieSeries
                 {
@@ -49,8 +52,8 @@ namespace Rail_Bag_Simulation.View.UserControls
                     {i, LinkedList.TimelyWatchedBagWithStopWatch.Keys.ToList()[i].ElapsedMilliseconds / 1000});
             }
 
-            dt.Rows.Add(new object[] { "Average", LinkedList.AverageTimePerBag });
-          
+            dt.Rows.Add(new object[] {"Average", LinkedList.AverageTimePerBag});
+            
         }
         private double updateChartSuccessfullBags()
         {
@@ -59,6 +62,11 @@ namespace Rail_Bag_Simulation.View.UserControls
         private double updateChartFailedBags()
         {
             return (double)Storage.GetNumberOfBagsInStorage();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

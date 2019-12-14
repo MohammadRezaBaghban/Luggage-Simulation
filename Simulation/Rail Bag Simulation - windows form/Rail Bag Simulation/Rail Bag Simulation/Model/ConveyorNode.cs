@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
@@ -71,7 +70,6 @@ namespace Rail_Bag_Simulation
                 var bag = BagsQueue.Dequeue();
                 IsFull = false;
                 OnQueueChangedEventHandler?.Invoke(this, EventArgs.Empty);
-
                 return bag;
             }
         }
