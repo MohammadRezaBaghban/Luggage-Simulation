@@ -237,7 +237,91 @@ namespace Rail_Bag_Simulation
         public void CreateMapLayoutThree(int queueSizeOfBelts)
         {
             //2 checkins per security 2 securities 1 bagsort 2 terminals with 2 gates each
+            if (_isMapCreated) return;
 
+            Node checkIn1 = new CheckinNode();
+            Node Conveyor_CheckIn1_To_Security1 = new ConveyorNode(queueSizeOfBelts);
+
+            Node checkIn2 = new CheckinNode();
+            Node Conveyor_CheckIn2_To_Security1 = new ConveyorNode(queueSizeOfBelts);
+
+            Node security1 = new SecurityNode();
+            Node Conveyor_Security1_To_BagSort = new ConveyorNode(queueSizeOfBelts);
+
+
+            Node checkIn3 = new CheckinNode();
+            Node Conveyor_CheckIn3_To_Security2 = new ConveyorNode(queueSizeOfBelts);
+
+            Node checkIn4 = new CheckinNode();
+            Node Conveyor_CheckIn4_To_Security2 = new ConveyorNode(queueSizeOfBelts);
+
+            Node security2 = new SecurityNode();
+            Node Conveyor_Security2_To_BagSort = new ConveyorNode(queueSizeOfBelts);
+
+
+            Node bagSort = new BagSortNode();
+
+
+            Node Conveyor_BagSort_To_Terminal1 = new ConveyorNode(queueSizeOfBelts);
+            Node terminal1 = new TerminalNode(new Terminal());
+
+            Node Conveyor_Terminal1_To_Gate1 = new ConveyorNode(queueSizeOfBelts);
+            Node t1gate1 = new GateNode(new Gate("G1"));
+            Node Conveyor_Terminal1_To_Gate2 = new ConveyorNode(queueSizeOfBelts);
+            Node t1gate2 = new GateNode(new Gate("G2"));
+
+
+            Node Conveyor_BagSort_To_Terminal2 = new ConveyorNode(queueSizeOfBelts);
+            Node terminal2 = new TerminalNode(new Terminal());
+
+            Node Conveyor_Terminal2_To_Gate1 = new ConveyorNode(queueSizeOfBelts);
+            Node t2gate1 = new GateNode(new Gate("G1"));
+            Node Conveyor_Terminal2_To_Gate2 = new ConveyorNode(queueSizeOfBelts);
+            Node t2gate2 = new GateNode(new Gate("G2"));
+
+
+
+            Ll.AddNode(checkIn1);
+            Ll.AddNode(checkIn1.Id, checkIn1.GetType(), Conveyor_CheckIn1_To_Security1);
+            Ll.AddNode(Conveyor_CheckIn1_To_Security1.Id, Conveyor_CheckIn1_To_Security1.GetType(), security1);
+
+            Ll.AddNode(checkIn2);
+            Ll.AddNode(checkIn2.Id, checkIn2.GetType(), Conveyor_CheckIn2_To_Security1);
+            Ll.AddNode(Conveyor_CheckIn2_To_Security1.Id, Conveyor_CheckIn2_To_Security1.GetType(), security1);
+
+            Ll.AddNode(security1.Id, security1.GetType(), Conveyor_Security1_To_BagSort);
+            Ll.AddNode(Conveyor_Security1_To_BagSort.Id, Conveyor_Security1_To_BagSort.GetType(), bagSort);
+
+
+
+            Ll.AddNode(checkIn3);
+            Ll.AddNode(checkIn3.Id, checkIn3.GetType(), Conveyor_CheckIn3_To_Security2);
+            Ll.AddNode(Conveyor_CheckIn3_To_Security2.Id, Conveyor_CheckIn3_To_Security2.GetType(), security2);
+
+            Ll.AddNode(checkIn4);
+            Ll.AddNode(checkIn4.Id, checkIn4.GetType(), Conveyor_CheckIn4_To_Security2);
+            Ll.AddNode(Conveyor_CheckIn4_To_Security2.Id, Conveyor_CheckIn4_To_Security2.GetType(), security2);
+
+            Ll.AddNode(security2.Id, security2.GetType(), Conveyor_Security2_To_BagSort);
+            Ll.AddNode(Conveyor_Security2_To_BagSort.Id, Conveyor_Security2_To_BagSort.GetType(), bagSort);
+
+
+
+            Ll.AddNode(bagSort.Id, bagSort.GetType(), Conveyor_BagSort_To_Terminal1);
+            Ll.AddNode(Conveyor_BagSort_To_Terminal1.Id, Conveyor_BagSort_To_Terminal1.GetType(), terminal1);
+
+            Ll.AddNode(terminal1.Id, terminal1.GetType(), Conveyor_Terminal1_To_Gate1);
+            Ll.AddNode(Conveyor_Terminal1_To_Gate1.Id, Conveyor_Terminal1_To_Gate1.GetType(), t1gate1);
+            Ll.AddNode(terminal1.Id, terminal1.GetType(), Conveyor_Terminal1_To_Gate2);
+            Ll.AddNode(Conveyor_Terminal1_To_Gate2.Id, Conveyor_Terminal1_To_Gate2.GetType(), t1gate2);
+
+            Ll.AddNode(bagSort.Id, bagSort.GetType(), Conveyor_BagSort_To_Terminal2);
+            Ll.AddNode(Conveyor_BagSort_To_Terminal2.Id, Conveyor_BagSort_To_Terminal2.GetType(), terminal2);
+
+            Ll.AddNode(terminal2.Id, terminal2.GetType(), Conveyor_Terminal2_To_Gate1);
+            Ll.AddNode(Conveyor_Terminal2_To_Gate1.Id, Conveyor_Terminal2_To_Gate1.GetType(), t2gate1);
+            Ll.AddNode(terminal2.Id, terminal2.GetType(), Conveyor_Terminal2_To_Gate2);
+            Ll.AddNode(Conveyor_Terminal2_To_Gate2.Id, Conveyor_Terminal2_To_Gate2.GetType(), t2gate2);
         }
     }
 }
