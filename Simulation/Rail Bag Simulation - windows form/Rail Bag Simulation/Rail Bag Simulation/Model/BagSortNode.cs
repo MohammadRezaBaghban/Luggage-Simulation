@@ -71,9 +71,7 @@ namespace Rail_Bag_Simulation
                 var bag = Remove();
                 if (bag.IsNull()) return;
 
-                while (next.IsFull)
-                {
-                }
+                if (next.IsFull) { return;}
 
                 next.Push(bag);
                 OnQueueChangedEventHandler?.Invoke(this, EventArgs.Empty);
