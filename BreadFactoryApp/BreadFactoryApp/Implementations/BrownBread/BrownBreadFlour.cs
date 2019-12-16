@@ -5,13 +5,15 @@ namespace BreadFactoryApp.Implementations
 {
     class BrownBreadFlour : IFlour
     {
-        private static int id;
+        private int id;
+        private static int IdToGive;
 
         String _status = "";
 
         public BrownBreadFlour() 
         {
-            id++;
+            id = ++IdToGive;
+
         }
 
 
@@ -48,6 +50,11 @@ namespace BreadFactoryApp.Implementations
         public string GetStatus()
         {
             return _status;
+        }
+
+        public int getID()
+        {
+            return id;
         }
     }
 }

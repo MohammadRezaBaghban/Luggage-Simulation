@@ -10,11 +10,12 @@ namespace BreadFactoryApp.Implementations
     class BrownBreadPackage :  IPackage
     {
         private string status;
-        private static int id;
+        private int id;
+        private static int IdToGive;
         public void Pack()
         {
             status = "Brown bread packed";
-            id++;
+            id= ++IdToGive;
         }
 
         public void Seal()
@@ -25,6 +26,11 @@ namespace BreadFactoryApp.Implementations
         public string GetStatus()
         {
             return status;
+        }
+
+        public int getID()
+        {
+            return id;
         }
     }
 }

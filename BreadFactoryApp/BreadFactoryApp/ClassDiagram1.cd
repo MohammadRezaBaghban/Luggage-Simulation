@@ -1,108 +1,128 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1">
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="BreadFactoryApp.Form1">
-    <Position X="3.25" Y="1" Width="1.5" />
+    <Position X="8.25" Y="15" Width="4.5" />
+    <Members>
+      <Field Name="btnManufacture" Hidden="true" />
+      <Field Name="btnStopManufacture" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="Form1" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Field Name="label3" Hidden="true" />
+      <Field Name="label4" Hidden="true" />
+      <Field Name="lbFlourUpdates" Hidden="true" />
+      <Field Name="lbLabelingUpdates" Hidden="true" />
+      <Field Name="lbLogger" Hidden="true" />
+      <Field Name="lbNbrOfLoafToBeMade" Hidden="true" />
+      <Field Name="lbPackagingUpdates" Hidden="true" />
+      <Field Name="rbBrownBread" Hidden="true" />
+      <Field Name="rbWhiteBread" Hidden="true" />
+      <Field Name="tbToBeManufactured" Hidden="true" />
+    </Members>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>QAIAABAAIDAAABIgABCAACACAAAAAAIAgQQCAAIABAA=</HashCode>
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BreadFactoryApp.GenericBreadFactory">
-    <Position X="0.5" Y="0.5" Width="2" />
+    <Position X="1.75" Y="8.5" Width="5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAgAAAIACAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>GenericBreadFactory.cs</FileName>
+      <HashCode>AAAACAAEAAQwATgIgCABCAAwAAIAAQAgAAAQAIARgAA=</HashCode>
+      <FileName>Implementations\GenericBreadFactory.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BreadFactoryApp.BrownBreadFactory" BaseTypeListCollapsed="true">
-    <Position X="0.5" Y="3.25" Width="1.75" />
+    <Position X="3.25" Y="6.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIARAAA=</HashCode>
       <FileName>Implementations\BrownBread\BrownBreadFactory.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="BreadFactoryApp.WhiteBreadFactory" BaseTypeListCollapsed="true">
-    <Position X="0.5" Y="5" Width="1.75" />
+    <Position X="3.25" Y="4.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIARAAA=</HashCode>
       <FileName>Implementations\WhiteBread\WhiteBreadFactory.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.212" />
   </Class>
   <Class Name="BreadFactoryApp.Implementations.BrownBreadFlour" BaseTypeListCollapsed="true">
-    <Position X="5.75" Y="6.5" Width="1.75" />
+    <Position X="13.5" Y="7.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AEACAAAAAAAAQAAAEAAAAAAEAAAAAAAAAAAAAACAQAI=</HashCode>
+      <HashCode>AEACAAAAAAAAQACAEAAAAAAEAAAAAAAQAAAAAACAQgI=</HashCode>
       <FileName>Implementations\BrownBread\BrownBreadFlour.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.219" />
   </Class>
   <Class Name="BreadFactoryApp.Implementations.BrownBreadLabel" BaseTypeListCollapsed="true">
-    <Position X="9.75" Y="6.5" Width="1.75" />
+    <Position X="8" Y="8.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAABAAAAAABAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAgAAAAACAAAAAAEAAAAAAABAQAgABBAAAAgA=</HashCode>
       <FileName>Implementations\BrownBread\BrownBreadLabel.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="BreadFactoryApp.Implementations.BrownBreadPackage" BaseTypeListCollapsed="true">
-    <Position X="14.25" Y="6.5" Width="2" />
+    <Position X="10" Y="2.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAQAQAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAASAQAAAAAAEAAAAAAAQAAAAAAAAAgA=</HashCode>
       <FileName>Implementations\BrownBread\BrownBreadPackage.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="BreadFactoryApp.Implementations.WhiteBreadFlour" BaseTypeListCollapsed="true">
-    <Position X="3.75" Y="6.5" Width="1.75" />
+    <Position X="13.5" Y="3.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAQAAAEAAAAAAAAAAAAAAAAAAAAACAQAI=</HashCode>
+      <HashCode>AAQCAAAAAAAAQACAEAAAAAAEAAAAAAAQAAAAAACAQgI=</HashCode>
       <FileName>Implementations\WhiteBread\WhiteBreadFlour.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="BreadFactoryApp.Implementations.WhiteBreadLabel" BaseTypeListCollapsed="true">
-    <Position X="7.75" Y="6.5" Width="1.75" />
+    <Position X="10.75" Y="8.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAABAAAAAABAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAgAAAAACAAAAAAEAAAAAAABAQAAABBAAAAgA=</HashCode>
       <FileName>Implementations\WhiteBread\WhiteBreadLabel.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="BreadFactoryApp.Implementations.WhiteBreadPackage" BaseTypeListCollapsed="true">
-    <Position X="12" Y="6.5" Width="2" />
+    <Position X="7.75" Y="2.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAASAQAAAAAAEAAAAAAAQAAAAAAAAAgA=</HashCode>
       <FileName>Implementations\WhiteBread\WhiteBreadPackage.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
   <Interface Name="BreadFactoryApp.Interfaces.IBreadFactory">
-    <Position X="2.75" Y="4.25" Width="1.5" />
+    <Position X="0.5" Y="5.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIARAAA=</HashCode>
       <FileName>Interfaces\IBreadFactory.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="BreadFactoryApp.Interfaces.IFlour">
-    <Position X="5" Y="3.75" Width="1.5" />
+    <Position X="16.25" Y="5.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAQAAAEAAAAAAEAAAAAAAAAAAAAACAQAI=</HashCode>
+      <HashCode>AAACAAAAAAAAQACAEAAAAAAEAAAAAAAAAAAAAACAQAI=</HashCode>
       <FileName>Interfaces\IFlour.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="BreadFactoryApp.Interfaces.ILabel">
-    <Position X="9" Y="4.25" Width="1.5" />
+    <Position X="9.5" Y="12.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAABAAAAAABAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAEAAAAAAABAAAAAABAAAAAA=</HashCode>
       <FileName>Interfaces\ILabel.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="BreadFactoryApp.Interfaces.IPackage">
-    <Position X="13.5" Y="4.25" Width="1.5" />
+    <Position X="9" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAQAQAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAASAQAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IPackage.cs</FileName>
     </TypeIdentifier>
   </Interface>
