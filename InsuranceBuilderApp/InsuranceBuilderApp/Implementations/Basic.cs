@@ -9,24 +9,27 @@ namespace InsuranceBuilderApp.Implementations
 {
     public class Basic : IInsurancePackage
     {
-        public decimal Cost()
+        protected decimal _cost;
+        private decimal _deductable;
+
+        public void SetCost(decimal cost)
         {
-            throw new NotImplementedException();
+            this._cost = cost;
         }
 
-        public decimal Deductable()
+        public void SetDeductable(decimal deductable)
         {
-            throw new NotImplementedException();
+            this._deductable = deductable;
         }
 
-        public string Name()
+        public  decimal Cost()
         {
-            throw new NotImplementedException();
+            return _cost;
         }
 
-        public bool Upgradable()
+        public  decimal Deductable()
         {
-            throw new NotImplementedException();
+            return _deductable;
         }
     }
 }

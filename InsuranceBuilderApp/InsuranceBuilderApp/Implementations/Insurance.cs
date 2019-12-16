@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InsuranceBuilderApp.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,29 @@ using System.Threading.Tasks;
 
 namespace InsuranceBuilderApp.Implementations
 {
-    class Insurance
+    public class Insurance 
     {
+        private List<IInsurancePackage> packages;
+
+        public decimal getCost()
+        {
+            decimal cost=0;
+            foreach (var i in packages) 
+            {
+                cost += i.Cost();
+            }
+            return cost;
+        }
+
+        public void addPackage(IInsurancePackage p)
+        {
+            packages.Add(p);
+        }
+
+        public List<IInsurancePackage> getPackages() 
+        {
+            return packages;
+        }
+
     }
 }

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace InsuranceBuilderApp.Implementations
 {
-    class BasicPremium
+    public class BasicPremium : Premium
     {
+
     }
 }
