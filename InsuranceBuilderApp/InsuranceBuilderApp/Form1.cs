@@ -16,5 +16,14 @@ namespace InsuranceBuilderApp
         {
             InitializeComponent();
         }
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+
+
+            tbUserDOB.Enabled = false;
+            tbUserName.Enabled = false;
+            btnRegister.Enabled = false;
+        }
     }
 }
