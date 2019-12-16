@@ -26,7 +26,6 @@ namespace InsuranceBuilderApp.Implementations
         public void SetInsurance(Insurance I) 
         {
             this._insurance = I;
-            
         }
 
         public string GetDOB()
