@@ -38,7 +38,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnRemove = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnChangeInsuranec = new System.Windows.Forms.Button();
+            this.btnChangeInsurance = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.rbBasic = new System.Windows.Forms.RadioButton();
@@ -158,15 +158,16 @@
             this.panel2.Size = new System.Drawing.Size(315, 498);
             this.panel2.TabIndex = 8;
             // 
-            // btnChangeInsuranec
+            // btnChangeInsurance
             // 
-            this.btnChangeInsuranec.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChangeInsuranec.Location = new System.Drawing.Point(104, 111);
-            this.btnChangeInsuranec.Name = "btnChangeInsuranec";
-            this.btnChangeInsuranec.Size = new System.Drawing.Size(119, 26);
-            this.btnChangeInsuranec.TabIndex = 2;
-            this.btnChangeInsuranec.Text = "Assign";
-            this.btnChangeInsuranec.UseVisualStyleBackColor = true;
+            this.btnChangeInsurance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangeInsurance.Location = new System.Drawing.Point(104, 111);
+            this.btnChangeInsurance.Name = "btnChangeInsurance";
+            this.btnChangeInsurance.Size = new System.Drawing.Size(119, 26);
+            this.btnChangeInsurance.TabIndex = 2;
+            this.btnChangeInsurance.Text = "Assign";
+            this.btnChangeInsurance.UseVisualStyleBackColor = true;
+            this.btnChangeInsurance.Click += new System.EventHandler(this.btnChangeInsurance_Click);
             // 
             // panel3
             // 
@@ -178,7 +179,7 @@
             this.panel3.Controls.Add(this.rbBasicDental);
             this.panel3.Controls.Add(this.rbBasic);
             this.panel3.Controls.Add(this.label2);
-            this.panel3.Controls.Add(this.btnChangeInsuranec);
+            this.panel3.Controls.Add(this.btnChangeInsurance);
             this.panel3.Location = new System.Drawing.Point(3, 355);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(309, 140);
@@ -326,7 +327,7 @@
         private System.Windows.Forms.RadioButton rbBasicDental;
         private System.Windows.Forms.RadioButton rbBasic;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnChangeInsuranec;
+        private System.Windows.Forms.Button btnChangeInsurance;
     }
 }
 

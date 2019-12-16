@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace InsuranceBuilderApp.Interface
 {
-    interface IInsurancePackage
+    public interface IInsurancePackage
     {
-        string Name();
         decimal Cost();
         decimal Deductable();
-        bool Upgradable();
+
+        void SetCost(decimal cost);
+        void SetDeductable(decimal deductable);
+
     }
 }
