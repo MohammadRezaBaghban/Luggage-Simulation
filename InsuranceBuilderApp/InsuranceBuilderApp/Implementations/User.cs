@@ -26,7 +26,6 @@ namespace InsuranceBuilderApp.Implementations
         public void SetInsurance(Insurance I) 
         {
             this._insurance = I;
-            
         }
 
         public string GetDOB()
@@ -34,5 +33,11 @@ namespace InsuranceBuilderApp.Implementations
             return this._dOB;
         }
 
+        public override string ToString()
+        {
+            string s=  "Name: " + GetName() + "DOB: "+GetDOB()+ ", Packages: ";
+            _insurance.getPackages().ForEach(package => s+=s.Substring(s.IndexOf("."))+" - ");
+            return s;
+        }
     }
 }

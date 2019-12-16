@@ -24,8 +24,11 @@ namespace InsuranceBuilderApp
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
+            if(string.IsNullOrWhiteSpace(tbUserName.Text)||string.IsNullOrWhiteSpace(tbUserDOB.Text)) return;
 
-
+            var item = new User(tbUserName.Text, tbUserDOB.Text);
+            users.Add(item);
+            listBox1.Items.Add(item);
             tbUserDOB.Enabled = false;
             tbUserName.Enabled = false;
             btnRegister.Enabled = false;
@@ -33,10 +36,18 @@ namespace InsuranceBuilderApp
 
         private void btnChangeInsurance_Click(object sender, EventArgs e)
         {
-            foreach (var VARIABLE in COLLECTION)
-            {
-                
-            }
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            users.ForEach(user => listBox1.Items.Add(user));
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            users.Remove((User)listBox1.SelectedItem);
         }
     }
 }

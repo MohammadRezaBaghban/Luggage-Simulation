@@ -29,26 +29,26 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnRegister = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblDateOfBirth = new System.Windows.Forms.Label();
-            this.tbUserDOB = new System.Windows.Forms.TextBox();
             this.tbUserName = new System.Windows.Forms.TextBox();
+            this.tbUserDOB = new System.Windows.Forms.TextBox();
+            this.lblDateOfBirth = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnRegister = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnRemove = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnChangeInsurance = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.rbBasic = new System.Windows.Forms.RadioButton();
-            this.rbBasicDental = new System.Windows.Forms.RadioButton();
-            this.rbBasicPhysio = new System.Windows.Forms.RadioButton();
-            this.rbBasicDentalPhysio = new System.Windows.Forms.RadioButton();
-            this.rbPremium = new System.Windows.Forms.RadioButton();
-            this.rbPremiumPlus = new System.Windows.Forms.RadioButton();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.rbPremiumPlus = new System.Windows.Forms.RadioButton();
+            this.rbPremium = new System.Windows.Forms.RadioButton();
+            this.rbBasicDentalPhysio = new System.Windows.Forms.RadioButton();
+            this.rbBasicPhysio = new System.Windows.Forms.RadioButton();
+            this.rbBasicDental = new System.Windows.Forms.RadioButton();
+            this.rbBasic = new System.Windows.Forms.RadioButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnChangeInsurance = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -68,15 +68,39 @@
             this.panel1.Size = new System.Drawing.Size(314, 140);
             this.panel1.TabIndex = 0;
             // 
-            // label1
+            // tbUserName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(94, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 18);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "User Register";
+            this.tbUserName.Location = new System.Drawing.Point(112, 45);
+            this.tbUserName.Name = "tbUserName";
+            this.tbUserName.Size = new System.Drawing.Size(199, 20);
+            this.tbUserName.TabIndex = 7;
+            // 
+            // tbUserDOB
+            // 
+            this.tbUserDOB.Location = new System.Drawing.Point(112, 71);
+            this.tbUserDOB.Name = "tbUserDOB";
+            this.tbUserDOB.Size = new System.Drawing.Size(199, 20);
+            this.tbUserDOB.TabIndex = 6;
+            // 
+            // lblDateOfBirth
+            // 
+            this.lblDateOfBirth.AutoSize = true;
+            this.lblDateOfBirth.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateOfBirth.Location = new System.Drawing.Point(3, 73);
+            this.lblDateOfBirth.Name = "lblDateOfBirth";
+            this.lblDateOfBirth.Size = new System.Drawing.Size(106, 18);
+            this.lblDateOfBirth.TabIndex = 4;
+            this.lblDateOfBirth.Text = "Date Of Birth";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(3, 44);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(52, 18);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Name";
             // 
             // btnRegister
             // 
@@ -89,39 +113,15 @@
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
-            // label3
+            // label1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 44);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 18);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Name";
-            // 
-            // lblDateOfBirth
-            // 
-            this.lblDateOfBirth.AutoSize = true;
-            this.lblDateOfBirth.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateOfBirth.Location = new System.Drawing.Point(3, 73);
-            this.lblDateOfBirth.Name = "lblDateOfBirth";
-            this.lblDateOfBirth.Size = new System.Drawing.Size(106, 18);
-            this.lblDateOfBirth.TabIndex = 4;
-            this.lblDateOfBirth.Text = "Date Of Birth";
-            // 
-            // tbUserDOB
-            // 
-            this.tbUserDOB.Location = new System.Drawing.Point(112, 71);
-            this.tbUserDOB.Name = "tbUserDOB";
-            this.tbUserDOB.Size = new System.Drawing.Size(199, 20);
-            this.tbUserDOB.TabIndex = 6;
-            // 
-            // tbUserName
-            // 
-            this.tbUserName.Location = new System.Drawing.Point(112, 45);
-            this.tbUserName.Name = "tbUserName";
-            this.tbUserName.Size = new System.Drawing.Size(199, 20);
-            this.tbUserName.TabIndex = 7;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(94, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(112, 18);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "User Register";
             // 
             // label5
             // 
@@ -144,6 +144,7 @@
             this.btnRemove.TabIndex = 1;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = false;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // panel2
             // 
@@ -158,16 +159,24 @@
             this.panel2.Size = new System.Drawing.Size(315, 498);
             this.panel2.TabIndex = 8;
             // 
-            // btnChangeInsurance
+            // button1
             // 
-            this.btnChangeInsurance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChangeInsurance.Location = new System.Drawing.Point(104, 111);
-            this.btnChangeInsurance.Name = "btnChangeInsurance";
-            this.btnChangeInsurance.Size = new System.Drawing.Size(119, 26);
-            this.btnChangeInsurance.TabIndex = 2;
-            this.btnChangeInsurance.Text = "Assign";
-            this.btnChangeInsurance.UseVisualStyleBackColor = true;
-            this.btnChangeInsurance.Click += new System.EventHandler(this.btnChangeInsurance_Click);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(3, 323);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(109, 26);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Refresh";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(1, 32);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(312, 290);
+            this.listBox1.TabIndex = 4;
             // 
             // panel3
             // 
@@ -185,63 +194,17 @@
             this.panel3.Size = new System.Drawing.Size(309, 140);
             this.panel3.TabIndex = 3;
             // 
-            // label2
+            // rbPremiumPlus
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(91, 10);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(132, 16);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Change Insurance";
-            // 
-            // rbBasic
-            // 
-            this.rbBasic.AutoSize = true;
-            this.rbBasic.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbBasic.Location = new System.Drawing.Point(14, 31);
-            this.rbBasic.Name = "rbBasic";
-            this.rbBasic.Size = new System.Drawing.Size(65, 23);
-            this.rbBasic.TabIndex = 4;
-            this.rbBasic.TabStop = true;
-            this.rbBasic.Text = "Basic";
-            this.rbBasic.UseVisualStyleBackColor = true;
-            // 
-            // rbBasicDental
-            // 
-            this.rbBasicDental.AutoSize = true;
-            this.rbBasicDental.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbBasicDental.Location = new System.Drawing.Point(14, 54);
-            this.rbBasicDental.Name = "rbBasicDental";
-            this.rbBasicDental.Size = new System.Drawing.Size(130, 23);
-            this.rbBasicDental.TabIndex = 5;
-            this.rbBasicDental.TabStop = true;
-            this.rbBasicDental.Text = "Basic - Dental";
-            this.rbBasicDental.UseVisualStyleBackColor = true;
-            // 
-            // rbBasicPhysio
-            // 
-            this.rbBasicPhysio.AutoSize = true;
-            this.rbBasicPhysio.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbBasicPhysio.Location = new System.Drawing.Point(14, 77);
-            this.rbBasicPhysio.Name = "rbBasicPhysio";
-            this.rbBasicPhysio.Size = new System.Drawing.Size(130, 23);
-            this.rbBasicPhysio.TabIndex = 6;
-            this.rbBasicPhysio.TabStop = true;
-            this.rbBasicPhysio.Text = "Basic - Physio";
-            this.rbBasicPhysio.UseVisualStyleBackColor = true;
-            // 
-            // rbBasicDentalPhysio
-            // 
-            this.rbBasicDentalPhysio.AutoSize = true;
-            this.rbBasicDentalPhysio.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbBasicDentalPhysio.Location = new System.Drawing.Point(129, 29);
-            this.rbBasicDentalPhysio.Name = "rbBasicDentalPhysio";
-            this.rbBasicDentalPhysio.Size = new System.Drawing.Size(179, 23);
-            this.rbBasicDentalPhysio.TabIndex = 7;
-            this.rbBasicDentalPhysio.TabStop = true;
-            this.rbBasicDentalPhysio.Text = "Basic-Dental-Physio";
-            this.rbBasicDentalPhysio.UseVisualStyleBackColor = true;
+            this.rbPremiumPlus.AutoSize = true;
+            this.rbPremiumPlus.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbPremiumPlus.Location = new System.Drawing.Point(150, 77);
+            this.rbPremiumPlus.Name = "rbPremiumPlus";
+            this.rbPremiumPlus.Size = new System.Drawing.Size(127, 23);
+            this.rbPremiumPlus.TabIndex = 9;
+            this.rbPremiumPlus.TabStop = true;
+            this.rbPremiumPlus.Text = "PremiumPlus";
+            this.rbPremiumPlus.UseVisualStyleBackColor = true;
             // 
             // rbPremium
             // 
@@ -255,35 +218,74 @@
             this.rbPremium.Text = "Premium";
             this.rbPremium.UseVisualStyleBackColor = true;
             // 
-            // rbPremiumPlus
+            // rbBasicDentalPhysio
             // 
-            this.rbPremiumPlus.AutoSize = true;
-            this.rbPremiumPlus.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbPremiumPlus.Location = new System.Drawing.Point(150, 77);
-            this.rbPremiumPlus.Name = "rbPremiumPlus";
-            this.rbPremiumPlus.Size = new System.Drawing.Size(127, 23);
-            this.rbPremiumPlus.TabIndex = 9;
-            this.rbPremiumPlus.TabStop = true;
-            this.rbPremiumPlus.Text = "PremiumPlus";
-            this.rbPremiumPlus.UseVisualStyleBackColor = true;
+            this.rbBasicDentalPhysio.AutoSize = true;
+            this.rbBasicDentalPhysio.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbBasicDentalPhysio.Location = new System.Drawing.Point(129, 29);
+            this.rbBasicDentalPhysio.Name = "rbBasicDentalPhysio";
+            this.rbBasicDentalPhysio.Size = new System.Drawing.Size(179, 23);
+            this.rbBasicDentalPhysio.TabIndex = 7;
+            this.rbBasicDentalPhysio.TabStop = true;
+            this.rbBasicDentalPhysio.Text = "Basic-Dental-Physio";
+            this.rbBasicDentalPhysio.UseVisualStyleBackColor = true;
             // 
-            // listBox1
+            // rbBasicPhysio
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(1, 32);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(312, 290);
-            this.listBox1.TabIndex = 4;
+            this.rbBasicPhysio.AutoSize = true;
+            this.rbBasicPhysio.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbBasicPhysio.Location = new System.Drawing.Point(14, 77);
+            this.rbBasicPhysio.Name = "rbBasicPhysio";
+            this.rbBasicPhysio.Size = new System.Drawing.Size(130, 23);
+            this.rbBasicPhysio.TabIndex = 6;
+            this.rbBasicPhysio.TabStop = true;
+            this.rbBasicPhysio.Text = "Basic - Physio";
+            this.rbBasicPhysio.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // rbBasicDental
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(3, 323);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(109, 26);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Refresh";
-            this.button1.UseVisualStyleBackColor = true;
+            this.rbBasicDental.AutoSize = true;
+            this.rbBasicDental.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbBasicDental.Location = new System.Drawing.Point(14, 54);
+            this.rbBasicDental.Name = "rbBasicDental";
+            this.rbBasicDental.Size = new System.Drawing.Size(130, 23);
+            this.rbBasicDental.TabIndex = 5;
+            this.rbBasicDental.TabStop = true;
+            this.rbBasicDental.Text = "Basic - Dental";
+            this.rbBasicDental.UseVisualStyleBackColor = true;
+            // 
+            // rbBasic
+            // 
+            this.rbBasic.AutoSize = true;
+            this.rbBasic.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbBasic.Location = new System.Drawing.Point(14, 31);
+            this.rbBasic.Name = "rbBasic";
+            this.rbBasic.Size = new System.Drawing.Size(65, 23);
+            this.rbBasic.TabIndex = 4;
+            this.rbBasic.TabStop = true;
+            this.rbBasic.Text = "Basic";
+            this.rbBasic.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(91, 10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(132, 16);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Change Insurance";
+            // 
+            // btnChangeInsurance
+            // 
+            this.btnChangeInsurance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangeInsurance.Location = new System.Drawing.Point(104, 111);
+            this.btnChangeInsurance.Name = "btnChangeInsurance";
+            this.btnChangeInsurance.Size = new System.Drawing.Size(119, 26);
+            this.btnChangeInsurance.TabIndex = 2;
+            this.btnChangeInsurance.Text = "Assign";
+            this.btnChangeInsurance.UseVisualStyleBackColor = true;
+            this.btnChangeInsurance.Click += new System.EventHandler(this.btnChangeInsurance_Click);
             // 
             // Form1
             // 
@@ -292,7 +294,7 @@
             this.ClientSize = new System.Drawing.Size(652, 512);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);

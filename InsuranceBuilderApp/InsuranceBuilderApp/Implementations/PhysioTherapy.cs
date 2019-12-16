@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InsuranceBuilderApp.Implementations
 {
-    public class PhysioTherapy
+    public class PhysioTherapy : Basic
     {
         private string _hospital;
 

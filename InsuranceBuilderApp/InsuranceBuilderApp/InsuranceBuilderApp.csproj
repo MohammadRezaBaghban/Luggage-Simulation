@@ -54,12 +54,13 @@
     </Compile>
     <Compile Include="Implementations\Basic.cs" />
     <Compile Include="Implementations\BasicPremium.cs" />
-    <Compile Include="Implementations\DentalBasic.cs" />
+    <Compile Include="Implementations\Dental.cs" />
     <Compile Include="Implementations\Insurance.cs" />
     <Compile Include="Implementations\InsuranceBuilder.cs" />
-    <Compile Include="Implementations\PhysioTherapyBasic.cs" />
+    <Compile Include="Implementations\PhysioTherapy.cs" />
     <Compile Include="Implementations\Premium.cs" />
     <Compile Include="Implementations\PremiumPlus.cs" />
+    <Compile Include="Implementations\User.cs" />
     <Compile Include="Interface\IInsurancePackage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
