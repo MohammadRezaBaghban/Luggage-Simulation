@@ -8,7 +8,7 @@ namespace InsuranceBuilderApp.Implementations
 {
     public class InsuranceBuilder
     {
-        public Insurance MakeBasicPackage()
+        public Insurance makeBasicPackage()
         {
             Insurance insurance = new Insurance();
             Basic basicInsurance = new Basic();
@@ -19,7 +19,7 @@ namespace InsuranceBuilderApp.Implementations
 
             return insurance;
         }
-        public Insurance MakeBasicWithDental()
+        public Insurance makeBasicWithDental()
         {
             Insurance insurance = new Insurance();
             Dental dental = new Dental();
@@ -33,27 +33,59 @@ namespace InsuranceBuilderApp.Implementations
             return insurance;
         }
 
-        public Insurance MakeBasicWithPhysio()
+        public Insurance makeBasicWithPhysio()
         {
             Insurance insurance = new Insurance();
             PhysioTherapy physio = new PhysioTherapy();
+            Basic basicInsurance = new Basic();
+            basicInsurance.SetCost(100);
+            basicInsurance.SetDeductable(385);
             physio.SetCost(150);
             physio.SetDeductable(385);
+            insurance.addPackage(basicInsurance);
             insurance.addPackage(physio);
             return insurance;
         }
 
-        public Insurance MakeBasicWithPhysioAndDental()
+        public Insurance makeBasicWithPhysioAndDental()
         {
             Insurance insurance = new Insurance();
             Dental dental = new Dental();
             PhysioTherapy physio = new PhysioTherapy();
+            Basic basicInsurance = new Basic();
+            basicInsurance.SetCost(100);
+            basicInsurance.SetDeductable(385);
             dental.SetCost(100);
             dental.SetDeductable(385);
             physio.SetCost(150);
             physio.SetDeductable(385);
+            insurance.addPackage(basicInsurance);
             insurance.addPackage(physio);
             insurance.addPackage(dental);
+            return insurance;
+        }
+
+        public Insurance makePremiumPlus()
+        {
+            Insurance insurance = new Insurance();
+            PremiumPlus premium = new PremiumPlus();
+            premium.SetCost(200);
+            premium.SetDeductable(0);
+
+            insurance.addPackage(premium);
+
+            return insurance;
+        }
+
+        public Insurance makeBasicPremium()
+        {
+            Insurance insurance = new Insurance();
+            BasicPremium premium = new BasicPremium();
+            premium.SetCost(200);
+            premium.SetDeductable(0);
+
+            insurance.addPackage(premium);
+
             return insurance;
         }
 
