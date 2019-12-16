@@ -15,7 +15,8 @@ namespace BreadFactoryApp.Implementations
         DateTime rDate ;
         public BrownBreadLabel()
         {
-             rDate = new DateTime(r.Next(2019, 2020), r.Next(1, 12), r.Next(1, 28));
+            TimeSpan ts = new TimeSpan(10, 30, 0);
+            rDate = new DateTime(r.Next(2019, 2020), r.Next(1, 12), r.Next(1, 28) )+ts;
             id++;
         }
         public string PrintIngredients()
