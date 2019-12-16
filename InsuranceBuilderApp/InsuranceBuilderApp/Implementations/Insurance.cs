@@ -11,6 +11,10 @@ namespace InsuranceBuilderApp.Implementations
     {
         private List<IInsurancePackage> packages;
 
+        public Insurance()
+        {
+            packages=new List<IInsurancePackage>();
+        }
         public decimal getCost()
         {
             decimal cost=0;

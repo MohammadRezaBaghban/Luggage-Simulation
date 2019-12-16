@@ -29,14 +29,47 @@ namespace InsuranceBuilderApp
             var item = new User(tbUserName.Text, tbUserDOB.Text);
             users.Add(item);
             listBox1.Items.Add(item);
-            tbUserDOB.Enabled = false;
-            tbUserName.Enabled = false;
-            btnRegister.Enabled = false;
+            tbUserDOB.Clear();
+            tbUserName.Clear(); 
         }
 
         private void btnChangeInsurance_Click(object sender, EventArgs e)
         {
-            
+            var user = (User)listBox1.SelectedItem;
+            if(user == null) {
+                MessageBox.Show(@"Select Client!"); return;}
+            if (rbBasic.Checked)
+            {
+                Insurance insurance =  insuranceBuilder.makeBasicPackage();
+                user.SetInsurance(insurance);
+            }
+            else if(rbBasicDental.Checked)
+            {
+                Insurance insurance = insuranceBuilder.makeBasicWithDental();
+                user.SetInsurance(insurance);
+            }
+            else if (rbBasicDentalPhysio.Checked)
+            {
+                Insurance insurance = insuranceBuilder.makeBasicWithPhysioAndDental();
+                user.SetInsurance(insurance);
+            }
+            else if (rbBasicPhysio.Checked)
+            {
+                Insurance insurance = insuranceBuilder.makeBasicWithPhysio();
+                user.SetInsurance(insurance);
+            }
+            else if (rbPremium.Checked)
+            {
+                Insurance insurance = insuranceBuilder.makeBasicPremium();
+                user.SetInsurance(insurance);
+            }
+            else if (rbPremiumPlus.Checked)
+            {
+                Insurance insurance = insuranceBuilder.makePremiumPlus();
+                user.SetInsurance(insurance);
+            }
+
+            btnRefresh.PerformClick();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -47,7 +80,12 @@ namespace InsuranceBuilderApp
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            users.Remove((User)listBox1.SelectedItem);
+            var user = (User)listBox1.SelectedItem;
+            if (user == null)
+            {
+                MessageBox.Show(@"Select Client!"); return;
+            }
+            users.Remove(user);
         }
     }
 }

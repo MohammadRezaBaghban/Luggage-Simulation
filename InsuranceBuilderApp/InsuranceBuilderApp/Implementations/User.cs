@@ -35,8 +35,19 @@ namespace InsuranceBuilderApp.Implementations
 
         public override string ToString()
         {
-            string s=  "Name: " + GetName() + "DOB: "+GetDOB()+ ", Packages: ";
-            _insurance.getPackages().ForEach(package => s+=s.Substring(s.IndexOf("."))+" - ");
+            string s=  "Name: " + GetName() + ", DOB: "+GetDOB();
+            int index = 0;
+            if (_insurance != null)
+            {
+                s += ", Packages: ";
+                _insurance?.getPackages().ForEach(package =>
+                {
+                    index = package.ToString().IndexOf(".", StringComparison.Ordinal);
+                    s += package.ToString().Substring(index + 17) + " - ";
+                });
+                s += "Price: " + _insurance?.getCost();
+            }
+
             return s;
         }
     }
