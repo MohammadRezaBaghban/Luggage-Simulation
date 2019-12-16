@@ -187,6 +187,6 @@ namespace BreadFactoryApp
             _timerLabel.Stop();
             _timerFlour.Stop();
             ManufacturingComplete = true;
-        }   
+        }
     }
 }

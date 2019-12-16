@@ -10,6 +10,7 @@ namespace BreadFactoryApp
 {
     class WhiteBreadFactory : IBreadFactory
     {
+
         public ILabel CreateLabel()
         {
             return new WhiteBreadLabel();
