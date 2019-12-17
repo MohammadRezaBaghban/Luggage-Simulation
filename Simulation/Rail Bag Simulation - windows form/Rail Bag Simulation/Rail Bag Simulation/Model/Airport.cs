@@ -27,6 +27,7 @@ namespace Rail_Bag_Simulation
         public LinkedList Ll { get; }
 
         public static int TotalNumberOfBags { get; private set; }
+        public static int TotalNumberOfGates { get; private set; }
 
         public void StartBagsMovement(int nbrOfBags, int nbrOfBagsDrugs, int nbrOfBagsWeapons, int nbrOfBagsFlammable,
             int nbrBagsOthers)
@@ -46,6 +47,7 @@ namespace Rail_Bag_Simulation
         public void CreateMapLayout(int queueSizeOfBelts)
         {
             if (_isMapCreated) return;
+            TotalNumberOfGates = 0;
 
             Node checkIn1 = new CheckinNode();
             Node CheckIn_To_Security_Conveyor = new ConveyorNode(queueSizeOfBelts);
@@ -67,7 +69,10 @@ namespace Rail_Bag_Simulation
             Node terminal1_Conveyor_To_Gate2 = new ConveyorNode(queueSizeOfBelts);
 
             Node t1gate1 = new GateNode(new Gate("G1"));
+            TotalNumberOfGates++;
             Node t1gate2 = new GateNode(new Gate("G2"));
+            TotalNumberOfGates++;
+
             Node terminal2_Conveyor_To_Gate1 = new ConveyorNode(queueSizeOfBelts);
             Node terminal2_Conveyor_To_Gate2 = new ConveyorNode(queueSizeOfBelts);
             Node terminal3_Conveyor_To_Gate1 = new ConveyorNode(queueSizeOfBelts);
@@ -135,7 +140,7 @@ namespace Rail_Bag_Simulation
         {
             //3 check ins 3 security 1 bag sort 2 terminals 5 gates
             if (_isMapCreated) return;
-
+            TotalNumberOfGates = 0;
             //Create Check in One then conveyor to Security 1 then security 1 then conveyor to BagSort
             Node checkIn1 = new CheckinNode();
             Node CheckIn1_To_Security1_Conveyor = new ConveyorNode(queueSizeOfBelts);
@@ -164,22 +169,27 @@ namespace Rail_Bag_Simulation
             //Create conveyor from terminal 1 to gate 1 and gate 1
             Node terminal1_Conveyor_To_Gate1 = new ConveyorNode(queueSizeOfBelts);
             Node t1gate1 = new GateNode(new Gate("G1"));
+            TotalNumberOfGates++;
 
             //Create conveyor from terminal 1 to gate 2 and gate 2
             Node terminal1_Conveyor_To_Gate2 = new ConveyorNode(queueSizeOfBelts);
             Node t1gate2 = new GateNode(new Gate("G2"));
+            TotalNumberOfGates++;
 
             //Create conveyor from terminal 1 to gate 3 and gate 3
             Node terminal1_Conveyor_To_Gate3 = new ConveyorNode(queueSizeOfBelts);
             Node t1gate3 = new GateNode(new Gate("G3"));
+            TotalNumberOfGates++;
 
             //Create conveyor from terminal 1 to gate 4 and gate 4
             Node terminal1_Conveyor_To_Gate4 = new ConveyorNode(queueSizeOfBelts);
             Node t1gate4 = new GateNode(new Gate("G4"));
+            TotalNumberOfGates++;
 
             //Create conveyor from terminal 1 to gate 5 and gate 5
             Node terminal1_Conveyor_To_Gate5 = new ConveyorNode(queueSizeOfBelts);
             Node t1gate5 = new GateNode(new Gate("G5"));
+            TotalNumberOfGates++;
 
             //Create conveyor from bagSort to terminal 2 and Terminal 2
             Node bagSort_Conveyor_To_Terminal2 = new ConveyorNode(queueSizeOfBelts);

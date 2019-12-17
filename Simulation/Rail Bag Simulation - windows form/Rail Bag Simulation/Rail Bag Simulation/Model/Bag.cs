@@ -95,7 +95,7 @@ namespace Rail_Bag_Simulation
                 }
 
                 bags.Add(new Bag(Random.Next(10, 22), (Destination) Random.Next(1, 12),
-                    "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, 6)));
+                    "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, Airport.TotalNumberOfGates+1)));
             }
 
             return bags;
@@ -120,7 +120,7 @@ namespace Rail_Bag_Simulation
                 if (nbrOfBagsDrugs > 0)
                 {
                     templist.Add(new Bag(SuspiciousBagtype.Drug, Random.Next(10, 22), (Destination) Random.Next(1, 12),
-                        "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, 3)));
+                        "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, Airport.TotalNumberOfGates + 1)));
                     nbrOfBagsDrugs--;
                     totalnumber--;
                 }
@@ -128,7 +128,7 @@ namespace Rail_Bag_Simulation
                 if (nbrOfBagsWeapons > 0)
                 {
                     templist.Add(new Bag(SuspiciousBagtype.Weapons, Random.Next(10, 22),
-                        (Destination) Random.Next(1, 12), "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, 3)));
+                        (Destination) Random.Next(1, 12), "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, Airport.TotalNumberOfGates + 1)));
                     nbrOfBagsWeapons--;
                     totalnumber--;
                 }
@@ -136,7 +136,7 @@ namespace Rail_Bag_Simulation
                 if (nbrOfBagsFlammable > 0)
                 {
                     templist.Add(new Bag(SuspiciousBagtype.Flammables, Random.Next(10, 22),
-                        (Destination) Random.Next(1, 12), "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, 3)));
+                        (Destination) Random.Next(1, 12), "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, Airport.TotalNumberOfGates + 1)));
                     nbrOfBagsFlammable--;
                     totalnumber--;
                 }
@@ -144,7 +144,7 @@ namespace Rail_Bag_Simulation
                 if (nbrBagsOthers > 0)
                 {
                     templist.Add(new Bag(SuspiciousBagtype.Other, Random.Next(10, 22), (Destination) Random.Next(1, 12),
-                        "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, 3)));
+                        "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, Airport.TotalNumberOfGates + 1)));
                     nbrBagsOthers--;
                     totalnumber--;
                 }

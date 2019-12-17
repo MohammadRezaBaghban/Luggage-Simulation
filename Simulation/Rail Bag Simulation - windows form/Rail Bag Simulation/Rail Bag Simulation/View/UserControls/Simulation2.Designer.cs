@@ -368,10 +368,10 @@
             // pictureBox12
             // 
             this.pictureBox12.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox12.Image")));
-            this.pictureBox12.Location = new System.Drawing.Point(1193, 616);
+            this.pictureBox12.Location = new System.Drawing.Point(1146, 616);
             this.pictureBox12.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(118, 111);
+            this.pictureBox12.Size = new System.Drawing.Size(165, 111);
             this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox12.TabIndex = 91;
             this.pictureBox12.TabStop = false;
@@ -392,7 +392,7 @@
             this.bagSort_Conveyor_To_Terminal2.Location = new System.Drawing.Point(917, 667);
             this.bagSort_Conveyor_To_Terminal2.Margin = new System.Windows.Forms.Padding(2);
             this.bagSort_Conveyor_To_Terminal2.Name = "bagSort_Conveyor_To_Terminal2";
-            this.bagSort_Conveyor_To_Terminal2.Size = new System.Drawing.Size(272, 60);
+            this.bagSort_Conveyor_To_Terminal2.Size = new System.Drawing.Size(236, 60);
             this.bagSort_Conveyor_To_Terminal2.slots = null;
             this.bagSort_Conveyor_To_Terminal2.TabIndex = 89;
             // 
@@ -626,7 +626,7 @@
             this.Controls.Add(this.btnContinue);
             this.Controls.Add(this.btnPause);
             this.Name = "Simulation2";
-            this.Size = new System.Drawing.Size(1317, 581);
+            this.Size = new System.Drawing.Size(1300, 564);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();

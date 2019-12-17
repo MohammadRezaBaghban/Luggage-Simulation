@@ -26,7 +26,7 @@ namespace Rail_Bag_Simulation
 
         public override void AddNode(int parentid, Type parenttype, Node _nodetoadd)
         {
-            if (GetType() == parenttype)
+            if (GetType() == parenttype && parentid==Id)
             {
                 _nodetoadd.SetNext(GetNext());
                 SetNext(_nodetoadd);

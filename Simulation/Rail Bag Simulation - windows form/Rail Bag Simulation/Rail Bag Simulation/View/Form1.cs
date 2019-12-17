@@ -213,7 +213,7 @@ namespace Rail_Bag_Simulation
                         }
 
                         
-                        airport = new Airport(100);
+                        airport = new Airport(nbrCarts);
 
                         if (whatiwant == "Map1")
                         {
