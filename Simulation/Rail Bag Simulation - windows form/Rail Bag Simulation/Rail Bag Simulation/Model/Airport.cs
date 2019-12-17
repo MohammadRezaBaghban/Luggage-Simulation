@@ -10,6 +10,7 @@ namespace Rail_Bag_Simulation
 
         private readonly bool _isMapCreated = false;
 
+        public Dictionary<string, Destination> Destinations = new Dictionary<string, Destination>();
 
         private List<Node> conveyors;
 
@@ -69,6 +70,7 @@ namespace Rail_Bag_Simulation
             Node terminal1_Conveyor_To_Gate2 = new ConveyorNode(queueSizeOfBelts);
 
             Node t1gate1 = new GateNode(new Gate("G1"));
+
             TotalNumberOfGates++;
             Node t1gate2 = new GateNode(new Gate("G2"));
             TotalNumberOfGates++;

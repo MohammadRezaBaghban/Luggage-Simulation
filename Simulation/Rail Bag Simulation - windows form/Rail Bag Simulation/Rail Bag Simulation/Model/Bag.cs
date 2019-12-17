@@ -16,21 +16,19 @@ namespace Rail_Bag_Simulation
         private static List<Bag> bags = new List<Bag>();
         public bool IsObserving;
 
-        public Bag(SuspiciousBagtype suspicious, float weight, Destination destination, string terminalAndGate)
+        public Bag(SuspiciousBagtype suspicious, float weight, string terminalAndGate)
         {
             _suspicious = suspicious;
             Weight = weight;
             Id = ++_idToGive;
-            Destination = destination;
             TerminalAndGate = terminalAndGate;
         }
 
-        public Bag(float weight, Destination destination, string terminalAndGate)
+        public Bag(float weight, string terminalAndGate)
         {
             _suspicious = null;
             Weight = weight;
             Id = ++_idToGive;
-            Destination = destination;
             TerminalAndGate = terminalAndGate;
         }
 
@@ -44,7 +42,6 @@ namespace Rail_Bag_Simulation
             set => _suspicious = value;
         }
 
-        public Destination Destination { get; set; }
         public float Weight { get; set; }
         public string TerminalAndGate { get; set; }
 
@@ -52,7 +49,7 @@ namespace Rail_Bag_Simulation
         public string GetBagInfo()
         {
             return string.Format(
-                $" \n Id : {Id} Weight: {Weight}  Destination: {Destination} Terminal and Gate: {TerminalAndGate}");
+                $" \n Id : {Id} Weight: {Weight} Terminal and Gate: {TerminalAndGate}");
         }
 
         public void UpdateLastSeenLocation(string newLocation)
@@ -94,7 +91,7 @@ namespace Rail_Bag_Simulation
                     continue;
                 }
 
-                bags.Add(new Bag(Random.Next(10, 22), (Destination) Random.Next(1, 12),
+                bags.Add(new Bag(Random.Next(10, 22),
                     "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, Airport.TotalNumberOfGates+1)));
             }
 
@@ -119,7 +116,7 @@ namespace Rail_Bag_Simulation
             {
                 if (nbrOfBagsDrugs > 0)
                 {
-                    templist.Add(new Bag(SuspiciousBagtype.Drug, Random.Next(10, 22), (Destination) Random.Next(1, 12),
+                    templist.Add(new Bag(SuspiciousBagtype.Drug, Random.Next(10, 22),
                         "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, Airport.TotalNumberOfGates + 1)));
                     nbrOfBagsDrugs--;
                     totalnumber--;
@@ -127,8 +124,7 @@ namespace Rail_Bag_Simulation
 
                 if (nbrOfBagsWeapons > 0)
                 {
-                    templist.Add(new Bag(SuspiciousBagtype.Weapons, Random.Next(10, 22),
-                        (Destination) Random.Next(1, 12), "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, Airport.TotalNumberOfGates + 1)));
+                    templist.Add(new Bag(SuspiciousBagtype.Weapons, Random.Next(10, 22),"T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, Airport.TotalNumberOfGates + 1)));
                     nbrOfBagsWeapons--;
                     totalnumber--;
                 }
@@ -136,14 +132,14 @@ namespace Rail_Bag_Simulation
                 if (nbrOfBagsFlammable > 0)
                 {
                     templist.Add(new Bag(SuspiciousBagtype.Flammables, Random.Next(10, 22),
-                        (Destination) Random.Next(1, 12), "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, Airport.TotalNumberOfGates + 1)));
+                        "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, Airport.TotalNumberOfGates + 1)));
                     nbrOfBagsFlammable--;
                     totalnumber--;
                 }
 
                 if (nbrBagsOthers > 0)
                 {
-                    templist.Add(new Bag(SuspiciousBagtype.Other, Random.Next(10, 22), (Destination) Random.Next(1, 12),
+                    templist.Add(new Bag(SuspiciousBagtype.Other, Random.Next(10, 22), 
                         "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, Airport.TotalNumberOfGates + 1)));
                     nbrBagsOthers--;
                     totalnumber--;
