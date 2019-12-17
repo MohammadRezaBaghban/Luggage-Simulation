@@ -69,7 +69,7 @@ namespace InsuranceBuilderApp.Implementations
         {
             Insurance insurance = new Insurance();
             PremiumPlus premium = new PremiumPlus();
-            premium.SetCost(200);
+            premium.SetCost(400);
             premium.SetDeductable(0);
 
             insurance.addPackage(premium);
@@ -81,7 +81,7 @@ namespace InsuranceBuilderApp.Implementations
         {
             Insurance insurance = new Insurance();
             BasicPremium premium = new BasicPremium();
-            premium.SetCost(200);
+            premium.SetCost(450);
             premium.SetDeductable(0);
 
             insurance.addPackage(premium);
