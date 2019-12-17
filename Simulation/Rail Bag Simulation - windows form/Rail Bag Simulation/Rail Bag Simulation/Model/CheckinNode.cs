@@ -6,12 +6,25 @@ namespace Rail_Bag_Simulation
     public class CheckinNode : Node
     {
         private static int _idToGive;
-
+        
+        
         public CheckinNode()
         {
+           
             Id = ++_idToGive;
         }
+        public  void Pushcheckinbags(List<Bag> bagsList)
+        {
+            bagsList.ForEach(p =>
+            {
+                lock (this.BagsQueue)
+                {
+                    this.BagsQueue.Enqueue(p);
+                }
+            });
 
+          
+        }
         public override void AddNode(int parentid, Type parenttype, Node _nodetoadd)
         {
             if (parentid == Id && GetType() == parenttype)

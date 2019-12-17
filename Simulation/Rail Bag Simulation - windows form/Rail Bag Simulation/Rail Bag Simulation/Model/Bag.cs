@@ -95,7 +95,7 @@ namespace Rail_Bag_Simulation
                 }
 
                 bags.Add(new Bag(Random.Next(10, 22), (Destination) Random.Next(1, 12),
-                    "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, 3)));
+                    "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, 6)));
             }
 
             return bags;
