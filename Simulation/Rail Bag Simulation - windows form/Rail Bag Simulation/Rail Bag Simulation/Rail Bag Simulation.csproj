@@ -111,6 +111,12 @@
     <Compile Include="View\UserControls\Simulation.Designer.cs">
       <DependentUpon>Simulation.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\UserControls\Simulation2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UserControls\Simulation2.Designer.cs">
+      <DependentUpon>Simulation2.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\UserControls\Statistics.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -141,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\UserControls\Simulation.resx">
       <DependentUpon>Simulation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\UserControls\Simulation2.resx">
+      <DependentUpon>Simulation2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\UserControls\Statistics.resx">
       <DependentUpon>Statistics.cs</DependentUpon>

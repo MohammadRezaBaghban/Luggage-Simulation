@@ -1,38 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
 using System.Linq;
-using System.Threading;
-using System.Windows.Forms;
-using System.Windows.Threading;
+using System.Text;
+using System.Threading.Tasks;
 using Rail_Bag_Simulation.CustomizedControl;
+using System.Windows.Forms;
 
 namespace Rail_Bag_Simulation.View.UserControls
 {
-    public partial class Simulation : UserControl
+    public partial class Simulation2 : UserControl
     {
         public List<IConveyor> conveyors;
-        public Simulation()
+        public Simulation2()
         {
             InitializeComponent();
             conveyors = new List<IConveyor>()
             {
-                Cn_CheckIn_To_Security,
-                Cn_Security_Sorter,
-                Cn_Sorter_To_Terminal1,
-                Cn_Sorter_To_Terminal2,
-                Cn_Terminal1_To_Gate1,
-                Cn_Terminal1_To_Gate2,
-                Cn_Terminal2_To_Gate1,
-                Cn_Terminal2_To_Gate2,
+                CheckIn1_To_Security1_Conveyor,
+                CheckIn2_To_Security2_Conveyor,
+                CheckIn3_To_Security3_Conveyor,
+                security1_Conveyor_To_BagSort,
+                security2_Conveyor_To_BagSort,
+                security3_Conveyor_To_BagSort,
+                bagSort_Conveyor_To_Terminal1,
+                bagSort_Conveyor_To_Terminal2,
+                terminal1_Conveyor_To_Gate1,
+                terminal1_Conveyor_To_Gate2,
+                terminal1_Conveyor_To_Gate3,
+                terminal1_Conveyor_To_Gate4,
+                terminal1_Conveyor_To_Gate5,
+                terminal2_Conveyor_To_Gate1,
+                terminal2_Conveyor_To_Gate2,
+                terminal2_Conveyor_To_Gate3,
+                terminal2_Conveyor_To_Gate4,
+                terminal2_Conveyor_To_Gate5
             };
-
             foreach (Control c in this.Controls)
             {
                 if (c is ConveyorHorizontal horizontal)
                 {
                     horizontal.initializeSlots();
-                } 
-                if(c is ConveyorVertical vertical)
+                }
+                if (c is ConveyorVertical vertical)
                 {
                     vertical.initializeSlots();
                 }
@@ -41,55 +53,37 @@ namespace Rail_Bag_Simulation.View.UserControls
             GateNode.SimulationFinishedEvent += (sender, args) =>
             {
 
-               button1_Click(this,EventArgs.Empty);
+                button1_Click(this, EventArgs.Empty);
             };
         }
-
         public void Map_The_Converyors(List<Node> ls)
         {
             for (int i = 0; i < ls.Count; i++)
             {
+                
                 conveyors[i].SetConveyor((ConveyorNode)ls[i]);
             }
         }
-
-
-        private void Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void Simulation_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void pictureBox5_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            
-              
-            
+
+
+
         }
-
-
         public void Update(ConveyorNode conveyorNodeBackend, IConveyor frontEnd)
         {
-            if(LinkedList.IsSimulationFinished)return;
+            if (LinkedList.IsSimulationFinished) return;
             var ls = conveyorNodeBackend.ListOfBagsInQueue.ToArray();
             if (conveyorNodeBackend.ListOfBagsInQueue.Count > 0)
             {
                 for (var j = 0; j < ls.Length; j++)
                 {
-                    frontEnd.slots[j].Visible = ls[j]!= null;
+                    frontEnd.slots[j].Visible = ls[j] != null;
                 }
 
 
                 label1.Text = (GateNode.Counter).ToString();
-                if ((Airport.TotalNumberOfBags  != GateNode.Counter+Storage.GetNumberOfBagsInStorage())) return;
+                if ((Airport.TotalNumberOfBags != GateNode.Counter + Storage.GetNumberOfBagsInStorage())) return;
                 try
                 {
                     for (var j = 0; j < conveyors.Count; j++)
@@ -107,22 +101,17 @@ namespace Rail_Bag_Simulation.View.UserControls
             }
         }
 
-        private void Cn_CheckIn_To_Security_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BtnPause_Click(object sender, EventArgs e)
+        private void btnPause_Click(object sender, EventArgs e)
         {
             ((Form1)Parent).airport.Ll.PauseSimulation();
         }
 
-        private void BtnPowerOut_Click(object sender, EventArgs e)
+        private void btnPowerOut_Click(object sender, EventArgs e)
         {
             ((Form1)Parent).airport.Ll.DestroySimulation();
         }
 
-        private void BtnContinue_Click(object sender, EventArgs e)
+        private void btnContinue_Click(object sender, EventArgs e)
         {
             ((Form1)Parent).airport.Ll.RunSimulation();
         }

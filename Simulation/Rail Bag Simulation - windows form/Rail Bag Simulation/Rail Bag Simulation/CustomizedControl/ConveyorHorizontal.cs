@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -8,22 +9,17 @@ using Rail_Bag_Simulation.View.UserControls;
 
 namespace Rail_Bag_Simulation.CustomizedControl
 {
-    public partial class ConveyorHorizontal : UserControl, IConveyor
+  
+ public partial class ConveyorHorizontal : UserControl, IConveyor
     {
         private ConveyorNode conveyor;
         public List<PictureBox> slots { get; set; }
 
         public ConveyorHorizontal()
         {
+           
+
             InitializeComponent();
-            slots = new List<PictureBox>
-            {
-                Slot1,
-                Slot2,
-                Slot3,
-                Slot4,
-                Slot5
-            };
         }
 
         public void SetConveyor(ConveyorNode cn)
@@ -31,7 +27,7 @@ namespace Rail_Bag_Simulation.CustomizedControl
             conveyor = cn;
             conveyor.OnQueueChangedEventHandler += InvokeUpdateControls;
         }
-
+        
         public delegate void UpdateControlsDelegate();
 
         public void InvokeUpdateControls(object sender, EventArgs eventArgs)
@@ -52,9 +48,27 @@ namespace Rail_Bag_Simulation.CustomizedControl
         {
             lock (conveyor.ListOfBagsInQueue)
             {
-                ((Simulation) Parent).Update(conveyor, this);
+                if (Parent is Simulation2 parent2)
+                {
+                    (parent2).Update(conveyor, this);
+                }
+                else if (Parent is Simulation parent1)
+                {
+                    (parent1).Update(conveyor, this);
+                }
             }
 
+        }
+        public void initializeSlots()
+        {
+            slots = new List<PictureBox>
+            {
+                Slot1,
+                Slot2,
+                Slot3,
+                Slot4,
+                Slot5
+            };
         }
 
         private void Slot3_Click(object sender, EventArgs e)

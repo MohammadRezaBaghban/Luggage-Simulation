@@ -31,7 +31,7 @@ namespace Rail_Bag_Simulation
         public void StartBagsMovement(int nbrOfBags, int nbrOfBagsDrugs, int nbrOfBagsWeapons, int nbrOfBagsFlammable,
             int nbrBagsOthers)
         {
-            TotalNumberOfBags = nbrOfBags;
+            TotalNumberOfBags += nbrOfBags;
             GetBagList = Bag.GenerateBag(nbrOfBags, nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable,
                 nbrBagsOthers);
             Ll.AddGeneratedBags(GetBagList);
@@ -70,7 +70,7 @@ namespace Rail_Bag_Simulation
             Node t1gate2 = new GateNode(new Gate("G2"));
             Node terminal2_Conveyor_To_Gate1 = new ConveyorNode(queueSizeOfBelts);
             Node terminal2_Conveyor_To_Gate2 = new ConveyorNode(queueSizeOfBelts);
-
+            Node terminal3_Conveyor_To_Gate1 = new ConveyorNode(queueSizeOfBelts);
             Node t2gate1 = new GateNode(new Gate("G1"));
             Node t2gate2 = new GateNode(new Gate("G2"));
 
@@ -123,7 +123,7 @@ namespace Rail_Bag_Simulation
                 terminal1_Conveyor_To_Gate1,
                 terminal1_Conveyor_To_Gate2,
                 terminal2_Conveyor_To_Gate1,
-                terminal2_Conveyor_To_Gate2
+                terminal2_Conveyor_To_Gate2,
             };
         }
 
@@ -204,7 +204,7 @@ namespace Rail_Bag_Simulation
             //Create conveyor from terminal 2 to gate 5 and gate 5
             Node terminal2_Conveyor_To_Gate5 = new ConveyorNode(queueSizeOfBelts);
             Node t2gate5 = new GateNode(new Gate("G5"));
-
+            
 
             //Add checkIn1 -> conveyorToSecurity1 -> security 1 -> conveyorToBagSort -> bagSort
             Ll.AddNode(checkIn1);
@@ -264,6 +264,28 @@ namespace Rail_Bag_Simulation
 
             Ll.AddNode(terminal2.Id, terminal2.GetType(), terminal2_Conveyor_To_Gate5);
             Ll.AddNode(terminal2_Conveyor_To_Gate5.Id, terminal2_Conveyor_To_Gate5.GetType(), t2gate5);
+            conveyors = new List<Node>
+            {
+                CheckIn1_To_Security1_Conveyor,
+                CheckIn2_To_Security2_Conveyor,
+                CheckIn3_To_Security3_Conveyor,
+                security1_Conveyor_To_BagSort,
+                security2_Conveyor_To_BagSort,
+                security3_Conveyor_To_BagSort,
+                bagSort_Conveyor_To_Terminal1,
+                bagSort_Conveyor_To_Terminal2,
+                terminal1_Conveyor_To_Gate1,
+                terminal1_Conveyor_To_Gate2,
+                terminal1_Conveyor_To_Gate3,
+                terminal1_Conveyor_To_Gate4,
+                terminal1_Conveyor_To_Gate5,
+                terminal2_Conveyor_To_Gate1,
+                terminal2_Conveyor_To_Gate2,
+                terminal2_Conveyor_To_Gate3,
+                terminal2_Conveyor_To_Gate4,
+                terminal2_Conveyor_To_Gate5
+            };
+
         }
         public void CreateMapLayoutThree(int queueSizeOfBelts)
         {

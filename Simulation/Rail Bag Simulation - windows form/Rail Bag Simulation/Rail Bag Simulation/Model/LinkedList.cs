@@ -63,6 +63,27 @@ namespace Rail_Bag_Simulation
             var counter = 0;
             var totalNumberOfBags = bagstoqueue.Count;
             var firstQuater = totalNumberOfBags / 4;
+
+            if (bagstoqueue.Count >= First.Count)
+            {
+                int size = bagstoqueue.Count / First.Count;
+                int index = 0;
+                for (int i = 0; i < bagstoqueue.Count; i += size)
+                {
+                    ((CheckinNode)First[index]).Pushcheckinbags(bagstoqueue.GetRange(i, Math.Min(size, bagstoqueue.Count - i)));
+                    if (index < First.Count - 1)
+                    {
+                        index++;
+                    }
+                }
+            }
+            else
+            {
+                Random rnd = new Random();
+                int i = rnd.Next(0, First.Count - 1);
+                ((CheckinNode)First[i]).Pushcheckinbags(bagstoqueue);
+            }
+
             TimelyWatchedBagWithStopWatch.Add(new Stopwatch(), bagstoqueue[0]);
             if (totalNumberOfBags >= 5)
             {
@@ -74,13 +95,15 @@ namespace Rail_Bag_Simulation
 
             foreach (var val in TimelyWatchedBagWithStopWatch.Values) val.IsObserving = true;
 
+
+
             bagstoqueue.ForEach(bag =>
             {
                 counter++;
                 TimelyWatchedBagWithStopWatch.FirstOrDefault(pair => pair.Value == bag).Key?.Start();
-
-                First[0].Push(bag);
             });
+
+          
 
             Thread.Sleep(200);
             MoveBags();
@@ -143,6 +166,7 @@ namespace Rail_Bag_Simulation
         public void RunSimulation()
         {
             if (_timer == null) return;
+
             _timer.Enabled = true;
             _timer.Start();
             IsSimulationPaused = false;
@@ -153,7 +177,11 @@ namespace Rail_Bag_Simulation
         {
             PauseSimulation();
             IsSimulationFinished = true;
-            _timer = null;
+            
+        }
+        public void ResetSimulation()
+        {
+
         }
     }
 }

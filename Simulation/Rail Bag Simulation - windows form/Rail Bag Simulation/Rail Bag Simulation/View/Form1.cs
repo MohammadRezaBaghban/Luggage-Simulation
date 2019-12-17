@@ -20,6 +20,7 @@ namespace Rail_Bag_Simulation
 
         Color darkColor = Color.FromArgb(95, 108, 140);
         Color normalColor = Color.FromArgb(105, 119, 155);
+        private string whatiwant;
         public Airport airport;
         public Form1()
         {
@@ -28,13 +29,14 @@ namespace Rail_Bag_Simulation
             stat.Show();
             this.ActiveControl = tb_numberOfBags;
             tb_numberOfBags.Focus();
-
+            whatiwant = "Map2";
             btnConfigurations.BackColor = this.darkColor;
             btnSimulation.BackColor = this.normalColor;
             btnStatistics.BackColor = this.normalColor;
             pbConfigurations.BackColor = this.darkColor;
             pbSimulation.BackColor = this.normalColor;
             pbStatistics.BackColor = this.normalColor;
+            btnRunSimulation.Enabled = false;
             
         }
 
@@ -53,6 +55,7 @@ namespace Rail_Bag_Simulation
             panelBorder.Visible = true;
             panelBorder1.Visible = true;
             simulation1.Visible = false;
+            simulation2.Visible = false;
             statistics1.Visible = false;
             btnConfigurations.BackColor = this.darkColor;
             btnSimulation.BackColor = this.normalColor;
@@ -66,7 +69,7 @@ namespace Rail_Bag_Simulation
 
         private void BtnSimulation_Click(object sender, System.EventArgs e)
         {
-            simulation1.Visible = true;
+            
             statistics1.Visible = false;
             palenlConfigurations.Visible = false;
             panelBorder.Visible = false;
@@ -78,12 +81,18 @@ namespace Rail_Bag_Simulation
             pbConfigurations.BackColor = this.normalColor;
             pbStatistics.BackColor = this.normalColor;
             btnSaveSimulation.Visible = true;
+            if(whatiwant == "Map1")
+            simulation1.Visible = true;
+
+            if (whatiwant == "Map2")
+            simulation2.Visible = true;
             ClearConfigurationData();
         }
 
         private void BtnStatistics_Click(object sender, System.EventArgs e)
         {
             simulation1.Visible = false;
+            simulation2.Visible = false;
             statistics1.Visible = true;
             palenlConfigurations.Visible = false;
             panelBorder.Visible = false;
@@ -104,6 +113,7 @@ namespace Rail_Bag_Simulation
             panelBorder.Visible = true;
             panelBorder1.Visible = true;
             simulation1.Visible = false;
+            simulation2.Visible = false;
             statistics1.Visible = false;
             btnConfigurations.BackColor = this.darkColor;
             btnSimulation.BackColor = this.normalColor;
@@ -122,6 +132,7 @@ namespace Rail_Bag_Simulation
         private void PbStatistics_Click(object sender, System.EventArgs e)
         {
             simulation1.Visible = false;
+            simulation2.Visible = false;
             statistics1.Visible = true;
             palenlConfigurations.Visible = false;
             panelBorder.Visible = false;
@@ -203,9 +214,22 @@ namespace Rail_Bag_Simulation
 
                         
                         airport = new Airport(100);
-                        airport.CreateMapLayout(5);
 
-                        simulation1.Map_The_Converyors(airport.GetConveyorsList());
+                        if (whatiwant == "Map1")
+                        {
+                            
+                            airport.CreateMapLayout(5);
+
+                            simulation1.Map_The_Converyors(airport.GetConveyorsList());
+                            ShowSimulationPanel();
+                        }
+                        else if (whatiwant == "Map2")
+                        {
+                            
+                            airport.CreateMapLayoutTwo(5);
+                            simulation2.Map_The_Converyors(airport.GetConveyorsList());
+                            ShowSimulation2Panel();
+                        }
 
                         if (drugs == "" || weapons == "" || flammables == "" || others == "")
                         {
@@ -238,6 +262,15 @@ namespace Rail_Bag_Simulation
             palenlConfigurations.Visible = false;
             simulation1.Visible = true;
             panelBorder.Visible = false;
+            simulation2.Visible = false;
+            panelBorder1.Visible = false;
+        }
+        private void ShowSimulation2Panel()
+        {
+            palenlConfigurations.Visible = false;
+            simulation2.Visible = true;
+            panelBorder.Visible = false;
+            simulation1.Visible = false;
             panelBorder1.Visible = false;
         }
 
@@ -260,10 +293,10 @@ namespace Rail_Bag_Simulation
 
                 }
                 catch (SerializationException) { MessageBox.Show("Error opening/creating file"); }
-                finally 
-                { 
-                    if (fs != null) 
-                    { 
+                finally
+                {
+                    if (fs != null)
+                    {
                         fs.Close();
                     }
                 }
@@ -367,6 +400,18 @@ namespace Rail_Bag_Simulation
             tb_Others.Clear();
             tb_weapons.Clear();
             tb_drugs.Clear();
+        }
+
+        private void Map2_Click(object sender, EventArgs e)
+        {
+            whatiwant = "Map2";
+            btnRunSimulation.Enabled = true;
+        }
+
+        private void Map1_Click(object sender, EventArgs e)
+        {
+            whatiwant = "Map1";
+            btnRunSimulation.Enabled = true;
         }
     }
 }

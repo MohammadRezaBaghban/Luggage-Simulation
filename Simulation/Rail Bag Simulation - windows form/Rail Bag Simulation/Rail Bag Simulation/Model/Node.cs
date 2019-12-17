@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
 {
+    [Browsable(false)]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class Node : INode
     {
         protected readonly Queue<Bag> BagsQueue;
