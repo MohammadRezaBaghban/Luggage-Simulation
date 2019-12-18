@@ -18,7 +18,8 @@ namespace Rail_Bag_Simulation.View.UserControls
 
         private void btnLoadData_Click(object sender, EventArgs e)
         {
-            
+            dataGridView1.AutoResizeColumns();
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             pieChart1.Series = new SeriesCollection
             {
                 new PieSeries
