@@ -1,23 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Rail_Bag_Simulation
 {
     [Serializable]
     public class Airport
     {
+        private static Dictionary<Terminal, List<Gate>> _terminalsWithGates;
         public static int BagsCountTotalArrived;
 
         private readonly bool _isMapCreated = false;
+        private static readonly Random Random = new Random();
 
-        public Dictionary<string, Destination> Destinations = new Dictionary<string, Destination>();
+        private static readonly Dictionary<string, Destination> Destinations = new Dictionary<string, Destination>();
 
         private List<Node> conveyors;
 
         public Airport(int speedDelay)
-        {
+        { 
             Ll = new LinkedList(speedDelay);
         }
+
+
+        public  void AssignGatesToDestinations(Dictionary<Terminal, List<Gate>> _terminalsWithGates)
+        {
+            Airport._terminalsWithGates = _terminalsWithGates;
+            for (int i = 0; i < _terminalsWithGates.Count; i++)
+            {
+                foreach (var t in _terminalsWithGates.ElementAt(i).Value)
+                {
+                    Destinations.Add("T" + _terminalsWithGates.ElementAt(i).Key.TerminalId+"-G" 
+                                      + t.GateNr,
+                        (Destination) Random.Next(0,12)
+                    );
+                }
+            }
+        }
+
+        
 
         public static List<Bag> GetBagList { get; private set; }
 
@@ -30,12 +51,17 @@ namespace Rail_Bag_Simulation
         public static int TotalNumberOfBags { get; private set; }
         public static int TotalNumberOfGates { get; private set; }
 
+        public static Dictionary<Terminal, List<Gate>> TerminalsWithGates
+        {
+            get => _terminalsWithGates;
+        }
+
         public void StartBagsMovement(int nbrOfBags, int nbrOfBagsDrugs, int nbrOfBagsWeapons, int nbrOfBagsFlammable,
-            int nbrBagsOthers)
+            int nbrBagsOthers, Dictionary<string,int> GatesDictionary)
         {
             TotalNumberOfBags += nbrOfBags;
             GetBagList = Bag.GenerateBag(nbrOfBags, nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable,
-                nbrBagsOthers);
+                nbrBagsOthers, GatesDictionary);
             Ll.AddGeneratedBags(GetBagList);
         }
         public void StartBagsMovement(List<Bag> bag)
@@ -49,6 +75,12 @@ namespace Rail_Bag_Simulation
         {
             if (_isMapCreated) return;
             TotalNumberOfGates = 0;
+
+            // temp dictionary must be created and initialized here
+            // possible implementation is : new Dictionary<Terminal, List<Gate>>
+            // {{new Terminal(), new List<Gate>{new Gate("1"), new Gate("2")}}, 
+            // {new Terminal(), new List<Gate>{new Gate("1"), new Gate("2")}}}
+            /*Airport.AssignGatesToDestinations(PassDictionary here );*/
 
             Node checkIn1 = new CheckinNode();
             Node CheckIn_To_Security_Conveyor = new ConveyorNode(queueSizeOfBelts);

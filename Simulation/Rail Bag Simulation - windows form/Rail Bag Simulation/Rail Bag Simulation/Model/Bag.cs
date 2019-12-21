@@ -16,20 +16,18 @@ namespace Rail_Bag_Simulation
         private static List<Bag> bags = new List<Bag>();
         public bool IsObserving;
 
-        public Bag(SuspiciousBagtype suspicious, float weight, string terminalAndGate)
+        public Bag(SuspiciousBagtype suspicious, float weight)
         {
             _suspicious = suspicious;
             Weight = weight;
             Id = ++_idToGive;
-            TerminalAndGate = terminalAndGate;
         }
 
-        public Bag(float weight, string terminalAndGate)
+        public Bag(float weight)
         {
             _suspicious = null;
             Weight = weight;
             Id = ++_idToGive;
-            TerminalAndGate = terminalAndGate;
         }
 
         public string LastSeenLocation { get; private set; }
@@ -43,7 +41,7 @@ namespace Rail_Bag_Simulation
         }
 
         public float Weight { get; set; }
-        public string TerminalAndGate { get; set; }
+        public string TerminalAndGate { get; private set; }
 
 
         public string GetBagInfo()
@@ -64,40 +62,6 @@ namespace Rail_Bag_Simulation
             return resultToTest;
         }
 
-        public static List<Bag> GenerateBag(int nbrOfBags, int nbrOfBagsDrugs, int nbrOfBagsWeapons,
-            int nbrOfBagsFlammable, int nbrBagsOthers)
-        {
-            bags = new List<Bag>();
-
-
-            var totalNrOfSuspicious =
-                GetTotalNrOfSuspicious(nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable, nbrBagsOthers);
-
-            if (totalNrOfSuspicious > nbrOfBags)
-                throw new Exception("Number of suspicious bags exceeds number of bags to be generated");
-
-            var theSuspiciousBagDistr = GetTheSuspiciousBagDistr(nbrOfBags, totalNrOfSuspicious);
-            var suspiciousbags =
-                GenerateSuspiciousBags(nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable, nbrBagsOthers);
-
-
-            for (var i = 0; i < nbrOfBags; i++)
-            {
-                //for every suspicious bag to be created, it will be placed after the distribution value.
-                if (theSuspiciousBagDistr != 0 && i % theSuspiciousBagDistr == 0 && suspiciousbags.Count > 0)
-                {
-                    bags.Add(suspiciousbags[0]);
-                    suspiciousbags.RemoveAt(0);
-                    continue;
-                }
-
-                bags.Add(new Bag(Random.Next(10, 22),
-                    "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, Airport.TotalNumberOfGates+1)));
-            }
-
-            return bags;
-        }
-
         private static int GetTotalNrOfSuspicious(int nbrOfBagsDrugs, int nbrOfBagsWeapons, int nbrOfBagsFlammable,
             int nbrBagsOthers)
         {
@@ -116,31 +80,28 @@ namespace Rail_Bag_Simulation
             {
                 if (nbrOfBagsDrugs > 0)
                 {
-                    templist.Add(new Bag(SuspiciousBagtype.Drug, Random.Next(10, 22),
-                        "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, Airport.TotalNumberOfGates + 1)));
+                    templist.Add(new Bag(SuspiciousBagtype.Drug, Random.Next(10, 22)));
                     nbrOfBagsDrugs--;
                     totalnumber--;
                 }
 
                 if (nbrOfBagsWeapons > 0)
                 {
-                    templist.Add(new Bag(SuspiciousBagtype.Weapons, Random.Next(10, 22),"T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, Airport.TotalNumberOfGates + 1)));
+                    templist.Add(new Bag(SuspiciousBagtype.Weapons, Random.Next(10, 22)));
                     nbrOfBagsWeapons--;
                     totalnumber--;
                 }
 
                 if (nbrOfBagsFlammable > 0)
                 {
-                    templist.Add(new Bag(SuspiciousBagtype.Flammables, Random.Next(10, 22),
-                        "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, Airport.TotalNumberOfGates + 1)));
+                    templist.Add(new Bag(SuspiciousBagtype.Flammables, Random.Next(10, 22)));
                     nbrOfBagsFlammable--;
                     totalnumber--;
                 }
 
                 if (nbrBagsOthers > 0)
                 {
-                    templist.Add(new Bag(SuspiciousBagtype.Other, Random.Next(10, 22), 
-                        "T" + Random.Next(1, 3) + "-" + "G" + Random.Next(1, Airport.TotalNumberOfGates + 1)));
+                    templist.Add(new Bag(SuspiciousBagtype.Other, Random.Next(10, 22)));
                     nbrBagsOthers--;
                     totalnumber--;
                 }
@@ -154,5 +115,60 @@ namespace Rail_Bag_Simulation
             return _suspicious;
         }
 
+        public static List<Bag> GenerateBag(int nbrOfBags, int nbrOfBagsDrugs, int nbrOfBagsWeapons,
+            int nbrOfBagsFlammable, int nbrBagsOthers, Dictionary<string , int> percentagesOfBagsPerGateDictionary)
+        {
+            bags = new List<Bag>();
+
+
+            var totalNrOfSuspicious =
+                GetTotalNrOfSuspicious(nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable, nbrBagsOthers);
+
+            if (totalNrOfSuspicious > nbrOfBags)
+                throw new Exception("Number of suspicious bags exceeds number of bags to be generated");
+
+            MakeBagsWithSuspiciousIncluded(nbrOfBags, nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable, nbrBagsOthers, totalNrOfSuspicious);
+
+            AssignGatesToBags(percentagesOfBagsPerGateDictionary);
+
+            return bags;
+        }
+
+        private static void MakeBagsWithSuspiciousIncluded(int nbrOfBags, int nbrOfBagsDrugs, int nbrOfBagsWeapons,
+            int nbrOfBagsFlammable, int nbrBagsOthers, int totalNrOfSuspicious)
+        {
+            var theSuspiciousBagDistr = GetTheSuspiciousBagDistr(nbrOfBags, totalNrOfSuspicious);
+            var suspiciousbags =
+                GenerateSuspiciousBags(nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable, nbrBagsOthers);
+
+
+            for (var i = 0; i < nbrOfBags; i++)
+            {
+                //for every suspicious bag to be created, it will be placed after the distribution value.
+                if (theSuspiciousBagDistr != 0 && i % theSuspiciousBagDistr == 0 && suspiciousbags.Count > 0)
+                {
+                    bags.Add(suspiciousbags[0]);
+                    suspiciousbags.RemoveAt(0);
+                    continue;
+                }
+
+                bags.Add(new Bag(Random.Next(10, 22)));
+            }
+        }
+
+        private static void AssignGatesToBags(Dictionary<string, int> percentagesOfBagsPerGateDictionary)
+        {
+            int lastIndexToContinueFrom = 0;
+
+            foreach (KeyValuePair<string, int> keyValuePair in percentagesOfBagsPerGateDictionary)
+            {
+                //there could be a bag for the last bag
+                for (var i = 0; i < Convert.ToInt32(Airport.TotalNumberOfBags*((decimal)keyValuePair.Value/100)); i++)
+                {
+                    bags[lastIndexToContinueFrom].TerminalAndGate = keyValuePair.Key;
+                    lastIndexToContinueFrom++;
+                }
+            }
+        }
     }
 }
