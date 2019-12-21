@@ -7,7 +7,7 @@ using BreadFactoryApp.Interfaces;
 
 namespace BreadFactoryApp.Implementations
 {
-    class BrownBreadPackage :  IPackage
+    public class BrownBreadPackage :  IPackage
     {
         private string status;
         private int id;

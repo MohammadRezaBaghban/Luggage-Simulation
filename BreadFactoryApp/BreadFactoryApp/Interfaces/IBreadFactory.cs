@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BreadFactoryApp.Interfaces
 {
-     interface IBreadFactory
+    public interface IBreadFactory
     {
         ILabel CreateLabel();
         IFlour CreateBakingFlour();

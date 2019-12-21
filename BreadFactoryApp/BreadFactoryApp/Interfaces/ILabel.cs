@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BreadFactoryApp.Interfaces
 {
-    interface ILabel
+   public interface ILabel
     {
         String PrintIngredients();
         DateTime PrintExpiryDate();

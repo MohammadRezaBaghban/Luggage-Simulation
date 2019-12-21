@@ -3,7 +3,7 @@ using BreadFactoryApp.Interfaces;
 
 namespace BreadFactoryApp.Implementations
 {
-    class BrownBreadFlour : IFlour
+    public class BrownBreadFlour : IFlour
     {
         private int id;
         private static int IdToGive;

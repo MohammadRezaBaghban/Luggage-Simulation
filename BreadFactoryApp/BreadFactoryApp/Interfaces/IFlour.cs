@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BreadFactoryApp.Interfaces
 {
-    interface IFlour
+   public interface IFlour
     {
         void Bake();
         void Prepare();

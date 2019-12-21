@@ -7,7 +7,7 @@ using BreadFactoryApp.Interfaces;
 
 namespace BreadFactoryApp.Implementations
 {
-    class WhiteBreadFlour : IFlour
+    public class WhiteBreadFlour : IFlour
     {
         private string status = "";
         private int id;

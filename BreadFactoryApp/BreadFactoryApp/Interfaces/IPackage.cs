@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BreadFactoryApp.Interfaces
 {
-    interface IPackage
+    public interface IPackage
     {
         void Pack();
         void Seal();

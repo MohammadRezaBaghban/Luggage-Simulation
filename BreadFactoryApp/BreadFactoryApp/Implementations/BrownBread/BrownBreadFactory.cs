@@ -8,7 +8,7 @@ using BreadFactoryApp.Interfaces;
 
 namespace BreadFactoryApp
 {
-    class BrownBreadFactory : IBreadFactory
+    public class BrownBreadFactory : IBreadFactory
     {
         public ILabel CreateLabel()
         {

@@ -13,14 +13,16 @@ namespace BreadFactoryApp
     class GenericBreadFactory
     {
         private IBreadFactory factory;
+        
         private bool ManufacturingComplete;
         private readonly int _countOfNeededLoaf;
-        private int _countOfLoafsDone = 0 ;
 
         Timer _timerFlour=new Timer(6000);
         Timer _timerPackage=new Timer(4000);
         Timer _timerLabel=new Timer(2000);
 
+        
+        private int _countOfLoafsDone = 0 ;
         private int _countOfFlourDone = 0;
         private int _countOfLabelsDone = 0;
         private int _countOfPackagesDone = 0;

@@ -7,7 +7,7 @@ using BreadFactoryApp.Interfaces;
 
 namespace BreadFactoryApp.Implementations
 {
-    class BrownBreadLabel : ILabel
+    public class BrownBreadLabel : ILabel
     {
         private  int id;
         private static int IdToGive;
