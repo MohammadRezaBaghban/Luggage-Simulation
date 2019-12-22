@@ -15,6 +15,7 @@ namespace Rail_Bag_Simulation
 
         private static readonly Dictionary<string, Destination> Destinations = new Dictionary<string, Destination>();
 
+        
         private List<Node> conveyors;
 
         public Airport(int speedDelay)
@@ -76,6 +77,7 @@ namespace Rail_Bag_Simulation
             if (_isMapCreated) return;
             TotalNumberOfGates = 0;
 
+            var tempDic = new Dictionary<Terminal, List<Gate>>();
             // temp dictionary must be created and initialized here
             // possible implementation is : new Dictionary<Terminal, List<Gate>>
             // {{new Terminal(), new List<Gate>{new Gate("1"), new Gate("2")}}, 
@@ -96,17 +98,31 @@ namespace Rail_Bag_Simulation
             Node bagSort = new BagSortNode();
             Node bagSort_Conveyor_To_Terminal1 = new ConveyorNode(queueSizeOfBelts);
             Node bagSort_Conveyor_To_Terminal2 = new ConveyorNode(queueSizeOfBelts);
-            Node terminal1 = new TerminalNode(new Terminal());
+            Terminal t1 = new Terminal();
+            Node terminal1 = new TerminalNode(t1);
             Node terminal2 = new TerminalNode(new Terminal());
             Node terminal1_Conveyor_To_Gate1 = new ConveyorNode(queueSizeOfBelts);
             Node terminal1_Conveyor_To_Gate2 = new ConveyorNode(queueSizeOfBelts);
 
-            Node t1gate1 = new GateNode(new Gate("G1"));
+            Gate g1 = new Gate("G1");
+            Node t1gate1 = new GateNode(g1);
+            tempDic.Add(t1,new List<Gate>(){g1});
+
+            
+
+            Gate g2 = new Gate("G2");
 
             TotalNumberOfGates++;
-            Node t1gate2 = new GateNode(new Gate("G2"));
+            Node t1gate2 = new GateNode(g2);
             TotalNumberOfGates++;
 
+            foreach (var VARIABLE in tempDic)
+            {
+                if (VARIABLE.Key == t1)
+                {
+                    VARIABLE.Value.Add(g2);
+                }
+            }
             Node terminal2_Conveyor_To_Gate1 = new ConveyorNode(queueSizeOfBelts);
             Node terminal2_Conveyor_To_Gate2 = new ConveyorNode(queueSizeOfBelts);
             Node terminal3_Conveyor_To_Gate1 = new ConveyorNode(queueSizeOfBelts);
@@ -164,6 +180,8 @@ namespace Rail_Bag_Simulation
                 terminal2_Conveyor_To_Gate1,
                 terminal2_Conveyor_To_Gate2,
             };
+
+            AssignGatesToDestinations(tempDic);
         }
 
 
