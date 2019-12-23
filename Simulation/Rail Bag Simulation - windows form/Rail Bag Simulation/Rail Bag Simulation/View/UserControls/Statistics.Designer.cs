@@ -34,6 +34,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnDestinationSuspiciousBagsCategory = new System.Windows.Forms.Button();
             this.dataGridDestinationSuspicousBagsCategory = new System.Windows.Forms.DataGridView();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDestinationSuspicousBagsCategory)).BeginInit();
             this.SuspendLayout();
@@ -90,7 +91,6 @@
             // dataGridDestinationSuspicousBagsCategory
             // 
             this.dataGridDestinationSuspicousBagsCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridDestinationSuspicousBagsCategory.Enabled = false;
             this.dataGridDestinationSuspicousBagsCategory.Location = new System.Drawing.Point(1224, 58);
             this.dataGridDestinationSuspicousBagsCategory.Name = "dataGridDestinationSuspicousBagsCategory";
             this.dataGridDestinationSuspicousBagsCategory.RowHeadersWidth = 82;
@@ -99,11 +99,21 @@
             this.dataGridDestinationSuspicousBagsCategory.TabIndex = 5;
             this.dataGridDestinationSuspicousBagsCategory.Visible = false;
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 25;
+            this.listBox1.Location = new System.Drawing.Point(148, 803);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(542, 254);
+            this.listBox1.TabIndex = 6;
+            // 
             // Statistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.dataGridDestinationSuspicousBagsCategory);
             this.Controls.Add(this.btnDestinationSuspiciousBagsCategory);
             this.Controls.Add(this.dataGridView1);
@@ -128,5 +138,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnDestinationSuspiciousBagsCategory;
         private System.Windows.Forms.DataGridView dataGridDestinationSuspicousBagsCategory;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }

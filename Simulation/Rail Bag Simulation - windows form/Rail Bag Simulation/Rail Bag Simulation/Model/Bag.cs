@@ -13,6 +13,11 @@ namespace Rail_Bag_Simulation
 
         private SuspiciousBagtype? _suspicious;
 
+        private static List<Bag> templist = new List<Bag>();
+
+        public static List<Bag> returnListOfSuspiciousBags() { return templist; }
+
+
         private static List<Bag> bags = new List<Bag>();
         public bool IsObserving;
 
@@ -21,6 +26,7 @@ namespace Rail_Bag_Simulation
             _suspicious = suspicious;
             Weight = weight;
             Id = ++_idToGive;
+           
         }
 
         public Bag(float weight)
@@ -73,7 +79,7 @@ namespace Rail_Bag_Simulation
             int nbrOfBagsFlammable,
             int nbrBagsOthers)
         {
-            var templist = new List<Bag>();
+
             var totalnumber =
                 GetTotalNrOfSuspicious(nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable, nbrBagsOthers);
             while (totalnumber > 0)

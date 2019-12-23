@@ -13,7 +13,7 @@ namespace Rail_Bag_Simulation
         private readonly bool _isMapCreated = false;
         private static readonly Random Random = new Random();
 
-        private static readonly Dictionary<string, Destination> Destinations = new Dictionary<string, Destination>();
+        public static readonly Dictionary<string, Destination> Destinations = new Dictionary<string, Destination>();
 
         
         private List<Node> conveyors;
@@ -22,6 +22,7 @@ namespace Rail_Bag_Simulation
         { 
             Ll = new LinkedList(speedDelay);
         }
+
 
 
         public  void AssignGatesToDestinations(Dictionary<Terminal, List<Gate>> _terminalsWithGates)
@@ -51,6 +52,7 @@ namespace Rail_Bag_Simulation
 
         public static int TotalNumberOfBags { get; private set; }
         public static int TotalNumberOfGates { get; private set; }
+
 
         public static Dictionary<Terminal, List<Gate>> TerminalsWithGates
         {

@@ -8,9 +8,9 @@ namespace Rail_Bag_Simulation
 {
     [Browsable(false)]
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Node : INode
+    public  class Node : INode
     {
-        protected readonly Queue<Bag> BagsQueue;
+        protected  readonly Queue<Bag> BagsQueue;
         private Node _next;
         public EventHandler OnQueueChangedEventHandler;
 
