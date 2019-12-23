@@ -188,8 +188,7 @@ namespace Rail_Bag_Simulation
                     {
                         btnSaveSimulation.Visible = true;
                         ShowSimulationPanel();
-
-
+                        
                         var nbrCarts = Convert.ToInt32(carts);
                         if (nbrCarts > 1000)
                         {
@@ -213,11 +212,13 @@ namespace Rail_Bag_Simulation
                         }
 
                         
+                        
+                        
                         airport = new Airport(nbrCarts);
 
                         if (whatiwant == "Map1")
                         {
-                            
+
                             airport.CreateMapLayout(5);
 
                             simulation1.Map_The_Converyors(airport.GetConveyorsList());
@@ -233,8 +234,9 @@ namespace Rail_Bag_Simulation
 
                         if (drugs == "" || weapons == "" || flammables == "" || others == "")
                         {
-                            airport.StartBagsMovement(
-                                nbrOfBags, 0, 0, 0, 0);
+                         //
+                         // To be added
+                         //airport.StartBagsMovement(    nbrOfBags, 0, 0, 0, 0, new Dictionary<string, int>());
                         }
                         else
                         {
@@ -243,7 +245,16 @@ namespace Rail_Bag_Simulation
                                 nbrOfBagsDrugs,
                                 nbrOfBagsWeapons,
                                 nbrOfBagsFlammable,
-                                nbrBagsOthers);
+                                nbrBagsOthers,
+                                //
+                                //Please implement this so that it takes for each gate the number of bags in precentage
+                                //e.g ==> the code below, this has to be changed to allow user to select how many percentage
+                                //the keys must be obtained From the airport Static Destinations list then allowing the user
+                                //to select from them.
+                                new Dictionary<string, int>(){{"T1-G1",21},{"T2-G2",33}});
+                            throw new NotImplementedException("needs to take the input of the user");
+
+                            
                         }
 
                         btnSimulation.BackColor = this.darkColor;
@@ -325,7 +336,8 @@ namespace Rail_Bag_Simulation
                     this.ShowSimulationPanel();
                     if (airport == null)
                     {
-                        airport = new Airport(500);
+                        
+                       airport = new Airport(1200);
                         airport.CreateMapLayout(5);
                         simulation1.Map_The_Converyors(airport.GetConveyorsList());
                     }

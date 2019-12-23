@@ -55,7 +55,7 @@ namespace Rail_Bag_Simulation.View.UserControls
 
                 button1_Click(this, EventArgs.Empty);
             };
-        }
+        } 
         public void Map_The_Converyors(List<Node> ls)
         {
             for (int i = 0; i < ls.Count; i++)

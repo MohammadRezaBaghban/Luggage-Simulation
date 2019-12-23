@@ -55,6 +55,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnRunSimulation = new System.Windows.Forms.Button();
             this.palenlConfigurations = new System.Windows.Forms.Panel();
+            this.Map2 = new System.Windows.Forms.Button();
+            this.Map1 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.btnLoadSimulation = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -71,8 +73,6 @@
             this.btnSaveSimulation = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.Map1 = new System.Windows.Forms.Button();
-            this.Map2 = new System.Windows.Forms.Button();
             this.simulation1 = new Rail_Bag_Simulation.View.UserControls.Simulation();
             this.statistics1 = new Rail_Bag_Simulation.View.UserControls.Statistics();
             this.simulation2 = new Rail_Bag_Simulation.View.UserControls.Simulation2();
@@ -98,7 +98,7 @@
             this.panel1.Controls.Add(this.pictureBox5);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1425, 37);
             this.panel1.TabIndex = 0;
@@ -108,7 +108,7 @@
             this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox5.Image = global::Rail_Bag_Simulation.Properties.Resources.close;
             this.pictureBox5.Location = new System.Drawing.Point(1386, 3);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(30, 31);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -127,7 +127,7 @@
             this.panel2.Controls.Add(this.btnConfigurations);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 719);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1425, 93);
             this.panel2.TabIndex = 1;
@@ -137,7 +137,7 @@
             this.pbStatistics.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbStatistics.Image = global::Rail_Bag_Simulation.Properties.Resources.statistics;
             this.pbStatistics.Location = new System.Drawing.Point(1226, 20);
-            this.pbStatistics.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pbStatistics.Margin = new System.Windows.Forms.Padding(2);
             this.pbStatistics.Name = "pbStatistics";
             this.pbStatistics.Size = new System.Drawing.Size(56, 46);
             this.pbStatistics.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -150,7 +150,7 @@
             this.pbSimulation.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbSimulation.Image = global::Rail_Bag_Simulation.Properties.Resources.simulation;
             this.pbSimulation.Location = new System.Drawing.Point(729, 20);
-            this.pbSimulation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pbSimulation.Margin = new System.Windows.Forms.Padding(2);
             this.pbSimulation.Name = "pbSimulation";
             this.pbSimulation.Size = new System.Drawing.Size(48, 46);
             this.pbSimulation.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -163,7 +163,7 @@
             this.pbConfigurations.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbConfigurations.Image = global::Rail_Bag_Simulation.Properties.Resources.settings;
             this.pbConfigurations.Location = new System.Drawing.Point(142, 11);
-            this.pbConfigurations.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pbConfigurations.Margin = new System.Windows.Forms.Padding(2);
             this.pbConfigurations.Name = "pbConfigurations";
             this.pbConfigurations.Size = new System.Drawing.Size(52, 54);
             this.pbConfigurations.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -180,7 +180,7 @@
             this.btnStatistics.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.btnStatistics.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnStatistics.Location = new System.Drawing.Point(1090, 4);
-            this.btnStatistics.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStatistics.Margin = new System.Windows.Forms.Padding(2);
             this.btnStatistics.Name = "btnStatistics";
             this.btnStatistics.Size = new System.Drawing.Size(335, 90);
             this.btnStatistics.TabIndex = 5;
@@ -198,7 +198,7 @@
             this.btnSimulation.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.btnSimulation.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnSimulation.Location = new System.Drawing.Point(340, 0);
-            this.btnSimulation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSimulation.Margin = new System.Windows.Forms.Padding(2);
             this.btnSimulation.Name = "btnSimulation";
             this.btnSimulation.Size = new System.Drawing.Size(746, 93);
             this.btnSimulation.TabIndex = 4;
@@ -217,7 +217,7 @@
             this.btnConfigurations.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnConfigurations.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnConfigurations.Location = new System.Drawing.Point(0, 2);
-            this.btnConfigurations.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnConfigurations.Margin = new System.Windows.Forms.Padding(2);
             this.btnConfigurations.Name = "btnConfigurations";
             this.btnConfigurations.Size = new System.Drawing.Size(335, 90);
             this.btnConfigurations.TabIndex = 3;
@@ -268,7 +268,7 @@
             // tb_nrOfCarts
             // 
             this.tb_nrOfCarts.Location = new System.Drawing.Point(855, 144);
-            this.tb_nrOfCarts.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_nrOfCarts.Margin = new System.Windows.Forms.Padding(2);
             this.tb_nrOfCarts.Multiline = true;
             this.tb_nrOfCarts.Name = "tb_nrOfCarts";
             this.tb_nrOfCarts.Size = new System.Drawing.Size(93, 28);
@@ -322,7 +322,7 @@
             // tb_numberOfBags
             // 
             this.tb_numberOfBags.Location = new System.Drawing.Point(855, 98);
-            this.tb_numberOfBags.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_numberOfBags.Margin = new System.Windows.Forms.Padding(2);
             this.tb_numberOfBags.Multiline = true;
             this.tb_numberOfBags.Name = "tb_numberOfBags";
             this.tb_numberOfBags.Size = new System.Drawing.Size(93, 28);
@@ -332,7 +332,7 @@
             // tb_weapons
             // 
             this.tb_weapons.Location = new System.Drawing.Point(855, 295);
-            this.tb_weapons.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_weapons.Margin = new System.Windows.Forms.Padding(2);
             this.tb_weapons.Multiline = true;
             this.tb_weapons.Name = "tb_weapons";
             this.tb_weapons.Size = new System.Drawing.Size(93, 28);
@@ -342,7 +342,7 @@
             // tb_Others
             // 
             this.tb_Others.Location = new System.Drawing.Point(855, 380);
-            this.tb_Others.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_Others.Margin = new System.Windows.Forms.Padding(2);
             this.tb_Others.Multiline = true;
             this.tb_Others.Name = "tb_Others";
             this.tb_Others.Size = new System.Drawing.Size(93, 28);
@@ -352,7 +352,7 @@
             // tb_flammables
             // 
             this.tb_flammables.Location = new System.Drawing.Point(855, 254);
-            this.tb_flammables.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_flammables.Margin = new System.Windows.Forms.Padding(2);
             this.tb_flammables.Multiline = true;
             this.tb_flammables.Name = "tb_flammables";
             this.tb_flammables.Size = new System.Drawing.Size(93, 28);
@@ -362,7 +362,7 @@
             // tb_drugs
             // 
             this.tb_drugs.Location = new System.Drawing.Point(855, 337);
-            this.tb_drugs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_drugs.Margin = new System.Windows.Forms.Padding(2);
             this.tb_drugs.Multiline = true;
             this.tb_drugs.Name = "tb_drugs";
             this.tb_drugs.Size = new System.Drawing.Size(93, 28);
@@ -389,7 +389,7 @@
             this.btnRunSimulation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.btnRunSimulation.ForeColor = System.Drawing.Color.White;
             this.btnRunSimulation.Location = new System.Drawing.Point(680, 502);
-            this.btnRunSimulation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRunSimulation.Margin = new System.Windows.Forms.Padding(2);
             this.btnRunSimulation.Name = "btnRunSimulation";
             this.btnRunSimulation.Size = new System.Drawing.Size(149, 50);
             this.btnRunSimulation.TabIndex = 7;
@@ -428,10 +428,44 @@
             this.palenlConfigurations.Controls.Add(this.label3);
             this.palenlConfigurations.Controls.Add(this.label2);
             this.palenlConfigurations.Location = new System.Drawing.Point(1, 128);
-            this.palenlConfigurations.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.palenlConfigurations.Margin = new System.Windows.Forms.Padding(2);
             this.palenlConfigurations.Name = "palenlConfigurations";
             this.palenlConfigurations.Size = new System.Drawing.Size(1500, 587);
             this.palenlConfigurations.TabIndex = 26;
+            // 
+            // Map2
+            // 
+            this.Map2.BackColor = System.Drawing.Color.Black;
+            this.Map2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Map2.FlatAppearance.BorderSize = 0;
+            this.Map2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Map2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.Map2.ForeColor = System.Drawing.Color.White;
+            this.Map2.Location = new System.Drawing.Point(766, 426);
+            this.Map2.Margin = new System.Windows.Forms.Padding(2);
+            this.Map2.Name = "Map2";
+            this.Map2.Size = new System.Drawing.Size(149, 50);
+            this.Map2.TabIndex = 34;
+            this.Map2.Text = "Multiple Check in";
+            this.Map2.UseVisualStyleBackColor = false;
+            this.Map2.Click += new System.EventHandler(this.Map2_Click);
+            // 
+            // Map1
+            // 
+            this.Map1.BackColor = System.Drawing.Color.Black;
+            this.Map1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Map1.FlatAppearance.BorderSize = 0;
+            this.Map1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Map1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.Map1.ForeColor = System.Drawing.Color.White;
+            this.Map1.Location = new System.Drawing.Point(564, 426);
+            this.Map1.Margin = new System.Windows.Forms.Padding(2);
+            this.Map1.Name = "Map1";
+            this.Map1.Size = new System.Drawing.Size(149, 50);
+            this.Map1.TabIndex = 33;
+            this.Map1.Text = "Single Check in";
+            this.Map1.UseVisualStyleBackColor = false;
+            this.Map1.Click += new System.EventHandler(this.Map1_Click);
             // 
             // listBox1
             // 
@@ -476,7 +510,7 @@
             // 
             this.pictureBox7.Image = global::Rail_Bag_Simulation.Properties.Resources.stat;
             this.pictureBox7.Location = new System.Drawing.Point(1167, 75);
-            this.pictureBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox7.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(178, 502);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -494,7 +528,7 @@
             "Simulation4",
             "Simulation5"});
             this.comboBox1.Location = new System.Drawing.Point(38, 108);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(246, 25);
             this.comboBox1.TabIndex = 27;
@@ -514,7 +548,7 @@
             // 
             this.pictureBox6.Image = global::Rail_Bag_Simulation.Properties.Resources.weapon;
             this.pictureBox6.Location = new System.Drawing.Point(502, 285);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(38, 41);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -525,7 +559,7 @@
             // 
             this.pictureBox4.Image = global::Rail_Bag_Simulation.Properties.Resources.drugs;
             this.pictureBox4.Location = new System.Drawing.Point(502, 332);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(38, 41);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -536,7 +570,7 @@
             // 
             this.pictureBox3.Image = global::Rail_Bag_Simulation.Properties.Resources.others;
             this.pictureBox3.Location = new System.Drawing.Point(502, 376);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(38, 41);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -547,7 +581,7 @@
             // 
             this.pictureBox2.Image = global::Rail_Bag_Simulation.Properties.Resources.flamable;
             this.pictureBox2.Location = new System.Drawing.Point(502, 240);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(38, 41);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -558,7 +592,7 @@
             // 
             this.panelBorder1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(119)))), ((int)(((byte)(155)))));
             this.panelBorder1.Location = new System.Drawing.Point(1090, 41);
-            this.panelBorder1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelBorder1.Margin = new System.Windows.Forms.Padding(2);
             this.panelBorder1.Name = "panelBorder1";
             this.panelBorder1.Size = new System.Drawing.Size(8, 789);
             this.panelBorder1.TabIndex = 28;
@@ -567,7 +601,7 @@
             // 
             this.panelBorder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(119)))), ((int)(((byte)(155)))));
             this.panelBorder.Location = new System.Drawing.Point(336, 15);
-            this.panelBorder.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelBorder.Margin = new System.Windows.Forms.Padding(2);
             this.panelBorder.Name = "panelBorder";
             this.panelBorder.Size = new System.Drawing.Size(8, 774);
             this.panelBorder.TabIndex = 29;
@@ -596,46 +630,12 @@
             // 
             this.pictureBox1.Image = global::Rail_Bag_Simulation.Properties.Resources.logomini;
             this.pictureBox1.Location = new System.Drawing.Point(643, 42);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(206, 80);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
-            // 
-            // Map1
-            // 
-            this.Map1.BackColor = System.Drawing.Color.Black;
-            this.Map1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Map1.FlatAppearance.BorderSize = 0;
-            this.Map1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Map1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.Map1.ForeColor = System.Drawing.Color.White;
-            this.Map1.Location = new System.Drawing.Point(564, 426);
-            this.Map1.Margin = new System.Windows.Forms.Padding(2);
-            this.Map1.Name = "Map1";
-            this.Map1.Size = new System.Drawing.Size(149, 50);
-            this.Map1.TabIndex = 33;
-            this.Map1.Text = "Single Check in";
-            this.Map1.UseVisualStyleBackColor = false;
-            this.Map1.Click += new System.EventHandler(this.Map1_Click);
-            // 
-            // Map2
-            // 
-            this.Map2.BackColor = System.Drawing.Color.Black;
-            this.Map2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Map2.FlatAppearance.BorderSize = 0;
-            this.Map2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Map2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.Map2.ForeColor = System.Drawing.Color.White;
-            this.Map2.Location = new System.Drawing.Point(766, 426);
-            this.Map2.Margin = new System.Windows.Forms.Padding(2);
-            this.Map2.Name = "Map2";
-            this.Map2.Size = new System.Drawing.Size(149, 50);
-            this.Map2.TabIndex = 34;
-            this.Map2.Text = "Multiple Check in";
-            this.Map2.UseVisualStyleBackColor = false;
-            this.Map2.Click += new System.EventHandler(this.Map2_Click);
             // 
             // simulation1
             // 

@@ -1,6 +1,6 @@
 ﻿namespace Rail_Bag_Simulation
 {
-    internal class Terminal
+    public class Terminal
     {
         private static int _terminalIdNext;
 

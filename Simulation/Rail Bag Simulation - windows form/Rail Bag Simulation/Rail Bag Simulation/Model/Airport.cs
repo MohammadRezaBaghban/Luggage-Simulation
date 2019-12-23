@@ -1,22 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Rail_Bag_Simulation
 {
     [Serializable]
     public class Airport
     {
+        private static Dictionary<Terminal, List<Gate>> _terminalsWithGates;
         public static int BagsCountTotalArrived;
 
         private readonly bool _isMapCreated = false;
+        private static readonly Random Random = new Random();
 
+        private static readonly Dictionary<string, Destination> Destinations = new Dictionary<string, Destination>();
 
+        
         private List<Node> conveyors;
 
         public Airport(int speedDelay)
-        {
+        { 
             Ll = new LinkedList(speedDelay);
         }
+
+
+        public  void AssignGatesToDestinations(Dictionary<Terminal, List<Gate>> _terminalsWithGates)
+        {
+            Airport._terminalsWithGates = _terminalsWithGates;
+            for (int i = 0; i < _terminalsWithGates.Count; i++)
+            {
+                foreach (var t in _terminalsWithGates.ElementAt(i).Value)
+                {
+                    Destinations.Add("T" + _terminalsWithGates.ElementAt(i).Key.TerminalId+"-G" 
+                                      + t.GateNr,
+                        (Destination) Random.Next(0,12)
+                    );
+                }
+            }
+        }
+
+        
 
         public static List<Bag> GetBagList { get; private set; }
 
@@ -29,12 +52,17 @@ namespace Rail_Bag_Simulation
         public static int TotalNumberOfBags { get; private set; }
         public static int TotalNumberOfGates { get; private set; }
 
+        public static Dictionary<Terminal, List<Gate>> TerminalsWithGates
+        {
+            get => _terminalsWithGates;
+        }
+
         public void StartBagsMovement(int nbrOfBags, int nbrOfBagsDrugs, int nbrOfBagsWeapons, int nbrOfBagsFlammable,
-            int nbrBagsOthers)
+            int nbrBagsOthers, Dictionary<string,int> GatesDictionary)
         {
             TotalNumberOfBags += nbrOfBags;
             GetBagList = Bag.GenerateBag(nbrOfBags, nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable,
-                nbrBagsOthers);
+                nbrBagsOthers, GatesDictionary);
             Ll.AddGeneratedBags(GetBagList);
         }
         public void StartBagsMovement(List<Bag> bag)
@@ -48,6 +76,13 @@ namespace Rail_Bag_Simulation
         {
             if (_isMapCreated) return;
             TotalNumberOfGates = 0;
+
+            var tempDic = new Dictionary<Terminal, List<Gate>>();
+            // temp dictionary must be created and initialized here
+            // possible implementation is : new Dictionary<Terminal, List<Gate>>
+            // {{new Terminal(), new List<Gate>{new Gate("1"), new Gate("2")}}, 
+            // {new Terminal(), new List<Gate>{new Gate("1"), new Gate("2")}}}
+            /*Airport.AssignGatesToDestinations(PassDictionary here );*/
 
             Node checkIn1 = new CheckinNode();
             Node CheckIn_To_Security_Conveyor = new ConveyorNode(queueSizeOfBelts);
@@ -63,16 +98,31 @@ namespace Rail_Bag_Simulation
             Node bagSort = new BagSortNode();
             Node bagSort_Conveyor_To_Terminal1 = new ConveyorNode(queueSizeOfBelts);
             Node bagSort_Conveyor_To_Terminal2 = new ConveyorNode(queueSizeOfBelts);
-            Node terminal1 = new TerminalNode(new Terminal());
+            Terminal t1 = new Terminal();
+            Node terminal1 = new TerminalNode(t1);
             Node terminal2 = new TerminalNode(new Terminal());
             Node terminal1_Conveyor_To_Gate1 = new ConveyorNode(queueSizeOfBelts);
             Node terminal1_Conveyor_To_Gate2 = new ConveyorNode(queueSizeOfBelts);
 
-            Node t1gate1 = new GateNode(new Gate("G1"));
+            Gate g1 = new Gate("G1");
+            Node t1gate1 = new GateNode(g1);
+            tempDic.Add(t1,new List<Gate>(){g1});
+
+            
+
+            Gate g2 = new Gate("G2");
+
             TotalNumberOfGates++;
-            Node t1gate2 = new GateNode(new Gate("G2"));
+            Node t1gate2 = new GateNode(g2);
             TotalNumberOfGates++;
 
+            foreach (var VARIABLE in tempDic)
+            {
+                if (VARIABLE.Key == t1)
+                {
+                    VARIABLE.Value.Add(g2);
+                }
+            }
             Node terminal2_Conveyor_To_Gate1 = new ConveyorNode(queueSizeOfBelts);
             Node terminal2_Conveyor_To_Gate2 = new ConveyorNode(queueSizeOfBelts);
             Node terminal3_Conveyor_To_Gate1 = new ConveyorNode(queueSizeOfBelts);
@@ -130,6 +180,8 @@ namespace Rail_Bag_Simulation
                 terminal2_Conveyor_To_Gate1,
                 terminal2_Conveyor_To_Gate2,
             };
+
+            AssignGatesToDestinations(tempDic);
         }
 
 

@@ -81,7 +81,6 @@
     <Compile Include="Model\ConveyorNode.cs" />
     <Compile Include="Model\Destination.cs" />
     <Compile Include="Model\INode.cs" />
-    <Compile Include="ViewModel\LoggerControlViewModel.cs" />
     <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>

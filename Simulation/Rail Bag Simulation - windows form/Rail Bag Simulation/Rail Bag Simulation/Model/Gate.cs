@@ -1,6 +1,6 @@
 ﻿namespace Rail_Bag_Simulation
 {
-    internal class Gate
+    public class Gate
     {
         public Gate(string gateNr)
         {
