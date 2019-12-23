@@ -41,7 +41,7 @@
             this.pieChart1.Size = new System.Drawing.Size(1256, 892);
             this.pieChart1.TabIndex = 0;
             this.pieChart1.Text = "pieChart1";
-            // 
+            //
             // btnLoadData
             // 
             this.btnLoadData.AutoSize = true;
@@ -60,7 +60,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(949, 1048);
+            this.dataGridView1.Size = new System.Drawing.Size(967, 250);
             this.dataGridView1.TabIndex = 2;
             // 
             // StatisticsForm

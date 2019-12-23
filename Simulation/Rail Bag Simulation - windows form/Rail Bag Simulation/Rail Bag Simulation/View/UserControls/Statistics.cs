@@ -34,13 +34,13 @@ namespace Rail_Bag_Simulation.View.UserControls
                 }
             };
 
-            pieChart1.LegendLocation = LegendLocation.Right;
+            pieChart1.LegendLocation = LegendLocation.Bottom;
             Thread.Sleep(1000);
 
             // Start of the DataGrid
             DataTable dt = new DataTable();
             dataGridView1.DataSource = dt;
-            dt.Columns.Add("Percentile #.");
+            dt.Columns.Add("Percentile Nbr.");
             dt.Columns.Add("Time Taken To Reach Gate Per Second");
 
             if (!LinkedList.IsSimulationFinished) return;
@@ -60,6 +60,13 @@ namespace Rail_Bag_Simulation.View.UserControls
         private double updateChartFailedBags()
         {
             return (double)Storage.GetNumberOfBagsInStorage();
+        }
+
+        private void btnDestinationSuspiciousBagsCategory_Click(object sender, EventArgs e)
+        {
+            dataGridDestinationSuspicousBagsCategory.Visible = true;
+
+
         }
     }
 }

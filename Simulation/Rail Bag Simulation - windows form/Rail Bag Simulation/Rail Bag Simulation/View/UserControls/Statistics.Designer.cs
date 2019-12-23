@@ -32,7 +32,10 @@
             this.pieChart1 = new LiveCharts.WinForms.PieChart();
             this.btnLoadData = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnDestinationSuspiciousBagsCategory = new System.Windows.Forms.Button();
+            this.dataGridDestinationSuspicousBagsCategory = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridDestinationSuspicousBagsCategory)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -49,7 +52,7 @@
             // 
             this.pieChart1.Location = new System.Drawing.Point(3, 58);
             this.pieChart1.Name = "pieChart1";
-            this.pieChart1.Size = new System.Drawing.Size(1412, 628);
+            this.pieChart1.Size = new System.Drawing.Size(1089, 628);
             this.pieChart1.TabIndex = 1;
             this.pieChart1.Text = "pieChart1";
             // 
@@ -66,18 +69,43 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(1436, 132);
+            this.dataGridView1.Location = new System.Drawing.Point(1970, 58);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(1331, 554);
+            this.dataGridView1.Size = new System.Drawing.Size(531, 628);
             this.dataGridView1.TabIndex = 3;
+            // 
+            // btnDestinationSuspiciousBagsCategory
+            // 
+            this.btnDestinationSuspiciousBagsCategory.BackColor = System.Drawing.Color.White;
+            this.btnDestinationSuspiciousBagsCategory.Location = new System.Drawing.Point(946, 638);
+            this.btnDestinationSuspiciousBagsCategory.Name = "btnDestinationSuspiciousBagsCategory";
+            this.btnDestinationSuspiciousBagsCategory.Size = new System.Drawing.Size(164, 48);
+            this.btnDestinationSuspiciousBagsCategory.TabIndex = 4;
+            this.btnDestinationSuspiciousBagsCategory.Text = "More ...";
+            this.btnDestinationSuspiciousBagsCategory.UseVisualStyleBackColor = false;
+            this.btnDestinationSuspiciousBagsCategory.Click += new System.EventHandler(this.btnDestinationSuspiciousBagsCategory_Click);
+            // 
+            // dataGridDestinationSuspicousBagsCategory
+            // 
+            this.dataGridDestinationSuspicousBagsCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridDestinationSuspicousBagsCategory.Enabled = false;
+            this.dataGridDestinationSuspicousBagsCategory.Location = new System.Drawing.Point(1224, 58);
+            this.dataGridDestinationSuspicousBagsCategory.Name = "dataGridDestinationSuspicousBagsCategory";
+            this.dataGridDestinationSuspicousBagsCategory.RowHeadersWidth = 82;
+            this.dataGridDestinationSuspicousBagsCategory.RowTemplate.Height = 33;
+            this.dataGridDestinationSuspicousBagsCategory.Size = new System.Drawing.Size(531, 628);
+            this.dataGridDestinationSuspicousBagsCategory.TabIndex = 5;
+            this.dataGridDestinationSuspicousBagsCategory.Visible = false;
             // 
             // Statistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.dataGridDestinationSuspicousBagsCategory);
+            this.Controls.Add(this.btnDestinationSuspiciousBagsCategory);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnLoadData);
             this.Controls.Add(this.pieChart1);
@@ -86,6 +114,7 @@
             this.Name = "Statistics";
             this.Size = new System.Drawing.Size(2770, 1188);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridDestinationSuspicousBagsCategory)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -97,5 +126,7 @@
         private LiveCharts.WinForms.PieChart pieChart1;
         private System.Windows.Forms.Button btnLoadData;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnDestinationSuspiciousBagsCategory;
+        private System.Windows.Forms.DataGridView dataGridDestinationSuspicousBagsCategory;
     }
 }
