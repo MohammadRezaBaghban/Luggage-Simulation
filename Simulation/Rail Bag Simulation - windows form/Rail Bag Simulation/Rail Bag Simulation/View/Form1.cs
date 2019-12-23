@@ -13,7 +13,6 @@ namespace Rail_Bag_Simulation
 {
     public partial class Form1 : Form
     {
-        StatisticsForm stat = new StatisticsForm();
         
         //string fileName = "../../config.txt";
 
@@ -26,7 +25,6 @@ namespace Rail_Bag_Simulation
         {
             
             InitializeComponent();
-            stat.Show();
             this.ActiveControl = tb_numberOfBags;
             tb_numberOfBags.Focus();
             whatiwant = "Map2";

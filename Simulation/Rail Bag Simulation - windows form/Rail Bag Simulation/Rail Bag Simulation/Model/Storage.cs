@@ -11,7 +11,7 @@ namespace Rail_Bag_Simulation
             return Suspicious.Count;
         }
 
-        public List<Bag> GetAllSuspiciousBags()
+        public static List<Bag> GetAllSuspiciousBags()
         {
             return Suspicious;
         }

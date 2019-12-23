@@ -63,7 +63,6 @@ namespace Rail_Bag_Simulation.View.UserControls
             return (double)Storage.GetNumberOfBagsInStorage();
         }
 
-        string dest;
         private List<int> returnDestinationSuspiciousBagsCategory()
         {
             int drugs = 0;
@@ -72,7 +71,7 @@ namespace Rail_Bag_Simulation.View.UserControls
             int others = 0;
             List<int> temp = new List<int>();
 
-            foreach (var i in Bag.returnListOfSuspiciousBags())
+            foreach (var i in Bag.returnGeneratedBags())
             {
                 if (i.SuspiciousBagtype == SuspiciousBagtype.Drug)
                 {
@@ -109,20 +108,40 @@ namespace Rail_Bag_Simulation.View.UserControls
             DataTable dt = new DataTable();
             dataGridDestinationSuspicousBagsCategory.DataSource = dt;
             dt.Columns.Add("Destination");
-            dt.Columns.Add("# suspicious Bags");
             dt.Columns.Add("Category");
+            dt.Columns.Add("# Suspicious Bags");
 
-            foreach (var destination in Airport.Destinations)
+            
+            foreach (var nbr in Storage.GetAllSuspiciousBags())
             {
-                foreach (var i in returnDestinationSuspiciousBagsCategory())
+                foreach (var destination in Airport.Destinations)
                 {
-                    foreach(var j in SecurityNode.nbrOfSuspiciousBagPerDestination)
-                    dt.Rows.Add(new object[]
-                    {destination , i, j.Value});
-                
+                    if (nbr.GetSecurityStatus() == SuspiciousBagtype.Drug)
+                    {
+                        int drugs=0;
+                        drugs++;
+                        dt.Rows.Add(new object[] { destination, SuspiciousBagtype.Drug,drugs });
+                    }
+                    else if (nbr.GetSecurityStatus() == SuspiciousBagtype.Flammables)
+                    {
+                        int flammables = 0;
+                        flammables++;
+                        dt.Rows.Add(new object[] { destination, SuspiciousBagtype.Flammables , flammables });
+                    }
+                    else if (nbr.GetSecurityStatus() == SuspiciousBagtype.Weapons)
+                    {
+                        int weapons = 0;
+                        weapons++;
+                        dt.Rows.Add(new object[] { destination, SuspiciousBagtype.Weapons , weapons });
+                    }
+                    else
+                    {
+                        int other = 0;
+                        other++;
+                        dt.Rows.Add(new object[] { destination, SuspiciousBagtype.Other , other});
+                    }
+                }
             }
-            }
-
         }
     }
 }

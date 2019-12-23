@@ -98,12 +98,6 @@
     <Compile Include="Model\SuspiciousBagtype.cs" />
     <Compile Include="Model\Terminal.cs" />
     <Compile Include="Model\TerminalNode.cs" />
-    <Compile Include="View\StatisticsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\StatisticsForm.Designer.cs">
-      <DependentUpon>StatisticsForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\UserControls\Simulation.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -141,9 +135,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="View\StatisticsForm.resx">
-      <DependentUpon>StatisticsForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\UserControls\Simulation.resx">
       <DependentUpon>Simulation.cs</DependentUpon>
     </EmbeddedResource>
