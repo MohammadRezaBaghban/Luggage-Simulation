@@ -88,8 +88,8 @@ namespace Rail_Bag_Simulation.View.UserControls
                 }
 
 
-                label1.Text = (GateNode.Counter).ToString();
-                if ((Airport.TotalNumberOfBags  != GateNode.Counter+Storage.GetNumberOfBagsInStorage())) return;
+                label1.Text = (GateNode.Counter+1).ToString();
+                if ((Airport.TotalNumberOfBags  > GateNode.Counter+Storage.GetNumberOfSuspiciousBagsInStorage()+Storage.GetNumberOfNoDestinationBagsInStorage())) return;
                 try
                 {
                     for (var j = 0; j < conveyors.Count; j++)

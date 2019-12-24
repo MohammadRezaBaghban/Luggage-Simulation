@@ -69,14 +69,14 @@ namespace Rail_Bag_Simulation
             return tnode;
         }
 
-        private static bool GetGateNumber(Bag g, out string result)
+        private bool GetGateNumber(Bag g, out string result)
         {
             var str = g?.TerminalAndGate;
             result = null;
             if (str.IsNull()) return true;
             var words = str?.Split('-');
 
-            result = words[1];
+            result = words[1].Substring(1);
             return false;
         }
 

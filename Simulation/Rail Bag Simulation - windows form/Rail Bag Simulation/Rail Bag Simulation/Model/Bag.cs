@@ -161,7 +161,13 @@ namespace Rail_Bag_Simulation
         private static void AssignGatesToBags(Dictionary<string, int> percentagesOfBagsPerGateDictionary)
         {
             int lastIndexToContinueFrom = 0;
+            int totalPercentage = 0;
+            foreach (var value in percentagesOfBagsPerGateDictionary.Values)
+            {
+                totalPercentage += value;
+            }
 
+            totalPercentage = 100 - totalPercentage;
             foreach (KeyValuePair<string, int> keyValuePair in percentagesOfBagsPerGateDictionary)
             {
                 //there could be a bag for the last bag
@@ -171,6 +177,14 @@ namespace Rail_Bag_Simulation
                     lastIndexToContinueFrom++;
                 }
             }
+
+            for (var i = 0; i < Convert.ToInt32(Airport.TotalNumberOfBags * ((decimal)totalPercentage / 100)); i++)
+            {
+                bags[lastIndexToContinueFrom].TerminalAndGate =null;
+                lastIndexToContinueFrom++;
+            }
+
+
         }
     }
 }

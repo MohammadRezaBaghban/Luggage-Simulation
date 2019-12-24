@@ -9,7 +9,7 @@ namespace Rail_Bag_Simulation
     {
         public static EventHandler SimulationFinishedEvent;
 
-        public static int Counter;
+        private static int _counter;
 
         public GateNode(Gate g)
         {
@@ -17,6 +17,8 @@ namespace Rail_Bag_Simulation
         }
 
         public Gate Gate { get; }
+
+        public static int Counter => _counter;
 
         public override List<string> NodeInfo()
         {
@@ -30,9 +32,10 @@ namespace Rail_Bag_Simulation
 
         public override void Push(Bag b)
         {
+            
             base.Push(b);
             if (b.IsObserving) LinkedList.TimelyWatchedBagWithStopWatch.First(pair => pair.Value == b).Key.Stop();
-            Counter++;
+             _counter++;
             VerifyBagsCount();
         }
 
@@ -48,9 +51,9 @@ namespace Rail_Bag_Simulation
 
         private void VerifyBagsCount()
         {
-            if (Counter + Storage.GetNumberOfBagsInStorage() < Airport.TotalNumberOfBags) return;
-            Thread.Sleep(1000);
-            SimulationFinishedEvent?.Invoke(this, EventArgs.Empty);
+            if (_counter + Storage.GetNumberOfSuspiciousBagsInStorage() +
+                Storage.GetNumberOfNoDestinationBagsInStorage() >=
+                Airport.TotalNumberOfBags) SimulationFinishedEvent?.Invoke(this, EventArgs.Empty);
         }
     }
 }

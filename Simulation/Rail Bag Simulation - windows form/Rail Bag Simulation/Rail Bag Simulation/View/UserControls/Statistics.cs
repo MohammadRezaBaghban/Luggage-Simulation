@@ -60,7 +60,7 @@ namespace Rail_Bag_Simulation.View.UserControls
         }
         private double updateChartFailedBags()
         {
-            return (double)Storage.GetNumberOfBagsInStorage();
+            return (double)Storage.GetNumberOfSuspiciousBagsInStorage();
         }
 
         private List<int> returnDestinationSuspiciousBagsCategory()
@@ -98,8 +98,7 @@ namespace Rail_Bag_Simulation.View.UserControls
         private void btnDestinationSuspiciousBagsCategory_Click(object sender, EventArgs e)
         {
             dataGridDestinationSuspicousBagsCategory.Visible = true;
-            SecurityNode n = new SecurityNode();
-           // n.SuspiciousBagCategoryPerDestination();
+          
 
 
             // Start of the DataGrid
@@ -111,37 +110,18 @@ namespace Rail_Bag_Simulation.View.UserControls
             dt.Columns.Add("Category");
             dt.Columns.Add("# Suspicious Bags");
 
-            
-            foreach (var nbr in Storage.GetAllSuspiciousBags())
+            // TO DO : Make the fields in the data grid clickable and see other rows
+
+            foreach (var i in SecurityNode.getDicDestinationBag())
             {
-                foreach (var destination in Airport.Destinations)
+                var dataRow = dt.Rows.Add(new object[] {i.Key});
+                foreach (var i1 in i.Value)
                 {
-                    if (nbr.GetSecurityStatus() == SuspiciousBagtype.Drug)
-                    {
-                        int drugs=0;
-                        drugs++;
-                        dt.Rows.Add(new object[] { destination, SuspiciousBagtype.Drug,drugs });
-                    }
-                    else if (nbr.GetSecurityStatus() == SuspiciousBagtype.Flammables)
-                    {
-                        int flammables = 0;
-                        flammables++;
-                        dt.Rows.Add(new object[] { destination, SuspiciousBagtype.Flammables , flammables });
-                    }
-                    else if (nbr.GetSecurityStatus() == SuspiciousBagtype.Weapons)
-                    {
-                        int weapons = 0;
-                        weapons++;
-                        dt.Rows.Add(new object[] { destination, SuspiciousBagtype.Weapons , weapons });
-                    }
-                    else
-                    {
-                        int other = 0;
-                        other++;
-                        dt.Rows.Add(new object[] { destination, SuspiciousBagtype.Other , other});
-                    }
+                    var dataRow1 = dt.Rows.Add(new object[] {null,i1.Key, i1.Value});
+
                 }
             }
+
         }
     }
 }

@@ -34,7 +34,7 @@ namespace Rail_Bag_Simulation
             {
                 decimal totalTime = 0;
                 IsSimulationFinished = true;
-                _timer.Stop();
+                
                 foreach (var stopwatch in TimelyWatchedBagWithStopWatch.Keys)
                 {
                     stopwatch.Stop();
@@ -43,6 +43,7 @@ namespace Rail_Bag_Simulation
                     .ForEach(stopwatch => totalTime += (int) stopwatch.ElapsedMilliseconds);
                 totalTime /= 1000;
                 AverageTimePerBag = totalTime / TimelyWatchedBagWithStopWatch.Keys.Count;
+                _timer.Stop();
             };
         }
 

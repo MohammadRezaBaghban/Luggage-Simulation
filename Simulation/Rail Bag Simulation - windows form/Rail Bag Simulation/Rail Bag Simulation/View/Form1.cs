@@ -249,7 +249,7 @@ namespace Rail_Bag_Simulation
                                 //e.g ==> the code below, this has to be changed to allow user to select how many percentage
                                 //the keys must be obtained From the airport Static Destinations list then allowing the user
                                 //to select from them.
-                                new Dictionary<string, int>(){{"T1-G1",21},{"T2-G2",33}});
+                                new Dictionary<string, int>(){{"T1-G1",21},{"T1-G2",33}});
                                 //throw new NotImplementedException("needs to take the input of the user");
 
                             

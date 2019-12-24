@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
+using Rail_Bag_Simulation.Model;
 
 namespace Rail_Bag_Simulation
 {
@@ -11,8 +13,7 @@ namespace Rail_Bag_Simulation
 
 
 
-        public static Dictionary<Destination, Dictionary<SuspiciousBagtype, int>> nbrOfSuspiciousBagPerDestination = new
-            Dictionary<Destination, Dictionary<SuspiciousBagtype, int>>();
+        private static Dictionary<Destination?, Dictionary<SuspiciousBagtype, int>> nbrOfSuspiciousBagPerDestination;
 
         public SecurityNode()
         {
@@ -58,6 +59,22 @@ namespace Rail_Bag_Simulation
 
         public  Bag ScanBagSecurity()
         {
+            if (nbrOfSuspiciousBagPerDestination==null)
+            {
+                nbrOfSuspiciousBagPerDestination=new Dictionary<Destination?, Dictionary<SuspiciousBagtype, int>>();
+                Airport.Destinations.Values.ToList().ForEach(destination =>
+                {
+                    // need to be fixed the items are being added twice
+                    nbrOfSuspiciousBagPerDestination.Add(destination,new Dictionary<SuspiciousBagtype, int>
+                    {
+                        {SuspiciousBagtype.Flammables, 0},
+                        {SuspiciousBagtype.Drug, 0},
+                        {SuspiciousBagtype.Other, 0},
+                        {SuspiciousBagtype.Weapons, 0},
+
+                    });
+                });
+            }
             Bag b = null;
             try
             {
@@ -73,63 +90,58 @@ namespace Rail_Bag_Simulation
 
             if (b?.GetSecurityStatus() == null) return b;
 
-           // SuspiciousBagCategoryPerDestination(b);
+            SuspiciousBagCategoryPerDestination(b);
             Airport.Storage.StoreSuspiciousBag(b);
 
            
             return b;
         }
 
-        public static Dictionary<Destination, Dictionary<SuspiciousBagtype, int>> getDicDestinationBag() 
+        public static Dictionary<Destination?, Dictionary<SuspiciousBagtype, int>> getDicDestinationBag() 
         {
             return nbrOfSuspiciousBagPerDestination;
         }
 
 
-        /*public void SuspiciousBagCategoryPerDestination(Bag g)
+        public void SuspiciousBagCategoryPerDestination(Bag g)
         {
             Bag b = g;
-            Destination d;
-            int drugs=0;
-            int flammable=0;
-            int weapons = 0;
-            int others = 0;
+            Destination? d;
 
-            foreach (var destination in Airport.Destinations)
+            foreach (var destination in Airport.Destinations.Where(destination => destination.Key == b.TerminalAndGate))
             {
-                if (destination.Key == b.TerminalAndGate)
-                {
-                    d = destination.Value;
+                d = destination.Value;
 
-                    foreach (var i in Bag.returnListOfSuspiciousBags())
+                
+                    Destination? firstOrDefault = nbrOfSuspiciousBagPerDestination.Keys.SingleOrDefault(pair => pair == d);
+                    if(firstOrDefault.IsNull())return;
+                    switch (b.SuspiciousBagtype)
                     {
-                        if (i.SuspiciousBagtype == SuspiciousBagtype.Drug)
+                        case SuspiciousBagtype.Drug:
                         {
-                            drugs++;
+
+                            nbrOfSuspiciousBagPerDestination[firstOrDefault][SuspiciousBagtype.Drug]++;
+
+                            break;
                         }
-                        else if (i.SuspiciousBagtype == SuspiciousBagtype.Flammables)
+                        case SuspiciousBagtype.Flammables:
                         {
-                            flammable++;
+                            nbrOfSuspiciousBagPerDestination[firstOrDefault][SuspiciousBagtype.Flammables]++;
+                            break;
                         }
-                        else if (i.SuspiciousBagtype == SuspiciousBagtype.Weapons)
+                        case SuspiciousBagtype.Weapons:
                         {
-                            weapons++;
+                            nbrOfSuspiciousBagPerDestination[firstOrDefault][SuspiciousBagtype.Weapons]++;
+                            break;
                         }
-                        else {others++;}
+                        default:
+                        {
+                            nbrOfSuspiciousBagPerDestination[firstOrDefault][SuspiciousBagtype.Other]++;
+                            break;
+                        }
                     }
-                }
+              
             }
-
-                //nbrOfSuspiciousBagPerDestination.FirstOrDefault().Key;
-                    //Go through the first dictionary and find the keyValuePair,
-                    //if(d == key){
-                    //          go through the sub dictionary and find drug
-                    //if(value.key == drug){
-                    //valvue.value++;
-                    //}
-            
-            
-        }*/
-
+        }
     }
 }

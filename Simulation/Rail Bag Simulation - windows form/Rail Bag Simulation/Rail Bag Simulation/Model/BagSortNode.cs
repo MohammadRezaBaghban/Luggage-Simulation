@@ -7,6 +7,7 @@ namespace Rail_Bag_Simulation
     internal class BagSortNode : Node
     {
         public List<ConveyorNode> ListOfConnectedNodes { get; } = new List<ConveyorNode>();
+        static Storage s = new Storage();
 
         public void ConnectNodeToSorter(ConveyorNode n)
         {
@@ -51,12 +52,15 @@ namespace Rail_Bag_Simulation
             if (!Nodes.Contains(this))
                 Nodes.Add(this);
 
-            foreach (Node connectednodes in ListOfConnectedNodes) connectednodes.PrintNodes(ref Nodes);
+            foreach (ConveyorNode connectednodes in ListOfConnectedNodes) connectednodes.PrintNodes(ref Nodes);
         }
 
-        private static int GetTerminalNumber(Bag g)
+        private int GetTerminalNumber(Bag g)
         {
             var str = g?.TerminalAndGate;
+            if (str.IsNull()) { s.StoreNoDestinationBag(g);
+                this.Remove();
+            }
             var words = str?.Split('-');
             var result = Convert.ToInt32(words?[0].Substring(1));
             return result;
