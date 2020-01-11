@@ -24,7 +24,6 @@ namespace Rail_Bag_Simulation
         }
 
 
-
         public  void AssignGatesToDestinations(Dictionary<Terminal, List<Gate>> _terminalsWithGates)
         {
             Airport._terminalsWithGates = _terminalsWithGates;
@@ -52,11 +51,14 @@ namespace Rail_Bag_Simulation
 
         public static int TotalNumberOfBags { get; private set; }
         public static int TotalNumberOfGates { get; private set; }
-
-
         public static Dictionary<Terminal, List<Gate>> TerminalsWithGates
         {
             get => _terminalsWithGates;
+        }
+
+        public Dictionary<string, Destination> DestinationWithGate
+        {
+            get => Destinations;
         }
 
         public void StartBagsMovement(int nbrOfBags, int nbrOfBagsDrugs, int nbrOfBagsWeapons, int nbrOfBagsFlammable,
