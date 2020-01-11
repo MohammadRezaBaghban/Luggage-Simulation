@@ -73,6 +73,15 @@
       <DependentUpon>ConveyorVertical.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomizedControl\IConveyor.cs" />
+    <Compile Include="GridMap\Cell.cs" />
+    <Compile Include="GridMap\Grid.cs" />
+    <Compile Include="GridMap\GridMap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GridMap\GridMap.Designer.cs">
+      <DependentUpon>GridMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GridMap\Parts.cs" />
     <Compile Include="Map.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomizedControl\ConveyorVertical.resx">
       <DependentUpon>ConveyorVertical.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GridMap\GridMap.resx">
+      <DependentUpon>GridMap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Map.resx">
       <DependentUpon>Map.cs</DependentUpon>

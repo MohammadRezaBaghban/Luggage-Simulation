@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Rail_Bag_Simulation.View;
+
 using Rail_Bag_Simulation.View.UserControls;
 using System.Drawing;
 using System.IO;
@@ -373,6 +374,12 @@ namespace Rail_Bag_Simulation
         {
             Map customMap = new Map();
             customMap.Show();
+        }
+
+        private void BtnOpenGridMap_Click(object sender, EventArgs e)
+        {
+            GridMap gridMap = new GridMap();
+            gridMap.Show();
         }
     }
 }

@@ -30,20 +30,7 @@ namespace Rail_Bag_Simulation
                 ThreadPool.QueueUserWorkItem(MakeBagsMoveOneAtATime);
             };
 
-            GateNode.SimulationFinishedEvent += (sender, args) =>
-            {
-                decimal totalTime = 0;
-                IsSimulationFinished = true;
-                _timer.Stop();
-                foreach (var stopwatch in TimelyWatchedBagWithStopWatch.Keys)
-                {
-                    stopwatch.Stop();
-                }
-                TimelyWatchedBagWithStopWatch.Keys.ToList()
-                    .ForEach(stopwatch => totalTime += (int) stopwatch.ElapsedMilliseconds);
-                totalTime /= 1000;
-                AverageTimePerBag = totalTime / TimelyWatchedBagWithStopWatch.Keys.Count;
-            };
+          
         }
 
         public static List<CheckinNode> First { get; } = new List<CheckinNode>();
@@ -145,7 +132,20 @@ namespace Rail_Bag_Simulation
             if (_timer == null) return;
             _timer.Enabled = true;
             _timer.Start();
-            IsSimulationPaused = false;
+            IsSimulationPaused = false; GateNode.SimulationFinishedEvent += (sender, args) =>
+            {
+                decimal totalTime = 0;
+                IsSimulationFinished = true;
+                _timer.Stop();
+                foreach (var stopwatch in TimelyWatchedBagWithStopWatch.Keys)
+                {
+                    stopwatch.Stop();
+                }
+                TimelyWatchedBagWithStopWatch.Keys.ToList()
+                    .ForEach(stopwatch => totalTime += (int)stopwatch.ElapsedMilliseconds);
+                totalTime /= 1000;
+                AverageTimePerBag = totalTime / TimelyWatchedBagWithStopWatch.Keys.Count;
+            };
         }
 
 

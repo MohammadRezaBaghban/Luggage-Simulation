@@ -47,7 +47,7 @@ namespace Rail_Bag_Simulation
         public Node CreateCheckIn()
         {
             Node checkIn = new CheckinNode();
-            Ll.AddNode(checkIn);
+
             return checkIn;
         }
         public Node CreateSecurity()

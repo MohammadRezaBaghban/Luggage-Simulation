@@ -23,6 +23,14 @@ namespace Rail_Bag_Simulation
             airport = new Airport(100);
             nodes = new List<Node>();
             curr = null;
+
+
+            TbTotalBags.Text = "100";
+            TbCarts.Text = "3";
+            TbFlammables.Text = "0";
+            TbWeapons.Text = "0";
+            TbDrugs.Text = "0";
+            TbOthers.Text = "0";
         }
 
         private void Map_MouseClick(object sender, MouseEventArgs e)
@@ -46,6 +54,7 @@ namespace Rail_Bag_Simulation
                 airport.Ll.AddNode(checkInNode);
 
                 RbCheckIn.Checked = false;
+                RbConveyor.Checked = true;
             }
             else if (RbSecurity.Checked)
             {
@@ -64,6 +73,7 @@ namespace Rail_Bag_Simulation
 
 
                 RbSecurity.Checked = false;
+                RbConveyor.Checked = true;
             }
             else if (RbSorter.Checked)
             {
@@ -81,6 +91,7 @@ namespace Rail_Bag_Simulation
                 curr = bagSortNode;
 
                 RbSorter.Checked = false;
+                RbConveyor.Checked = true;
             }
             else if (RbTerminal.Checked)
             {
@@ -99,6 +110,7 @@ namespace Rail_Bag_Simulation
 
 
                 RbTerminal.Checked = false;
+                RbConveyor.Checked = true;
             }
             else if (RbGate.Checked)
             {
@@ -117,13 +129,21 @@ namespace Rail_Bag_Simulation
 
 
                 RbGate.Checked = false;
+                RbConveyor.Checked = true;
             }
             else if (RbConveyor.Checked)
             {
-                //ConveyorVertical conveyor = new ConveyorVertical();
+                ConveyorHorizontal conveyor = new ConveyorHorizontal();
+                conveyor.Location = new Point(cursorPosition.X, cursorPosition.Y);
+                conveyor.Height = 90;
+                conveyor.Width = 190;
 
-                //Controls.Add(conveyor);
+                Controls.Add(conveyor);
+                Node conveyorNode = airport.CreateConveyor();
+                conveyor.SetConveyor((ConveyorNode)conveyorNode);
+                airport.Ll.AddNode(curr.Id, curr.GetType(), conveyorNode);
 
+                curr = conveyorNode;
 
                 RbConveyor.Checked = false;
             }
@@ -137,6 +157,39 @@ namespace Rail_Bag_Simulation
             GetChildAtPoint(p).Dispose();
 
             this.Refresh();
+        }
+
+        private void BtnStart_Click(object sender, EventArgs e)
+        {
+            int totalBags = Convert.ToInt32(TbTotalBags.Text);
+            int carts = Convert.ToInt32(TbCarts.Text);
+
+            int flammables = Convert.ToInt32(TbFlammables.Text);
+            int weapons = Convert.ToInt32(TbWeapons.Text);
+            int drugs = Convert.ToInt32(TbDrugs.Text);
+            int others = Convert.ToInt32(TbOthers.Text);
+
+            //Map the conveyors??
+            airport.StartBagsMovement(totalBags, drugs, weapons, flammables, others);
+        }
+
+
+        public void Update(ConveyorNode conveyorNodeBackend, IConveyor frontEnd)
+        {
+            if (LinkedList.IsSimulationFinished) return;
+            var ls = conveyorNodeBackend.ListOfBagsInQueue.ToArray();
+            if (conveyorNodeBackend.ListOfBagsInQueue.Count > 0)
+            {
+                for (var j = 0; j < ls.Length; j++)
+                {
+                    frontEnd.slots[j].Visible = ls[j] != null;
+                }
+
+
+                label1.Text = (GateNode.Counter).ToString();
+                if ((Airport.TotalNumberOfBags != GateNode.Counter + Storage.GetNumberOfBagsInStorage())) return;
+
+            }
         }
     }
 }

@@ -55,6 +55,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnRunSimulation = new System.Windows.Forms.Button();
             this.palenlConfigurations = new System.Windows.Forms.Panel();
+            this.BtnOpenCustomMap = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.btnLoadSimulation = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -73,7 +74,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.simulation1 = new Rail_Bag_Simulation.View.UserControls.Simulation();
             this.statistics1 = new Rail_Bag_Simulation.View.UserControls.Statistics();
-            this.BtnOpenCustomMap = new System.Windows.Forms.Button();
+            this.BtnOpenGridMap = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.panel2.SuspendLayout();
@@ -373,6 +374,7 @@
             // 
             // palenlConfigurations
             // 
+            this.palenlConfigurations.Controls.Add(this.BtnOpenGridMap);
             this.palenlConfigurations.Controls.Add(this.BtnOpenCustomMap);
             this.palenlConfigurations.Controls.Add(this.listBox1);
             this.palenlConfigurations.Controls.Add(this.btnLoadSimulation);
@@ -404,6 +406,16 @@
             this.palenlConfigurations.Name = "palenlConfigurations";
             this.palenlConfigurations.Size = new System.Drawing.Size(2000, 722);
             this.palenlConfigurations.TabIndex = 26;
+            // 
+            // BtnOpenCustomMap
+            // 
+            this.BtnOpenCustomMap.Location = new System.Drawing.Point(478, 618);
+            this.BtnOpenCustomMap.Name = "BtnOpenCustomMap";
+            this.BtnOpenCustomMap.Size = new System.Drawing.Size(178, 69);
+            this.BtnOpenCustomMap.TabIndex = 33;
+            this.BtnOpenCustomMap.Text = "Open custom map";
+            this.BtnOpenCustomMap.UseVisualStyleBackColor = true;
+            this.BtnOpenCustomMap.Click += new System.EventHandler(this.BtnOpenCustomMap_Click);
             // 
             // listBox1
             // 
@@ -585,15 +597,15 @@
             this.statistics1.TabIndex = 3;
             this.statistics1.Visible = false;
             // 
-            // BtnOpenCustomMap
+            // BtnOpenGridMap
             // 
-            this.BtnOpenCustomMap.Location = new System.Drawing.Point(478, 618);
-            this.BtnOpenCustomMap.Name = "BtnOpenCustomMap";
-            this.BtnOpenCustomMap.Size = new System.Drawing.Size(178, 69);
-            this.BtnOpenCustomMap.TabIndex = 33;
-            this.BtnOpenCustomMap.Text = "Open custom map";
-            this.BtnOpenCustomMap.UseVisualStyleBackColor = true;
-            this.BtnOpenCustomMap.Click += new System.EventHandler(this.BtnOpenCustomMap_Click);
+            this.BtnOpenGridMap.Location = new System.Drawing.Point(662, 618);
+            this.BtnOpenGridMap.Name = "BtnOpenGridMap";
+            this.BtnOpenGridMap.Size = new System.Drawing.Size(178, 69);
+            this.BtnOpenGridMap.TabIndex = 34;
+            this.BtnOpenGridMap.Text = "Open grid map";
+            this.BtnOpenGridMap.UseVisualStyleBackColor = true;
+            this.BtnOpenGridMap.Click += new System.EventHandler(this.BtnOpenGridMap_Click);
             // 
             // Form1
             // 
@@ -683,6 +695,7 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.Button BtnOpenCustomMap;
+        private System.Windows.Forms.Button BtnOpenGridMap;
     }
 }
 

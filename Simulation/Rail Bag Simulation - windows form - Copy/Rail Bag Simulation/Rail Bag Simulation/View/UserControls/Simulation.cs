@@ -58,9 +58,22 @@ namespace Rail_Bag_Simulation.View.UserControls
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-              
-            
+
+            try
+            {
+                for (var j = 0; j < conveyors.Count; j++)
+                {
+                    for (var k = 0; k < conveyors[j].slots.Count; k++)
+                    {
+                        conveyors[j].slots[k].Visible = false;
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+
         }
 
 
@@ -78,20 +91,7 @@ namespace Rail_Bag_Simulation.View.UserControls
 
                 label1.Text = (GateNode.Counter).ToString();
                 if ((Airport.TotalNumberOfBags  != GateNode.Counter+Storage.GetNumberOfBagsInStorage())) return;
-                try
-                {
-                    for (var j = 0; j < conveyors.Count; j++)
-                    {
-                        for (var k = 0; k < conveyors[j].slots.Count; k++)
-                        {
-                            conveyors[j].slots[k].Visible = false;
-                        }
-                    }
-                }
-                catch (Exception exception)
-                {
-                    Console.WriteLine(exception);
-                }
+               
             }
         }
 
