@@ -67,6 +67,26 @@ namespace Rail_Bag_Simulation.View.UserControls
         private void button1_Click(object sender, EventArgs e)
         {
 
+            try
+            {
+                for (var j = 0; j < conveyors.Count - 1; j++)
+                {
+                    for (var k = 0; k < conveyors[j].slots.Count - 1; k++)
+                    {
+                        //conveyors[j].slots[k].Visible = false;
+                        var j1 = j;
+                        var k1 = k;
+                        conveyors[j].slots[k].BeginInvoke(new Action(() =>
+                        {
+                            conveyors[j1].slots[k1].Visible = false;
+                        }));
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
 
 
         }
@@ -76,28 +96,14 @@ namespace Rail_Bag_Simulation.View.UserControls
             var ls = conveyorNodeBackend.ListOfBagsInQueue.ToArray();
             if (conveyorNodeBackend.ListOfBagsInQueue.Count > 0)
             {
-                for (var j = 0; j < ls.Length; j++)
+                for (var j = 0; j < ls.Length-1; j++)
                 {
                     frontEnd.slots[j].Visible = ls[j] != null;
                 }
 
 
-                label1.Text = (GateNode.Counter+1).ToString();
-                if ((Airport.TotalNumberOfBags > GateNode.Counter + Storage.GetNumberOfSuspiciousBagsInStorage() + Storage.GetNumberOfNoDestinationBagsInStorage())) return;
-                try
-                {
-                    for (var j = 0; j < conveyors.Count; j++)
-                    {
-                        for (var k = 0; k < conveyors[j].slots.Count; k++)
-                        {
-                            conveyors[j].slots[k].Visible = false;
-                        }
-                    }
-                }
-                catch (Exception exception)
-                {
-                    Console.WriteLine(exception);
-                }
+                label1.Text = (GateNode.Counter).ToString();
+               
             }
         }
 

@@ -50,7 +50,7 @@ namespace Rail_Bag_Simulation
             panelBorder.Visible = true;
             panelBorder1.Visible = true;
             simulation1.Visible = false;
-            //simulation2.Visible = false;
+            simulation2.Visible = false;
             statistics1.Visible = false;
             btnConfigurations.BackColor = this.darkColor;
             btnSimulation.BackColor = this.normalColor;
@@ -80,14 +80,14 @@ namespace Rail_Bag_Simulation
             simulation1.Visible = true;
 
             if (whatiwant == "Map2")
-            //simulation2.Visible = true;
+            simulation2.Visible = true;
             ClearConfigurationData();
         }
 
         private void BtnStatistics_Click(object sender, System.EventArgs e)
         {
             simulation1.Visible = false;
-            //simulation2.Visible = false;
+            simulation2.Visible = false;
             statistics1.Visible = true;
             palenlConfigurations.Visible = false;
             panelBorder.Visible = false;
@@ -108,7 +108,7 @@ namespace Rail_Bag_Simulation
             panelBorder.Visible = true;
             panelBorder1.Visible = true;
             simulation1.Visible = false;
-            //simulation2.Visible = false;
+            simulation2.Visible = false;
             statistics1.Visible = false;
             btnConfigurations.BackColor = this.darkColor;
             btnSimulation.BackColor = this.normalColor;
@@ -127,7 +127,7 @@ namespace Rail_Bag_Simulation
         private void PbStatistics_Click(object sender, System.EventArgs e)
         {
             simulation1.Visible = false;
-            //simulation2.Visible = false;
+            simulation2.Visible = false;
             statistics1.Visible = true;
             palenlConfigurations.Visible = false;
             panelBorder.Visible = false;
@@ -164,9 +164,9 @@ namespace Rail_Bag_Simulation
             else if (whatiwant == "Map2")
             {
 
-                airport.CreateMapLayoutTwo(5);
-                //simulation2.Map_The_Converyors(airport.GetConveyorsList());
-                //ShowSimulation2Panel();
+             
+              simulation2.Map_The_Converyors(airport.GetConveyorsList());
+               ShowSimulation2Panel();
             }
 
             if (drugs == "" || weapons == "" || flammables == "" || others == "")
@@ -214,16 +214,17 @@ namespace Rail_Bag_Simulation
             palenlConfigurations.Visible = false;
             simulation1.Visible = true;
             panelBorder.Visible = false;
-            //simulation2.Visible = false;
+            simulation2.Visible = false;
             panelBorder1.Visible = false;
         }
         private void ShowSimulation2Panel()
         {
             palenlConfigurations.Visible = false;
-            //simulation2.Visible = true;
+           simulation2.Visible = true;
             panelBorder.Visible = false;
             simulation1.Visible = false;
             panelBorder1.Visible = false;
+            simulation2.BringToFront();
         }
 
         private void btnSaveSimulation_Click(object sender, EventArgs e)
@@ -467,7 +468,16 @@ namespace Rail_Bag_Simulation
 
 
                         airport = new Airport(nbrCarts);
-                        airport.CreateMapLayout(5);
+
+                        if (whatiwant == "Map1")
+                        {
+                            airport.CreateMapLayout(5);
+                        }
+                        else if (whatiwant == "Map2")
+                        {
+                            airport.CreateMapLayoutTwo(5);
+                        }
+
                         Dictionary<string, Destination> myDict = airport.DestinationWithGate;
                         List<Destination> l = new List<Destination>(myDict.Values);
 

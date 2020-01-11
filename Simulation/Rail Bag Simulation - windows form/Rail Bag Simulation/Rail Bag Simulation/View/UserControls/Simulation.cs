@@ -47,7 +47,7 @@ namespace Rail_Bag_Simulation.View.UserControls
 
         public void Map_The_Converyors(List<Node> ls)
         {
-            for (int i = 0; i < ls.Count; i++)
+            for (int i = 0; i < ls.Count-1; i++)
             {
                 conveyors[i].SetConveyor((ConveyorNode)ls[i]);
             }
@@ -106,10 +106,6 @@ namespace Rail_Bag_Simulation.View.UserControls
                 {
                     frontEnd.slots[j].Visible = ls[j]!= null;
                 }
-
-
-                
-                
             }
         }
 
