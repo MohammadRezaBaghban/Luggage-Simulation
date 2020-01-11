@@ -42,7 +42,50 @@ namespace Rail_Bag_Simulation
             Ll.AddGeneratedBags(GetBagList);
         }
 
-     
+
+
+        public Node CreateCheckIn()
+        {
+            Node checkIn = new CheckinNode();
+            Ll.AddNode(checkIn);
+            return checkIn;
+        }
+        public Node CreateSecurity()
+        {
+            Node security = new SecurityNode();
+
+            return security;
+        }
+        public Node CreateBagSort()
+        {
+            Node bagSort = new BagSortNode();
+
+            return bagSort;
+        }
+        public Node CreateTerminal()
+        {
+            Node terminal = new TerminalNode(new Terminal());
+
+            return terminal;
+        }
+        public Node CreateGate()
+        {
+            Node gate = new GateNode(new Gate("G1"));
+
+            return gate;
+        }
+        public Node CreateConveyor()
+        {
+            Node conveyor = new ConveyorNode(5);
+
+            return conveyor;
+        }
+
+
+
+
+        //Get the node and pass it to a method that uses AddNode() to link it to the next one
+
         public void CreateMapLayout(int queueSizeOfBelts)
         {
             if (_isMapCreated) return;
@@ -130,7 +173,6 @@ namespace Rail_Bag_Simulation
 
 
         public List<Node> GetConveyorsList() => conveyors;
-
 
         public void CreateMapLayoutTwo(int queueSizeOfBelts)
         {
