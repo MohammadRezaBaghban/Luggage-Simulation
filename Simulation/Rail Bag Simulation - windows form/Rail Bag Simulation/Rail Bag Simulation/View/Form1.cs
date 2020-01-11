@@ -21,6 +21,8 @@ namespace Rail_Bag_Simulation
         Color normalColor = Color.FromArgb(105, 119, 155);
         private string whatiwant;
         public Airport airport;
+        private int totalDestination = 100;
+        
         public Form1()
         {
             
@@ -35,7 +37,10 @@ namespace Rail_Bag_Simulation
             pbSimulation.BackColor = this.normalColor;
             pbStatistics.BackColor = this.normalColor;
             btnRunSimulation.Enabled = false;
-            
+            numericUpDown1.Maximum = totalDestination;
+            numericUpDown2.Maximum = totalDestination;
+            numericUpDown3.Maximum = totalDestination;
+            numericUpDown4.Maximum = totalDestination;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -53,7 +58,7 @@ namespace Rail_Bag_Simulation
             panelBorder.Visible = true;
             panelBorder1.Visible = true;
             simulation1.Visible = false;
-            simulation2.Visible = false;
+            //simulation2.Visible = false;
             statistics1.Visible = false;
             btnConfigurations.BackColor = this.darkColor;
             btnSimulation.BackColor = this.normalColor;
@@ -83,14 +88,14 @@ namespace Rail_Bag_Simulation
             simulation1.Visible = true;
 
             if (whatiwant == "Map2")
-            simulation2.Visible = true;
+            //simulation2.Visible = true;
             ClearConfigurationData();
         }
 
         private void BtnStatistics_Click(object sender, System.EventArgs e)
         {
             simulation1.Visible = false;
-            simulation2.Visible = false;
+            //simulation2.Visible = false;
             statistics1.Visible = true;
             palenlConfigurations.Visible = false;
             panelBorder.Visible = false;
@@ -111,7 +116,7 @@ namespace Rail_Bag_Simulation
             panelBorder.Visible = true;
             panelBorder1.Visible = true;
             simulation1.Visible = false;
-            simulation2.Visible = false;
+            //simulation2.Visible = false;
             statistics1.Visible = false;
             btnConfigurations.BackColor = this.darkColor;
             btnSimulation.BackColor = this.normalColor;
@@ -130,7 +135,7 @@ namespace Rail_Bag_Simulation
         private void PbStatistics_Click(object sender, System.EventArgs e)
         {
             simulation1.Visible = false;
-            simulation2.Visible = false;
+            //simulation2.Visible = false;
             statistics1.Visible = true;
             palenlConfigurations.Visible = false;
             panelBorder.Visible = false;
@@ -184,8 +189,8 @@ namespace Rail_Bag_Simulation
                     }
                     else
                     {
-                        btnSaveSimulation.Visible = true;
-                        ShowSimulationPanel();
+                        //btnSaveSimulation.Visible = true;
+                        //ShowSimulationPanel();
                         
                         var nbrCarts = Convert.ToInt32(carts);
                         if (nbrCarts > 1000)
@@ -208,10 +213,8 @@ namespace Rail_Bag_Simulation
                         {
                             nbrCarts = 900;
                         }
-
-                        
-                        
-                        
+                   
+                       
                         airport = new Airport(nbrCarts);
 
                         if (whatiwant == "Map1")
@@ -220,14 +223,14 @@ namespace Rail_Bag_Simulation
                             airport.CreateMapLayout(5);
 
                             simulation1.Map_The_Converyors(airport.GetConveyorsList());
-                            ShowSimulationPanel();
+                            //ShowSimulationPanel();
                         }
                         else if (whatiwant == "Map2")
                         {
                             
                             airport.CreateMapLayoutTwo(5);
-                            simulation2.Map_The_Converyors(airport.GetConveyorsList());
-                            ShowSimulation2Panel();
+                            //simulation2.Map_The_Converyors(airport.GetConveyorsList());
+                            //ShowSimulation2Panel();
                         }
 
                         if (drugs == "" || weapons == "" || flammables == "" || others == "")
@@ -236,31 +239,38 @@ namespace Rail_Bag_Simulation
                          // To be added
                          //airport.StartBagsMovement(    nbrOfBags, 0, 0, 0, 0, new Dictionary<string, int>());
                         }
-                        else
-                        {
-                            airport.StartBagsMovement(
-                                nbrOfBags,
-                                nbrOfBagsDrugs,
-                                nbrOfBagsWeapons,
-                                nbrOfBagsFlammable,
-                                nbrBagsOthers,
-                                //
-                                //Please implement this so that it takes for each gate the number of bags in precentage
-                                //e.g ==> the code below, this has to be changed to allow user to select how many percentage
-                                //the keys must be obtained From the airport Static Destinations list then allowing the user
-                                //to select from them.
-                                new Dictionary<string, int>(){{"T1-G1",21},{"T1-G2",33}, { "T2-G1", 13 }, { "T2-G2", 33 } });
-                                //throw new NotImplementedException("needs to take the input of the user");
+                        // else
+                        // {
+                        //     var destination1 = (int)numericUpDown1.Value;
+                        //     var destination2 = (int)numericUpDown2.Value;
+                        //     var destination3 = (int)numericUpDown3.Value;
+                        //     var destination4 = (int)numericUpDown4.Value;
 
-                            
-                        }
+                        //     airport.StartBagsMovement(
+                        //         nbrOfBags,
+                        //         nbrOfBagsDrugs,
+                        //         nbrOfBagsWeapons,
+                        //         nbrOfBagsFlammable,
+                        //         nbrBagsOthers,
+                        //         //
+                        //         //Please implement this so that it takes for each gate the number of bags in precentage
+                        //         //e.g ==> the code below, this has to be changed to allow user to select how many percentage
+                        //         //the keys must be obtained From the airport Static Destinations list then allowing the user
+                        //         //to select from them.
+                        //         new Dictionary<string, int>() { { "T1-G1", destination1 }, { "T1-G2", destination2 }, { "T2-G1", destination3 }, { "T2-G2", destination4 } });
+                        //     //throw new NotImplementedException("needs to take the input of the user");
+                        //}
+                        panelDestination.Visible = true;
+                       
+                        Dictionary<string, Destination> myDict = airport.DestinationWithGate;
+                        List<Destination> l = new List<Destination>(myDict.Values);
 
-                        btnSimulation.BackColor = this.darkColor;
-                        btnConfigurations.BackColor = this.normalColor;
-                        btnStatistics.BackColor = this.normalColor;
-                        pbSimulation.BackColor = this.darkColor;
-                        pbConfigurations.BackColor = this.normalColor;
-                        pbStatistics.BackColor = this.normalColor;
+                        lbDestination.Text += l[0];
+                        lbDestination2.Text += l[1];
+                        lbDestination3.Text += l[2];
+                        lbDestination4.Text += l[3];
+
+
                     }
                 }
             }
@@ -271,13 +281,13 @@ namespace Rail_Bag_Simulation
             palenlConfigurations.Visible = false;
             simulation1.Visible = true;
             panelBorder.Visible = false;
-            simulation2.Visible = false;
+            //simulation2.Visible = false;
             panelBorder1.Visible = false;
         }
         private void ShowSimulation2Panel()
         {
             palenlConfigurations.Visible = false;
-            simulation2.Visible = true;
+            //simulation2.Visible = true;
             panelBorder.Visible = false;
             simulation1.Visible = false;
             panelBorder1.Visible = false;
@@ -422,6 +432,48 @@ namespace Rail_Bag_Simulation
         {
             whatiwant = "Map1";
             btnRunSimulation.Enabled = true;
+        }
+
+        private void btnShowDestination_Click(object sender, EventArgs e)
+        {
+
+            panelDestination.Visible = true;
+            foreach (KeyValuePair<string, Destination> destination in airport.DestinationWithGate)
+            {
+                for (int i = 0; i < airport.DestinationWithGate.Count; i++)
+                {
+                    lbDestination1.Text = destination.Key;
+                }
+            }
+
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            CheckNumericUAndDown();
+        }
+
+        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+            CheckNumericUAndDown();
+        }
+
+        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
+        {
+            CheckNumericUAndDown();
+        }
+
+        private void numericUpDown4_ValueChanged(object sender, EventArgs e)
+        {
+            CheckNumericUAndDown();
+        }
+
+        private void CheckNumericUAndDown()
+        {
+            numericUpDown1.Maximum = totalDestination - (numericUpDown2.Value + numericUpDown3.Value + numericUpDown4.Value);
+            numericUpDown2.Maximum = totalDestination - (numericUpDown1.Value + numericUpDown3.Value + numericUpDown4.Value);
+            numericUpDown3.Maximum = totalDestination - (numericUpDown1.Value + numericUpDown2.Value + numericUpDown4.Value);
+            numericUpDown4.Maximum = totalDestination - (numericUpDown1.Value + numericUpDown2.Value + numericUpDown3.Value);
         }
     }
 }

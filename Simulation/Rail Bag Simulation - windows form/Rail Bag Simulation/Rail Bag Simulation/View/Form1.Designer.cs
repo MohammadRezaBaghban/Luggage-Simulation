@@ -61,13 +61,10 @@
             this.btnShowDestination = new System.Windows.Forms.Button();
             this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
             this.Map2 = new System.Windows.Forms.Button();
-            this.lbDestination2 = new System.Windows.Forms.Label();
             this.Map1 = new System.Windows.Forms.Button();
-            this.lbDestination3 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.btnLoadSimulation = new System.Windows.Forms.Button();
-            this.lbDestination4 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -84,6 +81,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.simulation1 = new Rail_Bag_Simulation.View.UserControls.Simulation();
             this.statistics1 = new Rail_Bag_Simulation.View.UserControls.Statistics();
+            this.panelDestination = new System.Windows.Forms.Panel();
+            this.lbDestination = new System.Windows.Forms.Label();
+            this.lbDestination2 = new System.Windows.Forms.Label();
+            this.lbDestination3 = new System.Windows.Forms.Label();
+            this.lbDestination4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.panel2.SuspendLayout();
@@ -101,6 +103,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panelDestination.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -391,7 +394,7 @@
             this.btnRunSimulation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRunSimulation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.btnRunSimulation.ForeColor = System.Drawing.Color.White;
-            this.btnRunSimulation.Location = new System.Drawing.Point(886, 618);
+            this.btnRunSimulation.Location = new System.Drawing.Point(886, 601);
             this.btnRunSimulation.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRunSimulation.Name = "btnRunSimulation";
             this.btnRunSimulation.Size = new System.Drawing.Size(199, 62);
@@ -402,23 +405,14 @@
             // 
             // palenlConfigurations
             // 
-            this.palenlConfigurations.Controls.Add(this.label11);
-            this.palenlConfigurations.Controls.Add(this.label10);
-            this.palenlConfigurations.Controls.Add(this.lbDestination1);
+            this.palenlConfigurations.Controls.Add(this.panelDestination);
             this.palenlConfigurations.Controls.Add(this.btnShowDestination);
-            this.palenlConfigurations.Controls.Add(this.numericUpDown4);
             this.palenlConfigurations.Controls.Add(this.Map2);
-            this.palenlConfigurations.Controls.Add(this.lbDestination2);
             this.palenlConfigurations.Controls.Add(this.Map1);
-            this.palenlConfigurations.Controls.Add(this.lbDestination3);
             this.palenlConfigurations.Controls.Add(this.listBox1);
-            this.palenlConfigurations.Controls.Add(this.numericUpDown3);
             this.palenlConfigurations.Controls.Add(this.btnLoadSimulation);
-            this.palenlConfigurations.Controls.Add(this.lbDestination4);
             this.palenlConfigurations.Controls.Add(this.textBox2);
-            this.palenlConfigurations.Controls.Add(this.numericUpDown1);
             this.palenlConfigurations.Controls.Add(this.comboBox1);
-            this.palenlConfigurations.Controls.Add(this.numericUpDown2);
             this.palenlConfigurations.Controls.Add(this.label9);
             this.palenlConfigurations.Controls.Add(this.btnRunSimulation);
             this.palenlConfigurations.Controls.Add(this.tb_drugs);
@@ -448,7 +442,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(1490, 130);
+            this.label11.Location = new System.Drawing.Point(267, 98);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(341, 17);
             this.label11.TabIndex = 53;
@@ -458,7 +452,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label10.Location = new System.Drawing.Point(1575, 50);
+            this.label10.Location = new System.Drawing.Point(352, 18);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(157, 29);
             this.label10.TabIndex = 44;
@@ -467,7 +461,7 @@
             // lbDestination1
             // 
             this.lbDestination1.AutoSize = true;
-            this.lbDestination1.Location = new System.Drawing.Point(1533, 187);
+            this.lbDestination1.Location = new System.Drawing.Point(290, 99);
             this.lbDestination1.Name = "lbDestination1";
             this.lbDestination1.Size = new System.Drawing.Size(0, 17);
             this.lbDestination1.TabIndex = 45;
@@ -480,10 +474,11 @@
             this.btnShowDestination.TabIndex = 44;
             this.btnShowDestination.Text = "show destination";
             this.btnShowDestination.UseVisualStyleBackColor = true;
+            this.btnShowDestination.Click += new System.EventHandler(this.btnShowDestination_Click);
             // 
             // numericUpDown4
             // 
-            this.numericUpDown4.Location = new System.Drawing.Point(1730, 572);
+            this.numericUpDown4.Location = new System.Drawing.Point(507, 540);
             this.numericUpDown4.Name = "numericUpDown4";
             this.numericUpDown4.Size = new System.Drawing.Size(48, 22);
             this.numericUpDown4.TabIndex = 52;
@@ -506,14 +501,6 @@
             this.Map2.UseVisualStyleBackColor = false;
             this.Map2.Click += new System.EventHandler(this.Map2_Click);
             // 
-            // lbDestination2
-            // 
-            this.lbDestination2.AutoSize = true;
-            this.lbDestination2.Location = new System.Drawing.Point(1533, 319);
-            this.lbDestination2.Name = "lbDestination2";
-            this.lbDestination2.Size = new System.Drawing.Size(0, 17);
-            this.lbDestination2.TabIndex = 46;
-            // 
             // Map1
             // 
             this.Map1.BackColor = System.Drawing.Color.Black;
@@ -531,14 +518,6 @@
             this.Map1.UseVisualStyleBackColor = false;
             this.Map1.Click += new System.EventHandler(this.Map1_Click);
             // 
-            // lbDestination3
-            // 
-            this.lbDestination3.AutoSize = true;
-            this.lbDestination3.Location = new System.Drawing.Point(1533, 441);
-            this.lbDestination3.Name = "lbDestination3";
-            this.lbDestination3.Size = new System.Drawing.Size(0, 17);
-            this.lbDestination3.TabIndex = 47;
-            // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
@@ -551,7 +530,7 @@
             // 
             // numericUpDown3
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(1730, 436);
+            this.numericUpDown3.Location = new System.Drawing.Point(507, 404);
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(48, 22);
             this.numericUpDown3.TabIndex = 51;
@@ -568,14 +547,6 @@
             this.btnLoadSimulation.UseVisualStyleBackColor = true;
             this.btnLoadSimulation.Click += new System.EventHandler(this.btnLoadSimulation_Click);
             // 
-            // lbDestination4
-            // 
-            this.lbDestination4.AutoSize = true;
-            this.lbDestination4.Location = new System.Drawing.Point(1533, 577);
-            this.lbDestination4.Name = "lbDestination4";
-            this.lbDestination4.Size = new System.Drawing.Size(0, 17);
-            this.lbDestination4.TabIndex = 48;
-            // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(53, 175);
@@ -586,7 +557,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(1730, 187);
+            this.numericUpDown1.Location = new System.Drawing.Point(507, 155);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(48, 22);
             this.numericUpDown1.TabIndex = 49;
@@ -610,7 +581,7 @@
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(1730, 314);
+            this.numericUpDown2.Location = new System.Drawing.Point(507, 282);
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(48, 22);
             this.numericUpDown2.TabIndex = 50;
@@ -740,6 +711,57 @@
             this.statistics1.TabIndex = 3;
             this.statistics1.Visible = false;
             // 
+            // panelDestination
+            // 
+            this.panelDestination.Controls.Add(this.lbDestination4);
+            this.panelDestination.Controls.Add(this.lbDestination3);
+            this.panelDestination.Controls.Add(this.lbDestination2);
+            this.panelDestination.Controls.Add(this.lbDestination);
+            this.panelDestination.Controls.Add(this.numericUpDown4);
+            this.panelDestination.Controls.Add(this.label10);
+            this.panelDestination.Controls.Add(this.label11);
+            this.panelDestination.Controls.Add(this.numericUpDown2);
+            this.panelDestination.Controls.Add(this.numericUpDown3);
+            this.panelDestination.Controls.Add(this.numericUpDown1);
+            this.panelDestination.Controls.Add(this.lbDestination1);
+            this.panelDestination.Location = new System.Drawing.Point(563, 3);
+            this.panelDestination.Name = "panelDestination";
+            this.panelDestination.Size = new System.Drawing.Size(884, 593);
+            this.panelDestination.TabIndex = 54;
+            this.panelDestination.Visible = false;
+            // 
+            // lbDestination
+            // 
+            this.lbDestination.AutoSize = true;
+            this.lbDestination.Location = new System.Drawing.Point(267, 157);
+            this.lbDestination.Name = "lbDestination";
+            this.lbDestination.Size = new System.Drawing.Size(0, 17);
+            this.lbDestination.TabIndex = 54;
+            // 
+            // lbDestination2
+            // 
+            this.lbDestination2.AutoSize = true;
+            this.lbDestination2.Location = new System.Drawing.Point(267, 284);
+            this.lbDestination2.Name = "lbDestination2";
+            this.lbDestination2.Size = new System.Drawing.Size(0, 17);
+            this.lbDestination2.TabIndex = 55;
+            // 
+            // lbDestination3
+            // 
+            this.lbDestination3.AutoSize = true;
+            this.lbDestination3.Location = new System.Drawing.Point(267, 402);
+            this.lbDestination3.Name = "lbDestination3";
+            this.lbDestination3.Size = new System.Drawing.Size(0, 17);
+            this.lbDestination3.TabIndex = 56;
+            // 
+            // lbDestination4
+            // 
+            this.lbDestination4.AutoSize = true;
+            this.lbDestination4.Location = new System.Drawing.Point(267, 540);
+            this.lbDestination4.Name = "lbDestination4";
+            this.lbDestination4.Size = new System.Drawing.Size(0, 17);
+            this.lbDestination4.TabIndex = 57;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -779,6 +801,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panelDestination.ResumeLayout(false);
+            this.panelDestination.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -836,11 +860,13 @@
         private System.Windows.Forms.NumericUpDown numericUpDown3;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label lbDestination1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Panel panelDestination;
         private System.Windows.Forms.Label lbDestination4;
         private System.Windows.Forms.Label lbDestination3;
         private System.Windows.Forms.Label lbDestination2;
-        private System.Windows.Forms.Label lbDestination1;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lbDestination;
     }
 }
 
