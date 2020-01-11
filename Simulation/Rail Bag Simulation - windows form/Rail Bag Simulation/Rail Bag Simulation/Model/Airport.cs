@@ -193,6 +193,7 @@ namespace Rail_Bag_Simulation
 
         public void CreateMapLayoutTwo(int queueSizeOfBelts)
         {
+            var tempDic = new Dictionary<Terminal, List<Gate>>();
             //3 check ins 3 security 1 bag sort 2 terminals 5 gates
             if (_isMapCreated) return;
             TotalNumberOfGates = 0;
@@ -219,18 +220,23 @@ namespace Rail_Bag_Simulation
 
             //Create conveyor from bagSort to terminal 1 and Terminal 1
             Node bagSort_Conveyor_To_Terminal1 = new ConveyorNode(queueSizeOfBelts);
-            Node terminal1 = new TerminalNode(new Terminal());
+            var t1 = new Terminal();
+            Node terminal1 = new TerminalNode(t1);
 
             //Create conveyor from terminal 1 to gate 1 and gate 1
             Node terminal1_Conveyor_To_Gate1 = new ConveyorNode(queueSizeOfBelts);
-            Node t1gate1 = new GateNode(new Gate("1"));
+            var t1g1 = new Gate("1");
+            Node t1gate1 = new GateNode(t1g1);
             TotalNumberOfGates++;
 
             //Create conveyor from terminal 1 to gate 2 and gate 2
             Node terminal1_Conveyor_To_Gate2 = new ConveyorNode(queueSizeOfBelts);
-            Node t1gate2 = new GateNode(new Gate("2"));
+            var t1g2 = new Gate("2");
+            Node t1gate2 = new GateNode(t1g2);
             TotalNumberOfGates++;
 
+
+            tempDic.Add(t1, new List<Gate>() { t1g1, t1g2 });
             //Create conveyor from terminal 1 to gate 3 and gate 3
             Node terminal1_Conveyor_To_Gate3 = new ConveyorNode(queueSizeOfBelts);
             Node t1gate3 = new GateNode(new Gate("3"));
@@ -248,15 +254,19 @@ namespace Rail_Bag_Simulation
 
             //Create conveyor from bagSort to terminal 2 and Terminal 2
             Node bagSort_Conveyor_To_Terminal2 = new ConveyorNode(queueSizeOfBelts);
-            Node terminal2 = new TerminalNode(new Terminal());
+            var t2 = new Terminal();
+            Node terminal2 = new TerminalNode(t2);
 
             //Create conveyor from terminal 2 to gate 1 and gate 1
             Node terminal2_Conveyor_To_Gate1 = new ConveyorNode(queueSizeOfBelts);
-            Node t2gate1 = new GateNode(new Gate("1"));
+            var t2g1 = new Gate("1");
+            Node t2gate1 = new GateNode(t2g1);
 
             //Create conveyor from terminal 2 to gate 2 and gate 2
             Node terminal2_Conveyor_To_Gate2 = new ConveyorNode(queueSizeOfBelts);
-            Node t2gate2 = new GateNode(new Gate("2"));
+            var t2g2 = new Gate("2");
+            Node t2gate2 = new GateNode(t2g2);
+            tempDic.Add(t2, new List<Gate>() { t2g1, t2g2 });
 
             //Create conveyor from terminal 2 to gate 3 and gate 3
             Node terminal2_Conveyor_To_Gate3 = new ConveyorNode(queueSizeOfBelts);
@@ -349,6 +359,7 @@ namespace Rail_Bag_Simulation
                 terminal2_Conveyor_To_Gate4,
                 terminal2_Conveyor_To_Gate5
             };
+            AssignGatesToDestinations(tempDic);
 
         }
         public void CreateMapLayoutThree(int queueSizeOfBelts)
