@@ -12,6 +12,7 @@ namespace Rail_Bag_Simulation
         /*use a map dictionary to store a shadow copy of the linked list storing the ids of the nodes */
 
         /*basically to add the idea of having more control over adding the destination */
+        
         public static bool IsSimulationFinished;
         public static Dictionary<Stopwatch, Bag> TimelyWatchedBagWithStopWatch = new Dictionary<Stopwatch, Bag>();
         private Timer _timer;
@@ -19,6 +20,7 @@ namespace Rail_Bag_Simulation
         public LinkedList(int speedDelayTime)
         {
             _timer = new Timer(speedDelayTime);
+            
             //ThreadPool.SetMaxThreads(5, 5);
 
             _timer.Elapsed += (sender, args) =>
@@ -92,7 +94,11 @@ namespace Rail_Bag_Simulation
 
         public void AddNode(Node node)
         {
-            if (node is CheckinNode checkin) First.Add(checkin);
+            if (node is CheckinNode checkin)
+            {
+                First.Add(checkin);
+            }
+
         }
 
         public void AddNode(int id, Type t, Node nodetoadd)

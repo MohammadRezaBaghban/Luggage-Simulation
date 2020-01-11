@@ -9,13 +9,14 @@ namespace Rail_Bag_Simulation
         public static int BagsCountTotalArrived;
 
         private readonly bool _isMapCreated = false;
-
+        public static int[] destinationStatistics;
 
         private List<Node> conveyors;
 
         public Airport(int speedDelay)
         {
             Ll = new LinkedList(speedDelay);
+            destinationStatistics = new int[12];
         }
 
         public static List<Bag> GetBagList { get; private set; }
@@ -34,6 +35,12 @@ namespace Rail_Bag_Simulation
             TotalNumberOfBags = nbrOfBags;
             GetBagList = Bag.GenerateBag(nbrOfBags, nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable,
                 nbrBagsOthers);
+            foreach (var bag in GetBagList)
+            {
+                destinationStatistics[(int)bag.Destination] += 1;
+
+            }
+
             Ll.AddGeneratedBags(GetBagList);
         }
         public void StartBagsMovement(List<Bag> bag)
