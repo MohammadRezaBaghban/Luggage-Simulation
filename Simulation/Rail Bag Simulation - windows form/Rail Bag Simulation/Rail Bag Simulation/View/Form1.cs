@@ -477,20 +477,22 @@ namespace Rail_Bag_Simulation
                         lbDestination4.Text += l[3];
                     }
                 }
-
-                lbDestinatinInfo.Visible = true;
-                numericUpDown1.Visible = true;
-                numericUpDown2.Visible = true;
-                numericUpDown3.Visible = true;
-                numericUpDown4.Visible = true;
-                lbDestinatinInfo.Visible = true;
-                lbDestination.Visible = true;
-                lbDestination2.Visible = true;
-                lbDestination3.Visible = true;
-                lbDestination4.Visible = true;
-                Map1.Visible = true;
-                Map2.Visible = true;
-                btnRunSimulation.Visible = true;
+                if (tb_numberOfBags.Text != "" && tb_nrOfCarts.Text != "")
+                {
+                    lbDestinatinInfo.Visible = true;
+                    numericUpDown1.Visible = true;
+                    numericUpDown2.Visible = true;
+                    numericUpDown3.Visible = true;
+                    numericUpDown4.Visible = true;
+                    lbDestinatinInfo.Visible = true;
+                    lbDestination.Visible = true;
+                    lbDestination2.Visible = true;
+                    lbDestination3.Visible = true;
+                    lbDestination4.Visible = true;
+                    Map1.Visible = true;
+                    Map2.Visible = true;
+                    btnRunSimulation.Visible = true;
+                }
             }
         }
     }
