@@ -130,38 +130,69 @@ namespace Rail_Bag_Simulation
             Part currentPart = currCell.part;
             Color newColor;
             string part = "CheckIn";
+            DataGridViewImageCell imageCell;
 
             switch (selectedPiece)
             {
                 case Part.CHECKIN:
                     newColor = Color.Green;
-                    DataGridViewImageCell imagecolumncell = new DataGridViewImageCell();
-                    imagecolumncell.Value = Properties.Resources.check_in;
-                    imagecolumncell.ImageLayout = DataGridViewImageCellLayout.Stretch;
+                    imageCell = new DataGridViewImageCell();
+                    imageCell.Value = Properties.Resources.check_in;
+                    imageCell.ImageLayout = DataGridViewImageCellLayout.Stretch;
                     //checkIn.Location;
-                    gridView[currCell.Column, currCell.Row] = imagecolumncell;
+                    gridView[currCell.Column, currCell.Row] = imageCell;
                     //gridView.Controls.Add(checkIn);
 
                     part = "CheckIn";
                     break;
                 case Part.CONVEYORLINE:
                     newColor = Color.Blue;
+
                     part = "ConveyorLine";
                     break;
                 case Part.SECURITY:
                     newColor = Color.Red;
+                    imageCell = new DataGridViewImageCell();
+                    imageCell.Value = Properties.Resources.securityCheckHouse;
+                    imageCell.ImageLayout = DataGridViewImageCellLayout.Stretch;
+                    //checkIn.Location;
+                    gridView[currCell.Column, currCell.Row] = imageCell;
+
                     part = "Security";
+                    break;
+                case Part.BAGSORT:
+                    newColor = Color.DarkCyan;
+                    imageCell = new DataGridViewImageCell();
+                    imageCell.Value = Properties.Resources.sorter1;
+                    imageCell.ImageLayout = DataGridViewImageCellLayout.Stretch;
+                    //checkIn.Location;
+                    gridView[currCell.Column, currCell.Row] = imageCell;
+
+                    part = "Terminal";
                     break;
                 case Part.TERMINAL:
                     newColor = Color.DarkCyan;
+                    imageCell = new DataGridViewImageCell();
+                    imageCell.Value = Properties.Resources.terminal;
+                    imageCell.ImageLayout = DataGridViewImageCellLayout.Stretch;
+                    //checkIn.Location;
+                    gridView[currCell.Column, currCell.Row] = imageCell;
+
                     part = "Terminal";
                     break;
                 case Part.GATE:
                     newColor = Color.LightCyan;
+                    imageCell = new DataGridViewImageCell();
+                    imageCell.Value = Properties.Resources.gate;
+                    imageCell.ImageLayout = DataGridViewImageCellLayout.Stretch;
+                    //checkIn.Location;
+                    gridView[currCell.Column, currCell.Row] = imageCell;
+
                     part = "Gate";
                     break;
                 case Part.EMPTY:
                     newColor = Color.White;
+
                     part = "Empty";
                     break;
                 default:
@@ -173,7 +204,7 @@ namespace Rail_Bag_Simulation
             gridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.SelectionBackColor = newColor;
             gridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = newColor;
 
-            MessageBox.Show(currCell.Type);
+            //MessageBox.Show(currCell.Type);
         }
 
         private void RbCheckIn_CheckedChanged_1(object sender, EventArgs e)
