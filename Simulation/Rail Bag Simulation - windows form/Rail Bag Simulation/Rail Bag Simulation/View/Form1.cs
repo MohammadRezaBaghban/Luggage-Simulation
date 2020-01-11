@@ -13,7 +13,7 @@ namespace Rail_Bag_Simulation
 {
     public partial class Form1 : Form
     {
-
+        
         //string fileName = "../../config.txt";
 
 
@@ -21,10 +21,9 @@ namespace Rail_Bag_Simulation
         Color normalColor = Color.FromArgb(105, 119, 155);
         private string whatiwant;
         public Airport airport;
-        private int totalPercentage = 100;
         public Form1()
         {
-
+            
             InitializeComponent();
             this.ActiveControl = tb_numberOfBags;
             tb_numberOfBags.Focus();
@@ -36,10 +35,7 @@ namespace Rail_Bag_Simulation
             pbSimulation.BackColor = this.normalColor;
             pbStatistics.BackColor = this.normalColor;
             btnRunSimulation.Enabled = false;
-            numericUpDown1.Maximum = totalPercentage;
-            numericUpDown2.Maximum = totalPercentage;
-            numericUpDown3.Maximum = totalPercentage;
-            numericUpDown4.Maximum = totalPercentage;
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -57,7 +53,7 @@ namespace Rail_Bag_Simulation
             panelBorder.Visible = true;
             panelBorder1.Visible = true;
             simulation1.Visible = false;
-            //simulation2.Visible = false;
+            simulation2.Visible = false;
             statistics1.Visible = false;
             btnConfigurations.BackColor = this.darkColor;
             btnSimulation.BackColor = this.normalColor;
@@ -71,7 +67,7 @@ namespace Rail_Bag_Simulation
 
         private void BtnSimulation_Click(object sender, System.EventArgs e)
         {
-
+            
             statistics1.Visible = false;
             palenlConfigurations.Visible = false;
             panelBorder.Visible = false;
@@ -83,18 +79,18 @@ namespace Rail_Bag_Simulation
             pbConfigurations.BackColor = this.normalColor;
             pbStatistics.BackColor = this.normalColor;
             btnSaveSimulation.Visible = true;
-            if (whatiwant == "Map1")
-                simulation1.Visible = true;
+            if(whatiwant == "Map1")
+            simulation1.Visible = true;
 
             if (whatiwant == "Map2")
-                //simulation2.Visible = true;
+            simulation2.Visible = true;
             ClearConfigurationData();
         }
 
         private void BtnStatistics_Click(object sender, System.EventArgs e)
         {
             simulation1.Visible = false;
-            //simulation2.Visible = false;
+            simulation2.Visible = false;
             statistics1.Visible = true;
             palenlConfigurations.Visible = false;
             panelBorder.Visible = false;
@@ -115,7 +111,7 @@ namespace Rail_Bag_Simulation
             panelBorder.Visible = true;
             panelBorder1.Visible = true;
             simulation1.Visible = false;
-            //simulation2.Visible = false;
+            simulation2.Visible = false;
             statistics1.Visible = false;
             btnConfigurations.BackColor = this.darkColor;
             btnSimulation.BackColor = this.normalColor;
@@ -134,7 +130,7 @@ namespace Rail_Bag_Simulation
         private void PbStatistics_Click(object sender, System.EventArgs e)
         {
             simulation1.Visible = false;
-            //simulation2.Visible = false;
+            simulation2.Visible = false;
             statistics1.Visible = true;
             palenlConfigurations.Visible = false;
             panelBorder.Visible = false;
@@ -170,7 +166,7 @@ namespace Rail_Bag_Simulation
             else
             {
                 var carts = tb_nrOfCarts.Text;
-                if (string.IsNullOrEmpty(carts))
+                if(string.IsNullOrEmpty(carts))
                 {
                     errorProvider.SetError(tb_nrOfCarts, "Please fill the number of cards");
                 }
@@ -181,7 +177,7 @@ namespace Rail_Bag_Simulation
                     int nbrOfBagsWeapons = Convert.ToInt32(weapons);
                     var nbrOfBagsFlammable = Convert.ToInt32(flammables);
                     var nbrBagsOthers = Convert.ToInt32(others);
-                    if (nbrOfBags < nbrOfBagsDrugs + nbrOfBagsWeapons + nbrOfBagsFlammable + nbrBagsOthers)
+                    if(nbrOfBags < nbrOfBagsDrugs + nbrOfBagsWeapons + nbrOfBagsFlammable + nbrBagsOthers)
                     {
                         MessageBox.Show("The number of suspecios bags cannot be more than the total number of bags.");
                         ClearConfigurationData();
@@ -190,13 +186,13 @@ namespace Rail_Bag_Simulation
                     {
                         btnSaveSimulation.Visible = true;
                         ShowSimulationPanel();
-
+                        
                         var nbrCarts = Convert.ToInt32(carts);
                         if (nbrCarts > 1000)
                         {
                             nbrCarts = 200;
                         }
-                        else if (nbrCarts > 750)
+                        else if(nbrCarts>750)
                         {
                             nbrCarts = 400;
                         }
@@ -206,16 +202,16 @@ namespace Rail_Bag_Simulation
                         }
                         else if (nbrCarts > 250)
                         {
-                            nbrCarts = 750;
+                            nbrCarts =750;
                         }
                         else
                         {
                             nbrCarts = 900;
                         }
 
-
-
-
+                        
+                        
+                        
                         airport = new Airport(nbrCarts);
 
                         if (whatiwant == "Map1")
@@ -228,17 +224,17 @@ namespace Rail_Bag_Simulation
                         }
                         else if (whatiwant == "Map2")
                         {
-
+                            
                             airport.CreateMapLayoutTwo(5);
-                            //simulation2.Map_The_Converyors(airport.GetConveyorsList());
+                            simulation2.Map_The_Converyors(airport.GetConveyorsList());
                             ShowSimulation2Panel();
                         }
 
                         if (drugs == "" || weapons == "" || flammables == "" || others == "")
                         {
-                            //
-                            // To be added
-                            //airport.StartBagsMovement(    nbrOfBags, 0, 0, 0, 0, new Dictionary<string, int>());
+                         //
+                         // To be added
+                         //airport.StartBagsMovement(    nbrOfBags, 0, 0, 0, 0, new Dictionary<string, int>());
                         }
                         else
                         {
@@ -253,10 +249,10 @@ namespace Rail_Bag_Simulation
                                 //e.g ==> the code below, this has to be changed to allow user to select how many percentage
                                 //the keys must be obtained From the airport Static Destinations list then allowing the user
                                 //to select from them.
-                                new Dictionary<string, int>() { { "T1-G1", 21 }, { "T1-G2", 33 } });
-                            //throw new NotImplementedException("needs to take the input of the user");
+                                new Dictionary<string, int>(){{"T1-G1",21},{"T1-G2",33}, { "T2-G1", 13 }, { "T2-G2", 33 } });
+                                //throw new NotImplementedException("needs to take the input of the user");
 
-
+                            
                         }
 
                         btnSimulation.BackColor = this.darkColor;
@@ -275,13 +271,13 @@ namespace Rail_Bag_Simulation
             palenlConfigurations.Visible = false;
             simulation1.Visible = true;
             panelBorder.Visible = false;
-            //simulation2.Visible = false;
+            simulation2.Visible = false;
             panelBorder1.Visible = false;
         }
         private void ShowSimulation2Panel()
         {
             palenlConfigurations.Visible = false;
-            //simulation2.Visible = true;
+            simulation2.Visible = true;
             panelBorder.Visible = false;
             simulation1.Visible = false;
             panelBorder1.Visible = false;
@@ -338,8 +334,8 @@ namespace Rail_Bag_Simulation
                     this.ShowSimulationPanel();
                     if (airport == null)
                     {
-
-                        airport = new Airport(1200);
+                        
+                       airport = new Airport(1200);
                         airport.CreateMapLayout(5);
                         simulation1.Map_The_Converyors(airport.GetConveyorsList());
                     }
@@ -427,38 +423,5 @@ namespace Rail_Bag_Simulation
             whatiwant = "Map1";
             btnRunSimulation.Enabled = true;
         }
-
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-            numericUpDown2.Maximum = totalPercentage - (numericUpDown1.Value + numericUpDown3.Value + numericUpDown4.Value);
-        }
-
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
-        {
-            numericUpDown3.Maximum = totalPercentage - (numericUpDown1.Value + numericUpDown2.Value + numericUpDown4.Value);
-        }
-
-        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
-        {
-            numericUpDown4.Maximum = totalPercentage - (numericUpDown1.Value + numericUpDown2.Value + numericUpDown3.Value);
-        }
-
-        private void numericUpDown4_ValueChanged(object sender, EventArgs e)
-        {
-            numericUpDown1.Maximum = totalPercentage - (numericUpDown2.Value + numericUpDown3.Value + numericUpDown4.Value);
-        }
-
-        //private void btnShowDestination_Click(object sender, EventArgs e)
-        //{
-        //    panelDestination.Visible = true;
-        //    foreach (KeyValuePair<string, Destination> destination in airport.DestinationWithGate)
-        //    {
-        //        for (int i = 0; i < airport.DestinationWithGate.Count; i++)
-        //        {
-        //            lbDestination1.Text = destination.Key;
-        //        }
-        //    }
-        //}
     }
-
 }

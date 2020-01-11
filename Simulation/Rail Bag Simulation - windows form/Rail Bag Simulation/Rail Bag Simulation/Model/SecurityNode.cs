@@ -57,7 +57,7 @@ namespace Rail_Bag_Simulation
                 GetNext().PrintNodes(ref Nodes);
         }
 
-        public  Bag ScanBagSecurity()
+        public Bag ScanBagSecurity()
         {
             if (nbrOfSuspiciousBagPerDestination==null)
             {
@@ -66,7 +66,7 @@ namespace Rail_Bag_Simulation
                 {
                     // need to be fixed the items are being added twice
                     nbrOfSuspiciousBagPerDestination.Add(destination,new Dictionary<SuspiciousBagtype, int>
-                    {
+                    {           
                         {SuspiciousBagtype.Flammables, 0},
                         {SuspiciousBagtype.Drug, 0},
                         {SuspiciousBagtype.Other, 0},
