@@ -173,7 +173,9 @@ namespace Rail_Bag_Simulation
                 //there could be a bag for the last bag
                 for (var i = 0; i < Convert.ToInt32(Airport.TotalNumberOfBags*((decimal)keyValuePair.Value/100)); i++)
                 {
+                    if(bags.Count == lastIndexToContinueFrom) { return;}
                     bags[lastIndexToContinueFrom].TerminalAndGate = keyValuePair.Key;
+                    
                     lastIndexToContinueFrom++;
                 }
             }

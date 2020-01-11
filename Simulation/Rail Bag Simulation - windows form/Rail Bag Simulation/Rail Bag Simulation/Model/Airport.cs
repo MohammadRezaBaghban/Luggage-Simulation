@@ -28,14 +28,18 @@ namespace Rail_Bag_Simulation
         public  void AssignGatesToDestinations(Dictionary<Terminal, List<Gate>> _terminalsWithGates)
         {
             Airport._terminalsWithGates = _terminalsWithGates;
+            List<int> usedNumberInts= new List<int>();
             for (int i = 0; i < _terminalsWithGates.Count; i++)
             {
                 foreach (var t in _terminalsWithGates.ElementAt(i).Value)
                 {
-                    Destinations.Add("T" + _terminalsWithGates.ElementAt(i).Key.TerminalId+"-G" 
-                                      + t.GateNr,
-                        (Destination) Random.Next(0,12)
-                    );
+                    var next = Random.Next(0,12);
+                    while (usedNumberInts.Contains(next))
+                    {
+                        next = Random.Next(0, 12);
+                    }
+                    usedNumberInts.Add(next);
+                    Destinations.Add("T" + _terminalsWithGates.ElementAt(i).Key.TerminalId+"-G" + t.GateNr,(Destination) next  );
                 }
             }
         }
@@ -102,34 +106,31 @@ namespace Rail_Bag_Simulation
             Node bagSort_Conveyor_To_Terminal2 = new ConveyorNode(queueSizeOfBelts);
             Terminal t1 = new Terminal();
             Node terminal1 = new TerminalNode(t1);
-            Node terminal2 = new TerminalNode(new Terminal());
+            var t2 = new Terminal();
+            Node terminal2 = new TerminalNode(t2);
             Node terminal1_Conveyor_To_Gate1 = new ConveyorNode(queueSizeOfBelts);
             Node terminal1_Conveyor_To_Gate2 = new ConveyorNode(queueSizeOfBelts);
 
             Gate g1 = new Gate("1");
             Node t1gate1 = new GateNode(g1);
-            tempDic.Add(t1,new List<Gate>(){g1});
 
             
 
             Gate g2 = new Gate("2");
+            tempDic.Add(t1, new List<Gate>() { g1, g2 });
 
             TotalNumberOfGates++;
             Node t1gate2 = new GateNode(g2);
             TotalNumberOfGates++;
 
-            foreach (var VARIABLE in tempDic)
-            {
-                if (VARIABLE.Key == t1)
-                {
-                    VARIABLE.Value.Add(g2);
-                }
-            }
             Node terminal2_Conveyor_To_Gate1 = new ConveyorNode(queueSizeOfBelts);
             Node terminal2_Conveyor_To_Gate2 = new ConveyorNode(queueSizeOfBelts);
             Node terminal3_Conveyor_To_Gate1 = new ConveyorNode(queueSizeOfBelts);
-            Node t2gate1 = new GateNode(new Gate("1"));
-            Node t2gate2 = new GateNode(new Gate("2"));
+            var t2g1 = new Gate("1");
+            var t2g2 = new Gate("2");
+            Node t2gate1 = new GateNode(t2g1);
+            Node t2gate2 = new GateNode(t2g2);
+            tempDic.Add(t2, new List<Gate>() { t2g1, t2g2 });
 
             Ll.AddNode(checkIn1);
             //Ll.AddNode(cn2);
