@@ -135,12 +135,11 @@ namespace Rail_Bag_Simulation
             {
                 case Part.CHECKIN:
                     newColor = Color.Green;
-                    
-                    PictureBox checkIn = new PictureBox();
-                    checkIn.Image = Properties.Resources.check_in;
-                    checkIn.SizeMode = PictureBoxSizeMode.StretchImage;
+                    DataGridViewImageCell imagecolumncell = new DataGridViewImageCell();
+                    imagecolumncell.Value = Properties.Resources.check_in;
+                    imagecolumncell.ImageLayout = DataGridViewImageCellLayout.Stretch;
                     //checkIn.Location;
-                    gridView.Rows.Add(checkIn);
+                    gridView[currCell.Column, currCell.Row] = imagecolumncell;
                     //gridView.Controls.Add(checkIn);
 
                     part = "CheckIn";
