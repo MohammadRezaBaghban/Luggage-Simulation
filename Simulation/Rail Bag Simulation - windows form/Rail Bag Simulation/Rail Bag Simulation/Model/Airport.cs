@@ -1,46 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Rail_Bag_Simulation
 {
     [Serializable]
     public class Airport
     {
-        private static Dictionary<Terminal, List<Gate>> _terminalsWithGates;
         public static int BagsCountTotalArrived;
 
         private readonly bool _isMapCreated = false;
-        private static readonly Random Random = new Random();
+        public static int[] destinationStatistic;
 
-        public static readonly Dictionary<string, Destination> Destinations = new Dictionary<string, Destination>();
-
-        
         private List<Node> conveyors;
 
         public Airport(int speedDelay)
-        { 
-            Ll = new LinkedList(speedDelay);
-        }
-
-
-
-        public  void AssignGatesToDestinations(Dictionary<Terminal, List<Gate>> _terminalsWithGates)
         {
-            Airport._terminalsWithGates = _terminalsWithGates;
-            for (int i = 0; i < _terminalsWithGates.Count; i++)
-            {
-                foreach (var t in _terminalsWithGates.ElementAt(i).Value)
-                {
-                    Destinations.Add("T" + _terminalsWithGates.ElementAt(i).Key.TerminalId+"-G" 
-                                      + t.GateNr,
-                        (Destination) Random.Next(0,12)
-                    );
-                }
-            }
+            Ll = new LinkedList(speedDelay);
+            destinationStatistic = new int[12];
         }
-
-        
 
         public static List<Bag> GetBagList { get; private set; }
 
@@ -51,20 +28,19 @@ namespace Rail_Bag_Simulation
         public LinkedList Ll { get; }
 
         public static int TotalNumberOfBags { get; private set; }
-        public static int TotalNumberOfGates { get; private set; }
-
-
-        public static Dictionary<Terminal, List<Gate>> TerminalsWithGates
-        {
-            get => _terminalsWithGates;
-        }
 
         public void StartBagsMovement(int nbrOfBags, int nbrOfBagsDrugs, int nbrOfBagsWeapons, int nbrOfBagsFlammable,
-            int nbrBagsOthers, Dictionary<string,int> GatesDictionary)
+            int nbrBagsOthers)
         {
-            TotalNumberOfBags += nbrOfBags;
+            TotalNumberOfBags = nbrOfBags;
             GetBagList = Bag.GenerateBag(nbrOfBags, nbrOfBagsDrugs, nbrOfBagsWeapons, nbrOfBagsFlammable,
-                nbrBagsOthers, GatesDictionary);
+                nbrBagsOthers);
+            foreach (var bag in GetBagList)
+            {
+                destinationStatistic[(int)bag.Destination] += 1;
+
+            }
+
             Ll.AddGeneratedBags(GetBagList);
         }
         public void StartBagsMovement(List<Bag> bag)
@@ -77,14 +53,6 @@ namespace Rail_Bag_Simulation
         public void CreateMapLayout(int queueSizeOfBelts)
         {
             if (_isMapCreated) return;
-            TotalNumberOfGates = 0;
-
-            var tempDic = new Dictionary<Terminal, List<Gate>>();
-            // temp dictionary must be created and initialized here
-            // possible implementation is : new Dictionary<Terminal, List<Gate>>
-            // {{new Terminal(), new List<Gate>{new Gate("1"), new Gate("2")}}, 
-            // {new Terminal(), new List<Gate>{new Gate("1"), new Gate("2")}}}
-            /*Airport.AssignGatesToDestinations(PassDictionary here );*/
 
             Node checkIn1 = new CheckinNode();
             Node CheckIn_To_Security_Conveyor = new ConveyorNode(queueSizeOfBelts);
@@ -100,36 +68,18 @@ namespace Rail_Bag_Simulation
             Node bagSort = new BagSortNode();
             Node bagSort_Conveyor_To_Terminal1 = new ConveyorNode(queueSizeOfBelts);
             Node bagSort_Conveyor_To_Terminal2 = new ConveyorNode(queueSizeOfBelts);
-            Terminal t1 = new Terminal();
-            Node terminal1 = new TerminalNode(t1);
+            Node terminal1 = new TerminalNode(new Terminal());
             Node terminal2 = new TerminalNode(new Terminal());
             Node terminal1_Conveyor_To_Gate1 = new ConveyorNode(queueSizeOfBelts);
             Node terminal1_Conveyor_To_Gate2 = new ConveyorNode(queueSizeOfBelts);
 
-            Gate g1 = new Gate("1");
-            Node t1gate1 = new GateNode(g1);
-            tempDic.Add(t1,new List<Gate>(){g1});
-
-            
-
-            Gate g2 = new Gate("2");
-
-            TotalNumberOfGates++;
-            Node t1gate2 = new GateNode(g2);
-            TotalNumberOfGates++;
-
-            foreach (var VARIABLE in tempDic)
-            {
-                if (VARIABLE.Key == t1)
-                {
-                    VARIABLE.Value.Add(g2);
-                }
-            }
+            Node t1gate1 = new GateNode(new Gate("G1"));
+            Node t1gate2 = new GateNode(new Gate("G2"));
             Node terminal2_Conveyor_To_Gate1 = new ConveyorNode(queueSizeOfBelts);
             Node terminal2_Conveyor_To_Gate2 = new ConveyorNode(queueSizeOfBelts);
-            Node terminal3_Conveyor_To_Gate1 = new ConveyorNode(queueSizeOfBelts);
-            Node t2gate1 = new GateNode(new Gate("1"));
-            Node t2gate2 = new GateNode(new Gate("2"));
+
+            Node t2gate1 = new GateNode(new Gate("G1"));
+            Node t2gate2 = new GateNode(new Gate("G2"));
 
             Ll.AddNode(checkIn1);
             //Ll.AddNode(cn2);
@@ -180,10 +130,8 @@ namespace Rail_Bag_Simulation
                 terminal1_Conveyor_To_Gate1,
                 terminal1_Conveyor_To_Gate2,
                 terminal2_Conveyor_To_Gate1,
-                terminal2_Conveyor_To_Gate2,
+                terminal2_Conveyor_To_Gate2
             };
-
-            AssignGatesToDestinations(tempDic);
         }
 
 
@@ -194,7 +142,7 @@ namespace Rail_Bag_Simulation
         {
             //3 check ins 3 security 1 bag sort 2 terminals 5 gates
             if (_isMapCreated) return;
-            TotalNumberOfGates = 0;
+
             //Create Check in One then conveyor to Security 1 then security 1 then conveyor to BagSort
             Node checkIn1 = new CheckinNode();
             Node CheckIn1_To_Security1_Conveyor = new ConveyorNode(queueSizeOfBelts);
@@ -222,28 +170,23 @@ namespace Rail_Bag_Simulation
 
             //Create conveyor from terminal 1 to gate 1 and gate 1
             Node terminal1_Conveyor_To_Gate1 = new ConveyorNode(queueSizeOfBelts);
-            Node t1gate1 = new GateNode(new Gate("1"));
-            TotalNumberOfGates++;
+            Node t1gate1 = new GateNode(new Gate("G1"));
 
             //Create conveyor from terminal 1 to gate 2 and gate 2
             Node terminal1_Conveyor_To_Gate2 = new ConveyorNode(queueSizeOfBelts);
-            Node t1gate2 = new GateNode(new Gate("2"));
-            TotalNumberOfGates++;
+            Node t1gate2 = new GateNode(new Gate("G2"));
 
             //Create conveyor from terminal 1 to gate 3 and gate 3
             Node terminal1_Conveyor_To_Gate3 = new ConveyorNode(queueSizeOfBelts);
-            Node t1gate3 = new GateNode(new Gate("3"));
-            TotalNumberOfGates++;
+            Node t1gate3 = new GateNode(new Gate("G3"));
 
             //Create conveyor from terminal 1 to gate 4 and gate 4
             Node terminal1_Conveyor_To_Gate4 = new ConveyorNode(queueSizeOfBelts);
-            Node t1gate4 = new GateNode(new Gate("4"));
-            TotalNumberOfGates++;
+            Node t1gate4 = new GateNode(new Gate("G4"));
 
             //Create conveyor from terminal 1 to gate 5 and gate 5
             Node terminal1_Conveyor_To_Gate5 = new ConveyorNode(queueSizeOfBelts);
-            Node t1gate5 = new GateNode(new Gate("5"));
-            TotalNumberOfGates++;
+            Node t1gate5 = new GateNode(new Gate("G5"));
 
             //Create conveyor from bagSort to terminal 2 and Terminal 2
             Node bagSort_Conveyor_To_Terminal2 = new ConveyorNode(queueSizeOfBelts);
@@ -251,23 +194,24 @@ namespace Rail_Bag_Simulation
 
             //Create conveyor from terminal 2 to gate 1 and gate 1
             Node terminal2_Conveyor_To_Gate1 = new ConveyorNode(queueSizeOfBelts);
-            Node t2gate1 = new GateNode(new Gate("1"));
+            Node t2gate1 = new GateNode(new Gate("G1"));
 
             //Create conveyor from terminal 2 to gate 2 and gate 2
             Node terminal2_Conveyor_To_Gate2 = new ConveyorNode(queueSizeOfBelts);
-            Node t2gate2 = new GateNode(new Gate("2"));
+            Node t2gate2 = new GateNode(new Gate("G2"));
 
             //Create conveyor from terminal 2 to gate 3 and gate 3
             Node terminal2_Conveyor_To_Gate3 = new ConveyorNode(queueSizeOfBelts);
-            Node t2gate3 = new GateNode(new Gate("3"));
+            Node t2gate3 = new GateNode(new Gate("G3"));
+
             //Create conveyor from terminal 2 to gate 4 and gate 4
             Node terminal2_Conveyor_To_Gate4 = new ConveyorNode(queueSizeOfBelts);
-            Node t2gate4 = new GateNode(new Gate("4"));
+            Node t2gate4 = new GateNode(new Gate("G4"));
 
             //Create conveyor from terminal 2 to gate 5 and gate 5
             Node terminal2_Conveyor_To_Gate5 = new ConveyorNode(queueSizeOfBelts);
-            Node t2gate5 = new GateNode(new Gate("5"));
-            
+            Node t2gate5 = new GateNode(new Gate("G5"));
+
 
             //Add checkIn1 -> conveyorToSecurity1 -> security 1 -> conveyorToBagSort -> bagSort
             Ll.AddNode(checkIn1);
@@ -327,34 +271,10 @@ namespace Rail_Bag_Simulation
 
             Ll.AddNode(terminal2.Id, terminal2.GetType(), terminal2_Conveyor_To_Gate5);
             Ll.AddNode(terminal2_Conveyor_To_Gate5.Id, terminal2_Conveyor_To_Gate5.GetType(), t2gate5);
-            conveyors = new List<Node>
-            {
-                CheckIn1_To_Security1_Conveyor,
-                CheckIn2_To_Security2_Conveyor,
-                CheckIn3_To_Security3_Conveyor,
-                security1_Conveyor_To_BagSort,
-                security2_Conveyor_To_BagSort,
-                security3_Conveyor_To_BagSort,
-                bagSort_Conveyor_To_Terminal1,
-                bagSort_Conveyor_To_Terminal2,
-                terminal1_Conveyor_To_Gate1,
-                terminal1_Conveyor_To_Gate2,
-                terminal1_Conveyor_To_Gate3,
-                terminal1_Conveyor_To_Gate4,
-                terminal1_Conveyor_To_Gate5,
-                terminal2_Conveyor_To_Gate1,
-                terminal2_Conveyor_To_Gate2,
-                terminal2_Conveyor_To_Gate3,
-                terminal2_Conveyor_To_Gate4,
-                terminal2_Conveyor_To_Gate5
-            };
-
         }
         public void CreateMapLayoutThree(int queueSizeOfBelts)
         {
             //2 checkins per security 2 securities 1 bagsort 2 terminals with 2 gates each
         }
-
-
     }
 }
