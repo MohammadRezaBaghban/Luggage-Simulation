@@ -52,7 +52,38 @@ namespace Rail_Bag_Simulation.View.UserControls
             }
 
             dt.Rows.Add(new object[] { "Average", LinkedList.AverageTimePerBag });
-          
+
+
+
+            var desStatstics = SecurityNode.destinationDistribution;
+            pieChart2.Series = new SeriesCollection
+            {
+
+                new PieSeries
+                {
+
+                    Title = $"{desStatstics.Keys.ElementAt(0).ToString()}",
+                    Values = new ChartValues<double> { desStatstics.Values.ElementAt(0)}
+                },new PieSeries
+                {
+
+                    Title = $"{desStatstics.Keys.ElementAt(1).ToString()}",
+                    Values = new ChartValues<double> { desStatstics.Values.ElementAt(1)}
+                }, new PieSeries
+                {
+
+                    Title = $"{desStatstics.Keys.ElementAt(2).ToString()}",
+                    Values = new ChartValues<double> { desStatstics.Values.ElementAt(2) }
+                },new PieSeries
+                {
+
+                    Title = $"{desStatstics.Keys.ElementAt(3).ToString()}",
+                    Values = new ChartValues<double> { desStatstics.Values.ElementAt(3) }
+                }
+            };
+
+            pieChart2.LegendLocation = LegendLocation.Right;
+
         }
         private double updateChartSuccessfullBags()
         {

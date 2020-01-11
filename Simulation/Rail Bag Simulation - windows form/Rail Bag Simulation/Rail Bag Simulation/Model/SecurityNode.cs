@@ -14,11 +14,11 @@ namespace Rail_Bag_Simulation
 
 
         private static Dictionary<Destination?, Dictionary<SuspiciousBagtype, int>> nbrOfSuspiciousBagPerDestination;
-        public static int[] destinationDistribution;
+        public static Dictionary<Destination , int> destinationDistribution;
         public SecurityNode()
         {
             Id = ++_idToGive;
-            destinationDistribution = new int[12];
+            destinationDistribution = new Dictionary<Destination, int>();
         }
 
         public override Bag Remove()
@@ -74,6 +74,7 @@ namespace Rail_Bag_Simulation
                         {SuspiciousBagtype.Weapons, 0},
 
                     });
+                    destinationDistribution.Add(destination,0);
                 });
             }
             Bag b = null;
@@ -87,6 +88,19 @@ namespace Rail_Bag_Simulation
             catch (Exception)
             {
                 // ignored
+            }
+
+            if (!b.IsNull())
+            {
+                foreach (var destination in Airport.Destinations.Where(destination =>
+                    destination.Key == b.TerminalAndGate))
+                {
+                    destinationDistribution[destination.Value]++;
+                }
+            }
+
+            {
+                
             }
 
             if (b?.GetSecurityStatus() == null) return b;
@@ -111,7 +125,6 @@ namespace Rail_Bag_Simulation
 
             foreach (var destination in Airport.Destinations.Where(destination => destination.Key == b.TerminalAndGate))
             {
-                destinationDistribution[(int)destination.Value] += 1;
                 d = destination.Value;
 
                 

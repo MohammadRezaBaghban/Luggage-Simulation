@@ -73,6 +73,7 @@ namespace Rail_Bag_Simulation
         }
         public void StartBagsMovement(List<Bag> bag)
         {
+            TotalNumberOfBags += bag.Count;
             GetBagList = bag;
             Ll.AddGeneratedBags(GetBagList);
         }

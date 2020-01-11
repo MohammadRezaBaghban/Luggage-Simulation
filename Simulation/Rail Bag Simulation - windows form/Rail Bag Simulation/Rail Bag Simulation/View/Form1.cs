@@ -282,6 +282,7 @@ namespace Rail_Bag_Simulation
                        airport = new Airport(1200);
                         airport.CreateMapLayout(5);
                         simulation1.Map_The_Converyors(airport.GetConveyorsList());
+                        airport.StartBagsMovement(tempList);
                     }
                 }
                 catch (SerializationException) { MessageBox.Show("Something wrong with serialization"); }
