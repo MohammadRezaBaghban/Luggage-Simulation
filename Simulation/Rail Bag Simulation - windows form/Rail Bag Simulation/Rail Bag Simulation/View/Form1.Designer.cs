@@ -55,20 +55,22 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnRunSimulation = new System.Windows.Forms.Button();
             this.palenlConfigurations = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.lbDestination1 = new System.Windows.Forms.Label();
             this.btnShowDestination = new System.Windows.Forms.Button();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
+            this.lbDestinatinInfo = new System.Windows.Forms.Label();
+            this.lbDestination4 = new System.Windows.Forms.Label();
+            this.lbDestination3 = new System.Windows.Forms.Label();
+            this.lbDestination2 = new System.Windows.Forms.Label();
             this.Map2 = new System.Windows.Forms.Button();
+            this.lbDestination = new System.Windows.Forms.Label();
             this.Map1 = new System.Windows.Forms.Button();
+            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.btnLoadSimulation = new System.Windows.Forms.Button();
+            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -81,11 +83,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.simulation1 = new Rail_Bag_Simulation.View.UserControls.Simulation();
             this.statistics1 = new Rail_Bag_Simulation.View.UserControls.Statistics();
-            this.panelDestination = new System.Windows.Forms.Panel();
-            this.lbDestination = new System.Windows.Forms.Label();
-            this.lbDestination2 = new System.Windows.Forms.Label();
-            this.lbDestination3 = new System.Windows.Forms.Label();
-            this.lbDestination4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.panel2.SuspendLayout();
@@ -94,16 +91,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbConfigurations)).BeginInit();
             this.palenlConfigurations.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panelDestination.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -244,7 +240,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label1.Location = new System.Drawing.Point(653, 50);
+            this.label1.Location = new System.Drawing.Point(657, 79);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(549, 29);
             this.label1.TabIndex = 5;
@@ -260,7 +256,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label2.Location = new System.Drawing.Point(703, 132);
+            this.label2.Location = new System.Drawing.Point(707, 161);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(173, 25);
             this.label2.TabIndex = 7;
@@ -270,7 +266,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label3.Location = new System.Drawing.Point(703, 266);
+            this.label3.Location = new System.Drawing.Point(707, 295);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(267, 25);
             this.label3.TabIndex = 8;
@@ -278,19 +274,20 @@
             // 
             // tb_nrOfCarts
             // 
-            this.tb_nrOfCarts.Location = new System.Drawing.Point(1139, 189);
+            this.tb_nrOfCarts.Location = new System.Drawing.Point(1143, 218);
             this.tb_nrOfCarts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_nrOfCarts.Multiline = true;
             this.tb_nrOfCarts.Name = "tb_nrOfCarts";
             this.tb_nrOfCarts.Size = new System.Drawing.Size(123, 34);
             this.tb_nrOfCarts.TabIndex = 2;
+            this.tb_nrOfCarts.TextChanged += new System.EventHandler(this.tb_nrOfCarts_TextChanged);
             this.tb_nrOfCarts.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Tb_nrOfCarts_KeyDown);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label4.Location = new System.Drawing.Point(703, 309);
+            this.label4.Location = new System.Drawing.Point(707, 338);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(191, 25);
             this.label4.TabIndex = 10;
@@ -300,7 +297,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label5.Location = new System.Drawing.Point(703, 359);
+            this.label5.Location = new System.Drawing.Point(707, 388);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(97, 25);
             this.label5.TabIndex = 11;
@@ -310,7 +307,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label6.Location = new System.Drawing.Point(703, 464);
+            this.label6.Location = new System.Drawing.Point(707, 493);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(71, 25);
             this.label6.TabIndex = 12;
@@ -320,7 +317,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label7.Location = new System.Drawing.Point(703, 408);
+            this.label7.Location = new System.Drawing.Point(707, 437);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(64, 25);
             this.label7.TabIndex = 13;
@@ -328,7 +325,7 @@
             // 
             // tb_numberOfBags
             // 
-            this.tb_numberOfBags.Location = new System.Drawing.Point(1139, 133);
+            this.tb_numberOfBags.Location = new System.Drawing.Point(1143, 162);
             this.tb_numberOfBags.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_numberOfBags.Multiline = true;
             this.tb_numberOfBags.Name = "tb_numberOfBags";
@@ -338,7 +335,7 @@
             // 
             // tb_weapons
             // 
-            this.tb_weapons.Location = new System.Drawing.Point(1139, 361);
+            this.tb_weapons.Location = new System.Drawing.Point(1143, 390);
             this.tb_weapons.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_weapons.Multiline = true;
             this.tb_weapons.Name = "tb_weapons";
@@ -348,7 +345,7 @@
             // 
             // tb_Others
             // 
-            this.tb_Others.Location = new System.Drawing.Point(1139, 466);
+            this.tb_Others.Location = new System.Drawing.Point(1143, 495);
             this.tb_Others.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_Others.Multiline = true;
             this.tb_Others.Name = "tb_Others";
@@ -358,7 +355,7 @@
             // 
             // tb_flammables
             // 
-            this.tb_flammables.Location = new System.Drawing.Point(1139, 311);
+            this.tb_flammables.Location = new System.Drawing.Point(1143, 340);
             this.tb_flammables.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_flammables.Multiline = true;
             this.tb_flammables.Name = "tb_flammables";
@@ -368,7 +365,7 @@
             // 
             // tb_drugs
             // 
-            this.tb_drugs.Location = new System.Drawing.Point(1139, 413);
+            this.tb_drugs.Location = new System.Drawing.Point(1143, 442);
             this.tb_drugs.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_drugs.Multiline = true;
             this.tb_drugs.Name = "tb_drugs";
@@ -380,7 +377,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label8.Location = new System.Drawing.Point(703, 196);
+            this.label8.Location = new System.Drawing.Point(707, 225);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(173, 25);
             this.label8.TabIndex = 22;
@@ -392,12 +389,12 @@
             this.btnRunSimulation.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRunSimulation.FlatAppearance.BorderSize = 0;
             this.btnRunSimulation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRunSimulation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btnRunSimulation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.btnRunSimulation.ForeColor = System.Drawing.Color.White;
-            this.btnRunSimulation.Location = new System.Drawing.Point(886, 601);
+            this.btnRunSimulation.Location = new System.Drawing.Point(1605, 633);
             this.btnRunSimulation.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRunSimulation.Name = "btnRunSimulation";
-            this.btnRunSimulation.Size = new System.Drawing.Size(199, 62);
+            this.btnRunSimulation.Size = new System.Drawing.Size(157, 42);
             this.btnRunSimulation.TabIndex = 7;
             this.btnRunSimulation.Text = "Run simulation";
             this.btnRunSimulation.UseVisualStyleBackColor = false;
@@ -405,13 +402,21 @@
             // 
             // palenlConfigurations
             // 
-            this.palenlConfigurations.Controls.Add(this.panelDestination);
             this.palenlConfigurations.Controls.Add(this.btnShowDestination);
+            this.palenlConfigurations.Controls.Add(this.lbDestinatinInfo);
+            this.palenlConfigurations.Controls.Add(this.lbDestination4);
+            this.palenlConfigurations.Controls.Add(this.lbDestination3);
+            this.palenlConfigurations.Controls.Add(this.lbDestination2);
             this.palenlConfigurations.Controls.Add(this.Map2);
+            this.palenlConfigurations.Controls.Add(this.lbDestination);
             this.palenlConfigurations.Controls.Add(this.Map1);
+            this.palenlConfigurations.Controls.Add(this.numericUpDown4);
             this.palenlConfigurations.Controls.Add(this.listBox1);
+            this.palenlConfigurations.Controls.Add(this.numericUpDown2);
             this.palenlConfigurations.Controls.Add(this.btnLoadSimulation);
+            this.palenlConfigurations.Controls.Add(this.numericUpDown3);
             this.palenlConfigurations.Controls.Add(this.textBox2);
+            this.palenlConfigurations.Controls.Add(this.numericUpDown1);
             this.palenlConfigurations.Controls.Add(this.comboBox1);
             this.palenlConfigurations.Controls.Add(this.label9);
             this.palenlConfigurations.Controls.Add(this.btnRunSimulation);
@@ -439,50 +444,61 @@
             this.palenlConfigurations.Size = new System.Drawing.Size(2000, 687);
             this.palenlConfigurations.TabIndex = 26;
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(267, 98);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(341, 17);
-            this.label11.TabIndex = 53;
-            this.label11.Text = "Please select the percentage of bags per destination";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label10.Location = new System.Drawing.Point(352, 18);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(157, 29);
-            this.label10.TabIndex = 44;
-            this.label10.Text = "Destinations";
-            // 
-            // lbDestination1
-            // 
-            this.lbDestination1.AutoSize = true;
-            this.lbDestination1.Location = new System.Drawing.Point(290, 99);
-            this.lbDestination1.Name = "lbDestination1";
-            this.lbDestination1.Size = new System.Drawing.Size(0, 17);
-            this.lbDestination1.TabIndex = 45;
-            // 
             // btnShowDestination
             // 
-            this.btnShowDestination.Location = new System.Drawing.Point(906, 573);
+            this.btnShowDestination.BackColor = System.Drawing.Color.Black;
+            this.btnShowDestination.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnShowDestination.FlatAppearance.BorderSize = 0;
+            this.btnShowDestination.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShowDestination.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btnShowDestination.ForeColor = System.Drawing.Color.White;
+            this.btnShowDestination.Location = new System.Drawing.Point(856, 605);
+            this.btnShowDestination.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnShowDestination.Name = "btnShowDestination";
-            this.btnShowDestination.Size = new System.Drawing.Size(154, 23);
-            this.btnShowDestination.TabIndex = 44;
-            this.btnShowDestination.Text = "show destination";
-            this.btnShowDestination.UseVisualStyleBackColor = true;
+            this.btnShowDestination.Size = new System.Drawing.Size(224, 42);
+            this.btnShowDestination.TabIndex = 59;
+            this.btnShowDestination.Text = "Show destination";
+            this.btnShowDestination.UseVisualStyleBackColor = false;
             this.btnShowDestination.Click += new System.EventHandler(this.btnShowDestination_Click);
             // 
-            // numericUpDown4
+            // lbDestinatinInfo
             // 
-            this.numericUpDown4.Location = new System.Drawing.Point(507, 540);
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(48, 22);
-            this.numericUpDown4.TabIndex = 52;
-            this.numericUpDown4.ValueChanged += new System.EventHandler(this.numericUpDown4_ValueChanged);
+            this.lbDestinatinInfo.AutoSize = true;
+            this.lbDestinatinInfo.Location = new System.Drawing.Point(1575, 45);
+            this.lbDestinatinInfo.Name = "lbDestinatinInfo";
+            this.lbDestinatinInfo.Size = new System.Drawing.Size(226, 34);
+            this.lbDestinatinInfo.TabIndex = 58;
+            this.lbDestinatinInfo.Text = "Please select a percentage (%) of \r\nbags per each destination";
+            // 
+            // lbDestination4
+            // 
+            this.lbDestination4.AutoSize = true;
+            this.lbDestination4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDestination4.ForeColor = System.Drawing.Color.DarkTurquoise;
+            this.lbDestination4.Location = new System.Drawing.Point(1557, 540);
+            this.lbDestination4.Name = "lbDestination4";
+            this.lbDestination4.Size = new System.Drawing.Size(0, 25);
+            this.lbDestination4.TabIndex = 57;
+            // 
+            // lbDestination3
+            // 
+            this.lbDestination3.AutoSize = true;
+            this.lbDestination3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDestination3.ForeColor = System.Drawing.Color.DarkTurquoise;
+            this.lbDestination3.Location = new System.Drawing.Point(1557, 402);
+            this.lbDestination3.Name = "lbDestination3";
+            this.lbDestination3.Size = new System.Drawing.Size(0, 25);
+            this.lbDestination3.TabIndex = 56;
+            // 
+            // lbDestination2
+            // 
+            this.lbDestination2.AutoSize = true;
+            this.lbDestination2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDestination2.ForeColor = System.Drawing.Color.DarkTurquoise;
+            this.lbDestination2.Location = new System.Drawing.Point(1557, 284);
+            this.lbDestination2.Name = "lbDestination2";
+            this.lbDestination2.Size = new System.Drawing.Size(0, 25);
+            this.lbDestination2.TabIndex = 55;
             // 
             // Map2
             // 
@@ -492,14 +508,24 @@
             this.Map2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Map2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.Map2.ForeColor = System.Drawing.Color.White;
-            this.Map2.Location = new System.Drawing.Point(1112, 618);
+            this.Map2.Location = new System.Drawing.Point(1713, 596);
             this.Map2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Map2.Name = "Map2";
-            this.Map2.Size = new System.Drawing.Size(199, 62);
+            this.Map2.Size = new System.Drawing.Size(187, 28);
             this.Map2.TabIndex = 34;
             this.Map2.Text = "Multiple Check in";
             this.Map2.UseVisualStyleBackColor = false;
             this.Map2.Click += new System.EventHandler(this.Map2_Click);
+            // 
+            // lbDestination
+            // 
+            this.lbDestination.AutoSize = true;
+            this.lbDestination.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDestination.ForeColor = System.Drawing.Color.DarkTurquoise;
+            this.lbDestination.Location = new System.Drawing.Point(1557, 157);
+            this.lbDestination.Name = "lbDestination";
+            this.lbDestination.Size = new System.Drawing.Size(0, 25);
+            this.lbDestination.TabIndex = 54;
             // 
             // Map1
             // 
@@ -509,14 +535,22 @@
             this.Map1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Map1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.Map1.ForeColor = System.Drawing.Color.White;
-            this.Map1.Location = new System.Drawing.Point(658, 618);
+            this.Map1.Location = new System.Drawing.Point(1481, 596);
             this.Map1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Map1.Name = "Map1";
-            this.Map1.Size = new System.Drawing.Size(199, 62);
+            this.Map1.Size = new System.Drawing.Size(167, 28);
             this.Map1.TabIndex = 33;
             this.Map1.Text = "Single Check in";
             this.Map1.UseVisualStyleBackColor = false;
             this.Map1.Click += new System.EventHandler(this.Map1_Click);
+            // 
+            // numericUpDown4
+            // 
+            this.numericUpDown4.Location = new System.Drawing.Point(1797, 540);
+            this.numericUpDown4.Name = "numericUpDown4";
+            this.numericUpDown4.Size = new System.Drawing.Size(48, 22);
+            this.numericUpDown4.TabIndex = 52;
+            this.numericUpDown4.ValueChanged += new System.EventHandler(this.numericUpDown4_ValueChanged);
             // 
             // listBox1
             // 
@@ -528,13 +562,13 @@
             this.listBox1.Size = new System.Drawing.Size(325, 180);
             this.listBox1.TabIndex = 32;
             // 
-            // numericUpDown3
+            // numericUpDown2
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(507, 404);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(48, 22);
-            this.numericUpDown3.TabIndex = 51;
-            this.numericUpDown3.ValueChanged += new System.EventHandler(this.numericUpDown3_ValueChanged);
+            this.numericUpDown2.Location = new System.Drawing.Point(1797, 282);
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(48, 22);
+            this.numericUpDown2.TabIndex = 50;
+            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
             // 
             // btnLoadSimulation
             // 
@@ -547,6 +581,14 @@
             this.btnLoadSimulation.UseVisualStyleBackColor = true;
             this.btnLoadSimulation.Click += new System.EventHandler(this.btnLoadSimulation_Click);
             // 
+            // numericUpDown3
+            // 
+            this.numericUpDown3.Location = new System.Drawing.Point(1797, 404);
+            this.numericUpDown3.Name = "numericUpDown3";
+            this.numericUpDown3.Size = new System.Drawing.Size(48, 22);
+            this.numericUpDown3.TabIndex = 51;
+            this.numericUpDown3.ValueChanged += new System.EventHandler(this.numericUpDown3_ValueChanged);
+            // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(53, 175);
@@ -557,7 +599,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(507, 155);
+            this.numericUpDown1.Location = new System.Drawing.Point(1797, 155);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(48, 22);
             this.numericUpDown1.TabIndex = 49;
@@ -579,14 +621,6 @@
             this.comboBox1.Size = new System.Drawing.Size(327, 28);
             this.comboBox1.TabIndex = 27;
             // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.Location = new System.Drawing.Point(507, 282);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(48, 22);
-            this.numericUpDown2.TabIndex = 50;
-            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -600,7 +634,7 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = global::Rail_Bag_Simulation.Properties.Resources.weapon;
-            this.pictureBox6.Location = new System.Drawing.Point(647, 347);
+            this.pictureBox6.Location = new System.Drawing.Point(651, 376);
             this.pictureBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(51, 50);
@@ -611,7 +645,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = global::Rail_Bag_Simulation.Properties.Resources.drugs;
-            this.pictureBox4.Location = new System.Drawing.Point(647, 405);
+            this.pictureBox4.Location = new System.Drawing.Point(651, 434);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(51, 50);
@@ -622,7 +656,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::Rail_Bag_Simulation.Properties.Resources.others;
-            this.pictureBox3.Location = new System.Drawing.Point(647, 459);
+            this.pictureBox3.Location = new System.Drawing.Point(651, 488);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(51, 50);
@@ -633,7 +667,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::Rail_Bag_Simulation.Properties.Resources.flamable;
-            this.pictureBox2.Location = new System.Drawing.Point(647, 291);
+            this.pictureBox2.Location = new System.Drawing.Point(651, 320);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(51, 50);
@@ -711,57 +745,6 @@
             this.statistics1.TabIndex = 3;
             this.statistics1.Visible = false;
             // 
-            // panelDestination
-            // 
-            this.panelDestination.Controls.Add(this.lbDestination4);
-            this.panelDestination.Controls.Add(this.lbDestination3);
-            this.panelDestination.Controls.Add(this.lbDestination2);
-            this.panelDestination.Controls.Add(this.lbDestination);
-            this.panelDestination.Controls.Add(this.numericUpDown4);
-            this.panelDestination.Controls.Add(this.label10);
-            this.panelDestination.Controls.Add(this.label11);
-            this.panelDestination.Controls.Add(this.numericUpDown2);
-            this.panelDestination.Controls.Add(this.numericUpDown3);
-            this.panelDestination.Controls.Add(this.numericUpDown1);
-            this.panelDestination.Controls.Add(this.lbDestination1);
-            this.panelDestination.Location = new System.Drawing.Point(563, 3);
-            this.panelDestination.Name = "panelDestination";
-            this.panelDestination.Size = new System.Drawing.Size(884, 593);
-            this.panelDestination.TabIndex = 54;
-            this.panelDestination.Visible = false;
-            // 
-            // lbDestination
-            // 
-            this.lbDestination.AutoSize = true;
-            this.lbDestination.Location = new System.Drawing.Point(267, 157);
-            this.lbDestination.Name = "lbDestination";
-            this.lbDestination.Size = new System.Drawing.Size(0, 17);
-            this.lbDestination.TabIndex = 54;
-            // 
-            // lbDestination2
-            // 
-            this.lbDestination2.AutoSize = true;
-            this.lbDestination2.Location = new System.Drawing.Point(267, 284);
-            this.lbDestination2.Name = "lbDestination2";
-            this.lbDestination2.Size = new System.Drawing.Size(0, 17);
-            this.lbDestination2.TabIndex = 55;
-            // 
-            // lbDestination3
-            // 
-            this.lbDestination3.AutoSize = true;
-            this.lbDestination3.Location = new System.Drawing.Point(267, 402);
-            this.lbDestination3.Name = "lbDestination3";
-            this.lbDestination3.Size = new System.Drawing.Size(0, 17);
-            this.lbDestination3.TabIndex = 56;
-            // 
-            // lbDestination4
-            // 
-            this.lbDestination4.AutoSize = true;
-            this.lbDestination4.Location = new System.Drawing.Point(267, 540);
-            this.lbDestination4.Name = "lbDestination4";
-            this.lbDestination4.Size = new System.Drawing.Size(0, 17);
-            this.lbDestination4.TabIndex = 57;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -792,17 +775,15 @@
             this.palenlConfigurations.ResumeLayout(false);
             this.palenlConfigurations.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panelDestination.ResumeLayout(false);
-            this.panelDestination.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -854,19 +835,16 @@
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.Button Map2;
         private System.Windows.Forms.Button Map1;
-        private System.Windows.Forms.Button btnShowDestination;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.NumericUpDown numericUpDown4;
         private System.Windows.Forms.NumericUpDown numericUpDown3;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.Label lbDestination1;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Panel panelDestination;
         private System.Windows.Forms.Label lbDestination4;
         private System.Windows.Forms.Label lbDestination3;
         private System.Windows.Forms.Label lbDestination2;
         private System.Windows.Forms.Label lbDestination;
+        private System.Windows.Forms.Label lbDestinatinInfo;
+        private System.Windows.Forms.Button btnShowDestination;
     }
 }
 

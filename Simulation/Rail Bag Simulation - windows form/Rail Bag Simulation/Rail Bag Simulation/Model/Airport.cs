@@ -43,8 +43,6 @@ namespace Rail_Bag_Simulation
             }
         }
 
-        
-
         public static List<Bag> GetBagList { get; private set; }
 
         public static Storage Storage { get; } = new Storage();

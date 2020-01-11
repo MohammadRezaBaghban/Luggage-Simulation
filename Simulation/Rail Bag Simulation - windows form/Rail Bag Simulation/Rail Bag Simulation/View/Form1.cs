@@ -151,131 +151,62 @@ namespace Rail_Bag_Simulation
 
         private void btnRunSimulation_Click(object sender, EventArgs e)
         {
-            var drugs = tb_drugs.Text;
-            var weapons = tb_weapons.Text;
-            var flammables = tb_flammables.Text;
-            var others = tb_Others.Text;
-            if (drugs == "" || weapons == "" || flammables == "" || others == "")
+
+
+            if (whatiwant == "Map1")
             {
-                drugs = "0";
-                weapons = "0";
-                flammables = "0";
-                others = "0";
+
+              
+                simulation1.Map_The_Converyors(airport.GetConveyorsList());
+                ShowSimulationPanel();
+            }
+            else if (whatiwant == "Map2")
+            {
+
+                airport.CreateMapLayoutTwo(5);
+                //simulation2.Map_The_Converyors(airport.GetConveyorsList());
+                //ShowSimulation2Panel();
             }
 
-            var total = tb_numberOfBags.Text;
-            if (string.IsNullOrEmpty(total))
-            {
-                errorProvider.SetError(tb_numberOfBags, "Please fill the number of bags.");
-            }
-            else
-            {
-                var carts = tb_nrOfCarts.Text;
-                if(string.IsNullOrEmpty(carts))
-                {
-                    errorProvider.SetError(tb_nrOfCarts, "Please fill the number of cards");
-                }
-                else
-                {
-                    var nbrOfBags = Convert.ToInt32(total);
-                    int nbrOfBagsDrugs = Convert.ToInt32(drugs);
-                    int nbrOfBagsWeapons = Convert.ToInt32(weapons);
-                    var nbrOfBagsFlammable = Convert.ToInt32(flammables);
-                    var nbrBagsOthers = Convert.ToInt32(others);
-                    if(nbrOfBags < nbrOfBagsDrugs + nbrOfBagsWeapons + nbrOfBagsFlammable + nbrBagsOthers)
-                    {
-                        MessageBox.Show("The number of suspecios bags cannot be more than the total number of bags.");
-                        ClearConfigurationData();
-                    }
-                    else
-                    {
-                        //btnSaveSimulation.Visible = true;
-                        //ShowSimulationPanel();
-                        
-                        var nbrCarts = Convert.ToInt32(carts);
-                        if (nbrCarts > 1000)
-                        {
-                            nbrCarts = 200;
-                        }
-                        else if(nbrCarts>750)
-                        {
-                            nbrCarts = 400;
-                        }
-                        else if (nbrCarts > 500)
-                        {
-                            nbrCarts = 600;
-                        }
-                        else if (nbrCarts > 250)
-                        {
-                            nbrCarts =750;
-                        }
-                        else
-                        {
-                            nbrCarts = 900;
-                        }
-                   
-                       
-                        airport = new Airport(nbrCarts);
+            //if (drugs == "" || weapons == "" || flammables == "" || others == "")
+            //{
+            //    //
+            //    // To be added
+            //    //airport.StartBagsMovement(    nbrOfBags, 0, 0, 0, 0, new Dictionary<string, int>());
+            //}
+            // else
+            // {
+            //     var destination1 = (int)numericUpDown1.Value;
+            //     var destination2 = (int)numericUpDown2.Value;
+            //     var destination3 = (int)numericUpDown3.Value;
+            //     var destination4 = (int)numericUpDown4.Value;
 
-                        if (whatiwant == "Map1")
-                        {
+            //     airport.StartBagsMovement(
+            //         nbrOfBags,
+            //         nbrOfBagsDrugs,
+            //         nbrOfBagsWeapons,
+            //         nbrOfBagsFlammable,
+            //         nbrBagsOthers,
+            //         //
+            //         //Please implement this so that it takes for each gate the number of bags in precentage
+            //         //e.g ==> the code below, this has to be changed to allow user to select how many percentage
+            //         //the keys must be obtained From the airport Static Destinations list then allowing the user
+            //         //to select from them.
+            //         new Dictionary<string, int>() { { "T1-G1", destination1 }, { "T1-G2", destination2 }, { "T2-G1", destination3 }, { "T2-G2", destination4 } });
+            //     //throw new NotImplementedException("needs to take the input of the user");
+            //}
 
-                            airport.CreateMapLayout(5);
+            //Dictionary<string, Destination> myDict = airport.DestinationWithGate;
+            //List<Destination> l = new List<Destination>(myDict.Values);
 
-                            simulation1.Map_The_Converyors(airport.GetConveyorsList());
-                            //ShowSimulationPanel();
-                        }
-                        else if (whatiwant == "Map2")
-                        {
-                            
-                            airport.CreateMapLayoutTwo(5);
-                            //simulation2.Map_The_Converyors(airport.GetConveyorsList());
-                            //ShowSimulation2Panel();
-                        }
-
-                        if (drugs == "" || weapons == "" || flammables == "" || others == "")
-                        {
-                         //
-                         // To be added
-                         //airport.StartBagsMovement(    nbrOfBags, 0, 0, 0, 0, new Dictionary<string, int>());
-                        }
-                        // else
-                        // {
-                        //     var destination1 = (int)numericUpDown1.Value;
-                        //     var destination2 = (int)numericUpDown2.Value;
-                        //     var destination3 = (int)numericUpDown3.Value;
-                        //     var destination4 = (int)numericUpDown4.Value;
-
-                        //     airport.StartBagsMovement(
-                        //         nbrOfBags,
-                        //         nbrOfBagsDrugs,
-                        //         nbrOfBagsWeapons,
-                        //         nbrOfBagsFlammable,
-                        //         nbrBagsOthers,
-                        //         //
-                        //         //Please implement this so that it takes for each gate the number of bags in precentage
-                        //         //e.g ==> the code below, this has to be changed to allow user to select how many percentage
-                        //         //the keys must be obtained From the airport Static Destinations list then allowing the user
-                        //         //to select from them.
-                        //         new Dictionary<string, int>() { { "T1-G1", destination1 }, { "T1-G2", destination2 }, { "T2-G1", destination3 }, { "T2-G2", destination4 } });
-                        //     //throw new NotImplementedException("needs to take the input of the user");
-                        //}
-                        panelDestination.Visible = true;
-                       
-                        Dictionary<string, Destination> myDict = airport.DestinationWithGate;
-                        List<Destination> l = new List<Destination>(myDict.Values);
-
-                        lbDestination.Text += l[0];
-                        lbDestination2.Text += l[1];
-                        lbDestination3.Text += l[2];
-                        lbDestination4.Text += l[3];
+            //lbDestination.Text += l[0];
+            //lbDestination2.Text += l[1];
+            //lbDestination3.Text += l[2];
+            //lbDestination4.Text += l[3];
 
 
-                    }
-                }
-            }
         }
-
+           
         private void ShowSimulationPanel()
         {
             palenlConfigurations.Visible = false;
@@ -434,20 +365,6 @@ namespace Rail_Bag_Simulation
             btnRunSimulation.Enabled = true;
         }
 
-        private void btnShowDestination_Click(object sender, EventArgs e)
-        {
-
-            panelDestination.Visible = true;
-            foreach (KeyValuePair<string, Destination> destination in airport.DestinationWithGate)
-            {
-                for (int i = 0; i < airport.DestinationWithGate.Count; i++)
-                {
-                    lbDestination1.Text = destination.Key;
-                }
-            }
-
-        }
-
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             CheckNumericUAndDown();
@@ -474,6 +391,91 @@ namespace Rail_Bag_Simulation
             numericUpDown2.Maximum = totalDestination - (numericUpDown1.Value + numericUpDown3.Value + numericUpDown4.Value);
             numericUpDown3.Maximum = totalDestination - (numericUpDown1.Value + numericUpDown2.Value + numericUpDown4.Value);
             numericUpDown4.Maximum = totalDestination - (numericUpDown1.Value + numericUpDown2.Value + numericUpDown3.Value);
+        }
+
+        private void tb_nrOfCarts_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnShowDestination_Click(object sender, EventArgs e)
+        {
+            var drugs = tb_drugs.Text;
+            var weapons = tb_weapons.Text;
+            var flammables = tb_flammables.Text;
+            var others = tb_Others.Text;
+            if (drugs == "" || weapons == "" || flammables == "" || others == "")
+            {
+                drugs = "0";
+                weapons = "0";
+                flammables = "0";
+                others = "0";
+            }
+
+            var total = tb_numberOfBags.Text;
+            if (string.IsNullOrEmpty(total))
+            {
+                errorProvider.SetError(tb_numberOfBags, "Please fill the number of bags.");
+            }
+            else
+            {
+                var carts = tb_nrOfCarts.Text;
+                if (string.IsNullOrEmpty(carts))
+                {
+                    errorProvider.SetError(tb_nrOfCarts, "Please fill the number of cards");
+                }
+                else
+                {
+                    var nbrOfBags = Convert.ToInt32(total);
+                    int nbrOfBagsDrugs = Convert.ToInt32(drugs);
+                    int nbrOfBagsWeapons = Convert.ToInt32(weapons);
+                    var nbrOfBagsFlammable = Convert.ToInt32(flammables);
+                    var nbrBagsOthers = Convert.ToInt32(others);
+                    if (nbrOfBags < nbrOfBagsDrugs + nbrOfBagsWeapons + nbrOfBagsFlammable + nbrBagsOthers)
+                    {
+                        MessageBox.Show("The number of suspecios bags cannot be more than the total number of bags.");
+                        ClearConfigurationData();
+                    }
+                    else
+                    {
+                        btnSaveSimulation.Visible = true;
+                        //ShowSimulationPanel();
+
+                        var nbrCarts = Convert.ToInt32(carts);
+                        if (nbrCarts > 1000)
+                        {
+                            nbrCarts = 200;
+                        }
+                        else if (nbrCarts > 750)
+                        {
+                            nbrCarts = 400;
+                        }
+                        else if (nbrCarts > 500)
+                        {
+                            nbrCarts = 600;
+                        }
+                        else if (nbrCarts > 250)
+                        {
+                            nbrCarts = 750;
+                        }
+                        else
+                        {
+                            nbrCarts = 900;
+                        }
+
+
+                        airport = new Airport(nbrCarts);
+                        airport.CreateMapLayout(5);
+                        Dictionary<string, Destination> myDict = airport.DestinationWithGate;
+                        List<Destination> l = new List<Destination>(myDict.Values);
+
+                        lbDestination.Text += l[0];
+                        lbDestination2.Text += l[1];
+                        lbDestination3.Text += l[2];
+                        lbDestination4.Text += l[3];
+                    }
+                }
+            }
         }
     }
 }
