@@ -14,10 +14,11 @@ namespace Rail_Bag_Simulation
 
 
         private static Dictionary<Destination?, Dictionary<SuspiciousBagtype, int>> nbrOfSuspiciousBagPerDestination;
-
+        public static int[] destinationDistribution;
         public SecurityNode()
         {
             Id = ++_idToGive;
+            destinationDistribution = new int[12];
         }
 
         public override Bag Remove()
@@ -110,6 +111,7 @@ namespace Rail_Bag_Simulation
 
             foreach (var destination in Airport.Destinations.Where(destination => destination.Key == b.TerminalAndGate))
             {
+                destinationDistribution[(int)destination.Value] += 1;
                 d = destination.Value;
 
                 
