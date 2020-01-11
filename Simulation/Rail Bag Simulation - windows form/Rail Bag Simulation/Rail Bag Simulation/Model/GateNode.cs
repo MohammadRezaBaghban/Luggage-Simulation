@@ -35,7 +35,10 @@ namespace Rail_Bag_Simulation
             
             base.Push(b);
             if (b.IsObserving) LinkedList.TimelyWatchedBagWithStopWatch.First(pair => pair.Value == b).Key.Stop();
-             _counter++;
+
+        
+            
+            
             VerifyBagsCount();
         }
 
@@ -51,6 +54,7 @@ namespace Rail_Bag_Simulation
 
         private void VerifyBagsCount()
         {
+                _counter++;
             if (_counter + Storage.GetNumberOfSuspiciousBagsInStorage() +
                 Storage.GetNumberOfNoDestinationBagsInStorage() >=
                 Airport.TotalNumberOfBags) SimulationFinishedEvent?.Invoke(this, EventArgs.Empty);

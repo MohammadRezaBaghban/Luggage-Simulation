@@ -398,6 +398,7 @@
             this.btnRunSimulation.TabIndex = 7;
             this.btnRunSimulation.Text = "Run simulation";
             this.btnRunSimulation.UseVisualStyleBackColor = false;
+            this.btnRunSimulation.Visible = false;
             this.btnRunSimulation.Click += new System.EventHandler(this.btnRunSimulation_Click);
             // 
             // palenlConfigurations
@@ -469,6 +470,7 @@
             this.lbDestinatinInfo.Size = new System.Drawing.Size(226, 34);
             this.lbDestinatinInfo.TabIndex = 58;
             this.lbDestinatinInfo.Text = "Please select a percentage (%) of \r\nbags per each destination";
+            this.lbDestinatinInfo.Visible = false;
             // 
             // lbDestination4
             // 
@@ -479,6 +481,7 @@
             this.lbDestination4.Name = "lbDestination4";
             this.lbDestination4.Size = new System.Drawing.Size(0, 25);
             this.lbDestination4.TabIndex = 57;
+            this.lbDestination4.Visible = false;
             // 
             // lbDestination3
             // 
@@ -489,6 +492,7 @@
             this.lbDestination3.Name = "lbDestination3";
             this.lbDestination3.Size = new System.Drawing.Size(0, 25);
             this.lbDestination3.TabIndex = 56;
+            this.lbDestination3.Visible = false;
             // 
             // lbDestination2
             // 
@@ -499,6 +503,7 @@
             this.lbDestination2.Name = "lbDestination2";
             this.lbDestination2.Size = new System.Drawing.Size(0, 25);
             this.lbDestination2.TabIndex = 55;
+            this.lbDestination2.Visible = false;
             // 
             // Map2
             // 
@@ -515,6 +520,7 @@
             this.Map2.TabIndex = 34;
             this.Map2.Text = "Multiple Check in";
             this.Map2.UseVisualStyleBackColor = false;
+            this.Map2.Visible = false;
             this.Map2.Click += new System.EventHandler(this.Map2_Click);
             // 
             // lbDestination
@@ -526,6 +532,7 @@
             this.lbDestination.Name = "lbDestination";
             this.lbDestination.Size = new System.Drawing.Size(0, 25);
             this.lbDestination.TabIndex = 54;
+            this.lbDestination.Visible = false;
             // 
             // Map1
             // 
@@ -542,6 +549,7 @@
             this.Map1.TabIndex = 33;
             this.Map1.Text = "Single Check in";
             this.Map1.UseVisualStyleBackColor = false;
+            this.Map1.Visible = false;
             this.Map1.Click += new System.EventHandler(this.Map1_Click);
             // 
             // numericUpDown4
@@ -550,6 +558,7 @@
             this.numericUpDown4.Name = "numericUpDown4";
             this.numericUpDown4.Size = new System.Drawing.Size(48, 22);
             this.numericUpDown4.TabIndex = 52;
+            this.numericUpDown4.Visible = false;
             this.numericUpDown4.ValueChanged += new System.EventHandler(this.numericUpDown4_ValueChanged);
             // 
             // listBox1
@@ -568,6 +577,7 @@
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(48, 22);
             this.numericUpDown2.TabIndex = 50;
+            this.numericUpDown2.Visible = false;
             this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
             // 
             // btnLoadSimulation
@@ -587,6 +597,7 @@
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(48, 22);
             this.numericUpDown3.TabIndex = 51;
+            this.numericUpDown3.Visible = false;
             this.numericUpDown3.ValueChanged += new System.EventHandler(this.numericUpDown3_ValueChanged);
             // 
             // textBox2
@@ -603,6 +614,7 @@
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(48, 22);
             this.numericUpDown1.TabIndex = 49;
+            this.numericUpDown1.Visible = false;
             this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // comboBox1
@@ -765,7 +777,6 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Airport Luggage Simulation";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.panel2.ResumeLayout(false);

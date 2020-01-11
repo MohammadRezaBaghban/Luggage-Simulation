@@ -13,16 +13,12 @@ namespace Rail_Bag_Simulation
 {
     public partial class Form1 : Form
     {
-        
-        //string fileName = "../../config.txt";
-
-
         Color darkColor = Color.FromArgb(95, 108, 140);
         Color normalColor = Color.FromArgb(105, 119, 155);
         private string whatiwant;
         public Airport airport;
         private int totalDestination = 100;
-        
+
         public Form1()
         {
             
@@ -41,10 +37,6 @@ namespace Rail_Bag_Simulation
             numericUpDown2.Maximum = totalDestination;
             numericUpDown3.Maximum = totalDestination;
             numericUpDown4.Maximum = totalDestination;
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
         }
 
         private void PictureBox5_Click(object sender, System.EventArgs e)
@@ -151,8 +143,17 @@ namespace Rail_Bag_Simulation
 
         private void btnRunSimulation_Click(object sender, EventArgs e)
         {
+            var drugs = tb_drugs.Text;
+            var weapons = tb_weapons.Text;
+            var flammables = tb_flammables.Text;
+            var others = tb_Others.Text;
+            var total = tb_numberOfBags.Text;
 
-
+            var nbrOfBags = Convert.ToInt32(total);
+            int nbrOfBagsDrugs = Convert.ToInt32(drugs);
+            int nbrOfBagsWeapons = Convert.ToInt32(weapons);
+            var nbrOfBagsFlammable = Convert.ToInt32(flammables);
+            var nbrBagsOthers = Convert.ToInt32(others);
             if (whatiwant == "Map1")
             {
 
@@ -168,33 +169,33 @@ namespace Rail_Bag_Simulation
                 //ShowSimulation2Panel();
             }
 
-            //if (drugs == "" || weapons == "" || flammables == "" || others == "")
-            //{
-            //    //
-            //    // To be added
-            //    //airport.StartBagsMovement(    nbrOfBags, 0, 0, 0, 0, new Dictionary<string, int>());
-            //}
-            // else
-            // {
-            //     var destination1 = (int)numericUpDown1.Value;
-            //     var destination2 = (int)numericUpDown2.Value;
-            //     var destination3 = (int)numericUpDown3.Value;
-            //     var destination4 = (int)numericUpDown4.Value;
+            if (drugs == "" || weapons == "" || flammables == "" || others == "")
+            {
+                //
+                // To be added
+                //airport.StartBagsMovement(    nbrOfBags, 0, 0, 0, 0, new Dictionary<string, int>());
+            }
+            else
+            {
+                var destination1 = (int)numericUpDown1.Value;
+                var destination2 = (int)numericUpDown2.Value;
+                var destination3 = (int)numericUpDown3.Value;
+                var destination4 = (int)numericUpDown4.Value;
 
-            //     airport.StartBagsMovement(
-            //         nbrOfBags,
-            //         nbrOfBagsDrugs,
-            //         nbrOfBagsWeapons,
-            //         nbrOfBagsFlammable,
-            //         nbrBagsOthers,
-            //         //
-            //         //Please implement this so that it takes for each gate the number of bags in precentage
-            //         //e.g ==> the code below, this has to be changed to allow user to select how many percentage
-            //         //the keys must be obtained From the airport Static Destinations list then allowing the user
-            //         //to select from them.
-            //         new Dictionary<string, int>() { { "T1-G1", destination1 }, { "T1-G2", destination2 }, { "T2-G1", destination3 }, { "T2-G2", destination4 } });
-            //     //throw new NotImplementedException("needs to take the input of the user");
-            //}
+                airport.StartBagsMovement(
+                    nbrOfBags,
+                    nbrOfBagsDrugs,
+                    nbrOfBagsWeapons,
+                    nbrOfBagsFlammable,
+                    nbrBagsOthers,
+                    //
+                    //Please implement this so that it takes for each gate the number of bags in precentage
+                    //e.g ==> the code below, this has to be changed to allow user to select how many percentage
+                    //the keys must be obtained From the airport Static Destinations list then allowing the user
+                    //to select from them.
+                    new Dictionary<string, int>() { { "T1-G1", destination1 }, { "T1-G2", destination2 }, { "T2-G1", destination3 }, { "T2-G2", destination4 } });
+                //throw new NotImplementedException("needs to take the input of the user");
+            }
 
             //Dictionary<string, Destination> myDict = airport.DestinationWithGate;
             //List<Destination> l = new List<Destination>(myDict.Values);
@@ -203,6 +204,7 @@ namespace Rail_Bag_Simulation
             //lbDestination2.Text += l[1];
             //lbDestination3.Text += l[2];
             //lbDestination4.Text += l[3];
+
 
 
         }
@@ -291,7 +293,6 @@ namespace Rail_Bag_Simulation
                 }
             }
         }
-
 
 
         private void Tb_nrOfCarts_KeyDown(object sender, KeyEventArgs e)
@@ -404,6 +405,8 @@ namespace Rail_Bag_Simulation
             var weapons = tb_weapons.Text;
             var flammables = tb_flammables.Text;
             var others = tb_Others.Text;
+            var total = tb_numberOfBags.Text;
+
             if (drugs == "" || weapons == "" || flammables == "" || others == "")
             {
                 drugs = "0";
@@ -412,7 +415,6 @@ namespace Rail_Bag_Simulation
                 others = "0";
             }
 
-            var total = tb_numberOfBags.Text;
             if (string.IsNullOrEmpty(total))
             {
                 errorProvider.SetError(tb_numberOfBags, "Please fill the number of bags.");
@@ -475,6 +477,20 @@ namespace Rail_Bag_Simulation
                         lbDestination4.Text += l[3];
                     }
                 }
+
+                lbDestinatinInfo.Visible = true;
+                numericUpDown1.Visible = true;
+                numericUpDown2.Visible = true;
+                numericUpDown3.Visible = true;
+                numericUpDown4.Visible = true;
+                lbDestinatinInfo.Visible = true;
+                lbDestination.Visible = true;
+                lbDestination2.Visible = true;
+                lbDestination3.Visible = true;
+                lbDestination4.Visible = true;
+                Map1.Visible = true;
+                Map2.Visible = true;
+                btnRunSimulation.Visible = true;
             }
         }
     }
