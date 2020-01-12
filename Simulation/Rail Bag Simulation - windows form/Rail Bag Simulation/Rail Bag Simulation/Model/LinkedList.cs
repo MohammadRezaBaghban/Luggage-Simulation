@@ -15,36 +15,15 @@ namespace Rail_Bag_Simulation
         public static bool IsSimulationFinished;
         public static bool IsSimulationPaused;
         public static Dictionary<Stopwatch, Bag> TimelyWatchedBagWithStopWatch = new Dictionary<Stopwatch, Bag>();
+        private int delaytime;
         private Timer _timer;
 
         public LinkedList(int speedDelayTime)
         {
-            _timer = new Timer(speedDelayTime);
-            //ThreadPool.SetMaxThreads(5, 5);
-
-            _timer.Elapsed += (sender, args) =>
-            {
-                ThreadPool.QueueUserWorkItem(MakeBagsMoveOneAtATime);
-                ThreadPool.QueueUserWorkItem(MakeBagsMoveOneAtATime);
-                ThreadPool.QueueUserWorkItem(MakeBagsMoveOneAtATime);
-                ThreadPool.QueueUserWorkItem(MakeBagsMoveOneAtATime);
-            };
-
-            GateNode.SimulationFinishedEvent += (sender, args) =>
-            {
-                decimal totalTime = 0;
-                IsSimulationFinished = true;
-                
-                foreach (var stopwatch in TimelyWatchedBagWithStopWatch.Keys)
-                {
-                    stopwatch.Stop();
-                }
-                TimelyWatchedBagWithStopWatch.Keys.ToList()
-                    .ForEach(stopwatch => totalTime += (int) stopwatch.ElapsedMilliseconds);
-                totalTime /= 1000;
-                AverageTimePerBag = totalTime / TimelyWatchedBagWithStopWatch.Keys.Count;
-                _timer.Stop();
-            };
+            delaytime = speedDelayTime;
+          
+            ResetSimulation();
+           
         }
 
         public static List<CheckinNode> First { get; } = new List<CheckinNode>();
@@ -128,7 +107,11 @@ namespace Rail_Bag_Simulation
                 foreach (Node s in First)
                     s.AddNode(id, t, nodetoadd);
         }
-
+        public void ClearLinkedList()
+        {
+            First.Clear();
+            Terminal._terminalIdNext = 0;
+        }
 
         public static List<Node> GetAllNodes()
         {
@@ -182,7 +165,32 @@ namespace Rail_Bag_Simulation
         }
         public void ResetSimulation()
         {
+            _timer = new Timer(delaytime);
+            //ThreadPool.SetMaxThreads(5, 5);
 
+            _timer.Elapsed += (sender, args) =>
+            {
+                ThreadPool.QueueUserWorkItem(MakeBagsMoveOneAtATime);
+                ThreadPool.QueueUserWorkItem(MakeBagsMoveOneAtATime);
+                ThreadPool.QueueUserWorkItem(MakeBagsMoveOneAtATime);
+                ThreadPool.QueueUserWorkItem(MakeBagsMoveOneAtATime);
+            };
+            IsSimulationFinished = false;
+            GateNode.SimulationFinishedEvent += (sender, args) =>
+            {
+                decimal totalTime = 0;
+                IsSimulationFinished = true;
+
+                foreach (var stopwatch in TimelyWatchedBagWithStopWatch.Keys)
+                {
+                    stopwatch.Stop();
+                }
+                TimelyWatchedBagWithStopWatch.Keys.ToList()
+                    .ForEach(stopwatch => totalTime += (int)stopwatch.ElapsedMilliseconds);
+                totalTime /= 1000;
+                AverageTimePerBag = totalTime / TimelyWatchedBagWithStopWatch.Keys.Count;
+                _timer.Stop();
+            };
         }
     }
 }

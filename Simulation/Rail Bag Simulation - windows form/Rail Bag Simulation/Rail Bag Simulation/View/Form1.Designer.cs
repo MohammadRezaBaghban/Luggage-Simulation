@@ -76,12 +76,12 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.simulation2 = new Rail_Bag_Simulation.View.UserControls.Simulation2();
             this.panelBorder1 = new System.Windows.Forms.Panel();
             this.panelBorder = new System.Windows.Forms.Panel();
             this.btnSaveSimulation = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.simulation2 = new Rail_Bag_Simulation.View.UserControls.Simulation2();
             this.simulation1 = new Rail_Bag_Simulation.View.UserControls.Simulation();
             this.statistics1 = new Rail_Bag_Simulation.View.UserControls.Statistics();
             this.panel1.SuspendLayout();
@@ -448,7 +448,6 @@
             this.palenlConfigurations.Controls.Add(this.label4);
             this.palenlConfigurations.Controls.Add(this.label3);
             this.palenlConfigurations.Controls.Add(this.label2);
-            this.palenlConfigurations.Controls.Add(this.simulation2);
             this.palenlConfigurations.Location = new System.Drawing.Point(1, 128);
             this.palenlConfigurations.Margin = new System.Windows.Forms.Padding(2);
             this.palenlConfigurations.Name = "palenlConfigurations";
@@ -704,6 +703,16 @@
             this.pictureBox2.TabIndex = 18;
             this.pictureBox2.TabStop = false;
             // 
+            // simulation2
+            // 
+            this.simulation2.AutoScroll = true;
+            this.simulation2.BackColor = System.Drawing.Color.White;
+            this.simulation2.Location = new System.Drawing.Point(12, 90);
+            this.simulation2.Name = "simulation2";
+            this.simulation2.Size = new System.Drawing.Size(1404, 624);
+            this.simulation2.TabIndex = 0;
+            this.simulation2.Visible = false;
+            // 
             // panelBorder1
             // 
             this.panelBorder1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(119)))), ((int)(((byte)(155)))));
@@ -751,30 +760,21 @@
             this.pictureBox1.Size = new System.Drawing.Size(206, 80);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;   
-            // 
-            // simulation2
-            // 
-            this.simulation2.AutoScroll = true;
-            this.simulation2.BackColor = System.Drawing.Color.White;
-            this.simulation2.Location = new System.Drawing.Point(0, 0);
-            this.simulation2.Name = "simulation2";
-            this.simulation2.Size = new System.Drawing.Size(1300, 564);
-            this.simulation2.TabIndex = 0;
-            this.simulation2.Visible = false;
+            this.pictureBox1.TabStop = false;
             // 
             // simulation1
             // 
             this.simulation1.BackColor = System.Drawing.Color.White;
-            this.simulation1.Location = new System.Drawing.Point(0, 0);
+            this.simulation1.Location = new System.Drawing.Point(22, 96);
             this.simulation1.Margin = new System.Windows.Forms.Padding(2);
             this.simulation1.Name = "simulation1";
-            this.simulation1.Size = new System.Drawing.Size(1385, 618);
+            this.simulation1.Size = new System.Drawing.Size(1415, 618);
             this.simulation1.TabIndex = 31;
             this.simulation1.Visible = false;
             // 
             // statistics1
             // 
+            this.statistics1.AutoScroll = true;
             this.statistics1.BackColor = System.Drawing.Color.White;
             this.statistics1.Location = new System.Drawing.Point(0, 128);
             this.statistics1.Margin = new System.Windows.Forms.Padding(2);
@@ -798,6 +798,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.simulation2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

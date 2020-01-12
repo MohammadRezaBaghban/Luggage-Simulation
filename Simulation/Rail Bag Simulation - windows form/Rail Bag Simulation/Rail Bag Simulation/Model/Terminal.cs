@@ -2,7 +2,7 @@
 {
     public class Terminal
     {
-        private static int _terminalIdNext;
+        public static int _terminalIdNext;
 
         public Terminal()
         {

@@ -166,6 +166,7 @@ namespace Rail_Bag_Simulation
 
              
               simulation2.Map_The_Converyors(airport.GetConveyorsList());
+              
                ShowSimulation2Panel();
             }
 
@@ -213,6 +214,7 @@ namespace Rail_Bag_Simulation
         {
             palenlConfigurations.Visible = false;
             simulation1.Visible = true;
+            
             panelBorder.Visible = false;
             simulation2.Visible = false;
             panelBorder1.Visible = false;
@@ -221,6 +223,7 @@ namespace Rail_Bag_Simulation
         {
             palenlConfigurations.Visible = false;
            simulation2.Visible = true;
+           
             panelBorder.Visible = false;
             simulation1.Visible = false;
             panelBorder1.Visible = false;

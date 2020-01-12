@@ -53,7 +53,6 @@ namespace Rail_Bag_Simulation.View.UserControls
             }
         }
 
-
         private void Panel1_Paint(object sender, PaintEventArgs e)
         {
 
