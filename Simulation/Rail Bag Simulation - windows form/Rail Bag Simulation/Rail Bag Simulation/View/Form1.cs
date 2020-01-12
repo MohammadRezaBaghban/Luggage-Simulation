@@ -159,36 +159,50 @@ namespace Rail_Bag_Simulation
                 var nbrOfBagsFlammable = Convert.ToInt32(flammables);
                 var nbrBagsOthers = Convert.ToInt32(others);
 
-                if (whatiwant == "Map1")
+                var destination1 = (int)numericUpDown1.Value;
+                var destination2 = (int)numericUpDown2.Value;
+                var destination3 = (int)numericUpDown3.Value;
+                var destination4 = (int)numericUpDown4.Value;
+                var sumOfPercentages = destination1 + destination2 + destination3 + destination4;
+                if (sumOfPercentages > 100)
                 {
-
-
-                    simulation1.Map_The_Converyors(airport.GetConveyorsList());
-                    ShowSimulationPanel();
+                    MessageBox.Show("The sum of percentages can not be MORE than 100%\n" +
+                        "Please Refine your inputs more percisely");
                 }
-                else if (whatiwant == "Map2")
+                else if (sumOfPercentages < 100)
                 {
-
-
-                    simulation2.Map_The_Converyors(airport.GetConveyorsList());
-
-                    ShowSimulation2Panel();
+                    MessageBox.Show("The sum of percentages can not LESS than 100%\n" +
+                        "Please Refine your inputs more percisely");
                 }
-
-                if (drugs == "" || weapons == "" || flammables == "" || others == "")
+                else if (sumOfPercentages==100)
                 {
-                    //
-                    // To be added
-                    //airport.StartBagsMovement(    nbrOfBags, 0, 0, 0, 0, new Dictionary<string, int>());
-                }
-                else
-                {
-                    var destination1 = (int)numericUpDown1.Value;
-                    var destination2 = (int)numericUpDown2.Value;
-                    var destination3 = (int)numericUpDown3.Value;
-                    var destination4 = (int)numericUpDown4.Value;
+                    if (whatiwant == "Map1")
+                    {
 
-                    airport.StartBagsMovement(
+
+                        simulation1.Map_The_Converyors(airport.GetConveyorsList());
+                        ShowSimulationPanel();
+                    }
+                    else if (whatiwant == "Map2")
+                    {
+
+
+                        simulation2.Map_The_Converyors(airport.GetConveyorsList());
+
+                        ShowSimulation2Panel();
+                    }
+
+                    if (drugs == "" || weapons == "" || flammables == "" || others == "")
+                    {
+                        //
+                        // To be added
+                        //airport.StartBagsMovement(    nbrOfBags, 0, 0, 0, 0, new Dictionary<string, int>());
+                    }
+                    else
+                    {
+
+
+                        airport.StartBagsMovement(
                         nbrOfBags,
                         nbrOfBagsDrugs,
                         nbrOfBagsWeapons,
@@ -200,8 +214,13 @@ namespace Rail_Bag_Simulation
                         //the keys must be obtained From the airport Static Destinations list then allowing the user
                         //to select from them.
                         new Dictionary<string, int>() { { "T1-G1", destination1 }, { "T1-G2", destination2 }, { "T2-G1", destination3 }, { "T2-G2", destination4 } });
-                    //throw new NotImplementedException("needs to take the input of the user");
+
+
+
+                        //throw new NotImplementedException("needs to take the input of the user");
+                    }
                 }
+               
             }
             catch(System.FormatException)
             {
@@ -409,10 +428,12 @@ namespace Rail_Bag_Simulation
 
         private void CheckNumericUAndDown()
         {
+            /*
             numericUpDown1.Maximum = totalDestination - (numericUpDown2.Value + numericUpDown3.Value + numericUpDown4.Value);
             numericUpDown2.Maximum = totalDestination - (numericUpDown1.Value + numericUpDown3.Value + numericUpDown4.Value);
             numericUpDown3.Maximum = totalDestination - (numericUpDown1.Value + numericUpDown2.Value + numericUpDown4.Value);
             numericUpDown4.Maximum = totalDestination - (numericUpDown1.Value + numericUpDown2.Value + numericUpDown3.Value);
+            */
         }
 
         private void tb_nrOfCarts_TextChanged(object sender, EventArgs e)
@@ -422,112 +443,120 @@ namespace Rail_Bag_Simulation
 
         private void btnShowDestination_Click(object sender, EventArgs e)
         {
-            var drugs = tb_drugs.Text;
-            var weapons = tb_weapons.Text;
-            var flammables = tb_flammables.Text;
-            var others = tb_Others.Text;
-            var total = tb_numberOfBags.Text;
+            if(RbMultipleCheckIn.Checked || RbSingleCheckIn.Checked)
+            {
+                var drugs = tb_drugs.Text;
+                var weapons = tb_weapons.Text;
+                var flammables = tb_flammables.Text;
+                var others = tb_Others.Text;
+                var total = tb_numberOfBags.Text;
 
-            if (drugs == "" || weapons == "" || flammables == "" || others == "")
-            {
-                drugs = "0";
-                weapons = "0";
-                flammables = "0";
-                others = "0";
-            }
-
-            if (string.IsNullOrEmpty(total))
-            {
-                errorProvider.SetError(tb_numberOfBags, "Please fill the number of bags.");
-            }
-            else
-            {
-                var carts = tb_nrOfCarts.Text;
-                if (string.IsNullOrEmpty(carts))
+                if (drugs == "" || weapons == "" || flammables == "" || others == "")
                 {
-                    errorProvider.SetError(tb_nrOfCarts, "Please fill the number of cards");
+                    drugs = "0";
+                    weapons = "0";
+                    flammables = "0";
+                    others = "0";
+                }
+
+                if (string.IsNullOrEmpty(total))
+                {
+                    errorProvider.SetError(tb_numberOfBags, "Please fill the number of bags.");
                 }
                 else
                 {
-                    var nbrOfBags = Convert.ToInt32(total);
-                    int nbrOfBagsDrugs = Convert.ToInt32(drugs);
-                    int nbrOfBagsWeapons = Convert.ToInt32(weapons);
-                    var nbrOfBagsFlammable = Convert.ToInt32(flammables);
-                    var nbrBagsOthers = Convert.ToInt32(others);
-                    if (nbrOfBags < nbrOfBagsDrugs + nbrOfBagsWeapons + nbrOfBagsFlammable + nbrBagsOthers)
+                    var carts = tb_nrOfCarts.Text;
+                    if (string.IsNullOrEmpty(carts))
                     {
-                        MessageBox.Show("The number of suspecios bags cannot be more than the total number of bags.");
-                        ClearConfigurationData();
+                        errorProvider.SetError(tb_nrOfCarts, "Please fill the number of cards");
                     }
                     else
                     {
-                        btnSaveSimulation.Visible = true;
-                        //ShowSimulationPanel();
-
-                        var nbrCarts = Convert.ToInt32(carts);
-                        if (nbrCarts > 1000)
+                        var nbrOfBags = Convert.ToInt32(total);
+                        int nbrOfBagsDrugs = Convert.ToInt32(drugs);
+                        int nbrOfBagsWeapons = Convert.ToInt32(weapons);
+                        var nbrOfBagsFlammable = Convert.ToInt32(flammables);
+                        var nbrBagsOthers = Convert.ToInt32(others);
+                        if (nbrOfBags < nbrOfBagsDrugs + nbrOfBagsWeapons + nbrOfBagsFlammable + nbrBagsOthers)
                         {
-                            nbrCarts = 200;
-                        }
-                        else if (nbrCarts > 750)
-                        {
-                            nbrCarts = 400;
-                        }
-                        else if (nbrCarts > 500)
-                        {
-                            nbrCarts = 600;
-                        }
-                        else if (nbrCarts > 250)
-                        {
-                            nbrCarts = 750;
+                            MessageBox.Show("The number of suspecios bags cannot be more than the total number of bags.");
+                            ClearConfigurationData();
                         }
                         else
                         {
-                            nbrCarts = 900;
+                            btnSaveSimulation.Visible = true;
+                            //ShowSimulationPanel();
+
+                            var nbrCarts = Convert.ToInt32(carts);
+                            if (nbrCarts > 1000)
+                            {
+                                nbrCarts = 200;
+                            }
+                            else if (nbrCarts > 750)
+                            {
+                                nbrCarts = 400;
+                            }
+                            else if (nbrCarts > 500)
+                            {
+                                nbrCarts = 600;
+                            }
+                            else if (nbrCarts > 250)
+                            {
+                                nbrCarts = 750;
+                            }
+                            else
+                            {
+                                nbrCarts = 900;
+                            }
+
+
+                            airport = new Airport(nbrCarts);
+
+                            if (whatiwant == "Map1")
+                            {
+                                airport.CreateMapLayout(5);
+                            }
+                            else if (whatiwant == "Map2")
+                            {
+                                airport.CreateMapLayoutTwo(5);
+                            }
+
+                            Dictionary<string, Destination> myDict = airport.DestinationWithGate;
+                            List<Destination> l = new List<Destination>(myDict.Values);
+                            if (!desitnationPaneShown)
+                            {
+                                lbDestination.Text += l[0];
+                                lbDestination2.Text += l[1];
+                                lbDestination3.Text += l[2];
+                                lbDestination4.Text += l[3];
+                            }
+                            desitnationPaneShown = true;
+
+                            lbDestinatinInfo.Visible = true;
+                            numericUpDown1.Visible = true;
+                            numericUpDown2.Visible = true;
+                            numericUpDown3.Visible = true;
+                            numericUpDown4.Visible = true;
+                            lbDestinatinInfo.Visible = true;
+                            lbDestination.Visible = true;
+                            lbDestination2.Visible = true;
+                            lbDestination3.Visible = true;
+                            lbDestination4.Visible = true;
+                            Map1.Visible = true;
+                            Map2.Visible = true;
+                            btnRunSimulation.Visible = true;
+
                         }
-
-
-                        airport = new Airport(nbrCarts);
-
-                        if (whatiwant == "Map1")
-                        {
-                            airport.CreateMapLayout(5);
-                        }
-                        else if (whatiwant == "Map2")
-                        {
-                            airport.CreateMapLayoutTwo(5);
-                        }
-
-                        Dictionary<string, Destination> myDict = airport.DestinationWithGate;
-                        List<Destination> l = new List<Destination>(myDict.Values);
-                        if (!desitnationPaneShown)
-                        {
-                            lbDestination.Text += l[0];
-                            lbDestination2.Text += l[1];
-                            lbDestination3.Text += l[2];
-                            lbDestination4.Text += l[3];
-                        }
-                        desitnationPaneShown = true;
-
-                        lbDestinatinInfo.Visible = true;
-                        numericUpDown1.Visible = true;
-                        numericUpDown2.Visible = true;
-                        numericUpDown3.Visible = true;
-                        numericUpDown4.Visible = true;
-                        lbDestinatinInfo.Visible = true;
-                        lbDestination.Visible = true;
-                        lbDestination2.Visible = true;
-                        lbDestination3.Visible = true;
-                        lbDestination4.Visible = true;
-                        Map1.Visible = true;
-                        Map2.Visible = true;
-                        btnRunSimulation.Visible = true;
-
                     }
-                }
 
-                
+
+                }
             }
+            else
+            {
+                MessageBox.Show("Please Select one of the CheckIn Mode");
+            }
+
         }
 
       
