@@ -17,14 +17,23 @@ namespace Rail_Bag_Simulation
         public List<IConveyor> conveyors;
         public List<Node> nodes;
         public Node curr;
+        public Node lastSecurity;
+        public Node lastBagSort;
+        public Node lastTerminal;
+
+
         public Map()
         {
             InitializeComponent();
             airport = new Airport(100);
             nodes = new List<Node>();
             curr = null;
+            lastSecurity = null;
+            lastBagSort = null;
+            lastTerminal = null;
 
-
+            CbToLastNode.Visible = false;
+            groupBox1.Visible = false;
             TbTotalBags.Text = "100";
             TbCarts.Text = "3";
             TbFlammables.Text = "0";
@@ -46,7 +55,7 @@ namespace Rail_Bag_Simulation
                 checkIn.Location = new Point(cursorPosition.X, cursorPosition.Y);
                 checkIn.Height = 90;
                 checkIn.Width = 70;
-
+                
                 Controls.Add(checkIn);
                 Node checkInNode = airport.CreateCheckIn();
                 //nodes.Add(checkInNode);
@@ -69,8 +78,8 @@ namespace Rail_Bag_Simulation
                 Node securityNode = airport.CreateSecurity();
                 airport.Ll.AddNode(curr.Id, curr.GetType(), securityNode);
 
+                lastSecurity = securityNode;
                 curr = securityNode;
-
 
                 RbSecurity.Checked = false;
                 RbConveyor.Checked = true;
@@ -88,6 +97,7 @@ namespace Rail_Bag_Simulation
                 Node bagSortNode = airport.CreateBagSort();
                 airport.Ll.AddNode(curr.Id, curr.GetType(), bagSortNode);
 
+                lastBagSort = bagSortNode;
                 curr = bagSortNode;
 
                 RbSorter.Checked = false;
@@ -106,6 +116,7 @@ namespace Rail_Bag_Simulation
                 Node terminalNode = airport.CreateTerminal();
                 airport.Ll.AddNode(curr.Id, curr.GetType(), terminalNode);
 
+                lastTerminal = terminalNode;
                 curr = terminalNode;
 
 
@@ -129,10 +140,10 @@ namespace Rail_Bag_Simulation
 
 
                 RbGate.Checked = false;
-                RbConveyor.Checked = true;
             }
             else if (RbConveyor.Checked)
             {
+                
                 ConveyorHorizontal conveyor = new ConveyorHorizontal();
                 conveyor.Location = new Point(cursorPosition.X, cursorPosition.Y);
                 conveyor.Height = 90;
@@ -143,9 +154,77 @@ namespace Rail_Bag_Simulation
                 conveyor.SetConveyor((ConveyorNode)conveyorNode);
                 airport.Ll.AddNode(curr.Id, curr.GetType(), conveyorNode);
 
+                if (curr is CheckinNode)
+                {
+                    RbSecurity.Checked = true;
+                }
+                else if (curr is SecurityNode)
+                {
+                    RbSorter.Checked = true;
+                }
+                else if (curr is BagSortNode)
+                {
+                    RbTerminal.Checked = true;
+                }
+                else if (curr is TerminalNode)
+                {
+                    RbGate.Checked = true;
+                }
+
                 curr = conveyorNode;
 
                 RbConveyor.Checked = false;
+            }
+            else if (RbConveyorToLastSecurity.Checked)
+            {
+                ConveyorVertical conveyor = new ConveyorVertical();
+                conveyor.Location = new Point(cursorPosition.X, cursorPosition.Y);
+                conveyor.Height = 190;
+                conveyor.Width = 80;
+
+                Controls.Add(conveyor);
+                Node conveyorNode = airport.CreateConveyor();
+                conveyor.SetConveyor((ConveyorNode)conveyorNode);
+                airport.Ll.AddNode(lastSecurity.Id, lastSecurity.GetType(), conveyorNode);
+
+                curr = conveyorNode;
+                RbConveyorToLastSecurity.Checked = false;
+                RbSorter.Checked = true;
+
+            }
+            else if (RbConveyorToLastBagSort.Checked)
+            {
+                ConveyorVertical conveyor = new ConveyorVertical();
+                conveyor.Location = new Point(cursorPosition.X, cursorPosition.Y);
+                conveyor.Height = 190;
+                conveyor.Width = 80;
+
+                Controls.Add(conveyor);
+                Node conveyorNode = airport.CreateConveyor();
+                conveyor.SetConveyor((ConveyorNode)conveyorNode);
+                airport.Ll.AddNode(lastBagSort.Id, lastBagSort.GetType(), conveyorNode);
+
+                curr = conveyorNode;
+
+                RbConveyorToLastBagSort.Checked = false;
+                RbTerminal.Checked = true;
+            }
+            else if (RbConveyorToLastTerminal.Checked)
+            {
+                ConveyorVertical conveyor = new ConveyorVertical();
+                conveyor.Location = new Point(cursorPosition.X, cursorPosition.Y);
+                conveyor.Height = 190;
+                conveyor.Width = 80;
+
+                Controls.Add(conveyor);
+                Node conveyorNode = airport.CreateConveyor();
+                conveyor.SetConveyor((ConveyorNode)conveyorNode);
+                airport.Ll.AddNode(lastTerminal.Id, lastTerminal.GetType(), conveyorNode);
+
+                curr = conveyorNode;
+
+                RbConveyorToLastTerminal.Checked = false;
+                RbGate.Checked = true;
             }
         }
 
@@ -190,6 +269,36 @@ namespace Rail_Bag_Simulation
                 if ((Airport.TotalNumberOfBags != GateNode.Counter + Storage.GetNumberOfBagsInStorage())) return;
 
             }
+        }
+
+        private void CbToLastNode_CheckedChanged(object sender, EventArgs e)
+        {
+            if ( CbToLastNode.Checked == true)
+            {
+                groupBox1.Visible = true;
+                RbConveyor.Checked = false;
+
+            }
+            else 
+            { 
+                groupBox1.Visible = false;
+                RbConveyor.Checked = true;
+
+            }
+
+        }
+
+        private void RbConveyor_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RbConveyor.Checked)
+            {
+                CbToLastNode.Visible = true;
+            }
+            else
+            {
+                CbToLastNode.Visible = false;
+            }
+
         }
     }
 }

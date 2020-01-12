@@ -48,6 +48,12 @@
             this.TbDrugs = new System.Windows.Forms.TextBox();
             this.TbOthers = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.RbConveyorToLastSecurity = new System.Windows.Forms.RadioButton();
+            this.RbConveyorToLastBagSort = new System.Windows.Forms.RadioButton();
+            this.RbConveyorToLastTerminal = new System.Windows.Forms.RadioButton();
+            this.CbToLastNode = new System.Windows.Forms.CheckBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // RbConveyor
@@ -60,6 +66,7 @@
             this.RbConveyor.TabStop = true;
             this.RbConveyor.Text = "Conveyor";
             this.RbConveyor.UseVisualStyleBackColor = true;
+            this.RbConveyor.CheckedChanged += new System.EventHandler(this.RbConveyor_CheckedChanged);
             // 
             // RbGate
             // 
@@ -231,11 +238,69 @@
             this.label1.TabIndex = 25;
             this.label1.Text = "label1";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.RbConveyorToLastTerminal);
+            this.groupBox1.Controls.Add(this.RbConveyorToLastBagSort);
+            this.groupBox1.Controls.Add(this.RbConveyorToLastSecurity);
+            this.groupBox1.Location = new System.Drawing.Point(148, 114);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(174, 120);
+            this.groupBox1.TabIndex = 26;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
+            // RbConveyorToLastSecurity
+            // 
+            this.RbConveyorToLastSecurity.AutoSize = true;
+            this.RbConveyorToLastSecurity.Location = new System.Drawing.Point(7, 22);
+            this.RbConveyorToLastSecurity.Name = "RbConveyorToLastSecurity";
+            this.RbConveyorToLastSecurity.Size = new System.Drawing.Size(125, 21);
+            this.RbConveyorToLastSecurity.TabIndex = 0;
+            this.RbConveyorToLastSecurity.TabStop = true;
+            this.RbConveyorToLastSecurity.Text = "To last security";
+            this.RbConveyorToLastSecurity.UseVisualStyleBackColor = true;
+            // 
+            // RbConveyorToLastBagSort
+            // 
+            this.RbConveyorToLastBagSort.AutoSize = true;
+            this.RbConveyorToLastBagSort.Location = new System.Drawing.Point(7, 50);
+            this.RbConveyorToLastBagSort.Name = "RbConveyorToLastBagSort";
+            this.RbConveyorToLastBagSort.Size = new System.Drawing.Size(128, 21);
+            this.RbConveyorToLastBagSort.TabIndex = 1;
+            this.RbConveyorToLastBagSort.TabStop = true;
+            this.RbConveyorToLastBagSort.Text = "To last bag sort";
+            this.RbConveyorToLastBagSort.UseVisualStyleBackColor = true;
+            // 
+            // RbConveyorToLastTerminal
+            // 
+            this.RbConveyorToLastTerminal.AutoSize = true;
+            this.RbConveyorToLastTerminal.Location = new System.Drawing.Point(7, 78);
+            this.RbConveyorToLastTerminal.Name = "RbConveyorToLastTerminal";
+            this.RbConveyorToLastTerminal.Size = new System.Drawing.Size(126, 21);
+            this.RbConveyorToLastTerminal.TabIndex = 2;
+            this.RbConveyorToLastTerminal.TabStop = true;
+            this.RbConveyorToLastTerminal.Text = "To last terminal";
+            this.RbConveyorToLastTerminal.UseVisualStyleBackColor = true;
+            // 
+            // CbToLastNode
+            // 
+            this.CbToLastNode.AutoSize = true;
+            this.CbToLastNode.Location = new System.Drawing.Point(8, 195);
+            this.CbToLastNode.Name = "CbToLastNode";
+            this.CbToLastNode.Size = new System.Drawing.Size(141, 21);
+            this.CbToLastNode.TabIndex = 27;
+            this.CbToLastNode.Text = "To previous node";
+            this.CbToLastNode.UseVisualStyleBackColor = true;
+            this.CbToLastNode.CheckedChanged += new System.EventHandler(this.CbToLastNode_CheckedChanged);
+            // 
             // Map
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1550, 609);
+            this.Controls.Add(this.CbToLastNode);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TbOthers);
             this.Controls.Add(this.TbDrugs);
@@ -260,6 +325,8 @@
             this.Text = "Map";
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Map_MouseClick);
             this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Map_MouseDoubleClick);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -287,5 +354,10 @@
         private System.Windows.Forms.TextBox TbDrugs;
         private System.Windows.Forms.TextBox TbOthers;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton RbConveyorToLastTerminal;
+        private System.Windows.Forms.RadioButton RbConveyorToLastBagSort;
+        private System.Windows.Forms.RadioButton RbConveyorToLastSecurity;
+        private System.Windows.Forms.CheckBox CbToLastNode;
     }
 }
