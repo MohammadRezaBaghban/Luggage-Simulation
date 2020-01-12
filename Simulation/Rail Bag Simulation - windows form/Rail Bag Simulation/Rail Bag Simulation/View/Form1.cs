@@ -18,6 +18,7 @@ namespace Rail_Bag_Simulation
         private string whatiwant;
         public Airport airport;
         private int totalDestination = 100;
+        bool desitnationPaneShown = false;
 
         public Form1()
         {
@@ -260,6 +261,7 @@ namespace Rail_Bag_Simulation
 
                 }
                 catch (SerializationException) { MessageBox.Show("Error opening/creating file"); }
+                catch (ArgumentNullException) { MessageBox.Show("Please Run the simulation First"); }
                 finally
                 {
                     if (fs != null)
@@ -298,6 +300,7 @@ namespace Rail_Bag_Simulation
                         simulation1.Map_The_Converyors(airport.GetConveyorsList());
                         airport.StartBagsMovement(tempList);
                     }
+                    listBox1.Items.Add($"{openLog.FileName} has been loaded succcessfully");
                 }
                 catch (SerializationException) { MessageBox.Show("Something wrong with serialization"); }
                 finally
@@ -373,6 +376,7 @@ namespace Rail_Bag_Simulation
         private void Map2_Click(object sender, EventArgs e)
         {
             whatiwant = "Map2";
+            RbMultipleCheckIn.Checked = true;
             btnRunSimulation.Enabled = true;
         }
 
@@ -380,6 +384,7 @@ namespace Rail_Bag_Simulation
         {
             whatiwant = "Map1";
             btnRunSimulation.Enabled = true;
+            RbSingleCheckIn.Checked = true;
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -495,28 +500,50 @@ namespace Rail_Bag_Simulation
 
                         Dictionary<string, Destination> myDict = airport.DestinationWithGate;
                         List<Destination> l = new List<Destination>(myDict.Values);
+                        if (!desitnationPaneShown)
+                        {
+                            lbDestination.Text += l[0];
+                            lbDestination2.Text += l[1];
+                            lbDestination3.Text += l[2];
+                            lbDestination4.Text += l[3];
+                        }
+                        desitnationPaneShown = true;
 
-                        lbDestination.Text += l[0];
-                        lbDestination2.Text += l[1];
-                        lbDestination3.Text += l[2];
-                        lbDestination4.Text += l[3];
+                        lbDestinatinInfo.Visible = true;
+                        numericUpDown1.Visible = true;
+                        numericUpDown2.Visible = true;
+                        numericUpDown3.Visible = true;
+                        numericUpDown4.Visible = true;
+                        lbDestinatinInfo.Visible = true;
+                        lbDestination.Visible = true;
+                        lbDestination2.Visible = true;
+                        lbDestination3.Visible = true;
+                        lbDestination4.Visible = true;
+                        Map1.Visible = true;
+                        Map2.Visible = true;
+                        btnRunSimulation.Visible = true;
+
                     }
                 }
 
-                lbDestinatinInfo.Visible = true;
-                numericUpDown1.Visible = true;
-                numericUpDown2.Visible = true;
-                numericUpDown3.Visible = true;
-                numericUpDown4.Visible = true;
-                lbDestinatinInfo.Visible = true;
-                lbDestination.Visible = true;
-                lbDestination2.Visible = true;
-                lbDestination3.Visible = true;
-                lbDestination4.Visible = true;
-                Map1.Visible = true;
-                Map2.Visible = true;
-                btnRunSimulation.Visible = true;
+                
             }
+        }
+
+      
+
+        private void RbSingleCheckIn_CheckedChanged_1(object sender, EventArgs e)
+        {
+            whatiwant = "Map1";
+            btnRunSimulation.Enabled = true;
+
+        }
+
+        private void RbMultipleCheckIn_CheckedChanged(object sender, EventArgs e)
+        {
+            whatiwant = "Map2";
+            btnRunSimulation.Enabled = true;
+
         }
     }
 }
