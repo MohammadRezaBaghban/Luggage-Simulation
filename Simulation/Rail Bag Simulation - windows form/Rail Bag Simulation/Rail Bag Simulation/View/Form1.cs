@@ -149,54 +149,65 @@ namespace Rail_Bag_Simulation
             var others = tb_Others.Text;
             var total = tb_numberOfBags.Text;
 
-            var nbrOfBags = Convert.ToInt32(total);
-            int nbrOfBagsDrugs = Convert.ToInt32(drugs);
-            int nbrOfBagsWeapons = Convert.ToInt32(weapons);
-            var nbrOfBagsFlammable = Convert.ToInt32(flammables);
-            var nbrBagsOthers = Convert.ToInt32(others);
-            if (whatiwant == "Map1")
-            {
 
-              
-                simulation1.Map_The_Converyors(airport.GetConveyorsList());
-                ShowSimulationPanel();
-            }
-            else if (whatiwant == "Map2")
+            try
             {
+                var nbrOfBags = Convert.ToInt32(total);
+                int nbrOfBagsDrugs = Convert.ToInt32(drugs);
+                int nbrOfBagsWeapons = Convert.ToInt32(weapons);
+                var nbrOfBagsFlammable = Convert.ToInt32(flammables);
+                var nbrBagsOthers = Convert.ToInt32(others);
 
-             
-              simulation2.Map_The_Converyors(airport.GetConveyorsList());
-              
-               ShowSimulation2Panel();
-            }
+                if (whatiwant == "Map1")
+                {
 
-            if (drugs == "" || weapons == "" || flammables == "" || others == "")
-            {
-                //
-                // To be added
-                //airport.StartBagsMovement(    nbrOfBags, 0, 0, 0, 0, new Dictionary<string, int>());
-            }
-            else
-            {
-                var destination1 = (int)numericUpDown1.Value;
-                var destination2 = (int)numericUpDown2.Value;
-                var destination3 = (int)numericUpDown3.Value;
-                var destination4 = (int)numericUpDown4.Value;
 
-                airport.StartBagsMovement(
-                    nbrOfBags,
-                    nbrOfBagsDrugs,
-                    nbrOfBagsWeapons,
-                    nbrOfBagsFlammable,
-                    nbrBagsOthers,
+                    simulation1.Map_The_Converyors(airport.GetConveyorsList());
+                    ShowSimulationPanel();
+                }
+                else if (whatiwant == "Map2")
+                {
+
+
+                    simulation2.Map_The_Converyors(airport.GetConveyorsList());
+
+                    ShowSimulation2Panel();
+                }
+
+                if (drugs == "" || weapons == "" || flammables == "" || others == "")
+                {
                     //
-                    //Please implement this so that it takes for each gate the number of bags in precentage
-                    //e.g ==> the code below, this has to be changed to allow user to select how many percentage
-                    //the keys must be obtained From the airport Static Destinations list then allowing the user
-                    //to select from them.
-                    new Dictionary<string, int>() { { "T1-G1", destination1 }, { "T1-G2", destination2 }, { "T2-G1", destination3 }, { "T2-G2", destination4 } });
-                //throw new NotImplementedException("needs to take the input of the user");
+                    // To be added
+                    //airport.StartBagsMovement(    nbrOfBags, 0, 0, 0, 0, new Dictionary<string, int>());
+                }
+                else
+                {
+                    var destination1 = (int)numericUpDown1.Value;
+                    var destination2 = (int)numericUpDown2.Value;
+                    var destination3 = (int)numericUpDown3.Value;
+                    var destination4 = (int)numericUpDown4.Value;
+
+                    airport.StartBagsMovement(
+                        nbrOfBags,
+                        nbrOfBagsDrugs,
+                        nbrOfBagsWeapons,
+                        nbrOfBagsFlammable,
+                        nbrBagsOthers,
+                        //
+                        //Please implement this so that it takes for each gate the number of bags in precentage
+                        //e.g ==> the code below, this has to be changed to allow user to select how many percentage
+                        //the keys must be obtained From the airport Static Destinations list then allowing the user
+                        //to select from them.
+                        new Dictionary<string, int>() { { "T1-G1", destination1 }, { "T1-G2", destination2 }, { "T2-G1", destination3 }, { "T2-G2", destination4 } });
+                    //throw new NotImplementedException("needs to take the input of the user");
+                }
             }
+            catch(System.FormatException)
+            {
+                MessageBox.Show("Please Check All the inputs to be filled correctly");
+            }
+            
+           
 
             //Dictionary<string, Destination> myDict = airport.DestinationWithGate;
             //List<Destination> l = new List<Destination>(myDict.Values);
