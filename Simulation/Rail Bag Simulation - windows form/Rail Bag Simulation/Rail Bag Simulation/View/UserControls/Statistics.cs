@@ -17,7 +17,7 @@ namespace Rail_Bag_Simulation.View.UserControls
             InitializeComponent();
         }
 
-        private void btnLoadData_Click(object sender, EventArgs e)
+        public void LoadData()
         {
             dataGridView1.AutoResizeColumns();
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -84,6 +84,38 @@ namespace Rail_Bag_Simulation.View.UserControls
 
             pieChart2.LegendLocation = LegendLocation.Right;
 
+
+            dataGridDestinationSuspicousBagsCategory.Visible = true;
+
+
+
+            // Start of the DataGrid
+            dataGridDestinationSuspicousBagsCategory.AutoResizeColumns();
+            dataGridDestinationSuspicousBagsCategory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            DataTable dt2 = new DataTable();
+            dataGridDestinationSuspicousBagsCategory.DataSource = dt2;
+            dt2.Columns.Add("Destination");
+            dt2.Columns.Add("Category");
+            dt2.Columns.Add("# Suspicious Bags");
+
+            // TO DO : Make the fields in the data grid clickable and see other rows
+
+            foreach (var i in SecurityNode.getDicDestinationBag())
+            {
+                var dataRow = dt2.Rows.Add(new object[] { i.Key });
+                foreach (var i1 in i.Value)
+                {
+                    var dataRow1 = dt2.Rows.Add(new object[] { null, i1.Key, i1.Value });
+
+                }
+            }
+
+        }
+
+        
+        private void btnLoadData_Click(object sender, EventArgs e)
+        {
+            LoadData();
         }
         private double updateChartSuccessfullBags()
         {
@@ -128,31 +160,7 @@ namespace Rail_Bag_Simulation.View.UserControls
 
         private void btnDestinationSuspiciousBagsCategory_Click(object sender, EventArgs e)
         {
-            dataGridDestinationSuspicousBagsCategory.Visible = true;
-          
-
-
-            // Start of the DataGrid
-            dataGridDestinationSuspicousBagsCategory.AutoResizeColumns();
-            dataGridDestinationSuspicousBagsCategory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            DataTable dt = new DataTable();
-            dataGridDestinationSuspicousBagsCategory.DataSource = dt;
-            dt.Columns.Add("Destination");
-            dt.Columns.Add("Category");
-            dt.Columns.Add("# Suspicious Bags");
-
-            // TO DO : Make the fields in the data grid clickable and see other rows
-
-            foreach (var i in SecurityNode.getDicDestinationBag())
-            {
-                var dataRow = dt.Rows.Add(new object[] {i.Key});
-                foreach (var i1 in i.Value)
-                {
-                    var dataRow1 = dt.Rows.Add(new object[] {null,i1.Key, i1.Value});
-
-                }
-            }
-
+            
         }
     }
 }

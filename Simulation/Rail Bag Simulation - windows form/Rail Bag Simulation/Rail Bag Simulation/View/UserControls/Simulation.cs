@@ -121,6 +121,7 @@ namespace Rail_Bag_Simulation.View.UserControls
         private void BtnPowerOut_Click(object sender, EventArgs e)
         {
             ((Form1)Parent).airport.Ll.DestroySimulation();
+            MessageBox.Show("Power Outage Has Been Happened! Simulation Stop!");
         }
 
         private void BtnContinue_Click(object sender, EventArgs e)
