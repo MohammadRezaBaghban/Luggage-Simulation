@@ -55,6 +55,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnRunSimulation = new System.Windows.Forms.Button();
             this.palenlConfigurations = new System.Windows.Forms.Panel();
+            this.btnLoadConfigurations = new System.Windows.Forms.Button();
             this.btnShowDestination = new System.Windows.Forms.Button();
             this.lbDestinatinInfo = new System.Windows.Forms.Label();
             this.lbDestination4 = new System.Windows.Forms.Label();
@@ -79,11 +80,9 @@
             this.btnSaveSimulation = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnResetSimulation = new System.Windows.Forms.Button();
             this.simulation1 = new Rail_Bag_Simulation.View.UserControls.Simulation();
             this.statistics1 = new Rail_Bag_Simulation.View.UserControls.Statistics();
             this.simulation2 = new Rail_Bag_Simulation.View.UserControls.Simulation2();
-            this.btnLoadConfigurations = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.panel2.SuspendLayout();
@@ -107,8 +106,6 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(119)))), ((int)(((byte)(155)))));
             this.panel1.Controls.Add(this.pictureBox5);
-            this.panel1.Controls.Add(this.btnResetSimulation);
-            this.panel1.Controls.Add(this.btnSaveSimulation);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
@@ -455,6 +452,17 @@
             this.palenlConfigurations.Size = new System.Drawing.Size(1500, 558);
             this.palenlConfigurations.TabIndex = 26;
             // 
+            // btnLoadConfigurations
+            // 
+            this.btnLoadConfigurations.Location = new System.Drawing.Point(40, 119);
+            this.btnLoadConfigurations.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLoadConfigurations.Name = "btnLoadConfigurations";
+            this.btnLoadConfigurations.Size = new System.Drawing.Size(244, 27);
+            this.btnLoadConfigurations.TabIndex = 60;
+            this.btnLoadConfigurations.Text = "Load Configurations";
+            this.btnLoadConfigurations.UseVisualStyleBackColor = true;
+            this.btnLoadConfigurations.Click += new System.EventHandler(this.btnLoadConfigurations_Click);
+            // 
             // btnShowDestination
             // 
             this.btnShowDestination.BackColor = System.Drawing.Color.Black;
@@ -704,7 +712,7 @@
             this.btnSaveSimulation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveSimulation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.btnSaveSimulation.ForeColor = System.Drawing.Color.White;
-            this.btnSaveSimulation.Location = new System.Drawing.Point(2, 7);
+            this.btnSaveSimulation.Location = new System.Drawing.Point(8, 65);
             this.btnSaveSimulation.Margin = new System.Windows.Forms.Padding(2);
             this.btnSaveSimulation.Name = "btnSaveSimulation";
             this.btnSaveSimulation.Size = new System.Drawing.Size(136, 27);
@@ -721,28 +729,13 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Rail_Bag_Simulation.Properties.Resources.logomini;
-            this.pictureBox1.Location = new System.Drawing.Point(643, 26);
+            this.pictureBox1.Location = new System.Drawing.Point(643, 42);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(206, 80);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
-            // 
-            // btnResetSimulation
-            // 
-            this.btnResetSimulation.BackColor = System.Drawing.Color.Black;
-            this.btnResetSimulation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResetSimulation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.btnResetSimulation.ForeColor = System.Drawing.Color.White;
-            this.btnResetSimulation.Location = new System.Drawing.Point(142, 7);
-            this.btnResetSimulation.Margin = new System.Windows.Forms.Padding(2);
-            this.btnResetSimulation.Name = "btnResetSimulation";
-            this.btnResetSimulation.Size = new System.Drawing.Size(136, 27);
-            this.btnResetSimulation.TabIndex = 32;
-            this.btnResetSimulation.Text = "Reset Simulation ";
-            this.btnResetSimulation.UseVisualStyleBackColor = false;
-            this.btnResetSimulation.Click += new System.EventHandler(this.btnResetSimulation_Click);
             // 
             // simulation1
             // 
@@ -775,29 +768,19 @@
             this.simulation2.TabIndex = 0;
             this.simulation2.Visible = false;
             // 
-            // btnLoadConfigurations
-            // 
-            this.btnLoadConfigurations.Location = new System.Drawing.Point(40, 119);
-            this.btnLoadConfigurations.Margin = new System.Windows.Forms.Padding(2);
-            this.btnLoadConfigurations.Name = "btnLoadConfigurations";
-            this.btnLoadConfigurations.Size = new System.Drawing.Size(244, 27);
-            this.btnLoadConfigurations.TabIndex = 60;
-            this.btnLoadConfigurations.Text = "Load Configurations";
-            this.btnLoadConfigurations.UseVisualStyleBackColor = true;
-            this.btnLoadConfigurations.Click += new System.EventHandler(this.btnLoadConfigurations_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1426, 773);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panelBorder1);
+            this.Controls.Add(this.btnSaveSimulation);
             this.Controls.Add(this.panelBorder);
             this.Controls.Add(this.palenlConfigurations);
             this.Controls.Add(this.simulation1);
             this.Controls.Add(this.statistics1);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.simulation2);
@@ -882,7 +865,7 @@
         private System.Windows.Forms.Label lbDestination;
         private System.Windows.Forms.Label lbDestinatinInfo;
         private System.Windows.Forms.Button btnShowDestination;
-        private System.Windows.Forms.Button btnResetSimulation;
+        private View.UserControls.Simulation2 simulation2;
         private System.Windows.Forms.Button btnLoadConfigurations;
     }
 }
