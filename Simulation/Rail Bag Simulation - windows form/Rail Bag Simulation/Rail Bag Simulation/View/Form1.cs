@@ -508,6 +508,7 @@ namespace Rail_Bag_Simulation
             }
         }
 
+
         private void btnResetSimulation_Click(object sender, EventArgs e)
         {
            simulation1.Hide();
@@ -518,6 +519,21 @@ namespace Rail_Bag_Simulation
            SecurityNode.destinationDistribution.Clear();
            
            btnConfigurations.PerformClick();
+        }
+
+        private void btnLoadConfigurations_Click(object sender, EventArgs e)
+        {
+            tb_numberOfBags.Text = "100";
+            tb_nrOfCarts.Text = "7";
+            tb_flammables.Text = "2";
+            tb_weapons.Text = "4";
+            tb_drugs.Text = "10";
+            tb_Others.Text = "8";
+
+            numericUpDown1.Value = 15;
+            numericUpDown2.Value = 35;
+            numericUpDown3.Value = 20;
+            numericUpDown4.Value = 30;
         }
     }
 }
