@@ -507,5 +507,17 @@ namespace Rail_Bag_Simulation
                 btnRunSimulation.Visible = true;
             }
         }
+
+        private void btnResetSimulation_Click(object sender, EventArgs e)
+        {
+           simulation1.Hide();
+           simulation2.Hide();
+            simulation1 = new Simulation();
+           simulation2 = new Simulation2();
+           Airport.Destinations.Clear();
+           SecurityNode.destinationDistribution.Clear();
+           
+           btnConfigurations.PerformClick();
+        }
     }
 }
